@@ -1,0 +1,101 @@
+site_name: Griptape Trade School
+copyright: "&copy; Griptape, Inc."
+theme: 
+  name: material
+  logo: assets/img/griptape-logo-light.png
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.top
+    # - navigation.instant
+    - navigation.sections
+    - navigation.path
+    - navigation.indexes
+    # - navigation.expand
+    - navigation.prune
+    - navigation.tracking
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.annotation
+    - content.code.annotate
+    - content.code.copy
+    # - content.code.annotate
+  language: en
+  palette:
+      # Palette toggle for light mode
+    - scheme: default
+      primary: black
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - scheme: slate
+      primary: black
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to light mode
+extra:
+  social:
+    - icon: fontawesome/solid/house
+      link: https://www.griptape.ai
+    - icon: fontawesome/brands/discord
+      link: https://discord.gg/gnWRz88eym
+    - icon: fontawesome/brands/github
+      link: https://github.com/griptape-ai/griptape/
+    - icon: fontawesome/brands/youtube
+      link: https://www.youtube.com/@griptape-ai
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/griptape/
+markdown_extensions: 
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      toc_depth: 3
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - admonition
+  - pymdownx.arithmatex:
+      generic: true
+  - footnotes
+  - pymdownx.blocks.details
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.mark
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+# Navigation       
+nav:
+  - Home: 
+    - Overview: 'index.md'
+    - Courses: 'course-levels.md'
+  - Courses: 
+    - Level Breakdown: 'course-levels.md'
+    - 100 - Beginner: 
+      - Overview: 100/index.md
+      - 101 - Set Up Griptape: 
+        - Introduction: 100/setup/index.md
+        - Install Software: 100/setup/01_setting_up_environment.md
+        - OpenAI API Key: 100/setup/02_openai.md
+        - Griptape!: 100/setup/03_griptape.md
+        - Helpful Resources: 100/setup/04_helpful_resources.md
+      - 105 - Agents:
+        - Introduction: 100/agents/index.md
+    - 200 - Intermediate:  
+        - Overview: '200/index.md'
+        - 201 - Create a Chatbot: 
+          - Introduction: 200/chatbot-rulesets/index.md
+          - 01 - Setting up the environment: 200/chatbot-rulesets/01_setting_up_environment.md
+    - 300 - Advanced: 
+      - Overview: '300/index.md'
+    - 400 - Expert: 
+      - Overview: '400/index.md'
