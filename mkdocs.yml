@@ -88,13 +88,31 @@ nav:
         - OpenAI API Key: 100/setup/02_openai.md
         - Griptape!: 100/setup/03_griptape.md
         - Helpful Resources: 100/setup/04_helpful_resources.md
-      - 105 - Agents:
-        - Introduction: 100/agents/index.md
+      - 110 - Structures:
+        - 111 - Agents:
+          - Introduction: 100/agents/index.md
+        - 112 - Workflows:
+          - Introduction: 100/workflows/index.md
+        - 113 - Pipelines:
+          - Introduction: 100/pipelines/index.md
     - 200 - Intermediate:  
         - Overview: '200/index.md'
         - 201 - Create a Chatbot: 
           - Introduction: 200/chatbot-rulesets/index.md
-          - 01 - Setting up the environment: 200/chatbot-rulesets/01_setting_up_environment.md
+          - Setting up the environment: 200/chatbot-rulesets/01_setting_up_environment.md
+          - Create an agent: 200/chatbot-rulesets/02_create_an_agent.md
+          - The Chat utility: 200/chatbot-rulesets/03_the_chat_utility.md
+          - Hiding the logs: 200/chatbot-rulesets/04_hide_the_logs.md
+          - Personality: 200/chatbot-rulesets/05_personality_with_rulesets.md
+          - Custom chat: 200/chatbot-rulesets/06_adding_manual_chat.md
+          - Manners maketh the bot: 200/chatbot-rulesets/07_manners_maketh_the_bot.md
+          - Rulesets for output: 200/chatbot-rulesets/08_adding_another_ruleset_for_output.md
+          - Formatting Output: 200/chatbot-rulesets/09_formatting_chat_output.md
+          - Markdown Madness: 200/chatbot-rulesets/10_markdown_madness.md
+          - Improving the prmopt: 200/chatbot-rulesets/11_gleaming_the_chat.md
+          - Multiple Personas: 200/chatbot-rulesets/12_multiple_personas.md
+          - Colorfun Personality: 200/chatbot-rulesets/13_adding_personality_colors.md
+          - Making it quick: 200/chatbot-rulesets/14_making_it_quick.md
     - 300 - Advanced: 
       - Overview: '300/index.md'
     - 400 - Expert: 
