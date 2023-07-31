@@ -1,12 +1,16 @@
-## Stage 10: Markdown Madness for Supercharged Code Display
+# Markdown Madness
+
+<iframe src="https://www.youtube.com/embed/QsQetOekCDA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 In this stage, we'll enhance our chatbot's code display by harnessing the power of Markdown. With Markdown, we can beautifully format and highlight code snippets to make them more readable and visually appealing. 
 
-### 10.1 See why it's broken
+## Review
+
 First let's see why our current output doesn't work. Ask the chatbot to do something useful - like create a bash script that will create an alias to launch VS Code.
 
 ```
-Chat with Kiwi: Can you create a bash script that will create an alias for me to launch visual studio code?
+Chat with Kiwi: Can you create a bash script that will create an 
+alias for me to launch visual studio code?
 
 ╭──────────────────────────────────────────────────────────────────────────────╮
 │ Kiwi: Kia ora! G'day mate! I can definitely help you with that. Here's a     │
@@ -32,7 +36,8 @@ Chat with Kiwi: Can you create a bash script that will create an alias for me to
 
 As you can see, the script is fine, but it doesn't _look_ like a script. It looks like something you'd enter in a Markdown file that you'd expect to eventually be rendered as a script. We're going to make this look much nicer.
 
-### 10.2 Importing the Required Libraries
+## Markdown
+### Import
 
 To get started, we need to update our imports by adding the `Markdown` class.
 
@@ -42,10 +47,11 @@ from rich.markdown import Markdown
 
 The `Markdown` class for the `rich` library allows for rendering formatted Markdown text.
 
-### 10.3 Enhancing the Chatbot Output
+### Using it
 
-Next, we'll modify the `respond` method to use the `Markdown` class. There are a few things we'll need to do. First, we'll take the output of the chatbot's response and convert it into a formeted Markdown text using the following line:
-```python
+Next, we'll modify the `respond` method to use the `Markdown` class. There are a few things we'll need to do. First, we'll take the output of the chatbot's response and convert it into a formatted Markdown text using the following line:
+
+```python hl_lines="5"
         # ...
         response = data["response"]
         continue_chatting = data["continue_chatting"]
@@ -62,11 +68,12 @@ Then, we'll replace our `rprint` statement in the panel to use the `formatted_re
         # ...
 ```
 
-> Note: Make sure you don't do something like `rprint(Panel.fit(f"Kiwi : {formatted_response}", width=80))` because it will print out the *object*, not the data. 
+!!! Warning
+    Make sure you don't do something like `rprint(Panel.fit(f"Kiwi : {formatted_response}", width=80))` because it will print out the *object*, not the data. 
 
 Here's the new `respond` method in it's entirety:
 
-```python
+```python hl_lines="10 13"
 # Create a subclass for the Agent
 class MyAgent(Agent):
         
@@ -78,12 +85,14 @@ class MyAgent(Agent):
 
         formatted_response = Markdown(response)
 
-        print("")
+        rprint("")
         rprint(Panel.fit(formatted_response, width=80))
-        print("")
+        rprint("")
         
         return continue_chatting
 ```
+
+## Update Ruleset
 
 Finally, we'll change our `json_ruleset` to ensure the response works with Markdown.
 
@@ -91,7 +100,7 @@ Modify the **second** rule in the `json_ruleset` so it specifies the response sh
 
 ```python
         # ... previous code
-        Rule("The 'response' value should be a string that can be safely converted to markdown format."),
+        Rule("The 'response' value should be a string that can be safely converted to markdown format. Include line returns when necessary."),
         # ...
 ```
 And the result. I've added a screenshot so you can see how much better it looks.
@@ -101,11 +110,80 @@ And the result. I've added a screenshot so you can see how much better it looks.
 To see the enhanced code display in action, run your chatbot and observe the beautifully formatted code snippets that were previously plain text. Try creating tables, csv files, python, tasks lists, etc. Enjoy the new level of elegance and readability brought by Markdown magic!
 
 ---
-### Code Checkpoint
+## Code Checkpoint
 
-Before moving forward, make sure your code works as expected by checking the [Stage 10 Code Checkpoint](../assets/examples/10_app.py) on GitHub.
+Before moving forward, make sure your code works as expected.
 
-### Next Steps
+```python linenums="1" title="app.py"
+from dotenv import load_dotenv
+import logging
+import json
 
-In the next section, [Stage 11: Improving the Prompt](11_gleaming_the_chat.md), we'll continue making things better by improving the appearance of the prompt.
+# Rich
+from rich import print as rprint
+from rich.panel import Panel
+
+# Griptape 
+from griptape.structures import Agent
+from griptape.rules import Rule, Ruleset
+
+# Load environment variables
+load_dotenv()
+
+# Create a ruleset for the agent
+kiwi_ruleset = Ruleset(
+    name = "kiwi",
+    rules = [
+        Rule("You identify as a New Zealander."),
+        Rule("You have a strong kiwi accent.")
+    ]
+)
+
+json_ruleset = Ruleset(
+    name="json_ruleset",
+    rules=[
+        Rule("Respond in plain text only with JSON objects that have the following keys: response, continue_chatting."),
+        Rule("The 'response' value should be a string that is your response to the user."),
+        Rule("If it sounds like the person is done chatting, set 'continue_chatting' to False, otherwise it is True"),
+    ]
+)
+
+# Create a subclass for the Agent
+class MyAgent(Agent):
+
+    def respond (self, user_input):
+        agent_response = agent.run(user_input)
+        data = json.loads(agent_response.output.value)
+        response = data["response"]
+        continue_chatting = data["continue_chatting"]
+
+        rprint("")
+        rprint(Panel.fit(f"Kiwi: {response}", width=80))
+        rprint("")
+
+        return continue_chatting
+
+# Create the agent
+agent = MyAgent(
+    rulesets=[kiwi_ruleset, json_ruleset],
+    logger_level=logging.ERROR
+)
+
+# Chat function
+def chat(agent):
+    is_chatting = True
+    while is_chatting:
+        user_input = input("Chat with Kiwi: ")
+        is_chatting = agent.respond(user_input)
+
+# Introduce the agent
+agent.respond("Introduce yourself to the user.")
+
+# Run the agent
+chat(agent)
+```
+
+## Next Steps
+
+In the next section, [Improving the Prompt](11_gleaming_the_chat.md), we'll continue making things better by improving the appearance of the prompt.
 

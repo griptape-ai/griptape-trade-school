@@ -5,9 +5,3 @@ Dive into the world of Griptape in our Beginner courses, where we lay the ground
     The kickflip, in skateboarding, is one of the first tricks a skater learns. It involves flipping the board in the air using a 'kick' motion with the foot. It's an essential move that forms the foundation for many other tricks, much like our Beginner courses which lay the groundwork for your journey with Griptape. This trick gets its name from the 'kick' action used to flip the board.
 
 
-## Essential Courses
-
-| Course | Description |
-|--------|-------------|
-|[**Set up Griptape**](setup/index.md) | Set up your Griptape Development environment with Python3, Visual Studio Code, and more! |
-|[**Agents**](agents/index.md) | Learn about Griptape Agents. |

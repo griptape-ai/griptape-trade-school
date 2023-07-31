@@ -1,6 +1,6 @@
 # Building a Conversational Chatbot with Personality Using Griptape's Rulesets 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/YBkb5alrH94" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed/YBkb5alrH94" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ## Course Description
 In this course, we will take a deep dive into creating a command-line interface (CLI) based conversational chatbot with an [Agent](https://docs.griptape.ai/en/latest/griptape-framework/structures/agents/) using Griptape's [Rulesets](https://docs.griptape.ai/en/latest/griptape-framework/structures/rulesets/). Not only will our chatbot be able to engage in conversation, but it will also have the unique ability to embody different personalities, making the interaction more dynamic and interesting. 
@@ -17,7 +17,7 @@ Before beginning this course, you will need:
 - Python3.9+ installed on your machine
 - An IDE (such as Visual Studio Code or PyCharm) to write and manage your code
 
-If you don't have those items available, it's highly recommended you go through the [Griptape Setup - Visual Studio Code](../../../100/setup/index.md) course to set up your environment.
+If you don't have those items available, it's highly recommended you go through the [Griptape Setup - Visual Studio Code](../../setup/index.md) course to set up your environment.
 
 ## Course Outline
 The course is designed to progressively build your understanding and skillset. We'll start with setting up your environment, then introduce you to the basics of Agents and Rulesets. We'll add more advanced features as the course progresses, including:
@@ -32,6 +32,7 @@ By the end of this course, you'll have a versatile chatbot that can carry on eng
 
 ## Useful Resources
 These resources will provide additional information and context throughout the course:
+
 - [Griptape Documentation](https://github.com/griptape-ai/griptape)
 - [Python-dotenv Package](https://pypi.org/project/python-dotenv/)
 - [Rich Library](https://pypi.org/project/rich/)

@@ -1,0 +1,3 @@
+nav:
+    - Welcome: 'index'
+    - Environment: 01_setting_up_environment

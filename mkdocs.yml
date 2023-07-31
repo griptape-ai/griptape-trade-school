@@ -1,16 +1,21 @@
 site_name: Griptape Trade School
 copyright: "&copy; Griptape, Inc."
+extra_css:
+  - stylesheets/extra.css
 theme: 
   name: material
   logo: assets/img/griptape-logo-light.png
+  navigation_depth: 2
+  custom_dir: overrides
   features:
     - navigation.tabs
     - navigation.tabs.sticky
     - navigation.top
-    # - navigation.instant
-    - navigation.sections
+    - navigation.instant
+    # - navigation.sections
     - navigation.path
-    - navigation.indexes
+    # - navigation.indexes
+    - navigation.footer
     # - navigation.expand
     - navigation.prune
     - navigation.tracking
@@ -20,21 +25,13 @@ theme:
     - content.code.annotation
     - content.code.annotate
     - content.code.copy
-    # - content.code.annotate
+    # - navigation.awesome-pages
+    - content.code.annotate
   language: en
   palette:
-      # Palette toggle for light mode
-    - scheme: default
-      primary: black
-      toggle:
-        icon: material/toggle-switch
-        name: Switch to dark mode
-    # Palette toggle for dark mode
-    - scheme: slate
-      primary: black
-      toggle:
-        icon: material/toggle-switch-off-outline
-        name: Switch to light mode
+    scheme: slate
+    primary: black
+    accent: deep orange
 extra:
   social:
     - icon: fontawesome/solid/house
@@ -53,8 +50,11 @@ markdown_extensions:
   - tables
   - toc:
       toc_depth: 3
+      title: On this page
+      # permalink: true
   - pymdownx.highlight:
       anchor_linenums: true
+      # linenums: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - admonition
@@ -64,7 +64,10 @@ markdown_extensions:
   - pymdownx.blocks.details
   - pymdownx.details
   - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true 
   - pymdownx.mark
+  - pymdownx.betterem
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
@@ -73,47 +76,34 @@ markdown_extensions:
   - pymdownx.keys
   - pymdownx.mark
   - pymdownx.tilde
-# Navigation       
+
+#Navigation       
 nav:
   - Home: 
-    - Overview: 'index.md'
-    - Courses: 'course-levels.md'
+    - Griptape Trade School: 'index.md'
+  - Setup: 
+    - Setting up for Griptape: setup/index.md
+    - Software: setup/01_setting_up_environment.md
+    - OpenAI: setup/02_openai.md
+    - Griptape: setup/03_griptape.md
+    - Resources: setup/04_helpful_resources.md
   - Courses: 
-    - Level Breakdown: 'course-levels.md'
-    - 100 - Beginner: 
-      - Overview: 100/index.md
-      - 101 - Set Up Griptape: 
-        - Introduction: 100/setup/index.md
-        - Install Software: 100/setup/01_setting_up_environment.md
-        - OpenAI API Key: 100/setup/02_openai.md
-        - Griptape!: 100/setup/03_griptape.md
-        - Helpful Resources: 100/setup/04_helpful_resources.md
-      - 110 - Structures:
-        - 111 - Agents:
-          - Introduction: 100/agents/index.md
-        - 112 - Workflows:
-          - Introduction: 100/workflows/index.md
-        - 113 - Pipelines:
-          - Introduction: 100/pipelines/index.md
-    - 200 - Intermediate:  
-        - Overview: '200/index.md'
-        - 201 - Create a Chatbot: 
-          - Introduction: 200/chatbot-rulesets/index.md
-          - Setting up the environment: 200/chatbot-rulesets/01_setting_up_environment.md
-          - Create an agent: 200/chatbot-rulesets/02_create_an_agent.md
-          - The Chat utility: 200/chatbot-rulesets/03_the_chat_utility.md
-          - Hiding the logs: 200/chatbot-rulesets/04_hide_the_logs.md
-          - Personality: 200/chatbot-rulesets/05_personality_with_rulesets.md
-          - Custom chat: 200/chatbot-rulesets/06_adding_manual_chat.md
-          - Manners maketh the bot: 200/chatbot-rulesets/07_manners_maketh_the_bot.md
-          - Rulesets for output: 200/chatbot-rulesets/08_adding_another_ruleset_for_output.md
-          - Formatting Output: 200/chatbot-rulesets/09_formatting_chat_output.md
-          - Markdown Madness: 200/chatbot-rulesets/10_markdown_madness.md
-          - Improving the prmopt: 200/chatbot-rulesets/11_gleaming_the_chat.md
-          - Multiple Personas: 200/chatbot-rulesets/12_multiple_personas.md
-          - Colorfun Personality: 200/chatbot-rulesets/13_adding_personality_colors.md
-          - Making it quick: 200/chatbot-rulesets/14_making_it_quick.md
-    - 300 - Advanced: 
-      - Overview: '300/index.md'
-    - 400 - Expert: 
-      - Overview: '400/index.md'
+    - All Courses: courses.md
+    - Chat bot:
+      - Introduction: 200/chatbot-rulesets/index.md
+      - Setup: 200/chatbot-rulesets/01_setting_up_environment.md
+      - The Chat utility: 200/chatbot-rulesets/03_the_chat_utility.md
+      - Hiding the logs: 200/chatbot-rulesets/04_hide_the_logs.md
+      - Personality: 200/chatbot-rulesets/05_personality_with_rulesets.md
+      - Custom chat: 200/chatbot-rulesets/06_adding_manual_chat.md
+      - Manners maketh the bot: 200/chatbot-rulesets/07_manners_maketh_the_bot.md
+      - Rulesets for output: 200/chatbot-rulesets/08_adding_another_ruleset_for_output.md
+      - Formatting Output: 200/chatbot-rulesets/09_formatting_chat_output.md
+      - Markdown Madness: 200/chatbot-rulesets/10_markdown_madness.md
+      - Improving the Prompt: 200/chatbot-rulesets/11_gleaming_the_chat.md
+      - Multiple Personas: 200/chatbot-rulesets/12_multiple_personas.md
+      - Colorful Personality: 200/chatbot-rulesets/13_adding_personality_colors.md
+      - Quick Feedback: 200/chatbot-rulesets/14_making_it_quick.md
+  - Help: 
+    - FAQ: faq.md
+    - Contributing: contributing.md

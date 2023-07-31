@@ -1,8 +1,12 @@
-## Stage 9. Making the Chatbot Look More Chat-like with 'rich'
+# Formatting Output
+
+<iframe src="https://www.youtube.com/embed/LHwaJBl09DA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+## Rich Library
 
 To make the chatbot output look more chat-like, we'll use the [`rich`](https://rich.readthedocs.io/) library. This library provides advanced formatting and styling options for the console output. We'll modify the chatbot function to apply formatting to the agent's responses. 
 
-### 9.1 Importing the Library
+### Import
 
 First, let's update the code to import the `rich` library. Include the following import statements in the import section of `app.py`.
 
@@ -16,15 +20,17 @@ The **first** line imports the `print` library from `rich` and assigns an alias:
 
 For example, instead of using `print("Hello, World!")`, we can now use `rprint("Hello, World!")` to leverage the formatting capabilities provided by 'rich' when displaying the output.
 
-> Sometimes people will simply recommend overiding the standard print functionality by doing `from rich import print`, but that would actually replace other uses of `print` in your code. For this reason, I recommend importing it as `rprint` in order to ensure behavior we expect. But in reality, it's totally up to you. [Read the documentation](https://rich.readthedocs.io/en/stable/introduction.html#quick-start) for more information.
+!!! Tip
+    Sometimes people will simply recommend overiding the standard print functionality by doing `from rich import print`, but that would actually replace other uses of `print` in your code. For this reason, I recommend importing it as `rprint` in order to ensure behavior we expect. But in reality, it's totally up to you. [Read the documentation](https://rich.readthedocs.io/en/stable/introduction.html#quick-start) for more information.
 
 The **second** line imports the Panel class from the `rich.panel` module. The Panel class represents a styled container that can be used to encapsulate and visually enhance content within a console output. It allows us to create panels with various styles, colors, and borders.
 
-### 9.2 Wrap the chatbot
+### Panel
 
 Next, we'll update our `respond` method to use the new `rprint` alias and the `Panel` class. This is a pretty simple change to start with, but you'll very quickly see how much nicer things look.
 
 Inside the `respond` method, replace the line that looks like:
+
 ```python
 print(f"Kiwi: {response}")
 ```
@@ -34,6 +40,7 @@ with
 rprint(Panel(f"Kiwi: {response}"))
 
 ```
+
 As you can see, we've simply replaced `print` with `rprint`, and wrapped the string that was being submitted with `Panel()`.
 
 If you run this code you'll see a quick improvement.
@@ -47,7 +54,7 @@ Chat with Kiwi:
 
 Much better, right? We're not done yet..
 
-### 9.3 Fitting it all in
+### Fitting it in
 
 One of the nice things about `rich` is that it can control the width of the Panel automatically by using a `fit` function to fit the content.
 
@@ -66,11 +73,12 @@ Chat with Kiwi: Say hello in 2 words as a kiwi
 ╰──────────────────────╯
 ```
 
-### 9.4 Propper Width
+### Propper width
 
 Sometimes the response can be quite long and fill the terminal. In these cases, it's nice to also be able to give a maximum width to your reponse. You can do this by giving the `width` attribute. Used in combination with `fit`, the panel will be either the width of your content, or the width you specify with the attribute - whatever is smaller.
 
 Modify the prompt:
+
 ```python
 rprint(Panel.fit(f"Kiwi: {response}", width=80))
 
@@ -88,12 +96,82 @@ Chat with Kiwi: What's the best thing about the Wairarapa?
 ╰──────────────────────────────────────────────────────────────────────────────╯
 
 ```
+
 ---
 
-### Code Checkpoint
+## Code Review
 
-As you can see, this has already helped our readability a ton. Compare your code with our [Stage 9 Code Checkpoint](../assets/examples/09_app.py) on GitHub.
+As you can see, this has already helped our readability a ton. Compare your code.
 
-### Next Steps
+```python title="app.py" linenums="1" hl_lines="5-7 44"
+from dotenv import load_dotenv
+import logging
+import json
+
+# Rich
+from rich import print as rprint
+from rich.panel import Panel
+
+# Griptape 
+from griptape.structures import Agent
+from griptape.rules import Rule, Ruleset
+
+# Load environment variables
+load_dotenv()
+
+# Create a ruleset for the agent
+kiwi_ruleset = Ruleset(
+    name = "kiwi",
+    rules = [
+        Rule("You identify as a New Zealander."),
+        Rule("You have a strong kiwi accent.")
+    ]
+)
+
+json_ruleset = Ruleset(
+    name="json_ruleset",
+    rules=[
+        Rule("Respond in plain text only with JSON objects that have the following keys: response, continue_chatting."),
+        Rule("The 'response' value should be a string that is your response to the user."),
+        Rule("If it sounds like the person is done chatting, set 'continue_chatting' to False, otherwise it is True"),
+    ]
+)
+
+# Create a subclass for the Agent
+class MyAgent(Agent):
+
+    def respond (self, user_input):
+        agent_response = agent.run(user_input)
+        data = json.loads(agent_response.output.value)
+        response = data["response"]
+        continue_chatting = data["continue_chatting"]
+
+        print("")
+        rprint(Panel.fit(f"Kiwi: {response}", width=80))
+        print("")
+
+        return continue_chatting
+
+# Create the agent
+agent = MyAgent(
+    rulesets=[kiwi_ruleset, json_ruleset],
+    logger_level=logging.ERROR
+)
+
+# Chat function
+def chat(agent):
+    is_chatting = True
+    while is_chatting:
+        user_input = input("Chat with Kiwi: ")
+        is_chatting = agent.respond(user_input)
+
+# Introduce the agent
+agent.respond("Introduce yourself to the user.")
+
+# Run the agent
+chat(agent)
+```
+
+## Next Steps
 
 As a developer, you may be intersted in having your chatbot write code for you, or create some tables. In the next section: [Markdown Madness](10_markdown_madness.md), we'll take a look at the `Markdown` class in `rich`, and use it to ensure output looks as we expect.
