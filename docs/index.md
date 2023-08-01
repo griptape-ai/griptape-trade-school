@@ -10,7 +10,7 @@ template: hero.html
 
 -   # Projects
 
-    ![img](../assets/img/illustrations/workingman2.png)
+    ![img](assets/img/illustrations/workingman2.png)
     
     We believe that the best learning experience is by creating with a clear goal. All our courses are **project-based**, meaning you're applying concepts in real-world scenarios, enhancing your understanding. 
     
@@ -25,7 +25,7 @@ template: hero.html
 
 -   # Text, Video, Whatever
 
-    ![img](../assets/img/illustrations/videocall2.png)
+    ![img](assets/img/illustrations/videocall2.png)
 
     Some concepts are taught best through text. Others through video. And still others require both.
 
