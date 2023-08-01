@@ -1,5 +1,3 @@
-![img](assets/img/undraw_educator_re_ju47.svg)
-
 Welcome to the first step of our journey into creating a conversational chatbot! In this section, we will be focusing on setting up our work environment, which is the first step to any coding project. 
 
 ### Prerequisites

@@ -96,7 +96,7 @@ nav:
     - Resources: setup/04_helpful_resources.md
   - Courses: 
     - All Courses: courses.md
-    - Chat bot:
+    - Chatbot:
       - Introduction: 200/chatbot-rulesets/index.md
       - Setup: 200/chatbot-rulesets/01_setting_up_environment.md
       - The Chat utility: 200/chatbot-rulesets/03_the_chat_utility.md
