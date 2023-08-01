@@ -67,6 +67,12 @@ iframe {
   filter:brightness(80%);
 }
 
+
+.grid ul li img {
+  float: left;
+  margin-right: 2em;
+  width: 30%;
+}
 /* HERO area */
 .hero {
   padding: 8% 5%;
