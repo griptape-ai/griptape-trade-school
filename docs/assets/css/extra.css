@@ -140,10 +140,10 @@ iframe {
 }
 
 .hero-code {
-  border: thin solid rgba(255, 255, 255, 0.377);
+  /* border: thin solid rgba(255, 255, 255, 0.377); */
   font-size: 1.5em;
   padding: 2em 1.5em; 
-  background-color:rgb(44, 56, 70);
+  background-color:rgb(25, 41, 55);
   border-radius: 16px;
   text-align: left;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;

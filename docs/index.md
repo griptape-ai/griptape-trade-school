@@ -8,14 +8,13 @@ template: hero.html
 # Why Trade School?
 <div class="grid cards-flat" markdown>
 
--   ## Projects
+-   ## :rocket: Projects
     ---
-  
     We believe that the best learning experience is by creating with a clear goal. All our courses are **project-based**, meaning you're applying concepts in real-world scenarios, enhancing your understanding. 
     
     Also, they're just way more fun.
 
--   ## Code Snippets
+-   ## :material-file-code: Code Snippets
 
     ---
   
@@ -26,7 +25,7 @@ template: hero.html
     agent.run("Teach me Griptape!")
     ```
 
--   ## Text, Video, Whatever
+-   ## :heart: Text, Video, Whatever
 
     ---
   
@@ -34,7 +33,7 @@ template: hero.html
 
     We're happy to provide all of it!
     
--   ## Tell us what you want
+-   ## :material-chat: Tell us what you want
 
     ---
   
