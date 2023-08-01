@@ -1,7 +1,7 @@
 site_name: Griptape Trade School
 copyright: "&copy; Griptape, Inc."
 plugins:
-  - glightbox
+  #- glightbox
   - search
 extra_css:
   - assets/css/extra.css
