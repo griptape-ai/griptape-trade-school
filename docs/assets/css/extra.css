@@ -1,6 +1,7 @@
-.body {
-  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+.body, .header {
+  font-family: 'Nunito', sans-serif !important;
 }
+
 
 /* Make youtube videos full screen */
 iframe { 
@@ -128,12 +129,15 @@ iframe {
   border: thin solid;
   padding: 1em;
   border-radius: 2em;
+  transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
+
 .column1 .hero-button:hover {
   background-color:var(--md-accent-fg-color);
   border-color: var(--md-accent-fg-color);
   color: var(--md-accent-bg-color);
   cursor: pointer;
+  letter-spacing: .05rem;
 }
 .column1 .hero-button--primary {
   background-color: var(--md-typeset-a-color);
