@@ -1,6 +1,6 @@
 ## Overview
 
-<iframe src="https://www.youtube.com/embed/wM0rLXCWom0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed/325A1odxuFo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ## OpenAI
 ### Obtaining the API Key
