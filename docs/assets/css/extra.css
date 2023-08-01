@@ -157,8 +157,19 @@ iframe {
   background-color:rgb(25, 41, 55);
   border-radius: 16px;
   text-align: left;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  box-shadow: 2px 5px 0px rgba(0,0,0,0.70);
+  transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+
 }
+
+.hero-code:hover {
+  /* border: thin solid rgba(255, 255, 255, 0.377); */
+  box-shadow: 4px 10px 0px rgba(0,0,0,0.70);
+  background-color:rgb(30, 45, 58);
+  transform: translate(0px, -5px);
+
+}
+
 a.ln {
   color: white;
   border-bottom: thin solid white;
