@@ -1,11 +1,11 @@
 ## Overview
 
-Setting up our development environment correctly is vital for smooth and successful Python coding. In this stage, we'll go through all the necessary installations and configurations.
+Setting up our development environment correctly is vital for smooth and successful coding. In this stage, we'll go through all the necessary installations and configurations.
 
 <iframe src="https://www.youtube.com/embed/saFi2Hztb4o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 ## Installing Python
 
-![python logo](assets/img/python.png){ align=right } Just like you need a solid board to skate on, we need the Python programming language to start our coding journey.
+![python logo](assets/img/python.png){ align=right } Before getting started with Griptape, you'll need to install Python.
 
 !!! info
     Griptape requires a minimum Python version of 3.9, but feel free to install a more recent version if you wish. 
@@ -22,7 +22,7 @@ If you have [Homebrew](https://brew.sh) installed:
 
 1. Open your terminal
 2. Run the `command brew install python@3.9`
-3. After the installation is complete, run brew link python@3.9
+3. After the installation is complete, run `brew link python@3.9`
 
 !!! info
 
@@ -35,7 +35,7 @@ If you have [Homebrew](https://brew.sh) installed:
 ## Visual Studio Code
 ### Installing 
 
-A good skatepark provides the environment for perfecting your tricks. In the same way, Visual Studio Code (VS Code) provides the perfect environment for our Python coding.
+Visual Studio Code (VS Code) provides the perfect environment for our Python coding.
 
 1. Go to the [VS Code download page](https://code.visualstudio.com/Download)
 2. Download the version appropriate for your OS (Windows, Linux, or macOS)
@@ -45,7 +45,7 @@ A good skatepark provides the environment for perfecting your tricks. In the sam
     VS Code is now installed!
 
 ### Creating the Project Folder
-Before we dive into coding, let's create a dedicated space for our project. Like how skateboarders need a clean, flat area to skate, we need a clean, organized directory for our project.
+Before we dive into coding, let's create a dedicated space for our project. Having a clean organized directory structure makes coding and managing your projects much easier.
 
 First, you'll want to create a new folder on your computer where all the code for this project will live. You can create this folder anywhere you like. Here's how you can do it via your **Terminal**:
 
