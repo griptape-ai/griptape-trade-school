@@ -1,6 +1,6 @@
 ## Overview
 
-Now that you've got the stance down and your environment is all set up, it's time to actually start moving. In this stage, we'll put together a basic Griptape application and see it in action. 
+Now that you've got your environment all set up, it's time to actually start moving. In this stage, we'll put together a basic Griptape application and see it in action. 
 
 <iframe  src="https://www.youtube.com/embed/_rg5rbzNc4c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
@@ -16,7 +16,7 @@ There are multiple ways communicate with LLMs via Griptape, but the one we'll us
 !!! Abstract
     Agents can do **one task**.
 
-You give the Agent a prompt, it thinks for a bit, figures things out, and then returns a result. While that sounds relatively simple, it's actually quite cool. You can give the agent tools (WebScraper, Calculator, EmailClient, to namea few), you can give it rules about how to behave, and more. Agents can actually do quite a lot - but they're still one of the more simple ways of interacting with Griptape, which is why we'll use them to start with in this course.
+You give the Agent a prompt, it thinks for a bit, figures things out, and then returns a result. While that sounds relatively simple, it's actually quite cool. You can give the agent tools (WebScraper, Calculator, EmailClient, to name a few), you can give it rules about how to behave, and more. Agents can actually do quite a lot - but they're still one of the more simple ways of interacting with Griptape, which is why we'll use them to start with in this course.
 
 Speaking of interacting with Griptape... we need to install it!
 
@@ -102,7 +102,7 @@ If everything has been set up correctly, you should see the result of the `agent
 ```
 
 !!! Success
-    Congrats! You've taken the first push and landed your first trick!
+    Congrats! You've taken the first push and created your first python script that works with a large language model!
 
 ---
 
