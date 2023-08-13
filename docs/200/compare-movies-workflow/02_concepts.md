@@ -14,6 +14,7 @@ In this course we're going to be taking some rough descriptions of movies and ge
 4. Look up the summary 
 
 The flow of tasks would be:
+
 ``` mermaid
 graph LR
     A(Movie Description) --> C(Get Name ) --> D(Get Summary)
