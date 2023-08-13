@@ -42,11 +42,23 @@
       
     
     
-      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../assets/css/extra.css">
     
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
+  
+
+
+  
+  
+
+
+  <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-68THEKV8C8"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-68THEKV8C8",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-68THEKV8C8",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
 
     
     
@@ -478,14 +490,14 @@
       
       
         <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
-          Chat bot
+          Chatbot - Rulesets
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_3_2">
           <span class="md-nav__icon md-icon"></span>
-          Chat bot
+          Chatbot - Rulesets
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -850,6 +862,138 @@
 
             
           
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+          Movie Comparison - Workflows
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          Movie Comparison - Workflows
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../compare-movies-workflow/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../compare-movies-workflow/01_setup/" class="md-nav__link">
+        Setup
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../compare-movies-workflow/02_concepts/" class="md-nav__link">
+        Concepts
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../compare-movies-workflow/03_first_workflow/" class="md-nav__link">
+        First Workflow
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../compare-movies-workflow/04_adding_flexibility/" class="md-nav__link">
+        Adding Flexibility
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../compare-movies-workflow/05_using_tools/" class="md-nav__link">
+        Using Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../compare-movies-workflow/06_workflow_outputs/" class="md-nav__link">
+        Workflow Outputs
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1097,47 +1241,47 @@
 <h3 id="chatbot-can-you-hear-me">Chatbot can you hear me?</h3>
 <p>It's always awkward to walk into the middle of a conversation and not have someone acknowledge your presence. Let's modify the code to have the chatbot introduce itself before you begin talking.</p>
 <p>Add a call to the agent to introduce itself before the <code># Run the agent</code> line:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="hll"><span class="c1"># Introduce the agent</span>
-</span><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="hll"><span class="n">agent_response</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;Introduce yourself to the user.&quot;</span><span class="p">)</span>
-</span><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="hll"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kiwi: </span><span class="si">{</span><span class="n">agent_response</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">output</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># Run the agent</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">chat</span><span class="p">(</span><span class="n">agent</span><span class="p">)</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="hll"><span class="c1"># Introduce the agent</span>
+</span></span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="hll"><span class="n">agent_response</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;Introduce yourself to the user.&quot;</span><span class="p">)</span>
+</span></span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="hll"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kiwi: </span><span class="si">{</span><span class="n">agent_response</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">output</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># Run the agent</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">chat</span><span class="p">(</span><span class="n">agent</span><span class="p">)</span>
+</span></code></pre></div>
 <p>Now feel free to run the chat a few times. </p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Kiwi: Kia ora! G&#39;day mate! I&#39;m a conversational bot from Aotearoa, also known as New Zealand. How can I help you today?
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Chat with the kiwi: Can I have a funny haiku about gumboots?
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>Kiwi:  Sure as, bro! Here&#39;s a funny haiku about gumboots:
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>Gumboots on my feet,
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>Squishy mud, they can&#39;t be beat,
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>Kiwi fashion feat!
-</code></pre></div>
+<div class="highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Kiwi: Kia ora! G&#39;day mate! I&#39;m a conversational bot from Aotearoa, also known as New Zealand. How can I help you today?
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Chat with the kiwi: Can I have a funny haiku about gumboots?
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>Kiwi:  Sure as, bro! Here&#39;s a funny haiku about gumboots:
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>Gumboots on my feet,
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>Squishy mud, they can&#39;t be beat,
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>Kiwi fashion feat!
+</span></code></pre></div>
 <h3 id="repeating-ourselves">Repeating ourselves</h3>
 <p>Just like it's not polite to ignore someone when they walk into a conversation, it's not great to repeat yourself over and over.</p>
 <p>Notice we're doing exactly that at the moment. </p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># ...</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1"># Chat function</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">def</span> <span class="nf">chat</span><span class="p">(</span><span class="n">agent</span><span class="p">):</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="n">is_chatting</span> <span class="o">=</span> <span class="kc">True</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="k">while</span> <span class="n">is_chatting</span><span class="p">:</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>        <span class="n">user_input</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Chat with Kiwi: &quot;</span><span class="p">)</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>        <span class="k">if</span> <span class="n">user_input</span> <span class="o">==</span> <span class="s2">&quot;exit&quot;</span><span class="p">:</span>
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>            <span class="n">is_chatting</span> <span class="o">=</span> <span class="kc">False</span>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>        <span class="k">else</span><span class="p">:</span>
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>            <span class="c1"># Keep on chatting</span>
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="hll">            <span class="n">agent_result</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
-</span><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="hll">            <span class="nb">print</span> <span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kiwi: </span><span class="si">{</span><span class="n">agent_result</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>
-<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="c1"># Introduce the agent</span>
-<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="hll"><span class="n">agent_response</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;Introduce yourself to the user.&quot;</span><span class="p">)</span>
-</span><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="hll"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kiwi: </span><span class="si">{</span><span class="n">agent_response</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">output</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>
-<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="c1"># Run the agent</span>
-<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="n">chat</span><span class="p">(</span><span class="n">agent</span><span class="p">)</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># ...</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1"># Chat function</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">def</span> <span class="nf">chat</span><span class="p">(</span><span class="n">agent</span><span class="p">):</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="n">is_chatting</span> <span class="o">=</span> <span class="kc">True</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="k">while</span> <span class="n">is_chatting</span><span class="p">:</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>        <span class="n">user_input</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Chat with Kiwi: &quot;</span><span class="p">)</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>        <span class="k">if</span> <span class="n">user_input</span> <span class="o">==</span> <span class="s2">&quot;exit&quot;</span><span class="p">:</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>            <span class="n">is_chatting</span> <span class="o">=</span> <span class="kc">False</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>            <span class="c1"># Keep on chatting</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="hll">            <span class="n">agent_result</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
+</span></span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="hll">            <span class="nb">print</span> <span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kiwi: </span><span class="si">{</span><span class="n">agent_result</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="c1"># Introduce the agent</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="hll"><span class="n">agent_response</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;Introduce yourself to the user.&quot;</span><span class="p">)</span>
+</span></span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="hll"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kiwi: </span><span class="si">{</span><span class="n">agent_response</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">output</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="c1"># Run the agent</span>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="n">chat</span><span class="p">(</span><span class="n">agent</span><span class="p">)</span>
+</span></code></pre></div>
 <p>This is not a great programming practice because it means any changes we want to make to the output of our chat will have to be done in multiple places. It make maintaining the code way more difficult, and it doens't adhere to the DRY principle (Don't Repeat Yourself).</p>
 <p>There are a numbmer of ways we could approach this, including:</p>
 <ul>
@@ -1148,20 +1292,20 @@
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Function</label><label for="__tabbed_1_2">Method</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Send a command to the agent</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;Can I have a haiku?&quot;</span><span class="p">)</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># Run a command and print the result to the user</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">respond</span><span class="p">(</span><span class="n">agent</span><span class="p">,</span> <span class="s2">&quot;Can I have a haiku?&quot;</span><span class="p">)</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Send a command to the agent</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;Can I have a haiku?&quot;</span><span class="p">)</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># Run a command and print the result to the user</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">respond</span><span class="p">(</span><span class="n">agent</span><span class="p">,</span> <span class="s2">&quot;Can I have a haiku?&quot;</span><span class="p">)</span>
+</span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Send a command to the agent</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;Can I have a haiku?&quot;</span><span class="p">)</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># Run a command and print the result to the user</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">agent</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="s2">&quot;Can I have a haiku?&quot;</span><span class="p">)</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Send a command to the agent</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;Can I have a haiku?&quot;</span><span class="p">)</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># Run a command and print the result to the user</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">agent</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="s2">&quot;Can I have a haiku?&quot;</span><span class="p">)</span>
+</span></code></pre></div>
 </div>
 </div>
 </div>
@@ -1170,27 +1314,27 @@
 <h3 id="subclass-the-agent">Subclass the Agent</h3>
 <p>First we'll need to create a <strong>subclass</strong> for the Agent. This will allow us to create additional methods for the agent, and still inherit all the wonderful things Agent gives us.</p>
 <p>Add the following lines before <code>agent = Agent()</code> in your code:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Create a subclass for the Agent</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">class</span> <span class="nc">MyAgent</span><span class="p">(</span><span class="n">Agent</span><span class="p">):</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="c1"># Create the agent</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Create a subclass for the Agent</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">class</span> <span class="nc">MyAgent</span><span class="p">(</span><span class="n">Agent</span><span class="p">):</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="c1"># Create the agent</span>
+</span></code></pre></div>
 <h3 id="the-respond-method">The <code>Respond</code> Method</h3>
 <p>Now, add the respond method to the MyAgent class and use the same agent_response = agent.run and print commands you used earlier. </p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Create a subclass for the Agent</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">class</span> <span class="nc">MyAgent</span><span class="p">(</span><span class="n">Agent</span><span class="p">):</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="k">def</span> <span class="nf">respond</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_input</span><span class="p">):</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>        <span class="n">agent_response</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kiwi: </span><span class="si">{</span><span class="n">agent_response</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> 
-</code></pre></div>
+<div class="highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Create a subclass for the Agent</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">class</span> <span class="nc">MyAgent</span><span class="p">(</span><span class="n">Agent</span><span class="p">):</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="k">def</span> <span class="nf">respond</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_input</span><span class="p">):</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>        <span class="n">agent_response</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kiwi: </span><span class="si">{</span><span class="n">agent_response</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> 
+</span></code></pre></div>
 <h3 id="update-agent">Update Agent</h3>
 <p>Next, replace the line where you create the agent:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">()</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">()</span>
+</span></code></pre></div>
 <p>with</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">MyAgent</span><span class="p">()</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">MyAgent</span><span class="p">()</span>
+</span></code></pre></div>
 <p>to make sure we're now calling the new agent.</p>
 <h3 id="update-calls-to-agent-response">Update calls to agent response</h3>
 <p>Finally, replace the lines where we were previously getting the result of the <code>agent.run()</code> function with <code>agent.respond()</code>. At the moment this will be in two locations:</p>
@@ -1199,63 +1343,63 @@
 <li>When the agent introduces itself</li>
 </ul>
 <p>Replace:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">agent_result</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kiwi: </span><span class="si">{</span><span class="n">agent_result</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</code></pre></div></p>
+<div class="highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">agent_result</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kiwi: </span><span class="si">{</span><span class="n">agent_result</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></code></pre></div></p>
 <p>with:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">agent</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">agent</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
+</span></code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Don't replace those lines <em>inside</em> the <code>respond</code> method. Only replace them outside the method.</p>
 </div>
 <h3 id="review">Review</h3>
 <p>Since we just made some big changes, here are those alterations brought together, with new lines highlighted.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># ...</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="hll"><span class="c1"># Create a subclass for the Agent</span>
-</span><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="hll"><span class="k">class</span> <span class="nc">MyAgent</span><span class="p">(</span><span class="n">Agent</span><span class="p">):</span>
-</span><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="hll">    <span class="k">def</span> <span class="nf">respond</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_input</span><span class="p">):</span>
-</span><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="hll">        <span class="n">agent_response</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
-</span><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="hll">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kiwi: </span><span class="si">{</span><span class="n">agent_response</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>
-<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="c1"># ... truncated for brevity</span>
-<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>
-<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="c1"># Chat function</span>
-<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="k">def</span> <span class="nf">chat</span><span class="p">(</span><span class="n">agent</span><span class="p">):</span>
-<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>    <span class="n">is_chatting</span> <span class="o">=</span> <span class="kc">True</span>
-<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>    <span class="k">while</span> <span class="n">is_chatting</span><span class="p">:</span>
-<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>        <span class="n">user_input</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Chat with Kiwi: &quot;</span><span class="p">)</span>
-<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>        <span class="k">if</span> <span class="n">user_input</span> <span class="o">==</span> <span class="s2">&quot;exit&quot;</span><span class="p">:</span>
-<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>            <span class="n">is_chatting</span> <span class="o">=</span> <span class="kc">False</span>
-<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a>        <span class="k">else</span><span class="p">:</span>
-<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a><span class="hll">            <span class="n">agent</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
-</span><a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a>
-<a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a><span class="c1"># Introduce the agent</span>
-<a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a><span class="hll"><span class="n">agent</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="s2">&quot;Introduce yourself to the user.&quot;</span><span class="p">)</span>
-</span><a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a>
-<a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a><span class="c1"># ...</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># ...</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="hll"><span class="c1"># Create a subclass for the Agent</span>
+</span></span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="hll"><span class="k">class</span> <span class="nc">MyAgent</span><span class="p">(</span><span class="n">Agent</span><span class="p">):</span>
+</span></span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="hll">    <span class="k">def</span> <span class="nf">respond</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_input</span><span class="p">):</span>
+</span></span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="hll">        <span class="n">agent_response</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
+</span></span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="hll">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kiwi: </span><span class="si">{</span><span class="n">agent_response</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="c1"># ... truncated for brevity</span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="c1"># Chat function</span>
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="k">def</span> <span class="nf">chat</span><span class="p">(</span><span class="n">agent</span><span class="p">):</span>
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>    <span class="n">is_chatting</span> <span class="o">=</span> <span class="kc">True</span>
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>    <span class="k">while</span> <span class="n">is_chatting</span><span class="p">:</span>
+</span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>        <span class="n">user_input</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Chat with Kiwi: &quot;</span><span class="p">)</span>
+</span><span id="__span-11-16"><a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>        <span class="k">if</span> <span class="n">user_input</span> <span class="o">==</span> <span class="s2">&quot;exit&quot;</span><span class="p">:</span>
+</span><span id="__span-11-17"><a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>            <span class="n">is_chatting</span> <span class="o">=</span> <span class="kc">False</span>
+</span><span id="__span-11-18"><a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="__span-11-19"><a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a><span class="hll">            <span class="n">agent</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
+</span></span><span id="__span-11-20"><a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a>
+</span><span id="__span-11-21"><a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a><span class="c1"># Introduce the agent</span>
+</span><span id="__span-11-22"><a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a><span class="hll"><span class="n">agent</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="s2">&quot;Introduce yourself to the user.&quot;</span><span class="p">)</span>
+</span></span><span id="__span-11-23"><a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a>
+</span><span id="__span-11-24"><a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a><span class="c1"># ...</span>
+</span></code></pre></div>
 <h2 id="more-manners">More Manners</h2>
 <h3 id="dont-leave-without-saying-goodbye">Don't leave without saying Goodbye</h3>
 <p>Let's give the chatbot a bit <em>more</em> social grace and have it say goodbye when the person stops the chat. Before setting <code>is_chatting = False</code>, add the following line:</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">agent</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="s2">&quot;The user is finished chatting. Say goodbye.&quot;</span><span class="p">)</span>
-</code></pre></div>
+<p><div class="highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">agent</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="s2">&quot;The user is finished chatting. Say goodbye.&quot;</span><span class="p">)</span>
+</span></code></pre></div>
 This will tell the agent that the user is leaving the chat, and then print the output to the screen. Here's that section of the code in context:</p>
 <p>Here's an example of how that would play out:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Chat with kiwi: exit
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>Kiwi: Good on ya, mate! Take care and have a ripper day!
-</code></pre></div></p>
+<div class="highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Chat with kiwi: exit
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>Kiwi: Good on ya, mate! Take care and have a ripper day!
+</span></code></pre></div></p>
 <h3 id="clean-up-the-output">Clean up the output</h3>
 <p>Finally, let's enhance the readability of the chat by adding a bit more space around the output of the chat.</p>
 <p>This can be done by modifying the <code>resopnd</code> method to add two print statements.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">class</span> <span class="nc">MyAgent</span><span class="p">(</span><span class="n">Agent</span><span class="p">):</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>    <span class="k">def</span> <span class="nf">respond</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_input</span><span class="p">):</span>
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>        <span class="n">agent_response</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
-<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="hll">        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-</span><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kiwi: </span><span class="si">{</span><span class="n">agent_response</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="hll">        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-</span></code></pre></div>
+<div class="highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">class</span> <span class="nc">MyAgent</span><span class="p">(</span><span class="n">Agent</span><span class="p">):</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>    <span class="k">def</span> <span class="nf">respond</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_input</span><span class="p">):</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>        <span class="n">agent_response</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="hll">        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+</span></span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kiwi: </span><span class="si">{</span><span class="n">agent_response</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="hll">        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+</span></span></code></pre></div>
 <hr />
 <h2 id="code-checkpoint">Code Checkpoint</h2>
 <p>We made some major updates to the code in this section. Take a look:</p>
@@ -1310,62 +1454,64 @@ This will tell the agent that the user is leaving the chat, and then print the o
 <span class="normal"><a href="#__codelineno-15-49">49</a></span>
 <span class="normal"><a href="#__codelineno-15-50">50</a></span>
 <span class="normal"><a href="#__codelineno-15-51">51</a></span>
-<span class="normal"><a href="#__codelineno-15-52">52</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2"></a><span class="kn">import</span> <span class="nn">logging</span>
-<a id="__codelineno-15-3" name="__codelineno-15-3"></a>
-<a id="__codelineno-15-4" name="__codelineno-15-4"></a><span class="c1"># Griptape Items</span>
-<a id="__codelineno-15-5" name="__codelineno-15-5"></a><span class="kn">from</span> <span class="nn">griptape.structures</span> <span class="kn">import</span> <span class="n">Agent</span>
-<a id="__codelineno-15-6" name="__codelineno-15-6"></a><span class="kn">from</span> <span class="nn">griptape.rules</span> <span class="kn">import</span> <span class="n">Rule</span><span class="p">,</span> <span class="n">Ruleset</span>
-<a id="__codelineno-15-7" name="__codelineno-15-7"></a>
-<a id="__codelineno-15-8" name="__codelineno-15-8"></a><span class="c1"># Load environment variables</span>
-<a id="__codelineno-15-9" name="__codelineno-15-9"></a><span class="n">load_dotenv</span><span class="p">()</span>
-<a id="__codelineno-15-10" name="__codelineno-15-10"></a>
-<a id="__codelineno-15-11" name="__codelineno-15-11"></a><span class="c1"># Create a ruleset for the agent</span>
-<a id="__codelineno-15-12" name="__codelineno-15-12"></a><span class="n">kiwi_ruleset</span> <span class="o">=</span> <span class="n">Ruleset</span><span class="p">(</span>
-<a id="__codelineno-15-13" name="__codelineno-15-13"></a>    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;kiwi&quot;</span><span class="p">,</span>
-<a id="__codelineno-15-14" name="__codelineno-15-14"></a>    <span class="n">rules</span> <span class="o">=</span> <span class="p">[</span>
-<a id="__codelineno-15-15" name="__codelineno-15-15"></a>        <span class="n">Rule</span><span class="p">(</span><span class="s2">&quot;You identify as a New Zealander.&quot;</span><span class="p">),</span>
-<a id="__codelineno-15-16" name="__codelineno-15-16"></a>        <span class="n">Rule</span><span class="p">(</span><span class="s2">&quot;You have a strong kiwi accent.&quot;</span><span class="p">)</span>
-<a id="__codelineno-15-17" name="__codelineno-15-17"></a>    <span class="p">]</span>
-<a id="__codelineno-15-18" name="__codelineno-15-18"></a><span class="p">)</span>
-<a id="__codelineno-15-19" name="__codelineno-15-19"></a>
-<a id="__codelineno-15-20" name="__codelineno-15-20"></a><span class="c1"># Create a subclass for the Agent</span>
-<a id="__codelineno-15-21" name="__codelineno-15-21"></a><span class="k">class</span> <span class="nc">MyAgent</span><span class="p">(</span><span class="n">Agent</span><span class="p">):</span>
-<a id="__codelineno-15-22" name="__codelineno-15-22"></a>
-<a id="__codelineno-15-23" name="__codelineno-15-23"></a>    <span class="k">def</span> <span class="nf">respond</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_input</span><span class="p">):</span>
-<a id="__codelineno-15-24" name="__codelineno-15-24"></a>        <span class="n">agent_response</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
-<a id="__codelineno-15-25" name="__codelineno-15-25"></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-<a id="__codelineno-15-26" name="__codelineno-15-26"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kiwi: </span><span class="si">{</span><span class="n">agent_response</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<a id="__codelineno-15-27" name="__codelineno-15-27"></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-<a id="__codelineno-15-28" name="__codelineno-15-28"></a>
-<a id="__codelineno-15-29" name="__codelineno-15-29"></a><span class="c1"># Create the agent</span>
-<a id="__codelineno-15-30" name="__codelineno-15-30"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">MyAgent</span><span class="p">(</span>
-<a id="__codelineno-15-31" name="__codelineno-15-31"></a>    <span class="n">rulesets</span><span class="o">=</span><span class="p">[</span>
-<a id="__codelineno-15-32" name="__codelineno-15-32"></a>        <span class="n">kiwi_ruleset</span><span class="p">,</span>
-<a id="__codelineno-15-33" name="__codelineno-15-33"></a>    <span class="p">],</span>
-<a id="__codelineno-15-34" name="__codelineno-15-34"></a>    <span class="n">logger_level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">ERROR</span>
-<a id="__codelineno-15-35" name="__codelineno-15-35"></a><span class="p">)</span>
-<a id="__codelineno-15-36" name="__codelineno-15-36"></a>
-<a id="__codelineno-15-37" name="__codelineno-15-37"></a><span class="c1"># Chat function</span>
-<a id="__codelineno-15-38" name="__codelineno-15-38"></a><span class="k">def</span> <span class="nf">chat</span><span class="p">(</span><span class="n">agent</span><span class="p">):</span>
-<a id="__codelineno-15-39" name="__codelineno-15-39"></a>    <span class="n">is_chatting</span> <span class="o">=</span> <span class="kc">True</span>
-<a id="__codelineno-15-40" name="__codelineno-15-40"></a>    <span class="k">while</span> <span class="n">is_chatting</span><span class="p">:</span>
-<a id="__codelineno-15-41" name="__codelineno-15-41"></a>        <span class="n">user_input</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Chat with Kiwi: &quot;</span><span class="p">)</span>
-<a id="__codelineno-15-42" name="__codelineno-15-42"></a>        <span class="k">if</span> <span class="n">user_input</span> <span class="o">==</span> <span class="s2">&quot;exit&quot;</span><span class="p">:</span>
-<a id="__codelineno-15-43" name="__codelineno-15-43"></a>            <span class="n">agent</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="s2">&quot;The user is finished chatting. Say goodbye.&quot;</span><span class="p">)</span>
-<a id="__codelineno-15-44" name="__codelineno-15-44"></a>            <span class="n">is_chatting</span> <span class="o">=</span> <span class="kc">False</span>
-<a id="__codelineno-15-45" name="__codelineno-15-45"></a>        <span class="k">else</span><span class="p">:</span>
-<a id="__codelineno-15-46" name="__codelineno-15-46"></a>            <span class="n">agent</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
-<a id="__codelineno-15-47" name="__codelineno-15-47"></a>
-<a id="__codelineno-15-48" name="__codelineno-15-48"></a><span class="c1"># Introduce the agent</span>
-<a id="__codelineno-15-49" name="__codelineno-15-49"></a><span class="n">agent</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="s2">&quot;Introduce yourself to the user.&quot;</span><span class="p">)</span>
-<a id="__codelineno-15-50" name="__codelineno-15-50"></a>
-<a id="__codelineno-15-51" name="__codelineno-15-51"></a><span class="c1"># Run the agent</span>
-<a id="__codelineno-15-52" name="__codelineno-15-52"></a><span class="n">chat</span><span class="p">(</span><span class="n">agent</span><span class="p">)</span>
-</code></pre></div></td></tr></table></div>
+<span class="normal"><a href="#__codelineno-15-52">52</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2"></a><span class="kn">import</span> <span class="nn">logging</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3"></a>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4"></a><span class="c1"># Griptape Items</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5"></a><span class="kn">from</span> <span class="nn">griptape.structures</span> <span class="kn">import</span> <span class="n">Agent</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6"></a><span class="kn">from</span> <span class="nn">griptape.rules</span> <span class="kn">import</span> <span class="n">Rule</span><span class="p">,</span> <span class="n">Ruleset</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7"></a>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8"></a><span class="c1"># Load environment variables</span>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9"></a><span class="n">load_dotenv</span><span class="p">()</span>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10"></a>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11"></a><span class="c1"># Create a ruleset for the agent</span>
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12"></a><span class="n">kiwi_ruleset</span> <span class="o">=</span> <span class="n">Ruleset</span><span class="p">(</span>
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13"></a>    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;kiwi&quot;</span><span class="p">,</span>
+</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14"></a>    <span class="n">rules</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="__span-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15"></a>        <span class="n">Rule</span><span class="p">(</span><span class="s2">&quot;You identify as a New Zealander.&quot;</span><span class="p">),</span>
+</span><span id="__span-15-16"><a id="__codelineno-15-16" name="__codelineno-15-16"></a>        <span class="n">Rule</span><span class="p">(</span><span class="s2">&quot;You have a strong kiwi accent.&quot;</span><span class="p">)</span>
+</span><span id="__span-15-17"><a id="__codelineno-15-17" name="__codelineno-15-17"></a>    <span class="p">]</span>
+</span><span id="__span-15-18"><a id="__codelineno-15-18" name="__codelineno-15-18"></a><span class="p">)</span>
+</span><span id="__span-15-19"><a id="__codelineno-15-19" name="__codelineno-15-19"></a>
+</span><span id="__span-15-20"><a id="__codelineno-15-20" name="__codelineno-15-20"></a><span class="c1"># Create a subclass for the Agent</span>
+</span><span id="__span-15-21"><a id="__codelineno-15-21" name="__codelineno-15-21"></a><span class="k">class</span> <span class="nc">MyAgent</span><span class="p">(</span><span class="n">Agent</span><span class="p">):</span>
+</span><span id="__span-15-22"><a id="__codelineno-15-22" name="__codelineno-15-22"></a>
+</span><span id="__span-15-23"><a id="__codelineno-15-23" name="__codelineno-15-23"></a>    <span class="k">def</span> <span class="nf">respond</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_input</span><span class="p">):</span>
+</span><span id="__span-15-24"><a id="__codelineno-15-24" name="__codelineno-15-24"></a>        <span class="n">agent_response</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
+</span><span id="__span-15-25"><a id="__codelineno-15-25" name="__codelineno-15-25"></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+</span><span id="__span-15-26"><a id="__codelineno-15-26" name="__codelineno-15-26"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kiwi: </span><span class="si">{</span><span class="n">agent_response</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="__span-15-27"><a id="__codelineno-15-27" name="__codelineno-15-27"></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+</span><span id="__span-15-28"><a id="__codelineno-15-28" name="__codelineno-15-28"></a>
+</span><span id="__span-15-29"><a id="__codelineno-15-29" name="__codelineno-15-29"></a><span class="c1"># Create the agent</span>
+</span><span id="__span-15-30"><a id="__codelineno-15-30" name="__codelineno-15-30"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">MyAgent</span><span class="p">(</span>
+</span><span id="__span-15-31"><a id="__codelineno-15-31" name="__codelineno-15-31"></a>    <span class="n">rulesets</span><span class="o">=</span><span class="p">[</span>
+</span><span id="__span-15-32"><a id="__codelineno-15-32" name="__codelineno-15-32"></a>        <span class="n">kiwi_ruleset</span><span class="p">,</span>
+</span><span id="__span-15-33"><a id="__codelineno-15-33" name="__codelineno-15-33"></a>    <span class="p">],</span>
+</span><span id="__span-15-34"><a id="__codelineno-15-34" name="__codelineno-15-34"></a>    <span class="n">logger_level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">ERROR</span>
+</span><span id="__span-15-35"><a id="__codelineno-15-35" name="__codelineno-15-35"></a><span class="p">)</span>
+</span><span id="__span-15-36"><a id="__codelineno-15-36" name="__codelineno-15-36"></a>
+</span><span id="__span-15-37"><a id="__codelineno-15-37" name="__codelineno-15-37"></a><span class="c1"># Chat function</span>
+</span><span id="__span-15-38"><a id="__codelineno-15-38" name="__codelineno-15-38"></a><span class="k">def</span> <span class="nf">chat</span><span class="p">(</span><span class="n">agent</span><span class="p">):</span>
+</span><span id="__span-15-39"><a id="__codelineno-15-39" name="__codelineno-15-39"></a>    <span class="n">is_chatting</span> <span class="o">=</span> <span class="kc">True</span>
+</span><span id="__span-15-40"><a id="__codelineno-15-40" name="__codelineno-15-40"></a>    <span class="k">while</span> <span class="n">is_chatting</span><span class="p">:</span>
+</span><span id="__span-15-41"><a id="__codelineno-15-41" name="__codelineno-15-41"></a>        <span class="n">user_input</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Chat with Kiwi: &quot;</span><span class="p">)</span>
+</span><span id="__span-15-42"><a id="__codelineno-15-42" name="__codelineno-15-42"></a>        <span class="k">if</span> <span class="n">user_input</span> <span class="o">==</span> <span class="s2">&quot;exit&quot;</span><span class="p">:</span>
+</span><span id="__span-15-43"><a id="__codelineno-15-43" name="__codelineno-15-43"></a>            <span class="n">agent</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="s2">&quot;The user is finished chatting. Say goodbye.&quot;</span><span class="p">)</span>
+</span><span id="__span-15-44"><a id="__codelineno-15-44" name="__codelineno-15-44"></a>            <span class="n">is_chatting</span> <span class="o">=</span> <span class="kc">False</span>
+</span><span id="__span-15-45"><a id="__codelineno-15-45" name="__codelineno-15-45"></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="__span-15-46"><a id="__codelineno-15-46" name="__codelineno-15-46"></a>            <span class="n">agent</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
+</span><span id="__span-15-47"><a id="__codelineno-15-47" name="__codelineno-15-47"></a>
+</span><span id="__span-15-48"><a id="__codelineno-15-48" name="__codelineno-15-48"></a><span class="c1"># Introduce the agent</span>
+</span><span id="__span-15-49"><a id="__codelineno-15-49" name="__codelineno-15-49"></a><span class="n">agent</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="s2">&quot;Introduce yourself to the user.&quot;</span><span class="p">)</span>
+</span><span id="__span-15-50"><a id="__codelineno-15-50" name="__codelineno-15-50"></a>
+</span><span id="__span-15-51"><a id="__codelineno-15-51" name="__codelineno-15-51"></a><span class="c1"># Run the agent</span>
+</span><span id="__span-15-52"><a id="__codelineno-15-52" name="__codelineno-15-52"></a><span class="n">chat</span><span class="p">(</span><span class="n">agent</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
 <h3 id="next-steps">Next Steps</h3>
 <p>Congratulations on implementing manual chat functionality and taking control of the conversation! In the next section <a href="../08_adding_another_ruleset_for_output/">Adding Another Ruleset</a>, we'll explore the world of output rulesets, unlocking the ability to control the chatbot's responses in different formats such as JSON, YAML, or even haiku.</p>
 
+
+  
 
 
 

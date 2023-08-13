@@ -42,11 +42,23 @@
       
     
     
-      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../assets/css/extra.css">
     
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
+  
+
+
+  
+  
+
+
+  <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-68THEKV8C8"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-68THEKV8C8",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-68THEKV8C8",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
 
     
     
@@ -478,14 +490,14 @@
       
       
         <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
-          Chat bot
+          Chatbot - Rulesets
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_3_2">
           <span class="md-nav__icon md-icon"></span>
-          Chat bot
+          Chatbot - Rulesets
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -810,6 +822,138 @@
 
             
           
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+          Movie Comparison - Workflows
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          Movie Comparison - Workflows
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../compare-movies-workflow/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../compare-movies-workflow/01_setup/" class="md-nav__link">
+        Setup
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../compare-movies-workflow/02_concepts/" class="md-nav__link">
+        Concepts
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../compare-movies-workflow/03_first_workflow/" class="md-nav__link">
+        First Workflow
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../compare-movies-workflow/04_adding_flexibility/" class="md-nav__link">
+        Adding Flexibility
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../compare-movies-workflow/05_using_tools/" class="md-nav__link">
+        Using Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../compare-movies-workflow/06_workflow_outputs/" class="md-nav__link">
+        Workflow Outputs
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1014,18 +1158,18 @@
 <h2 id="chat-utility">Chat Utility</h2>
 <h3 id="import">Import</h3>
 <p>To get started, we need to import the magical <code>Chat</code> utility from Griptape. This utility will be our ticket to engaging conversations with our chatbot. In your code, add the following import statement:</p>
-<div class="highlight"><span class="filename">app.py</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># ... previous code</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span> <span class="nn">griptape.structures</span> <span class="kn">import</span> <span class="n">Agent</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="hll"><span class="kn">from</span> <span class="nn">griptape.utils</span> <span class="kn">import</span> <span class="n">Chat</span>
-</span><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># ...</span>
-</code></pre></div>
+<div class="highlight"><span class="filename">app.py</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># ... previous code</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span> <span class="nn">griptape.structures</span> <span class="kn">import</span> <span class="n">Agent</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="hll"><span class="kn">from</span> <span class="nn">griptape.utils</span> <span class="kn">import</span> <span class="n">Chat</span>
+</span></span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># ...</span>
+</span></code></pre></div>
 <p>With the Chat utility at our disposal, we're armed with the power to unleash our chatbot's conversational prowess.</p>
 <h3 id="call-it">Call It</h3>
 <p>It's time to unleash our chatbot's conversational skills and start the interactive chat session. Replace the previous <code>agent.run()</code> line with the following code:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># ...</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># Begin Chatting</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">Chat</span><span class="p">(</span><span class="n">agent</span><span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># ...</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># Begin Chatting</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">Chat</span><span class="p">(</span><span class="n">agent</span><span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</span></code></pre></div>
 <p>This simple line of code will open up a world of possibilities, allowing you to converse with your chatbot as if it were your witty Python companion.</p>
 <h3 id="current-code">Current Code</h3>
 <p>Here is the full code: </p>
@@ -1042,45 +1186,45 @@
 <span class="normal"><a href="#__codelineno-2-11">11</a></span>
 <span class="normal"><a href="#__codelineno-2-12">12</a></span>
 <span class="normal"><a href="#__codelineno-2-13">13</a></span>
-<span class="normal"><a href="#__codelineno-2-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2"></a>
-<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="c1"># Griptape Items</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="kn">from</span> <span class="nn">griptape.structures</span> <span class="kn">import</span> <span class="n">Agent</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="hll"><span class="kn">from</span> <span class="nn">griptape.utils</span> <span class="kn">import</span> <span class="n">Chat</span> <span class="c1">#   &lt;-- Added Chat</span>
-</span><a id="__codelineno-2-6" name="__codelineno-2-6"></a>
-<a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="c1"># Load environment variables</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="n">load_dotenv</span><span class="p">()</span>
-<a id="__codelineno-2-9" name="__codelineno-2-9"></a>
-<a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="c1"># Create the agent</span>
-<a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">()</span>
-<a id="__codelineno-2-12" name="__codelineno-2-12"></a>
-<a id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="hll"><span class="c1"># Begin Chatting</span>
-</span><a id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="hll"><span class="n">Chat</span><span class="p">(</span><span class="n">agent</span><span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-</span></code></pre></div></td></tr></table></div>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="c1"># Griptape Items</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="kn">from</span> <span class="nn">griptape.structures</span> <span class="kn">import</span> <span class="n">Agent</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="hll"><span class="kn">from</span> <span class="nn">griptape.utils</span> <span class="kn">import</span> <span class="n">Chat</span> <span class="c1">#   &lt;-- Added Chat</span>
+</span></span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="c1"># Load environment variables</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="n">load_dotenv</span><span class="p">()</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9"></a>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="c1"># Create the agent</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">()</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12"></a>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="hll"><span class="c1"># Begin Chatting</span>
+</span></span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="hll"><span class="n">Chat</span><span class="p">(</span><span class="n">agent</span><span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</span></span></code></pre></div></td></tr></table></div>
 <h3 id="try-it">Try it</h3>
 <p>It's time to play around with your chatbot. Ask it some questions, have a laugh, etc.
 Here's a quick example of a not-very-funny joke with the chatbot:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Q: Hello!
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>processing...
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>[07/20/23 06:37:45] INFO     Task 167f55dda2be46a7bc9002a48214dbf4                                                                                                                   
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>                             Input: Hello!                                                                                                                                           
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>[07/20/23 06:37:46] INFO     Task 167f55dda2be46a7bc9002a48214dbf4                                                                                                                   
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>                             Output: Hello! How can I assist you today?                                                                                                              
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>A: Hello! How can I assist you today?
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>Q: Tell me a joke about python
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>processing...
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>[07/20/23 06:37:58] INFO     Task 167f55dda2be46a7bc9002a48214dbf4                                                                                                                   
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>                             Input: Tell me a joke about python                                                                                                                      
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>[07/20/23 06:38:00] INFO     Task 167f55dda2be46a7bc9002a48214dbf4                                                                                                                   
-<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>                             Output: Why did the python programmer get bitten by a snake? Because they forgot to use a python exception handler!                                     
-<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>A: Why did the python programmer get bitten by a snake? Because they forgot to use a python exception handler!
-</code></pre></div>
+<div class="highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Q: Hello!
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>processing...
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>[07/20/23 06:37:45] INFO     Task 167f55dda2be46a7bc9002a48214dbf4                                                                                                                   
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>                             Input: Hello!                                                                                                                                           
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>[07/20/23 06:37:46] INFO     Task 167f55dda2be46a7bc9002a48214dbf4                                                                                                                   
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>                             Output: Hello! How can I assist you today?                                                                                                              
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>A: Hello! How can I assist you today?
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>Q: Tell me a joke about python
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>processing...
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>[07/20/23 06:37:58] INFO     Task 167f55dda2be46a7bc9002a48214dbf4                                                                                                                   
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>                             Input: Tell me a joke about python                                                                                                                      
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>[07/20/23 06:38:00] INFO     Task 167f55dda2be46a7bc9002a48214dbf4                                                                                                                   
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>                             Output: Why did the python programmer get bitten by a snake? Because they forgot to use a python exception handler!                                     
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>A: Why did the python programmer get bitten by a snake? Because they forgot to use a python exception handler!
+</span></code></pre></div>
 <h3 id="exiting">Exiting</h3>
 <p>Conversations must come to an end, even with the most entertaining chatbot. We want to gracefully exit the chat session when we're ready to bid our virtual friend farewell. To exit the chat, simply type <code>exit</code> as your input. The Chat utility will catch this magic word and gracefully end the conversation.</p>
 <p>So go ahead, chat away, exchange jokes, discuss Python's quirks, and when it's time to say goodbye, just type <code>exit</code> and gracefully conclude your interaction.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Q: exit
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>exiting...
-</code></pre></div>
+<div class="highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Q: exit
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>exiting...
+</span></code></pre></div>
 <hr />
 <h2 id="code-review">Code Review</h2>
 <p>Take a minute to check your code against the current version.</p>
@@ -1097,24 +1241,26 @@ Here's a quick example of a not-very-funny joke with the chatbot:</p>
 <span class="normal"><a href="#__codelineno-5-11">11</a></span>
 <span class="normal"><a href="#__codelineno-5-12">12</a></span>
 <span class="normal"><a href="#__codelineno-5-13">13</a></span>
-<span class="normal"><a href="#__codelineno-5-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2"></a>
-<a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="c1"># Griptape Items</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="kn">from</span> <span class="nn">griptape.structures</span> <span class="kn">import</span> <span class="n">Agent</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="kn">from</span> <span class="nn">griptape.utils</span> <span class="kn">import</span> <span class="n">Chat</span> <span class="c1">#   &lt;-- Added Chat</span>
-<a id="__codelineno-5-6" name="__codelineno-5-6"></a>
-<a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="c1"># Load environment variables</span>
-<a id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="n">load_dotenv</span><span class="p">()</span>
-<a id="__codelineno-5-9" name="__codelineno-5-9"></a>
-<a id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="c1"># Create the agent</span>
-<a id="__codelineno-5-11" name="__codelineno-5-11"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">()</span>
-<a id="__codelineno-5-12" name="__codelineno-5-12"></a>
-<a id="__codelineno-5-13" name="__codelineno-5-13"></a><span class="c1"># Begin Chatting</span>
-<a id="__codelineno-5-14" name="__codelineno-5-14"></a><span class="n">Chat</span><span class="p">(</span><span class="n">agent</span><span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-</code></pre></div></td></tr></table></div>
+<span class="normal"><a href="#__codelineno-5-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="c1"># Griptape Items</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="kn">from</span> <span class="nn">griptape.structures</span> <span class="kn">import</span> <span class="n">Agent</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="kn">from</span> <span class="nn">griptape.utils</span> <span class="kn">import</span> <span class="n">Chat</span> <span class="c1">#   &lt;-- Added Chat</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6"></a>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="c1"># Load environment variables</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="n">load_dotenv</span><span class="p">()</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9"></a>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="c1"># Create the agent</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">()</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12"></a>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13"></a><span class="c1"># Begin Chatting</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14"></a><span class="n">Chat</span><span class="p">(</span><span class="n">agent</span><span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</span></code></pre></div></td></tr></table></div>
 <h2 id="next-steps">Next Steps</h2>
 <p>In the next section: <a href="../04_hide_the_logs/">Hide The Logs</a>, we'll hide those pesky but oh-so-helpful logs by using the <code>logging</code> library. This will make our chatbot much easier to understand and work with.</p>
 
+
+  
 
 
 

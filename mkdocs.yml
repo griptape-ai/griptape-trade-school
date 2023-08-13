@@ -50,6 +50,11 @@ theme:
     - content.code.annotate
   language: en
 markdown_extensions: 
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format  
   - admonition
   - attr_list
   - md_in_html
@@ -96,7 +101,7 @@ nav:
     - Resources: setup/04_helpful_resources.md
   - Courses: 
     - All Courses: courses.md
-    - Chatbot:
+    - Chatbot - Rulesets:
       - Introduction: 200/chatbot-rulesets/index.md
       - Setup: 200/chatbot-rulesets/01_setting_up_environment.md
       - The Chat utility: 200/chatbot-rulesets/03_the_chat_utility.md
@@ -111,6 +116,15 @@ nav:
       - Multiple Personas: 200/chatbot-rulesets/12_multiple_personas.md
       - Colorful Personality: 200/chatbot-rulesets/13_adding_personality_colors.md
       - Quick Feedback: 200/chatbot-rulesets/14_making_it_quick.md
+    - Compare Movies - Workflows:
+      - Introduction: 200/compare-movies-workflow/index.md
+      - Setup: 200/compare-movies-workflow/01_setup.md
+      - Concepts: 200/compare-movies-workflow/02_concepts.md
+      - First Workflow: 200/compare-movies-workflow/03_first_workflow.md
+      - Adding Flexibility: 200/compare-movies-workflow/04_adding_flexibility.md
+      - Using Tools: 200/compare-movies-workflow/05_using_tools.md
+      - Workflow Outputs: 200/compare-movies-workflow/06_workflow_outputs.md
+
   - Help: 
     - FAQ: faq.md
     - Contributing: contributing.md

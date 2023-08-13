@@ -41,6 +41,6 @@ These resources will provide additional information and context throughout the c
 
 
 ---
-### Next Steps
+## Next Steps
 
 Head on to the first stage [01 - Setting Up Your Environment](01_setting_up_environment.md) to get started!

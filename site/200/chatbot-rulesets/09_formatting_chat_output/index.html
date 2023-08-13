@@ -42,11 +42,23 @@
       
     
     
-      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../assets/css/extra.css">
     
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
+  
+
+
+  
+  
+
+
+  <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-68THEKV8C8"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-68THEKV8C8",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-68THEKV8C8",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
 
     
     
@@ -478,14 +490,14 @@
       
       
         <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
-          Chat bot
+          Chatbot - Rulesets
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_3_2">
           <span class="md-nav__icon md-icon"></span>
-          Chat bot
+          Chatbot - Rulesets
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -783,6 +795,138 @@
 
             
           
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+          Movie Comparison - Workflows
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          Movie Comparison - Workflows
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../compare-movies-workflow/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../compare-movies-workflow/01_setup/" class="md-nav__link">
+        Setup
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../compare-movies-workflow/02_concepts/" class="md-nav__link">
+        Concepts
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../compare-movies-workflow/03_first_workflow/" class="md-nav__link">
+        First Workflow
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../compare-movies-workflow/04_adding_flexibility/" class="md-nav__link">
+        Adding Flexibility
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../compare-movies-workflow/05_using_tools/" class="md-nav__link">
+        Using Tools
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../compare-movies-workflow/06_workflow_outputs/" class="md-nav__link">
+        Workflow Outputs
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -957,9 +1101,9 @@
 <p>To make the chatbot output look more chat-like, we'll use the <a href="https://rich.readthedocs.io/"><code>rich</code></a> library. This library provides advanced formatting and styling options for the console output. We'll modify the chatbot function to apply formatting to the agent's responses. </p>
 <h3 id="import">Import</h3>
 <p>First, let's update the code to import the <code>rich</code> library. Include the following import statements in the import section of <code>app.py</code>.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">rich</span> <span class="kn">import</span> <span class="nb">print</span> <span class="k">as</span> <span class="n">rprint</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span> <span class="nn">rich.panel</span> <span class="kn">import</span> <span class="n">Panel</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">rich</span> <span class="kn">import</span> <span class="nb">print</span> <span class="k">as</span> <span class="n">rprint</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span> <span class="nn">rich.panel</span> <span class="kn">import</span> <span class="n">Panel</span>
+</span></code></pre></div>
 <p>The <strong>first</strong> line imports the <code>print</code> library from <code>rich</code> and assigns an alias: <code>rprint</code>. By using <code>rprint</code> as an alias, we can replace regular <code>print</code> statements in our code with <code>rprint</code> to utilize the enhanced capabilities of 'rich' for displaying formatted text.</p>
 <p>For example, instead of using <code>print("Hello, World!")</code>, we can now use <code>rprint("Hello, World!")</code> to leverage the formatting capabilities provided by 'rich' when displaying the output.</p>
 <div class="admonition tip">
@@ -970,46 +1114,46 @@
 <h3 id="panel">Panel</h3>
 <p>Next, we'll update our <code>respond</code> method to use the new <code>rprint</code> alias and the <code>Panel</code> class. This is a pretty simple change to start with, but you'll very quickly see how much nicer things look.</p>
 <p>Inside the <code>respond</code> method, replace the line that looks like:</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kiwi: </span><span class="si">{</span><span class="n">response</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</code></pre></div>
+<p><div class="highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kiwi: </span><span class="si">{</span><span class="n">response</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></code></pre></div>
 with</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">rprint</span><span class="p">(</span><span class="n">Panel</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kiwi: </span><span class="si">{</span><span class="n">response</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">rprint</span><span class="p">(</span><span class="n">Panel</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kiwi: </span><span class="si">{</span><span class="n">response</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+</span></code></pre></div>
 <p>As you can see, we've simply replaced <code>print</code> with <code>rprint</code>, and wrapped the string that was being submitted with <code>Panel()</code>.</p>
 <p>If you run this code you'll see a quick improvement.
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>╭─────────────────────────────────────────────────────────────────────────────────╮
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>│ Kiwi: Kia Ora! What can I do for you today?                                     │
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>╰─────────────────────────────────────────────────────────────────────────────────╯
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>Chat with Kiwi: 
-</code></pre></div></p>
+<div class="highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>╭─────────────────────────────────────────────────────────────────────────────────╮
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>│ Kiwi: Kia Ora! What can I do for you today?                                     │
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>╰─────────────────────────────────────────────────────────────────────────────────╯
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>Chat with Kiwi: 
+</span></code></pre></div></p>
 <p>Much better, right? We're not done yet..</p>
 <h3 id="fitting-it-in">Fitting it in</h3>
 <p>One of the nice things about <code>rich</code> is that it can control the width of the Panel automatically by using a <code>fit</code> function to fit the content.</p>
 <p>Modify the <code>Panel</code> line to include <code>.fit</code>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">rprint</span><span class="p">(</span><span class="n">Panel</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kiwi: </span><span class="si">{</span><span class="n">response</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
-</code></pre></div></p>
+<div class="highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">rprint</span><span class="p">(</span><span class="n">Panel</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kiwi: </span><span class="si">{</span><span class="n">response</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+</span></code></pre></div></p>
 <p>Try it out to see how it feels.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Chat with Kiwi: Say hello in 2 words as a kiwi
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>╭──────────────────────╮
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>│ Kiwi: Kia ora, mate! │
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>╰──────────────────────╯
-</code></pre></div>
+<div class="highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Chat with Kiwi: Say hello in 2 words as a kiwi
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>╭──────────────────────╮
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>│ Kiwi: Kia ora, mate! │
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>╰──────────────────────╯
+</span></code></pre></div>
 <h3 id="propper-width">Propper width</h3>
 <p>Sometimes the response can be quite long and fill the terminal. In these cases, it's nice to also be able to give a maximum width to your reponse. You can do this by giving the <code>width</code> attribute. Used in combination with <code>fit</code>, the panel will be either the width of your content, or the width you specify with the attribute - whatever is smaller.</p>
 <p>Modify the prompt:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">rprint</span><span class="p">(</span><span class="n">Panel</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kiwi: </span><span class="si">{</span><span class="n">response</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">80</span><span class="p">))</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">rprint</span><span class="p">(</span><span class="n">Panel</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kiwi: </span><span class="si">{</span><span class="n">response</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">80</span><span class="p">))</span>
+</span></code></pre></div>
 <p>Now the panel will be at most 80 characters wide.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Chat with Kiwi: What&#39;s the best thing about the Wairarapa?
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>╭──────────────────────────────────────────────────────────────────────────────╮
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>│ Kiwi: Oh, the Wairarapa, mate! It&#39;s a stunner. The best thing about it has   │
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>│ to be the beautiful landscapes, from the rugged coastlines to the lush       │
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>│ vineyards. It&#39;s a real treat for the eyes, I tell ya!                        │
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>╰──────────────────────────────────────────────────────────────────────────────╯
-</code></pre></div>
+<div class="highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Chat with Kiwi: What&#39;s the best thing about the Wairarapa?
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>╭──────────────────────────────────────────────────────────────────────────────╮
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>│ Kiwi: Oh, the Wairarapa, mate! It&#39;s a stunner. The best thing about it has   │
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>│ to be the beautiful landscapes, from the rugged coastlines to the lush       │
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>│ vineyards. It&#39;s a real treat for the eyes, I tell ya!                        │
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>╰──────────────────────────────────────────────────────────────────────────────╯
+</span></code></pre></div>
 <hr />
 <h2 id="code-review">Code Review</h2>
 <p>As you can see, this has already helped our readability a ton. Compare your code.</p>
@@ -1078,76 +1222,78 @@ with</p>
 <span class="normal"><a href="#__codelineno-8-63">63</a></span>
 <span class="normal"><a href="#__codelineno-8-64">64</a></span>
 <span class="normal"><a href="#__codelineno-8-65">65</a></span>
-<span class="normal"><a href="#__codelineno-8-66">66</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="kn">import</span> <span class="nn">logging</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="kn">import</span> <span class="nn">json</span>
-<a id="__codelineno-8-4" name="__codelineno-8-4"></a>
-<a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="hll"><span class="c1"># Rich</span>
-</span><a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="hll"><span class="kn">from</span> <span class="nn">rich</span> <span class="kn">import</span> <span class="nb">print</span> <span class="k">as</span> <span class="n">rprint</span>
-</span><a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="hll"><span class="kn">from</span> <span class="nn">rich.panel</span> <span class="kn">import</span> <span class="n">Panel</span>
-</span><a id="__codelineno-8-8" name="__codelineno-8-8"></a>
-<a id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="c1"># Griptape </span>
-<a id="__codelineno-8-10" name="__codelineno-8-10"></a><span class="kn">from</span> <span class="nn">griptape.structures</span> <span class="kn">import</span> <span class="n">Agent</span>
-<a id="__codelineno-8-11" name="__codelineno-8-11"></a><span class="kn">from</span> <span class="nn">griptape.rules</span> <span class="kn">import</span> <span class="n">Rule</span><span class="p">,</span> <span class="n">Ruleset</span>
-<a id="__codelineno-8-12" name="__codelineno-8-12"></a>
-<a id="__codelineno-8-13" name="__codelineno-8-13"></a><span class="c1"># Load environment variables</span>
-<a id="__codelineno-8-14" name="__codelineno-8-14"></a><span class="n">load_dotenv</span><span class="p">()</span>
-<a id="__codelineno-8-15" name="__codelineno-8-15"></a>
-<a id="__codelineno-8-16" name="__codelineno-8-16"></a><span class="c1"># Create a ruleset for the agent</span>
-<a id="__codelineno-8-17" name="__codelineno-8-17"></a><span class="n">kiwi_ruleset</span> <span class="o">=</span> <span class="n">Ruleset</span><span class="p">(</span>
-<a id="__codelineno-8-18" name="__codelineno-8-18"></a>    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;kiwi&quot;</span><span class="p">,</span>
-<a id="__codelineno-8-19" name="__codelineno-8-19"></a>    <span class="n">rules</span> <span class="o">=</span> <span class="p">[</span>
-<a id="__codelineno-8-20" name="__codelineno-8-20"></a>        <span class="n">Rule</span><span class="p">(</span><span class="s2">&quot;You identify as a New Zealander.&quot;</span><span class="p">),</span>
-<a id="__codelineno-8-21" name="__codelineno-8-21"></a>        <span class="n">Rule</span><span class="p">(</span><span class="s2">&quot;You have a strong kiwi accent.&quot;</span><span class="p">)</span>
-<a id="__codelineno-8-22" name="__codelineno-8-22"></a>    <span class="p">]</span>
-<a id="__codelineno-8-23" name="__codelineno-8-23"></a><span class="p">)</span>
-<a id="__codelineno-8-24" name="__codelineno-8-24"></a>
-<a id="__codelineno-8-25" name="__codelineno-8-25"></a><span class="n">json_ruleset</span> <span class="o">=</span> <span class="n">Ruleset</span><span class="p">(</span>
-<a id="__codelineno-8-26" name="__codelineno-8-26"></a>    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;json_ruleset&quot;</span><span class="p">,</span>
-<a id="__codelineno-8-27" name="__codelineno-8-27"></a>    <span class="n">rules</span><span class="o">=</span><span class="p">[</span>
-<a id="__codelineno-8-28" name="__codelineno-8-28"></a>        <span class="n">Rule</span><span class="p">(</span><span class="s2">&quot;Respond in plain text only with JSON objects that have the following keys: response, continue_chatting.&quot;</span><span class="p">),</span>
-<a id="__codelineno-8-29" name="__codelineno-8-29"></a>        <span class="n">Rule</span><span class="p">(</span><span class="s2">&quot;The &#39;response&#39; value should be a string that is your response to the user.&quot;</span><span class="p">),</span>
-<a id="__codelineno-8-30" name="__codelineno-8-30"></a>        <span class="n">Rule</span><span class="p">(</span><span class="s2">&quot;If it sounds like the person is done chatting, set &#39;continue_chatting&#39; to False, otherwise it is True&quot;</span><span class="p">),</span>
-<a id="__codelineno-8-31" name="__codelineno-8-31"></a>    <span class="p">]</span>
-<a id="__codelineno-8-32" name="__codelineno-8-32"></a><span class="p">)</span>
-<a id="__codelineno-8-33" name="__codelineno-8-33"></a>
-<a id="__codelineno-8-34" name="__codelineno-8-34"></a><span class="c1"># Create a subclass for the Agent</span>
-<a id="__codelineno-8-35" name="__codelineno-8-35"></a><span class="k">class</span> <span class="nc">MyAgent</span><span class="p">(</span><span class="n">Agent</span><span class="p">):</span>
-<a id="__codelineno-8-36" name="__codelineno-8-36"></a>
-<a id="__codelineno-8-37" name="__codelineno-8-37"></a>    <span class="k">def</span> <span class="nf">respond</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_input</span><span class="p">):</span>
-<a id="__codelineno-8-38" name="__codelineno-8-38"></a>        <span class="n">agent_response</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
-<a id="__codelineno-8-39" name="__codelineno-8-39"></a>        <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">agent_response</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
-<a id="__codelineno-8-40" name="__codelineno-8-40"></a>        <span class="n">response</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;response&quot;</span><span class="p">]</span>
-<a id="__codelineno-8-41" name="__codelineno-8-41"></a>        <span class="n">continue_chatting</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;continue_chatting&quot;</span><span class="p">]</span>
-<a id="__codelineno-8-42" name="__codelineno-8-42"></a>
-<a id="__codelineno-8-43" name="__codelineno-8-43"></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-<a id="__codelineno-8-44" name="__codelineno-8-44"></a><span class="hll">        <span class="n">rprint</span><span class="p">(</span><span class="n">Panel</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kiwi: </span><span class="si">{</span><span class="n">response</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">80</span><span class="p">))</span>
-</span><a id="__codelineno-8-45" name="__codelineno-8-45"></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-<a id="__codelineno-8-46" name="__codelineno-8-46"></a>
-<a id="__codelineno-8-47" name="__codelineno-8-47"></a>        <span class="k">return</span> <span class="n">continue_chatting</span>
-<a id="__codelineno-8-48" name="__codelineno-8-48"></a>
-<a id="__codelineno-8-49" name="__codelineno-8-49"></a><span class="c1"># Create the agent</span>
-<a id="__codelineno-8-50" name="__codelineno-8-50"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">MyAgent</span><span class="p">(</span>
-<a id="__codelineno-8-51" name="__codelineno-8-51"></a>    <span class="n">rulesets</span><span class="o">=</span><span class="p">[</span><span class="n">kiwi_ruleset</span><span class="p">,</span> <span class="n">json_ruleset</span><span class="p">],</span>
-<a id="__codelineno-8-52" name="__codelineno-8-52"></a>    <span class="n">logger_level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">ERROR</span>
-<a id="__codelineno-8-53" name="__codelineno-8-53"></a><span class="p">)</span>
-<a id="__codelineno-8-54" name="__codelineno-8-54"></a>
-<a id="__codelineno-8-55" name="__codelineno-8-55"></a><span class="c1"># Chat function</span>
-<a id="__codelineno-8-56" name="__codelineno-8-56"></a><span class="k">def</span> <span class="nf">chat</span><span class="p">(</span><span class="n">agent</span><span class="p">):</span>
-<a id="__codelineno-8-57" name="__codelineno-8-57"></a>    <span class="n">is_chatting</span> <span class="o">=</span> <span class="kc">True</span>
-<a id="__codelineno-8-58" name="__codelineno-8-58"></a>    <span class="k">while</span> <span class="n">is_chatting</span><span class="p">:</span>
-<a id="__codelineno-8-59" name="__codelineno-8-59"></a>        <span class="n">user_input</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Chat with Kiwi: &quot;</span><span class="p">)</span>
-<a id="__codelineno-8-60" name="__codelineno-8-60"></a>        <span class="n">is_chatting</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
-<a id="__codelineno-8-61" name="__codelineno-8-61"></a>
-<a id="__codelineno-8-62" name="__codelineno-8-62"></a><span class="c1"># Introduce the agent</span>
-<a id="__codelineno-8-63" name="__codelineno-8-63"></a><span class="n">agent</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="s2">&quot;Introduce yourself to the user.&quot;</span><span class="p">)</span>
-<a id="__codelineno-8-64" name="__codelineno-8-64"></a>
-<a id="__codelineno-8-65" name="__codelineno-8-65"></a><span class="c1"># Run the agent</span>
-<a id="__codelineno-8-66" name="__codelineno-8-66"></a><span class="n">chat</span><span class="p">(</span><span class="n">agent</span><span class="p">)</span>
-</code></pre></div></td></tr></table></div>
+<span class="normal"><a href="#__codelineno-8-66">66</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="kn">import</span> <span class="nn">logging</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="kn">import</span> <span class="nn">json</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="hll"><span class="c1"># Rich</span>
+</span></span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="hll"><span class="kn">from</span> <span class="nn">rich</span> <span class="kn">import</span> <span class="nb">print</span> <span class="k">as</span> <span class="n">rprint</span>
+</span></span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="hll"><span class="kn">from</span> <span class="nn">rich.panel</span> <span class="kn">import</span> <span class="n">Panel</span>
+</span></span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8"></a>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="c1"># Griptape </span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10"></a><span class="kn">from</span> <span class="nn">griptape.structures</span> <span class="kn">import</span> <span class="n">Agent</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11"></a><span class="kn">from</span> <span class="nn">griptape.rules</span> <span class="kn">import</span> <span class="n">Rule</span><span class="p">,</span> <span class="n">Ruleset</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12"></a>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13"></a><span class="c1"># Load environment variables</span>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14"></a><span class="n">load_dotenv</span><span class="p">()</span>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15"></a>
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16"></a><span class="c1"># Create a ruleset for the agent</span>
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17"></a><span class="n">kiwi_ruleset</span> <span class="o">=</span> <span class="n">Ruleset</span><span class="p">(</span>
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18"></a>    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;kiwi&quot;</span><span class="p">,</span>
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19"></a>    <span class="n">rules</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20"></a>        <span class="n">Rule</span><span class="p">(</span><span class="s2">&quot;You identify as a New Zealander.&quot;</span><span class="p">),</span>
+</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21"></a>        <span class="n">Rule</span><span class="p">(</span><span class="s2">&quot;You have a strong kiwi accent.&quot;</span><span class="p">)</span>
+</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22"></a>    <span class="p">]</span>
+</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23"></a><span class="p">)</span>
+</span><span id="__span-8-24"><a id="__codelineno-8-24" name="__codelineno-8-24"></a>
+</span><span id="__span-8-25"><a id="__codelineno-8-25" name="__codelineno-8-25"></a><span class="n">json_ruleset</span> <span class="o">=</span> <span class="n">Ruleset</span><span class="p">(</span>
+</span><span id="__span-8-26"><a id="__codelineno-8-26" name="__codelineno-8-26"></a>    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;json_ruleset&quot;</span><span class="p">,</span>
+</span><span id="__span-8-27"><a id="__codelineno-8-27" name="__codelineno-8-27"></a>    <span class="n">rules</span><span class="o">=</span><span class="p">[</span>
+</span><span id="__span-8-28"><a id="__codelineno-8-28" name="__codelineno-8-28"></a>        <span class="n">Rule</span><span class="p">(</span><span class="s2">&quot;Respond in plain text only with JSON objects that have the following keys: response, continue_chatting.&quot;</span><span class="p">),</span>
+</span><span id="__span-8-29"><a id="__codelineno-8-29" name="__codelineno-8-29"></a>        <span class="n">Rule</span><span class="p">(</span><span class="s2">&quot;The &#39;response&#39; value should be a string that is your response to the user.&quot;</span><span class="p">),</span>
+</span><span id="__span-8-30"><a id="__codelineno-8-30" name="__codelineno-8-30"></a>        <span class="n">Rule</span><span class="p">(</span><span class="s2">&quot;If it sounds like the person is done chatting, set &#39;continue_chatting&#39; to False, otherwise it is True&quot;</span><span class="p">),</span>
+</span><span id="__span-8-31"><a id="__codelineno-8-31" name="__codelineno-8-31"></a>    <span class="p">]</span>
+</span><span id="__span-8-32"><a id="__codelineno-8-32" name="__codelineno-8-32"></a><span class="p">)</span>
+</span><span id="__span-8-33"><a id="__codelineno-8-33" name="__codelineno-8-33"></a>
+</span><span id="__span-8-34"><a id="__codelineno-8-34" name="__codelineno-8-34"></a><span class="c1"># Create a subclass for the Agent</span>
+</span><span id="__span-8-35"><a id="__codelineno-8-35" name="__codelineno-8-35"></a><span class="k">class</span> <span class="nc">MyAgent</span><span class="p">(</span><span class="n">Agent</span><span class="p">):</span>
+</span><span id="__span-8-36"><a id="__codelineno-8-36" name="__codelineno-8-36"></a>
+</span><span id="__span-8-37"><a id="__codelineno-8-37" name="__codelineno-8-37"></a>    <span class="k">def</span> <span class="nf">respond</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_input</span><span class="p">):</span>
+</span><span id="__span-8-38"><a id="__codelineno-8-38" name="__codelineno-8-38"></a>        <span class="n">agent_response</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
+</span><span id="__span-8-39"><a id="__codelineno-8-39" name="__codelineno-8-39"></a>        <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">agent_response</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</span><span id="__span-8-40"><a id="__codelineno-8-40" name="__codelineno-8-40"></a>        <span class="n">response</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;response&quot;</span><span class="p">]</span>
+</span><span id="__span-8-41"><a id="__codelineno-8-41" name="__codelineno-8-41"></a>        <span class="n">continue_chatting</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;continue_chatting&quot;</span><span class="p">]</span>
+</span><span id="__span-8-42"><a id="__codelineno-8-42" name="__codelineno-8-42"></a>
+</span><span id="__span-8-43"><a id="__codelineno-8-43" name="__codelineno-8-43"></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+</span><span id="__span-8-44"><a id="__codelineno-8-44" name="__codelineno-8-44"></a><span class="hll">        <span class="n">rprint</span><span class="p">(</span><span class="n">Panel</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kiwi: </span><span class="si">{</span><span class="n">response</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">80</span><span class="p">))</span>
+</span></span><span id="__span-8-45"><a id="__codelineno-8-45" name="__codelineno-8-45"></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+</span><span id="__span-8-46"><a id="__codelineno-8-46" name="__codelineno-8-46"></a>
+</span><span id="__span-8-47"><a id="__codelineno-8-47" name="__codelineno-8-47"></a>        <span class="k">return</span> <span class="n">continue_chatting</span>
+</span><span id="__span-8-48"><a id="__codelineno-8-48" name="__codelineno-8-48"></a>
+</span><span id="__span-8-49"><a id="__codelineno-8-49" name="__codelineno-8-49"></a><span class="c1"># Create the agent</span>
+</span><span id="__span-8-50"><a id="__codelineno-8-50" name="__codelineno-8-50"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">MyAgent</span><span class="p">(</span>
+</span><span id="__span-8-51"><a id="__codelineno-8-51" name="__codelineno-8-51"></a>    <span class="n">rulesets</span><span class="o">=</span><span class="p">[</span><span class="n">kiwi_ruleset</span><span class="p">,</span> <span class="n">json_ruleset</span><span class="p">],</span>
+</span><span id="__span-8-52"><a id="__codelineno-8-52" name="__codelineno-8-52"></a>    <span class="n">logger_level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">ERROR</span>
+</span><span id="__span-8-53"><a id="__codelineno-8-53" name="__codelineno-8-53"></a><span class="p">)</span>
+</span><span id="__span-8-54"><a id="__codelineno-8-54" name="__codelineno-8-54"></a>
+</span><span id="__span-8-55"><a id="__codelineno-8-55" name="__codelineno-8-55"></a><span class="c1"># Chat function</span>
+</span><span id="__span-8-56"><a id="__codelineno-8-56" name="__codelineno-8-56"></a><span class="k">def</span> <span class="nf">chat</span><span class="p">(</span><span class="n">agent</span><span class="p">):</span>
+</span><span id="__span-8-57"><a id="__codelineno-8-57" name="__codelineno-8-57"></a>    <span class="n">is_chatting</span> <span class="o">=</span> <span class="kc">True</span>
+</span><span id="__span-8-58"><a id="__codelineno-8-58" name="__codelineno-8-58"></a>    <span class="k">while</span> <span class="n">is_chatting</span><span class="p">:</span>
+</span><span id="__span-8-59"><a id="__codelineno-8-59" name="__codelineno-8-59"></a>        <span class="n">user_input</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Chat with Kiwi: &quot;</span><span class="p">)</span>
+</span><span id="__span-8-60"><a id="__codelineno-8-60" name="__codelineno-8-60"></a>        <span class="n">is_chatting</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
+</span><span id="__span-8-61"><a id="__codelineno-8-61" name="__codelineno-8-61"></a>
+</span><span id="__span-8-62"><a id="__codelineno-8-62" name="__codelineno-8-62"></a><span class="c1"># Introduce the agent</span>
+</span><span id="__span-8-63"><a id="__codelineno-8-63" name="__codelineno-8-63"></a><span class="n">agent</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="s2">&quot;Introduce yourself to the user.&quot;</span><span class="p">)</span>
+</span><span id="__span-8-64"><a id="__codelineno-8-64" name="__codelineno-8-64"></a>
+</span><span id="__span-8-65"><a id="__codelineno-8-65" name="__codelineno-8-65"></a><span class="c1"># Run the agent</span>
+</span><span id="__span-8-66"><a id="__codelineno-8-66" name="__codelineno-8-66"></a><span class="n">chat</span><span class="p">(</span><span class="n">agent</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
 <h2 id="next-steps">Next Steps</h2>
 <p>As a developer, you may be intersted in having your chatbot write code for you, or create some tables. In the next section: <a href="../10_markdown_madness/">Markdown Madness</a>, we'll take a look at the <code>Markdown</code> class in <code>rich</code>, and use it to ensure output looks as we expect.</p>
 
+
+  
 
 
 
