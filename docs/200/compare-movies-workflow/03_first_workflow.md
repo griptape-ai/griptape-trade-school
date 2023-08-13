@@ -339,13 +339,11 @@ Jaws
 We covered quite a lot of ground creating your first workflow. Double-check your script and make sure you've got it working as expected:
 
 ```python linenums="1" title="app.py"
-
 from dotenv import load_dotenv
 
 # Griptape 
 from griptape.structures import Workflow
 from griptape.tasks import PromptTask
-
 
 # Load environment variables
 load_dotenv()

@@ -3,39 +3,36 @@ from dotenv import load_dotenv
 # Griptape 
 from griptape.structures import Workflow
 from griptape.tasks import PromptTask
-from griptape.drivers import OpenAiPromptDriver
 
 
 # Load environment variables
 load_dotenv()
 
 # Create a Workflow
-# Give it the movie_researcher rulset because we want this workflow to research and compare a number of movies.
 workflow = Workflow()
 
-# Define the OpenAiPromptDriver with Max Tokens
-driver_4 = OpenAiPromptDriver(
-    model="gpt-4",
-    max_tokens=500
-)
-
-movie_descriptions = [
-    "A boy discovers an alien in his back yard",
-    "a shark attacks a beach."
-]
+# Create tasks
+movie_1_task = PromptTask(
+    "What movie is this? Return only the movie name: A boy discovers an alien in his back yard", 
+    id="movie_1")
+movie_2_task = PromptTask(
+    "What movie is this? Return only the movie name: a shark attacks a beach.", 
+    id="movie_2")
 
 compare_task = PromptTask("""
-            How are these movies the same: 
-            {% for key, value in inputs.items() %}
-            {{ value }}
-            {% endfor %}
-            """)
+    How are these movies the same:
+    {{inputs['movie_1']}}
+    {{inputs['movie_2']}}
+    """,
+    id="compare")
 
-for description in movie_descriptions:
-    movie_task = PromptTask(f"What movie title is this? Output just the title.:{description}")
-    workflow.add_task(movie_task)
+# Add tasks to the workflow
+workflow.add_task(movie_1_task)
+workflow.add_task(movie_2_task)
 
-    movie_task.add_child(compare_task)
+# Add compare as a child
+movie_1_task.add_child(compare_task)
+movie_2_task.add_child(compare_task)
 
 # Run the workflow
 workflow.run()

@@ -22,8 +22,11 @@ This works great for our simple task, but the point of this course is to compare
 ``` mermaid
 graph LR
     A(Movie Descriptions) --> B(Get Name 1) --> D(Get Summary 1) --> E(Get Name 2) 
-    E --> F(Get Summary 2) --> G("Get Name <i>n</i>" ) --> H("Get Summary <i>n</i>") 
+    E --> F(Get Summary 2) --> G("Get Name <i>n</i>" ):::dash --> H("Get Summary <i>n</i>"):::dash 
     H --> I(Compare)
+    
+    classDef dash stroke-dasharray: 5 5
+
 ```
 
 As you can tell, this could get quite unweildy. In addition, it doesn't make much sense for getting the name of the 4th movie to have to wait until the summary of the 3rd movie is figured out, as they're not really dependent on each other.
@@ -41,7 +44,11 @@ This is what a Workflow might look like for doing what we mentiond above.
 graph TB
     A(Movie Descriptions) --> B(Get Name 1) --> D(Get Summary 1) --> I(Compare)
     A --> E(Get Name 2) --> F(Get Summary 2) --> I
-    A --> G("Get Name <i>n</i>" ) --> H("Get Summary <i>n</i>") --> I
+    A --> G("Get Name <i>n</i>" ):::dash
+    G --> H("Get Summary <i>n</i>"):::dash 
+    H --> I
+    classDef dash stroke-dasharray: 5 5
+
 ```
 
 Notice how the movies can be evaluated in parallel, but the **Compare** task will wait until all it's _parent_ tasks are complete. 
@@ -55,5 +62,27 @@ Before we dive in and start setting up our own workflow, it's important to revie
 
 Both of these task types are used to work with the LLM. They both take an input as a prompt, can take arguments, use specific drivers, and have parent/child relationships.
 The main difference between them is that **ToolkitTasks** can also use **tools** like Calculator(), FileBrowser(), etc.
+
+```python
+# Example PromptTask to get a movie name
+#
+movie_task = PromptTask(
+    "What is this movie: {{ descr }}", # use Jinja template structure for variables
+    context = {                        # sets up variables
+        "descr": "princess and farmhand named Wesley" 
+    },
+    id="movie_id"                      # task id can be used in other tasks
+)
+
+# This ToolkitTask works with the output of the previous task, and can use tools.
+#
+describe_task = ToolkitTask("""
+    Get the description of this movie: 
+    {{ inputs['movie_id'] }}""",       # specifies the movie task id
+    tools = [                          # Provide a list of tools
+        WebScraper()
+    ],
+    id='describe_id')
+```
 
 I have found that the best way to really understand how PromptTasks and ToolkitTasks work is to use them in context. So let's move on to the next section where we'll create our [First Workflow](03_first_workflow.md), and get an understanding of the basics of how parent/child relationships can work.

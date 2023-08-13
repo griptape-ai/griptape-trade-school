@@ -36,7 +36,6 @@ from dotenv import load_dotenv
 
 # Griptape 
 from griptape.structures import Workflow
-from griptape.rules import Rule, Ruleset 
 from griptape.tasks import PromptTask, ToolkitTask
 from griptape.tools import WebScraper
 from griptape.drivers import OpenAiPromptDriver
@@ -53,23 +52,13 @@ from griptape.drivers import OpenAiPromptDriver
 
 movies = [
     "a kid discovers an alien in his backyard in the 80s",
-    "A movie about a kid who suddenly gets big.",
-    "It was a movie about the start of sound in cinema, there was dancing."
+    "Black and white movie turns color",
+    "Kid suddenly becomes big."
 ]
 
 
 # Load environment variables
 load_dotenv()
-
-# Define some rules stating that this is a movie researcher who is 
-# great at finding information
-movie_researcher = Ruleset(
-    name="researcher",
-    rules=[
-        Rule("You are a great movie researcher."),
-        Rule("You can use websites like allmovie.com, imdb.com, https://www.mrqe.com/, and https://www.rottentomatoes.com/ to get your data "),
-    ]
-)
 
 # Create a Workflow
 # Give it the movie_researcher rulset because we want this workflow to research and compare a number of movies.
@@ -82,7 +71,6 @@ driver_4 = OpenAiPromptDriver(
     model="gpt-4",
     max_tokens=500
 )
-
 
 # Create a Compare Task
 #
@@ -126,7 +114,7 @@ for movie in movies:
     # is all we need.
     #  
     description_task = ToolkitTask(
-                    "Return a short description of the movie: {{  inputs.values()|list|first }}", 
+                    "Return a very short description of the movie: {{  inputs.values()|list|first }}", 
                     driver=driver_4, 
                     tools=[WebScraper()],
                     )

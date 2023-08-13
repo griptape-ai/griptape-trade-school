@@ -26,6 +26,7 @@ iframe {
   grid-template-columns: repeat(auto-fill, minmax(45%, 1fr));
 }
 
+
 .grid ul {
   margin: 0 !important; 
   list-style: none;
@@ -45,6 +46,10 @@ iframe {
   transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
   background-color: rgba(255, 255, 255, 0.05);
 
+}
+
+.grid-wide li {
+  flex: 1 0 100% !important; 
 }
 
 
@@ -75,6 +80,7 @@ iframe {
   margin-right: 2em;
   width: 30%;
 }
+
 /* HERO area */
 .hero {
   padding: 8% 5%;

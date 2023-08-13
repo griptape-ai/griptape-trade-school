@@ -22,12 +22,12 @@ workflow = Workflow()
 # Create a list of movie descriptions
 movie_descriptions = [
     "A boy discovers an alien in his back yard",
-    "A shark attacks a beach",
+    "a shark attacks a beach.",
     "A princess and a man named Wesley"
 ]
 
 compare_task = PromptTask("""
-    How are these movies the same:
+    How are these movies the same: 
     {% for key, value in inputs.items() %}
     {{ value }}
     {% endfor %}
@@ -60,3 +60,7 @@ for description in movie_descriptions:
 
 # Run the workflow
 workflow.run()
+
+# View the output
+for task in workflow.output_tasks():
+    print(task.output.value)    

@@ -18,48 +18,45 @@ graph TB
     Given some rough movie descriptions,
     describe their similarities.
     <br>"] --> AB(["A boy finds an alien"]):::Result
-    AB --> B("<b>PromptTask</b>: Get Name"):::PromptTask
+    AB --> B("<b>PromptTask</b>:<br>Get Name"):::PromptTask
     
     A --> AC(["Black and white movie turns color"]):::Result
-    AC --> C("<b>PromptTask</b>: Get Name"):::PromptTask
+    AC --> C("<b>PromptTask</b>:<br>Get Name"):::PromptTask
 
     A --> AD(["Kid suddenly becomes big"]):::Result
-    AD --> D("<b>PromptTask</b>: Get Name"):::PromptTask
+    AD --> D("<b>PromptTask</b>:<br>Get Name"):::PromptTask
 
-    K("<b>PromptTask</b>: Compare Movies"):::PromptTask
+    K("<b>PromptTask</b>:<br>Compare Movies"):::PromptTask
     subgraph movie 1 [" "]
     B --> BE([E.T.]):::Result
-    BE --> E("<b>ToolkitTask</b>: Get Description"):::ToolkitTask
-    E --> HK(["A troubled child summons the 
-        courage to help a friendly alien ..."]):::Result
+    BE --> E("<b>ToolkitTask</b>:<br>Get Summary"):::ToolkitTask
+    E --> HK(["A troubled child summons \nthe courage to help \na friendly alien ..."]):::Result
     end
 
     subgraph movie 2 [" "]
     C --> CF([Wizard of Oz]):::Result
-    CF --> F("<b>ToolkitTask</b>: Get Description"):::ToolkitTask
-    F --> IK(["A classic film from 1939 in which young      
-        Dorothy Gale and her dog Toto ..."]):::Result
+    CF --> F("<b>ToolkitTask</b>:<br>Get Summary"):::ToolkitTask
+    F --> IK(["A classic film from \n1939 in which young \nDorothy Gale and her\ndog Toto ..."]):::Result
 
     end
     subgraph movie 3 [" "]
     D --> CG([Big]):::Result
-    CG --> G("<b>ToolkitTask</b>: Get Description"):::ToolkitTask
-    G --> JK(["After wishing to be made big, 
-        a teenage boy wakes ..."]):::Result
+    CG --> G("<b>ToolkitTask</b>:<br>Get Summary"):::ToolkitTask
+    G --> JK(["After wishing to be\nmade big, a teenage boy\nwakes to find ..."]):::Result
     end
     HK ---> K
     IK ---> K
     JK ---> K
 
-    K --> L(["All three movies:
-    <i>E.T. the Extra-Terrestrial</i>,<i>The Wizard of Oz</i>,and <i>Big</i>, 
+    K --> L(["\nAll three movies:
+    <i>E.T. the Extra-Terrestrial</i>, <i>The Wizard of Oz</i>, and <i>Big</i>, 
             share a common theme of fantastical journeys and adventures.    
             They all involve characters who are thrust into extraordinary 
-            circumstances that are far removed from their normal lives."]):::Result
+            circumstances that are far removed from their normal lives.\n\n"]):::Result
 
     classDef PromptTask stroke:#A00
-    classDef ToolkitTask stroke:#0A0
-    classDef Result fill:#555,stroke:#555
+    classDef ToolkitTask stroke:#f06090
+    classDef Result fill:#5552,stroke:#555
 
 ```
 
