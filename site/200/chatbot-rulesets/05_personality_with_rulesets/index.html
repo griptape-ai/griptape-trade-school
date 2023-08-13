@@ -42,11 +42,23 @@
       
     
     
-      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../assets/css/extra.css">
     
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
+  
+
+
+  
+  
+
+
+  <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-68THEKV8C8"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-68THEKV8C8",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-68THEKV8C8",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
 
     
     
@@ -478,14 +490,14 @@
       
       
         <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
-          Chat bot
+          Chatbot
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_3_2">
           <span class="md-nav__icon md-icon"></span>
-          Chat bot
+          Chatbot
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -797,6 +809,54 @@
 
             
           
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+          Movie Comparison
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          Movie Comparison
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../compare-movies-workflow/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -989,26 +1049,26 @@
 <h3 id="importing">Importing</h3>
 <p>To give your agent access to the <code>Rule</code> and <code>Ruleset</code> classes, we need to adjust our script to import them.</p>
 <p>Add the following line to the top of your script:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">griptape.rules</span> <span class="kn">import</span> <span class="n">Rule</span><span class="p">,</span> <span class="n">Ruleset</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">griptape.rules</span> <span class="kn">import</span> <span class="n">Rule</span><span class="p">,</span> <span class="n">Ruleset</span>
+</span></code></pre></div>
 <h3 id="rules">Rules</h3>
 <p>Rules are the building blocks of our chatbot's personality. They allow us to define specific behaviors and traits. Each rule is typically focused on one important statement or characteristic. For example, we can create rules like:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">Rule</span><span class="p">(</span><span class="s2">&quot;You are an incredibly helpful kiwi tour guide.&quot;</span><span class="p">)</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">Rule</span><span class="p">(</span><span class="s2">&quot;You often forget where you kept your keys.&quot;</span><span class="p">)</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">Rule</span><span class="p">(</span><span class="s2">&quot;You speak in riddles, but not very clever ones.&quot;</span><span class="p">)</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">Rule</span><span class="p">(</span><span class="s2">&quot;You are an incredibly helpful kiwi tour guide.&quot;</span><span class="p">)</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">Rule</span><span class="p">(</span><span class="s2">&quot;You often forget where you kept your keys.&quot;</span><span class="p">)</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">Rule</span><span class="p">(</span><span class="s2">&quot;You speak in riddles, but not very clever ones.&quot;</span><span class="p">)</span>
+</span></code></pre></div>
 <p>The specific rules are really up to you, and you will most likely find yourself iterating on your rules in order to achieve the perfect output. </p>
 <h3 id="rulesets">Rulesets</h3>
 <p>Once we have defined our rules, we can group them together into a <code>Ruleset</code>. A Ruleset allows us to combine related rules, creating a cohesive set of behaviors for our chatbot. In our case, we'll create a ruleset called "kiwi" for our kiwi-inspired friend.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Create a ruleset for the agent</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">kiwi_ruleset</span> <span class="o">=</span> <span class="n">Ruleset</span><span class="p">(</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;kiwi&quot;</span><span class="p">,</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="n">rules</span><span class="o">=</span><span class="p">[</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>        <span class="n">Rule</span><span class="p">(</span><span class="s2">&quot;You identify as a New Zealander.&quot;</span><span class="p">),</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>        <span class="n">Rule</span><span class="p">(</span><span class="s2">&quot;You have a strong kiwi accent.&quot;</span><span class="p">)</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="p">]</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">)</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Create a ruleset for the agent</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">kiwi_ruleset</span> <span class="o">=</span> <span class="n">Ruleset</span><span class="p">(</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;kiwi&quot;</span><span class="p">,</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="n">rules</span><span class="o">=</span><span class="p">[</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>        <span class="n">Rule</span><span class="p">(</span><span class="s2">&quot;You identify as a New Zealander.&quot;</span><span class="p">),</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>        <span class="n">Rule</span><span class="p">(</span><span class="s2">&quot;You have a strong kiwi accent.&quot;</span><span class="p">)</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="p">]</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">)</span>
+</span></code></pre></div>
 <p>Here, we use the Ruleset class from the griptape.rules module. </p>
 <p>This class allows us to create a ruleset by specifying a <code>name</code> for the ruleset and a list of <code>rules</code> that define the desired behavior. In our case, the ruleset is named "kiwi" and contains two rules: one indicating the chatbot's New Zealander identity and another highlighting its strong kiwi accent.</p>
 <h3 id="add-to-the-agent">Add to the Agent</h3>
@@ -1019,32 +1079,32 @@
 <p>The Agent can handle <em>multiple</em> rulesets, which is why it's specified as a list. </p>
 <p>We'll demonstrate this in a later lesson.</p>
 </div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Create the agent</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="hll">    <span class="n">rulesets</span><span class="o">=</span><span class="p">[</span><span class="n">kiwi_ruleset</span><span class="p">],</span>  
-</span><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="n">logger_level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">ERROR</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="p">)</span>
-</code></pre></div>
+<div class="highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Create the agent</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="hll">    <span class="n">rulesets</span><span class="o">=</span><span class="p">[</span><span class="n">kiwi_ruleset</span><span class="p">],</span>  
+</span></span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="n">logger_level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">ERROR</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="p">)</span>
+</span></code></pre></div>
 <h3 id="try-it">Try it</h3>
 <p>Let's go ahead and chat with our chatbot.
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Q: Can you give me some kiwi slang?
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>processing...
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>A: Sure as, mate! Here are a few kiwi slang words and phrases for ya:
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>1. Chur - It means thanks or cheers.
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>2. Sweet as - It means something is good or all good.
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>3. Jandals - It&#39;s what we call flip-flops.
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>4. Dairy - It&#39;s a convenience store or a corner shop.
-<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>5. Bach - It&#39;s a holiday home or a beach house.
-<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>6. Chocka - It means something is full or crowded.
-<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>7. Tiki tour - It means taking a scenic route or a detour.
-<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>8. She&#39;ll be right - It means everything will be okay or no worries.
-<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>Hope that helps, bro!
-<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>
-<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>Q: I&#39;ve heard people say &quot;yeah, nah&quot; - what does that mean?
-<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>processing...
-<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>A: Yeah, nah, that&#39;s a classic kiwi phrase! It&#39;s a way of expressing hesitation or disagreement. When someone says &quot;yeah, nah,&quot; it usually means they understand what you&#39;re saying, but they don&#39;t fully agree or they&#39;re not entirely convinced. It&#39;s a bit hard to explain, but you&#39;ll catch on to it when you&#39;re in New Zealand. It&#39;s just one of those quirky kiwi expressions!
-</code></pre></div></p>
+<div class="highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Q: Can you give me some kiwi slang?
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>processing...
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>A: Sure as, mate! Here are a few kiwi slang words and phrases for ya:
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>1. Chur - It means thanks or cheers.
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>2. Sweet as - It means something is good or all good.
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>3. Jandals - It&#39;s what we call flip-flops.
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>4. Dairy - It&#39;s a convenience store or a corner shop.
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>5. Bach - It&#39;s a holiday home or a beach house.
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>6. Chocka - It means something is full or crowded.
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>7. Tiki tour - It means taking a scenic route or a detour.
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>8. She&#39;ll be right - It means everything will be okay or no worries.
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>Hope that helps, bro!
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>Q: I&#39;ve heard people say &quot;yeah, nah&quot; - what does that mean?
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>processing...
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>A: Yeah, nah, that&#39;s a classic kiwi phrase! It&#39;s a way of expressing hesitation or disagreement. When someone says &quot;yeah, nah,&quot; it usually means they understand what you&#39;re saying, but they don&#39;t fully agree or they&#39;re not entirely convinced. It&#39;s a bit hard to explain, but you&#39;ll catch on to it when you&#39;re in New Zealand. It&#39;s just one of those quirky kiwi expressions!
+</span></code></pre></div></p>
 <div class="admonition success">
 <p class="admonition-title">Success</p>
 <p>Congratulations! You now have an extremely interesting chatbot!</p>
@@ -1081,40 +1141,42 @@
 <span class="normal"><a href="#__codelineno-5-27">27</a></span>
 <span class="normal"><a href="#__codelineno-5-28">28</a></span>
 <span class="normal"><a href="#__codelineno-5-29">29</a></span>
-<span class="normal"><a href="#__codelineno-5-30">30</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="kn">import</span> <span class="nn">logging</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3"></a>
-<a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="c1"># Griptape Items</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="kn">from</span> <span class="nn">griptape.structures</span> <span class="kn">import</span> <span class="n">Agent</span>
-<a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="kn">from</span> <span class="nn">griptape.utils</span> <span class="kn">import</span> <span class="n">Chat</span>
-<a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="kn">from</span> <span class="nn">griptape.rules</span> <span class="kn">import</span> <span class="n">Rule</span><span class="p">,</span> <span class="n">Ruleset</span>
-<a id="__codelineno-5-8" name="__codelineno-5-8"></a>
-<a id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="c1"># Load environment variables</span>
-<a id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="n">load_dotenv</span><span class="p">()</span>
-<a id="__codelineno-5-11" name="__codelineno-5-11"></a>
-<a id="__codelineno-5-12" name="__codelineno-5-12"></a><span class="c1"># Create a ruleset for the agent</span>
-<a id="__codelineno-5-13" name="__codelineno-5-13"></a><span class="n">kiwi_ruleset</span> <span class="o">=</span> <span class="n">Ruleset</span><span class="p">(</span>
-<a id="__codelineno-5-14" name="__codelineno-5-14"></a>    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;kiwi&quot;</span><span class="p">,</span>
-<a id="__codelineno-5-15" name="__codelineno-5-15"></a>    <span class="n">rules</span> <span class="o">=</span> <span class="p">[</span>
-<a id="__codelineno-5-16" name="__codelineno-5-16"></a>        <span class="n">Rule</span><span class="p">(</span><span class="s2">&quot;You identify as a New Zealander.&quot;</span><span class="p">),</span>
-<a id="__codelineno-5-17" name="__codelineno-5-17"></a>        <span class="n">Rule</span><span class="p">(</span><span class="s2">&quot;You have a strong kiwi accent.&quot;</span><span class="p">)</span>
-<a id="__codelineno-5-18" name="__codelineno-5-18"></a>    <span class="p">]</span>
-<a id="__codelineno-5-19" name="__codelineno-5-19"></a><span class="p">)</span>
-<a id="__codelineno-5-20" name="__codelineno-5-20"></a>
-<a id="__codelineno-5-21" name="__codelineno-5-21"></a><span class="c1"># Create the agent</span>
-<a id="__codelineno-5-22" name="__codelineno-5-22"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span>
-<a id="__codelineno-5-23" name="__codelineno-5-23"></a>    <span class="n">rulesets</span><span class="o">=</span><span class="p">[</span>
-<a id="__codelineno-5-24" name="__codelineno-5-24"></a>        <span class="n">kiwi_ruleset</span>
-<a id="__codelineno-5-25" name="__codelineno-5-25"></a>    <span class="p">],</span>
-<a id="__codelineno-5-26" name="__codelineno-5-26"></a>    <span class="n">logger_level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">ERROR</span>
-<a id="__codelineno-5-27" name="__codelineno-5-27"></a><span class="p">)</span>
-<a id="__codelineno-5-28" name="__codelineno-5-28"></a>
-<a id="__codelineno-5-29" name="__codelineno-5-29"></a><span class="c1"># Run the agent</span>
-<a id="__codelineno-5-30" name="__codelineno-5-30"></a><span class="n">Chat</span><span class="p">(</span><span class="n">agent</span><span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-</code></pre></div></td></tr></table></div>
+<span class="normal"><a href="#__codelineno-5-30">30</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="kn">import</span> <span class="nn">logging</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="c1"># Griptape Items</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="kn">from</span> <span class="nn">griptape.structures</span> <span class="kn">import</span> <span class="n">Agent</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="kn">from</span> <span class="nn">griptape.utils</span> <span class="kn">import</span> <span class="n">Chat</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="kn">from</span> <span class="nn">griptape.rules</span> <span class="kn">import</span> <span class="n">Rule</span><span class="p">,</span> <span class="n">Ruleset</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8"></a>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="c1"># Load environment variables</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="n">load_dotenv</span><span class="p">()</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11"></a>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12"></a><span class="c1"># Create a ruleset for the agent</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13"></a><span class="n">kiwi_ruleset</span> <span class="o">=</span> <span class="n">Ruleset</span><span class="p">(</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14"></a>    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;kiwi&quot;</span><span class="p">,</span>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15"></a>    <span class="n">rules</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16"></a>        <span class="n">Rule</span><span class="p">(</span><span class="s2">&quot;You identify as a New Zealander.&quot;</span><span class="p">),</span>
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17"></a>        <span class="n">Rule</span><span class="p">(</span><span class="s2">&quot;You have a strong kiwi accent.&quot;</span><span class="p">)</span>
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18"></a>    <span class="p">]</span>
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19"></a><span class="p">)</span>
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20"></a>
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21"></a><span class="c1"># Create the agent</span>
+</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span>
+</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23"></a>    <span class="n">rulesets</span><span class="o">=</span><span class="p">[</span>
+</span><span id="__span-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24"></a>        <span class="n">kiwi_ruleset</span>
+</span><span id="__span-5-25"><a id="__codelineno-5-25" name="__codelineno-5-25"></a>    <span class="p">],</span>
+</span><span id="__span-5-26"><a id="__codelineno-5-26" name="__codelineno-5-26"></a>    <span class="n">logger_level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">ERROR</span>
+</span><span id="__span-5-27"><a id="__codelineno-5-27" name="__codelineno-5-27"></a><span class="p">)</span>
+</span><span id="__span-5-28"><a id="__codelineno-5-28" name="__codelineno-5-28"></a>
+</span><span id="__span-5-29"><a id="__codelineno-5-29" name="__codelineno-5-29"></a><span class="c1"># Run the agent</span>
+</span><span id="__span-5-30"><a id="__codelineno-5-30" name="__codelineno-5-30"></a><span class="n">Chat</span><span class="p">(</span><span class="n">agent</span><span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</span></code></pre></div></td></tr></table></div>
 <h2 id="next-steps">Next Steps</h2>
 <p>In the next section: <a href="../06_adding_manual_chat/">Custom Chat</a>, we'll explore how to take charge of the way your chatbot behaves, by creating a <strong>custom chat function</strong>. </p>
 
+
+  
 
 
 
