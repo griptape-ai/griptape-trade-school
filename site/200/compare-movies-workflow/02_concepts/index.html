@@ -720,14 +720,14 @@
       
       
         <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
-          Movie Comparison - Workflows
+          Compare Movies - Workflows
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_3_3">
           <span class="md-nav__icon md-icon"></span>
-          Movie Comparison - Workflows
+          Compare Movies - Workflows
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -1056,16 +1056,17 @@
 <h2 id="understanding-workflows-and-pipelines">Understanding Workflows and Pipelines</h2>
 <p>Frequently when creating applications you will want to execute a series of steps in a very specific order. Workflows and Pipelines are both structures that allow us to do that. They have many of the same features as Agents, but are more directable. Whereas Agents can be given behaviors and tools and will use them when prompted appropriately, Pipelines and Workflows utilize hieararchies of tasks in very specific ways.</p>
 <h3 id="pipelines">Pipelines</h3>
-<p>Pipelines are always a sequential series of steps - one task after another until it's finished. For example, in this course we're going to be taking some rough descriptions of movies and getting their actual names, then getting the summaries from the web and comparing them. Getting a summary of a single movie might look something like:</p>
+<p><a href="https://docs.griptape.ai/en/latest/griptape-framework/structures/pipelines/">Pipelines</a> are always a sequential series of steps - one task after another until it is finished. They have a <strong>single output</strong>, and just like <a href="https://docs.griptape.ai/en/latest/griptape-framework/structures/agents/">Agents</a>, they can use <a href="https://docs.griptape.ai/en/latest/griptape-framework/structures/conversation-memory/">Memory</a>.</p>
+<p>In this course we're going to be taking some rough descriptions of movies and getting their actual names, then getting the summaries from the web and comparing them. Doing this as a <strong>Pipeline</strong> might look something like:</p>
 <ol>
 <li>Get movie descriptions</li>
 <li>Get the actual name of the movie</li>
 <li>Look up the summary </li>
 </ol>
-<p>The flow of tasks might look something like:
+<p>The flow of tasks would be:</p>
 <pre class="mermaid"><code>graph LR
-    A(Movie Description) --&gt; C(Get Name ) --&gt; D(Get Summary)</code></pre></p>
-<p>This works great for our simple task, but the point of this course is to compare <em>multiple</em> movies. If we use a standard linear pipeline, it would mean doing something like this:</p>
+    A(Movie Description) --&gt; C(Get Name ) --&gt; D(Get Summary)</code></pre>
+<p>This works great for our simple task, but the point of this course is to compare <em>multiple</em> movies. If we use a standard linear pipeline, it would mean:</p>
 <pre class="mermaid"><code>graph LR
     A(Movie Descriptions) --&gt; B(Get Name 1) --&gt; D(Get Summary 1) --&gt; E(Get Name 2) 
     E --&gt; F(Get Summary 2) --&gt; G("Get Name &lt;i&gt;n&lt;/i&gt;" ):::dash --&gt; H("Get Summary &lt;i&gt;n&lt;/i&gt;"):::dash 
@@ -1076,7 +1077,8 @@
 <p>As you can tell, this could get quite unweildy. In addition, it doesn't make much sense for getting the name of the 4th movie to have to wait until the summary of the 3rd movie is figured out, as they're not really dependent on each other.</p>
 <p>Workflows are perfect for this sort of situation. They allow you to parallelize tasks that aren't dependent. Let's see how something like this might look.</p>
 <h3 id="workflows">Workflows</h3>
-<p>Workflows allow for complex interactions, resembling tree branches.</p>
+<p><a href="https://docs.griptape.ai/en/latest/griptape-framework/structures/workflows/">Workflows</a> allow for complex interactions, resembling tree branches.</p>
+<p>Workflows are <strong>non-sequential</strong> and can contain <strong>multiple outputs</strong>. Because their flows can be quite complicated, they don't contain ConversationalMemory.</p>
 <p>This is what a Workflow might look like for doing what we mentiond above. </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1090,34 +1092,33 @@
     H --&gt; I
     classDef dash stroke-dasharray: 5 5
 </code></pre>
-<p>Notice how the movies can be evaluated in parallel, but the <strong>Compare</strong> task will wait until all it's <em>parent</em> tasks are complete. </p>
+<p>Notice how the movies can be evaluated in parallel, but the <strong>Compare</strong> task will wait until all it's <strong>parent</strong> tasks are completed. </p>
 <h2 id="tasks">Tasks</h2>
-<p>Before we dive in and start setting up our own workflow, it's important to review the concepts of tasks. With Griptape, there are two types of tasks you'll be working with:</p>
+<p>Before we dive in and start setting up our own workflow, it's important to review the concepts of Tasks. With Griptape, there are two types of tasks you'll be working with:</p>
 <ul>
 <li><strong>PromptTask</strong></li>
 <li><strong>ToolkitTask</strong></li>
 </ul>
 <p>Both of these task types are used to work with the LLM. They both take an input as a prompt, can take arguments, use specific drivers, and have parent/child relationships.
-The main difference between them is that <strong>ToolkitTasks</strong> can also use <strong>tools</strong> like Calculator(), FileBrowser(), etc.</p>
+The main difference between them is that <strong>ToolkitTasks</strong> can also use <strong>tools</strong> like Calculator(), FileBrowser(), and more. View all the tools available with Griptape <a href="https://docs.griptape.ai/en/latest/griptape-tools/">here</a>.</p>
 <div class="highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Example PromptTask to get a movie name</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1">#</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">movie_task</span> <span class="o">=</span> <span class="n">PromptTask</span><span class="p">(</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="s2">&quot;What is this movie: {{ descr }}&quot;</span><span class="p">,</span> <span class="c1"># use Jinja template structure for variables</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">context</span> <span class="o">=</span> <span class="p">{</span>                        <span class="c1"># sets up variables</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="s2">&quot;What is this movie: {{ descr }}&quot;</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">context</span> <span class="o">=</span> <span class="p">{</span>                        
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        <span class="s2">&quot;descr&quot;</span><span class="p">:</span> <span class="s2">&quot;princess and farmhand named Wesley&quot;</span> 
 </span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="p">},</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;movie_id&quot;</span>                      <span class="c1"># task id can be used in other tasks</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;movie_id&quot;</span>                      <span class="c1"># task id can be referenced by other tasks</span>
 </span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">)</span>
 </span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
 </span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1"># This ToolkitTask works with the output of the previous task, and can use tools.</span>
 </span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="c1">#</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="n">describe_task</span> <span class="o">=</span> <span class="n">ToolkitTask</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="s2">    Get the description of this movie: </span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="s2">    {{ inputs[&#39;movie_id&#39;] }}&quot;&quot;&quot;</span><span class="p">,</span>       <span class="c1"># specifies the movie task id</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="n">tools</span> <span class="o">=</span> <span class="p">[</span>                          <span class="c1"># Provide a list of tools</span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>        <span class="n">WebScraper</span><span class="p">()</span>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="p">],</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;describe_id&#39;</span><span class="p">)</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="n">describe_task</span> <span class="o">=</span> <span class="n">ToolkitTask</span><span class="p">(</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="s2">&quot;Get the description of this movie: {{ inputs[&#39;movie_id&#39;] }}&quot;</span><span class="p">,</span>       
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="n">tools</span> <span class="o">=</span> <span class="p">[</span>                          
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>        <span class="n">WebScraper</span><span class="p">()</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="p">],</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;describe_id&#39;</span><span class="p">)</span>
 </span></code></pre></div>
 <p>I have found that the best way to really understand how PromptTasks and ToolkitTasks work is to use them in context. So let's move on to the next section where we'll create our <a href="../03_first_workflow/">First Workflow</a>, and get an understanding of the basics of how parent/child relationships can work.</p>
 

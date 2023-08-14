@@ -720,14 +720,14 @@
       
       
         <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
-          Movie Comparison - Workflows
+          Compare Movies - Workflows
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_3_3">
           <span class="md-nav__icon md-icon"></span>
-          Movie Comparison - Workflows
+          Compare Movies - Workflows
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -1083,8 +1083,29 @@
 
 
 <h1 id="learn-griptape-workflows-through-cinematic-comparison">Learn Griptape Workflows through Cinematic Comparison</h1>
+<pre class="mermaid"><code>graph TB
+    A[Workflow] 
+    B("Task 1a")
+    C("Task 1b"):::tool
+    I("Summary")
+    G("Task 2a")
+    H("Task 2b"):::tool
+    F("Task 3")
+    J(["\n  Output \n\n"]):::output
+
+    A --&gt; B --&gt; C --&gt; I
+    A --&gt; G --&gt; H --&gt; I
+    A --&gt; F
+    I --&gt; J
+    F ---&gt; I
+
+    classDef dash stroke-dasharray: 5 5
+    classDef tool stroke:#f06090
+    classDef tool-dash stroke:#f06090,stroke-dasharray: 5 5
+    classDef output fill:#5552,stroke:#555
+</code></pre>
 <h2 id="course-description">Course Description</h2>
-<p>Griptape Workflows allow you to create complicated parent-child task relationships, where one task won't begin until all it's parent tasks have completed. Using movie narratives as our backdrop, you'll gain practical experience in establishing inter-task connections and seeing how they collaboratively weave a coherent story. Ideal for those keen on understanding the intricacies of Griptape's Workflows while engaging in a compelling thematic exploration.</p>
+<p>Griptape <a href="https://docs.griptape.ai/en/latest/griptape-framework/structures/workflows/">Workflows</a> allow you to create complicated parent-child task relationships, where one task won't begin until all it's parent tasks have completed. Using movie narratives as our backdrop, you'll gain practical experience in establishing inter-task connections and seeing how they collaboratively weave a coherent story. Ideal for those keen on understanding the intricacies of Griptape's Workflows while engaging in a compelling thematic exploration.</p>
 <h2 id="what-you-will-create">What you will create</h2>
 <p>Below you can see a representation of the workflow graph we will create in the course, where you will pass rough descriptions of movies, then for each movie a series of tasks will be executed:</p>
 <ol>
