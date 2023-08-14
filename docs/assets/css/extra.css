@@ -2,7 +2,9 @@
   font-family: 'Nunito', sans-serif !important;
 }
 
-
+.mermaid {
+  text-align: center;
+}
 /* Make youtube videos full screen */
 iframe { 
   width: 100%;

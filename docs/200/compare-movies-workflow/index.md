@@ -1,8 +1,32 @@
 # Learn Griptape Workflows through Cinematic Comparison
 
-## Course Description
-Griptape Workflows allow you to create complicated parent-child task relationships, where one task won't begin until all it's parent tasks have completed. Using movie narratives as our backdrop, you'll gain practical experience in establishing inter-task connections and seeing how they collaboratively weave a coherent story. Ideal for those keen on understanding the intricacies of Griptape's Workflows while engaging in a compelling thematic exploration.
+``` mermaid
+graph TB
+    A[Workflow] 
+    B("Task 1a")
+    C("Task 1b"):::tool
+    I("Summary")
+    G("Task 2a")
+    H("Task 2b"):::tool
+    F("Task 3")
+    J(["\n  Output \n\n"]):::output
 
+    A --> B --> C --> I
+    A --> G --> H --> I
+    A --> F
+    I --> J
+    F ---> I
+
+    classDef dash stroke-dasharray: 5 5
+    classDef tool stroke:#f06090
+    classDef tool-dash stroke:#f06090,stroke-dasharray: 5 5
+    classDef output fill:#5552,stroke:#555
+
+```
+
+
+## Course Description
+Griptape [Workflows](https://docs.griptape.ai/en/latest/griptape-framework/structures/workflows/) allow you to create complicated parent-child task relationships, where one task won't begin until all it's parent tasks have completed. Using movie narratives as our backdrop, you'll gain practical experience in establishing inter-task connections and seeing how they collaboratively weave a coherent story. Ideal for those keen on understanding the intricacies of Griptape's Workflows while engaging in a compelling thematic exploration.
 ## What you will create
 Below you can see a representation of the workflow graph we will create in the course, where you will pass rough descriptions of movies, then for each movie a series of tasks will be executed:
 
