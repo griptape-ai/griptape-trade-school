@@ -21,8 +21,8 @@ movie_2_task = PromptTask(
 
 compare_task = PromptTask("""
     How are these movies the same:
-    {{inputs['movie_1']}}
-    {{inputs['movie_2']}}
+    {{parent_outputs['movie_1']}}
+    {{parent_outputs['movie_2']}}
     """,
     id="compare")
 

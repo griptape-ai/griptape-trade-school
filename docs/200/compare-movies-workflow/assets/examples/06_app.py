@@ -4,14 +4,14 @@ from dotenv import load_dotenv
 from griptape.structures import Workflow
 from griptape.tasks import PromptTask, ToolkitTask
 from griptape.tools import WebScraper
-from griptape.drivers import OpenAiPromptDriver
+from griptape.drivers import OpenAiChatPromptDriver
 
 
 # Load environment variables
 load_dotenv()
 
-# Define the OpenAiPromptDriver with Max Tokens
-driver = OpenAiPromptDriver(
+# Define the OpenAiChatPromptDriver with Max Tokens
+driver = OpenAiChatPromptDriver(
     model="gpt-4",
     max_tokens=500
 )
@@ -28,11 +28,11 @@ movie_descriptions = [
 
 compare_task = PromptTask("""
     How are these movies the same: 
-    {% for key, value in inputs.items() %}
+    {% for key, value in parent_outputs.items() %}
     {{ value }}
     {% endfor %}
     """,
-    driver=driver,
+    prompt_driver=driver,
     id="compare")
 
 # Iterate through the movie descriptions
@@ -40,18 +40,18 @@ for description in movie_descriptions:
     movie_task = PromptTask(
         "What movie title is this? Return only the movie name: {{ description }} ",
         context={"description": description},
-        driver=driver
+        prompt_driver=driver
         )
     
     summary_task = ToolkitTask(
         """
         Give me a very short summary of the movie from imdb:
-        {% for key, value in inputs.items() %}
+        {% for key, value in parent_outputs.items() %}
         {{ value }}
         {% endfor %}
         """,
         tools=[WebScraper()],
-        driver=driver
+        prompt_driver=driver
         )
     
     workflow.add_task(movie_task)

@@ -20,7 +20,7 @@ movie_descriptions = [
 
 compare_task = PromptTask("""
     How are these movies the same:
-    {% for key, value in inputs.items()%}
+    {% for key, value in parent_outputs.items() %}
     {{ value }}
     {% endfor %}
     """,

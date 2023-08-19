@@ -67,11 +67,11 @@ summary_task = ToolkitTask(
 When we call the `ToolkitTask` we'll need to pass the output of the previous task (the movie_task) to it. There are a few options we can use to do this, depending on the needs of our application.
 
 ### Option 1: All Incoming Items
-If you recall from the [previous section](04_adding_flexibility.md), using the Jinja Template `{{ inputs.items() }}` will give you a list of dicts from *all incoming tasks*. 
+If you recall from the [previous section](04_adding_flexibility.md), using the Jinja Template `{{ parent_outputs.items() }}` will give you a list of dicts from *all incoming tasks*. 
     
 Example: 
 ``` python
-    "Give me a summary of the movie: {{ input.items() }}"
+    "Give me a summary of the movie: {{ parent_outputs.items() }}"
 ```
 
 In this case, the return would look something like:
@@ -86,10 +86,10 @@ While this works, it does provide a *lot* of extraneous information. We know tha
 
 Jinja2 allows you to use filters to return specific information. The format with Jinja2 is to use a `|` notation to add a filter.
 
-For example, instead of using `{{ input.items() }}`, we can filter it to return a `list`, and then also get just the `last` item in the list. That would look like: `{{ inputs.items()|list|last }}`:
+For example, instead of using `{{ parent_outputs.items() }}`, we can filter it to return a `list`, and then also get just the `last` item in the list. That would look like: `{{ parent_outputs.items()|list|last }}`:
 
 ```python
-    "Give me a summary of the movie: {{ input.items()|list|last }}"
+    "Give me a summary of the movie: {{ parent_outputs.items()|list|last }}"
 ```
 
 And the result would be:
@@ -108,7 +108,7 @@ You may recall we're using a Jinja2 for loop (`{% for item in list %}`) structur
 We can use the same structure here, even though there's only one item.
 ```python
 """Give me a summary of the movie:
-{% for key, value in inputs.items() %}
+{% for key, value in parent_outputs.items() %}
 {{ value }}
 {% endfor %}
 """
@@ -122,7 +122,7 @@ As you can see, there are multiple ways to get the result we're looking for. Rev
     ```python
     # code
     summary_task = ToolkitTask(
-        "Give me a summary of the movie: {{ inputs.items() }}",
+        "Give me a summary of the movie: {{ parent_outputs.items() }}",
         tools=[WebScraper()]
         )
 
@@ -133,7 +133,7 @@ As you can see, there are multiple ways to get the result we're looking for. Rev
     ```python
     # code
     summary_task = ToolkitTask(
-        "Give me a summary of the movie: {{ inputs.items()|list|last }}",
+        "Give me a summary of the movie: {{ parent_outputs.items()|list|last }}",
         tools=[WebScraper()]
         )
 
@@ -146,7 +146,7 @@ As you can see, there are multiple ways to get the result we're looking for. Rev
     summary_task = ToolkitTask(
         """
         Give me a summary of the movie:
-        {% for key, value in inputs.items() %}
+        {% for key, value in parent_outputs.items() %}
         {{ value }}
         {% endfor %}
         """,
@@ -175,7 +175,7 @@ for description in movie_descriptions:
     summary_task = ToolkitTask(
         """
         Give me a summary of the movie:
-        {% for key, value in inputs.items() %}
+        {% for key, value in parent_outputs.items() %}
         {{ value }}
         {% endfor %}
         """,
@@ -245,23 +245,23 @@ Contact us through our help center at help.openai.com if you continue to have is
 
 This is a specific warning for OpenAI when your organization has hit it's assigned limit rate. You can read more about it in [this article](https://help.openai.com/en/articles/6897202-ratelimiterror) by OpenAI.
 
-You can work around this issue by specifically setting the `max_tokens` with the **OpenAIPromptDriver**.
+You can work around this issue by specifically setting the `max_tokens` with the **OpenAIChatPromptDriver**.
 
-### Import OpenAiPromptDriver
+### Import OpenAiChatPromptDriver
 
 In your `griptape` input statements at the top of your script, add the following line:
 
 ```python
-from griptape.drivers import OpenAiPromptDriver
+from griptape.drivers import OpenAiChatPromptDriver
 ```
 
 ### Create the driver
 
-Now create a driver object for the OpenAiPromptDriver class. Note, you can add this anywhere before your first call to a `PromptTask`. I recommend calling it before `workflow`.
+Now create a driver object for the OpenAiChatPromptDriver class. Note, you can add this anywhere before your first call to a `PromptTask`. I recommend calling it before `workflow`.
 
 ```python
 # Define the OpenAiPromptDriver with Max Tokens
-driver = OpenAiPromptDriver(
+driver = OpenAiChatPromptDriver(
     model="gpt-4",
     max_tokens=500 # you can experiment with the number of tokens
 )
@@ -269,7 +269,7 @@ driver = OpenAiPromptDriver(
 
 ### Update the Tasks
 
-For `compare_task`, `movie_task`, and `summary_task` calls, add the `driver` parameter.
+For `compare_task`, `movie_task`, and `summary_task` calls, add the `prompt_driver` parameter.
 
 
 ```python linenums="1" hl_lines="9 20 31"
@@ -277,11 +277,11 @@ For `compare_task`, `movie_task`, and `summary_task` calls, add the `driver` par
 
 compare_task = PromptTask("""
     How are these movies the same:
-    {% for key, value in inputs.items() %}
+    {% for key, value in parent_outputs.items() %}
     {{ value }}
     {% endfor %}
     """,
-    driver=driver
+    prompt_driver=driver
     id="compare"
     )
 
@@ -292,18 +292,18 @@ for description in movie_descriptions:
     movie_task = PromptTask(
         "What movie title is this? Return only the movie name: {{ description }} ",
         context={"description": description},
-        driver=driver
+        prompt_driver=driver
         )
     
     summary_task = ToolkitTask(
         """
         Give me a very short summary of the movie from imdb:
-        {% for key, value in inputs.items() %}
+        {% for key, value in parent_outputs.items() %}
         {{ value }}
         {% endfor %}
         """,
         tools=[WebScraper()],
-        driver=driver
+        prompt_driver=driver
         )
     
     # ...
@@ -365,7 +365,7 @@ As you can see, the `compare` task has a lot more detail in it now. We're gettin
 
 ## Code Review
 
-We added some of helpful functionality in this section, mainly getting wonderful descriptions of these films from the web by using the `WebScraper` tool and `ToolkitTasks`. We also added the use of the `OpenAiPromptDriver` to control the `max_tokens` being used.
+We added some of helpful functionality in this section, mainly getting wonderful descriptions of these films from the web by using the `WebScraper` tool and `ToolkitTasks`. We also added the use of the `OpenAiChatPromptDriver` to control the `max_tokens` being used.
 
 Review your code.
 
@@ -376,14 +376,14 @@ from dotenv import load_dotenv
 from griptape.structures import Workflow
 from griptape.tasks import PromptTask, ToolkitTask
 from griptape.tools import WebScraper
-from griptape.drivers import OpenAiPromptDriver
+from griptape.drivers import OpenAiChatPromptDriver
 
 
 # Load environment variables
 load_dotenv()
 
 # Define the OpenAiPromptDriver with Max Tokens
-driver = OpenAiPromptDriver(
+driver = OpenAiChatPromptDriver(
     model="gpt-4",
     max_tokens=500
 )
@@ -400,11 +400,11 @@ movie_descriptions = [
 
 compare_task = PromptTask("""
     How are these movies the same:
-    {% for key, value in inputs.items() %}
+    {% for key, value in parent_outputs.items() %}
     {{ value }}
     {% endfor %}
     """,
-    driver=driver,
+    prompt_driver=driver,
     id="compare")
 
 # Iterate through the movie descriptions
@@ -412,18 +412,18 @@ for description in movie_descriptions:
     movie_task = PromptTask(
         "What movie title is this? Return only the movie name: {{ description }} ",
         context={"description": description},
-        driver=driver
+        prompt_driver=driver
         )
     
     summary_task = ToolkitTask(
         """
         Give me a very short summary of the movie from imdb:
-        {% for key, value in inputs.items() %}
+        {% for key, value in parent_outputs.items() %}
         {{ value }}
         {% endfor %}
         """,
         tools=[WebScraper()],
-        driver=driver
+        prompt_driver=driver
         )
     
     workflow.add_task(movie_task)

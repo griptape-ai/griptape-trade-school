@@ -21,7 +21,7 @@ Following the instructions in [Griptape Setup - Visual Studio Code ](../../setup
 
 1. Create your project folder. Example: `griptape-compare-movies-workflow`
 2. Set up your virtual environment
-3. Ensure you `pip install griptape griptape-tools python-dotenv`
+3. Ensure you `pip install griptape python-dotenv`
 4. Create a `.env` file with your `OPENAI_API_KEY`
 5. Create your `app.py` file with the following code:
 

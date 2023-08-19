@@ -259,10 +259,8 @@ In order to send the data to the PromptTask, we need to somehow feed the result 
 ### Jinja2
 Griptape uses the [Jinja2](https://jinja.palletsprojects.com/en/3.1.x/) template engine, which allows you to insert data into the prompt. There's a lot of power available with Jinja templates, but in this course we'll keep our focus rather small.
 
-Jinja templates access variables using the `{{ }}` syntax. **Tasks** have a property `inputs` that tell us what objects are coming into the node.
+Jinja templates access variables using the `{{ }}` syntax. **Tasks** have a property `parent_outputs` that tell us what objects are coming into the node.
 
-!!! note
-    The `inputs` property may be changing shortly to `parent_output`. This document will be updated when that happens.
 
 ### Update the Prompt
 In order to update the prompt, we want to tell it what tasks to be looking at. If you check your code, you can see that we used the `id` property earlier when we were creating the tasks:
@@ -272,15 +270,15 @@ movie_1_task = PromptTask("What movie is this?: A boy discovers an alien in his 
 movie_2_task = PromptTask("What movie is this?: a shark attacks a beach.", id="movie_2")
 ```
 
-So `movie_1` and `movie_2` are the two ids we can use in our Jinja template. They can be specified like this: `{{ inputs['movie_1'] }}` and `{{ inputs['movie_2'] }}`
+So `movie_1` and `movie_2` are the two ids we can use in our Jinja template. They can be specified like this: `{{ parent_outputs['movie_1'] }}` and `{{ parent_outputs['movie_2'] }}`
 
-Update the `compare` task to specify the particular ids of the inputs. Note - I'm using `"""` in order to allow us to use multiple lines for the PromptTask string.
+Update the `compare` task to specify the particular ids of the parent_outputs. Note - I'm using `"""` in order to allow us to use multiple lines for the PromptTask string.
 
 ```python
 compare_task = PromptTask("""
     How are these movies the same:
-    {{ inputs['movie_1'] }}
-    {{ inputs['movie_2'] }}
+    {{ parent_outputs['movie_1'] }}
+    {{ parent_outputs['movie_2'] }}
     """,
     id="compare")
 
@@ -361,8 +359,8 @@ movie_2_task = PromptTask(
 
 compare_task = PromptTask("""
     How are these movies the same:
-    {{inputs['movie_1']}}
-    {{inputs['movie_2']}}
+    {{parent_outputs['movie_1']}}
+    {{parent_outputs['movie_2']}}
     """,
     id="compare")
 

@@ -61,7 +61,7 @@ To get a list of output tasks that are available on a workflow, you can simply d
 tasks = workflow.output_tasks()
 ```
 
-For example, if we want to print the `id` and see the `prompt_template` of the output tasks of our workflow, you can comment out the `workflow.run()` call so it doesn't execute, and then iterate through the output_tasks printing the `id` and `prompt_template`.
+For example, if we want to print the `id` and see the `input_template` of the output tasks of our workflow, you can comment out the `workflow.run()` call so it doesn't execute, and then iterate through the output_tasks printing the `id` and `input_template`.
 
 ```python
 # ...
@@ -71,7 +71,7 @@ For example, if we want to print the `id` and see the `prompt_template` of the o
 
 for task in workflow.output_tasks():
     print(f"id: {task.id}")
-    print(f"prompt_template: {task.prompt_template}")
+    print(f"input_template: {task.input_template}")
 
 ```
 
@@ -82,7 +82,7 @@ Execute this and you should see the id and template of the final task.
 
 ```text
 id: compare
-prompt_template: 
+input_template: 
     How are these movies the same: 
     {% for key, value in inputs.items() %}
     {{ value }}
@@ -103,15 +103,19 @@ print (dir(workflow.output_tasks()[0]))
 
 The result:
 ```text
-['DEFAULT_PROMPT_TEMPLATE', 'State', '__abstractmethods__', '__annotations__', '__attrs_attrs__', '__attrs_own_setattr__', 
-'__class__', '__delattr__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__',
-'__getstate__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lshift__', '__lt__',
-'__match_args__', '__module__', '__ne__', '__new__','__reduce__', '__reduce_ex__', '__repr__',
-'__rshift__', '__setattr__', '__setstate__', '__sizeof__', '__slots__', '__str__',
-'__subclasshook__', '__weakref__', '_abc_impl', 'active_driver', 'add_child', 'add_parent', 'after_run',
-'before_run', 'can_execute', 'child_ids', 'children', 'context', 'driver', 'execute', 'full_context', 'id', 
-'input', 'is_executing', 'is_finished', 'is_pending', 'output', 'parent_ids', 'parents', 'prompt_stack', 
-'prompt_template', 'render', 'reset', 'run', 'state', 'structure']
+['DEFAULT_INPUT_TEMPLATE', 'State', '__abstractmethods__', '__annotations__', 
+'__attrs_attrs__', '__attrs_own_setattr__', '__class__', '__delattr__', '__dir__', 
+'__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getstate__', 
+'__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lshift__', 
+'__lt__', '__match_args__', '__module__', '__ne__', '__new__', '__reduce__', 
+'__reduce_ex__', '__repr__', '__rshift__', '__setattr__', '__setstate__', 
+'__sizeof__', '__slots__', '__str__', '__subclasshook__', '__weakref__', 
+'_abc_impl', 'active_driver', 'add_child', 'add_parent', 'after_run', 'before_run', 
+'can_execute', 'child_ids', 'children', 'context', 
+'default_system_template_generator', 'execute', 'full_context', 
+'generate_system_template', 'id', 'input', 'input_template', 'is_executing', 
+'is_finished', 'is_pending', 'output', 'parent_ids', 'parents', 'prompt_driver', 
+'prompt_stack', 'reset', 'run', 'state', 'structure']
 ```
 
 Notice that this includes all the "special" attributes (also known as `dunder`) and methods. We can filter those out by using list comprehension.
@@ -125,10 +129,12 @@ print(filtered_attributes)
 This will give us a much nicer group of attributes to work with:
 
 ```text
-['DEFAULT_PROMPT_TEMPLATE', 'State', '_abc_impl', 'active_driver', 'add_child', 'add_parent', 'after_run', 
-'before_run', 'can_execute', 'child_ids', 'children', 'context', 'driver', 'execute', 'full_context', 'id', 
-'input', 'is_executing', 'is_finished', 'is_pending', 'output', 'parent_ids', 'parents', 'prompt_stack', 
-'prompt_template', 'render', 'reset', 'run', 'state', 'structure']
+['DEFAULT_INPUT_TEMPLATE', 'State', '_abc_impl', 'active_driver', 'add_child', 
+'add_parent', 'after_run', 'before_run', 'can_execute', 'child_ids', 'children', 
+'context', 'default_system_template_generator', 'execute', 'full_context', 
+'generate_system_template', 'id', 'input', 'input_template', 'is_executing', 
+'is_finished', 'is_pending', 'output', 'parent_ids', 'parents', 'prompt_driver', 
+'prompt_stack', 'reset', 'run', 'state', 'structure']
 ```
 
 There are a number of interesting attributes in there for you to check out, but the one we care about in this case is going to be `output`.
@@ -176,14 +182,14 @@ from dotenv import load_dotenv
 from griptape.structures import Workflow
 from griptape.tasks import PromptTask, ToolkitTask
 from griptape.tools import WebScraper
-from griptape.drivers import OpenAiPromptDriver
+from griptape.drivers import OpenAiChatPromptDriver
 
 
 # Load environment variables
 load_dotenv()
 
-# Define the OpenAiPromptDriver with Max Tokens
-driver = OpenAiPromptDriver(
+# Define the OpenAiChatPromptDriver with Max Tokens
+driver = OpenAiChatPromptDriver(
     model="gpt-4",
     max_tokens=500
 )
@@ -200,11 +206,11 @@ movie_descriptions = [
 
 compare_task = PromptTask("""
     How are these movies the same: 
-    {% for key, value in inputs.items() %}
+    {% for key, value in parent_outputs.items() %}
     {{ value }}
     {% endfor %}
     """,
-    driver=driver,
+    prompt_driver=driver,
     id="compare")
 
 # Iterate through the movie descriptions
@@ -212,18 +218,18 @@ for description in movie_descriptions:
     movie_task = PromptTask(
         "What movie title is this? Return only the movie name: {{ description }} ",
         context={"description": description},
-        driver=driver
+        prompt_driver=driver
         )
     
     summary_task = ToolkitTask(
         """
         Give me a very short summary of the movie from imdb:
-        {% for key, value in inputs.items() %}
+        {% for key, value in parent_outputs.items() %}
         {{ value }}
         {% endfor %}
         """,
         tools=[WebScraper()],
-        driver=driver
+        prompt_driver=driver
         )
     
     workflow.add_task(movie_task)

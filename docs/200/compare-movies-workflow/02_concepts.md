@@ -82,7 +82,7 @@ movie_task = PromptTask(
 # This ToolkitTask works with the output of the previous task, and can use tools.
 #
 describe_task = ToolkitTask(
-    "Get the description of this movie: {{ inputs['movie_id'] }}",       
+    "Get the description of this movie: {{ parent_outputs['movie_id'] }}",       
     tools = [                          
         WebScraper()
     ],

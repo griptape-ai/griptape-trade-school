@@ -90,27 +90,27 @@ There's one final step we need to take before we can run this. In our `compare_t
 ```python hl_lines="3-4"
 compare_task = PromptTask("""
     How are these movies the same:
-    {{inputs['movie_1']}}
-    {{inputs['movie_2']}}
+    {{parent_outputs['movie_1']}}
+    {{parent_outputs['movie_2']}}
     """,
     id="compare")
 ```
 
 This will no longer work because we are not defining the ids when we create the PromptTask - we just let it come up with it's own unique identifiers. Also, we don't know exactly how many movies we might be comparing, so it doesn't make much sense to define and add each one individually.
 
-Luckily, intead of specifically specifying the items via id, we can just say "hey - give me all the input items" using `{{ inputs.items() }}`. This will return the entire `dict` of items that are input to the task.
+Luckily, intead of specifically specifying the items via id, we can just say "hey - give me all the input items" using `{{ parent_outputs.items() }}`. This will return the entire `dict` of items that are input to the task.
 
 Replace the two lines:
 
 ```python
-    {{inputs['movie_1']}}
-    {{inputs['movie_2']}}   
+    {{parent_outputs['movie_1']}}
+    {{parent_outputs['movie_2']}}   
 ```
 
 with:
 
 ```python
-    {{ inputs.items() }}
+    {{ parent_outputs.items() }}
 ```
 
 The `compare_task` section should now look like:
@@ -118,7 +118,7 @@ The `compare_task` section should now look like:
 ```python hl_lines="3"
 compare_task = PromptTask("""
     How are these movies the same:
-    {{ inputs.items() }}
+    {{ parent_outputs.items() }}
     """,
     id="compare")
 ```
@@ -161,14 +161,14 @@ Jinja2 has a for loop structure that looks like:
 
 We can use this inside our PromptTask to iterate through the items and just output the names.
 
-Replace the `{{ inputs.items }}` section of the `PromptTask` with a for loop that will get the key/value pairs (id, movie name) and output just the value.
+Replace the `{{ parent_outputs.items }}` section of the `PromptTask` with a for loop that will get the key/value pairs (id, movie name) and output just the value.
 
 ```python hl_lines="5-7"
 # ... 
 
 compare_task = PromptTask("""
     How are these movies the same:
-    {% for key, value in inputs.items() %}
+    {% for key, value in parent_outputs.items() %}
     {{ value }}
     {% endfor %}
     """,
@@ -229,7 +229,7 @@ movie_descriptions = [
 
 compare_task = PromptTask("""
     How are these movies the same:
-    {% for key, value in inputs.items()%}
+    {% for key, value in parent_outputs.items()%}
     {{ value }}
     {% endfor %}
     """,

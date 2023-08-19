@@ -30,26 +30,20 @@ Dependencies:
 - griptape
 - python-dotenv
 """
+from dotenv import load_dotenv
 
-# CREATE THE LIST OF MOVIES
-# 
-# Add to the list of movie descriptions you want to comapre.
-#
-# Examples:
-#   "a kid discovers an alien in his backyard in the 80s"
-#   "A movie about a kid who suddenly gets big.",
-#   "It was a movie about the start of sound in cinema, there was dancing."
-#
-
-movies = [
-    "a kid discovers an alien in his backyard in the 80s",
-    "Black and white movie turns color",
-    "Kid suddenly becomes big."
-]
+# Griptape 
+from griptape.structures import Workflow
+from griptape.tasks import PromptTask, ToolkitTask
+from griptape.tools import WebScraper
+from griptape.drivers import OpenAiChatPromptDriver
 
 
-# Define the OpenAiPromptDriver with Max Tokens
-driver = OpenAiPromptDriver(
+# Load environment variables
+load_dotenv()
+
+# Define the OpenAiChatPromptDriver with Max Tokens
+driver = OpenAiChatPromptDriver(
     model="gpt-4",
     max_tokens=500
 )
@@ -66,11 +60,11 @@ movie_descriptions = [
 
 compare_task = PromptTask("""
     How are these movies the same: 
-    {% for key, value in inputs.items() %}
+    {% for key, value in parent_outputs.items() %}
     {{ value }}
     {% endfor %}
     """,
-    driver=driver,
+    prompt_driver=driver,
     id="compare")
 
 # Iterate through the movie descriptions
@@ -78,18 +72,18 @@ for description in movie_descriptions:
     movie_task = PromptTask(
         "What movie title is this? Return only the movie name: {{ description }} ",
         context={"description": description},
-        driver=driver
+        prompt_driver=driver
         )
     
     summary_task = ToolkitTask(
         """
         Give me a very short summary of the movie from imdb:
-        {% for key, value in inputs.items() %}
+        {% for key, value in parent_outputs.items() %}
         {{ value }}
         {% endfor %}
         """,
         tools=[WebScraper()],
-        driver=driver
+        prompt_driver=driver
         )
     
     workflow.add_task(movie_task)
