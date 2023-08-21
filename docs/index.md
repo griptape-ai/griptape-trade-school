@@ -39,6 +39,6 @@ template: hero.html
     
     We love any and all feedback!
 
-    Do you have a new idea for a course? Drop us a line in our [Discord](https://discord.gg/gnWRz88eym), or log a rquest at [Griptape Trade School Github](https://github.com/griptape-ai/griptape-trade-school)!
+    Do you have a new idea for a course? Drop us a line in our [Discord](https://discord.gg/gnWRz88eym), or log a request at [Griptape Trade School Github](https://github.com/griptape-ai/griptape-trade-school)!
 
 </div>
