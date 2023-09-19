@@ -14,7 +14,7 @@ Setting up our development environment correctly is vital for smooth and success
 
 1. Head over to the [official Python downloads page](https://www.python.org/downloads/)
 2. Click on the button that says "Python 3.9.x" (or the most recent 3.9 version) to download the installer
-3. Run the installer, and make sure to check the box that says "Add Python 3.9 to PATH" before you click "Install Now"
+3. Run the installer, and make sure to check the box that says "Add Python to environment variables" before you click "Install"
 
     ![Windows Installer](assets/img/01_python_env_variables.png)
 
