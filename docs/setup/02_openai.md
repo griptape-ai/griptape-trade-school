@@ -35,7 +35,10 @@ In order to communicate with an LLM using Griptape, we'll need a key. To do this
 ### Installing python-dotenv
 Understanding and using environment variables is a key aspect of programming. In order to use the API key we just received, we will need to be able to access it from with our python script. We'll use a package called python-dotenv to handle environment variables in our project.
 
-In the terminal, run the command `pip install python-dotenv` to install the package.
+In the terminal, run the command `pip install python-dotenv` to install the package. 
+
+!!! info 
+    You can learn more about pip and python-dotenv by visiting their PyPi page: [https://pypi.org/project/python-dotenv/](https://pypi.org/project/python-dotenv/).
 
 ![Alt Text](assets/img/01_install_python-dotenv.png)
 

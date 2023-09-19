@@ -16,6 +16,8 @@ Setting up our development environment correctly is vital for smooth and success
 2. Click on the button that says "Python 3.9.x" (or the most recent 3.9 version) to download the installer
 3. Run the installer, and make sure to check the box that says "Add Python 3.9 to PATH" before you click "Install Now"
 
+    ![Windows Installer](assets/img/01_python_env_variables.png)
+
 ### macOS
 
 If you have [Homebrew](https://brew.sh) installed:
@@ -63,6 +65,19 @@ Alternatively, feel free to open up **Visual Studio Code** and create a new fold
 1. Choose **Create**
 1. Double-click on the newly created folder to open it.
 
+## Python
+### Installing VS Code Python Extension
+
+The [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) for Visual Studio Code provides rich support for the Python language, including features like IntelliSence, linting, debugging, code formatting, and more. It really makes life easier for Python developers.
+
+1. With VS Code open, go to the Extensions tab, or choose **View --> Extensions**
+3. Search for `Python`, or go to [Python]((https://marketplace.visualstudio.com/items?itemName=ms-python.python) in your web browser.
+4. Choose `Install`.
+5. Open the command Palette (`Ctrl`+`Shift`+`P` on Windows/Linux, `Cmd`+`Shift`+`P` on macOS), or choose **View --> Command Palette..**
+6. Type `Python` and you should see a list of specific commands for Python. This will confirm that the install was sucessful.
+
+    ![Python Commands](assets/img/01_python_installed.png)
+
 ## Virtual Environments 
 ### Using VS Code's Python Environment Manager
 
@@ -72,7 +87,7 @@ Many developers use their **terminal** to manage their Python virtual environmen
 
 1. With VS Code open, go to the Extensions tab, or choose **View --> Extensions**
 3. Search for `Python Environment Manager`, or go to [Python Environment Manager](https://marketplace.visualstudio.com/items?itemName=donjayamanne.python-environment-manager) in your web browser.
-4. Choose `Install`
+4. Choose `Install`.
 5. Open the Command Palette (`Ctrl`+`Shift`+`P` on Windows/Linux, `Cmd`+`Shift`+`P` on macOS), or choose **View --> Command Palette..**
 2. Search for `Python: Create Environment` and you should see it come up at the top of the command list.
     ![Alt text](assets/img/01_python_create_environment.png)
@@ -100,8 +115,31 @@ To be sure that your virtual environment is set up correctly, we'll check by ope
 
 ![Alt text](assets/img/01_griptape-starter-terminal.png)
 
-!!! Note
-    You should see `.venv` in your prompt. If you don't see it, please run through the previous documentation to try again. 
+!!! note
+    You should see `.venv` in your prompt. If you don't see it, please run through the previous documentation to try again, or check out the [TroubleShooting](#execution-policy) section of this tutorial.
+
+## Troubleshooting
+### Execution Policy
+
+On some Windows systems, you may get an error that says something similar to:
+
+!!! failure
+    .venv\Scripts\Activate.ps1 cannot be loaded because running scripts is disabled on this system.
+
+This is due to an execution policy. Don't worry, it's pretty easy to resolve.
+
+1. With the Terminal open, execute the following command:
+
+    ```
+    Set-ExecutionPolicy -Scope CurrentUser Unrestricted
+    ```
+
+    * This will give the current user the ability to run scripts from within Visual Studio Code.
+
+2. Verify this worked by closing the Terminal and re-opening it. You should be able to execute scripts now without any errors.
+
+!!! info
+    You can learn more about Windows Execution Policies in the [Set-ExecutionPolicy documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.security/set-executionpolicy?view=powershell-7.3).
 
 ----
 ## Next Step
