@@ -124,10 +124,11 @@ class MyAgent(Agent):
         formatted_response = Markdown(response)
 
         print("")
-        rprint(Panel.fit(formatted_response, 
+        rprint(Panel.fit(
+            formatted_response, 
             width=80, 
-            style=Style(color="light_sea_green")
-            ))
+            style=Style(color="light_sea_green"),
+        ))
         print("")
 
         return continue_chatting

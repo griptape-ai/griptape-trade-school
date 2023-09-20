@@ -118,7 +118,7 @@ json_ruleset = Ruleset(
     name="json_ruleset",
     rules=[
         Rule("Respond in plain text only with JSON objects that have the following keys: name, response, favorite_color, continue_chatting."),
-        Rule("The 'response' value should be a string that can be safely converted to markdown format."),
+        Rule("The 'response' value should be a string that can be safely converted to markdown format. Include line returns when necessary."),
         Rule("If it sounds like the person is done chatting, set 'continue_chatting' to False, otherwise it is True"),
     ]
 )
@@ -140,12 +140,13 @@ class MyAgent(Agent):
         formatted_response = Markdown(response)
 
         print("")
-        rprint(Panel.fit(formatted_response, 
+        rprint(Panel.fit(
+            formatted_response, 
             width=80, 
             style=Style(color=color),
             title=name,
             title_align="left"
-            ))
+        ))
         print("")
 
         return continue_chatting

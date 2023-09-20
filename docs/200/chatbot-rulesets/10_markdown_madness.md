@@ -110,7 +110,7 @@ And the result. I've added a screenshot so you can see how much better it looks.
 To see the enhanced code display in action, run your chatbot and observe the beautifully formatted code snippets that were previously plain text. Try creating tables, CSV files, python scripts, task lists, etc. Enjoy the new level of elegance and readability brought by Markdown magic!
 
 ---
-## Code Checkpoint
+## Code Review
 
 Before moving forward, make sure your code works as expected.
 
