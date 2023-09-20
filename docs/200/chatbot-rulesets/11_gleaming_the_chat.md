@@ -26,10 +26,11 @@ Change the `rprint` line to include the `style` attribute:
 class MyAgent(Agent):
     def chatbot(agent, user_input):
         # ...
-        rprint(Panel.fit(formatted_response, 
+        rprint(Panel.fit(
+            formatted_response, 
             width=80, 
-            style=Style(color="light_sea_green")
-            ))
+            style=Style(color="light_sea_green"),
+        ))
         # ...
 ```
 Let's see how it looks:
@@ -38,12 +39,12 @@ Let's see how it looks:
 
 ## Prompt Class
 
-We can also take advantage of a `Prompt` class in the `rich` library to make our prompt a bit nicer to look at by separating the color of the prompt from the text the user enters.
+We can also take advantage of the `Prompt` class in the `rich` library to make our prompt more readable by separating the color of the prompt from the text the user enters.
 
 ### Import
 
 
-First, import the Prompt class:
+First, import the `Prompt` class:
 
 ```python
 from rich.prompt import Prompt
@@ -51,7 +52,7 @@ from rich.prompt import Prompt
 
 ### Prompt
 
-Then, change the `input` line in the `chat` function to use the `Prompt.ask()` function:
+Then, change the `input` line in the `chat` function to use the `Prompt.ask()` method:
 
 ```python hl_lines="3"
 def chat(agent):
@@ -60,7 +61,7 @@ def chat(agent):
         # ...
 ```
 
-In this updated code, we replace the standard `input` function with `Prompt.ask()` and pass it a color to create an improved prompt. Of course, you can choose whatever color you want to make it stand out even more. 
+In the updated code, we replaced the standard `input` function with `Prompt.ask()` and passed it a color to create a more readable prompt. Of course, you can choose whatever color you want to make it stand out even more. 
 
 ![Alt text](assets/img/11_prompt_color.png)
 
@@ -106,7 +107,7 @@ json_ruleset = Ruleset(
     name="json_ruleset",
     rules=[
         Rule("Respond in plain text only with JSON objects that have the following keys: response, continue_chatting."),
-        Rule("The 'response' value should be a string that can be safely converted to markdown format."),
+        Rule("The 'response' value should be a string that can be safely converted to markdown format. Include line returns when necessary."),
         Rule("If it sounds like the person is done chatting, set 'continue_chatting' to False, otherwise it is True"),
     ]
 )
