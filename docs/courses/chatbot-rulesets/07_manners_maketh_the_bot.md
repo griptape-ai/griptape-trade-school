@@ -20,7 +20,7 @@ Add a call to the agent to introduce itself before the `# Run the agent` line:
 ```python hl_lines="1-3"
 # Introduce the agent
 agent_response = agent.run("Introduce yourself to the user.")
-print(f"Kiwi: {agent_response.value.output}")
+print(f"Kiwi: {agent_response.output.value}")
 
 # Run the agent
 chat(agent)
@@ -62,7 +62,7 @@ def chat(agent):
 
 # Introduce the agent
 agent_response = agent.run("Introduce yourself to the user.")
-print(f"Kiwi: {agent_response.value.output}")
+print(f"Kiwi: {agent_response.output.value}")
  
 # Run the agent
 chat(agent)
