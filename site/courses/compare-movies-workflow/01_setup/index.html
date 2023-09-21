@@ -9,20 +9,24 @@
       
       
       
+        <link rel="prev" href="../">
       
-      <link rel="icon" href="/assets/images/favicon.png">
+      
+        <link rel="next" href="../02_concepts/">
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.5.1, mkdocs-material-9.1.21">
     
     
       
-        <title>Griptape Trade School</title>
+        <title>Setup - Griptape Trade School</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.eebd395e.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.eebd395e.min.css">
       
         
-        <link rel="stylesheet" href="/assets/stylesheets/palette.ecc896b0.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ecc896b0.min.css">
       
       
 
@@ -38,9 +42,9 @@
       
     
     
-      <link rel="stylesheet" href="/assets/css/extra.css">
+      <link rel="stylesheet" href="../../../assets/css/extra.css">
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -59,34 +63,6 @@
     
     
     
-<script>
-    (function redirect() {
-        const currentPath = window.location.pathname;
-        const currentHash = window.location.hash;
-        
-        // Check if the current path contains "/200/" or ends with ".html"
-        if (currentPath.includes('/200/') || currentPath.endsWith('.html')) {
-            // Replace "/200/" with "/courses/" 
-            let newPath = currentPath.replace('/200/', '/courses/');
-            
-            // Remove the ".html" at the end, if present
-            newPath = newPath.replace('.html', '/');
-            
-            // Ensure newPath ends with a "/"
-            if (!newPath.endsWith('/')) {
-                newPath += '/';
-            }
-            
-            // Append the hash back if it exists
-            if (currentHash) {
-                newPath += currentHash;
-            }
-            
-            window.location.href = `${window.location.origin}${newPath}`;
-        }
-    })();
-</script>
-
   </head>
   
   
@@ -104,6 +80,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#prerequisites" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -116,9 +97,9 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/." title="Griptape Trade School" class="md-header__button md-logo" aria-label="Griptape Trade School" data-md-component="logo">
+    <a href="../../.." title="Griptape Trade School" class="md-header__button md-logo" aria-label="Griptape Trade School" data-md-component="logo">
       
-  <img src="/assets/img/griptape-logo-light.png" alt="logo">
+  <img src="../../../assets/img/griptape-logo-light.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -134,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              Setup
             
           </span>
         </div>
@@ -198,7 +179,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="/." class="md-tabs__link">
+      <a href="../../.." class="md-tabs__link">
         Home
       </a>
     </li>
@@ -214,7 +195,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="/setup/" class="md-tabs__link">
+      <a href="../../../setup/" class="md-tabs__link">
         Setup
       </a>
     </li>
@@ -224,13 +205,15 @@
         
   
   
+    
+  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="/courses/" class="md-tabs__link">
+      <a href="../../" class="md-tabs__link md-tabs__link--active">
         Courses
       </a>
     </li>
@@ -246,7 +229,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="/faq/" class="md-tabs__link">
+      <a href="../../../faq/" class="md-tabs__link">
         Help
       </a>
     </li>
@@ -280,9 +263,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="Griptape Trade School" class="md-nav__button md-logo" aria-label="Griptape Trade School" data-md-component="logo">
+    <a href="../../.." title="Griptape Trade School" class="md-nav__button md-logo" aria-label="Griptape Trade School" data-md-component="logo">
       
-  <img src="/assets/img/griptape-logo-light.png" alt="logo">
+  <img src="../../../assets/img/griptape-logo-light.png" alt="logo">
 
     </a>
     Griptape Trade School
@@ -325,7 +308,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         Griptape Trade School
       </a>
     </li>
@@ -374,7 +357,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/setup/" class="md-nav__link">
+      <a href="../../../setup/" class="md-nav__link">
         Setting up for Griptape
       </a>
     </li>
@@ -388,7 +371,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/setup/01_setting_up_environment/" class="md-nav__link">
+      <a href="../../../setup/01_setting_up_environment/" class="md-nav__link">
         Software
       </a>
     </li>
@@ -402,7 +385,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/setup/02_openai/" class="md-nav__link">
+      <a href="../../../setup/02_openai/" class="md-nav__link">
         OpenAI
       </a>
     </li>
@@ -416,7 +399,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/setup/03_griptape/" class="md-nav__link">
+      <a href="../../../setup/03_griptape/" class="md-nav__link">
         Griptape
       </a>
     </li>
@@ -430,7 +413,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/setup/04_helpful_resources/" class="md-nav__link">
+      <a href="../../../setup/04_helpful_resources/" class="md-nav__link">
         Resources
       </a>
     </li>
@@ -450,14 +433,16 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
       
       
       
@@ -466,7 +451,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
           Courses
@@ -479,7 +464,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/courses/" class="md-nav__link">
+      <a href="../../" class="md-nav__link">
         All Courses
       </a>
     </li>
@@ -520,7 +505,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/courses/chatbot-rulesets/" class="md-nav__link">
+      <a href="../../chatbot-rulesets/" class="md-nav__link">
         Introduction
       </a>
     </li>
@@ -534,7 +519,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/courses/chatbot-rulesets/01_setting_up_environment/" class="md-nav__link">
+      <a href="../../chatbot-rulesets/01_setting_up_environment/" class="md-nav__link">
         Setup
       </a>
     </li>
@@ -548,7 +533,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/courses/chatbot-rulesets/03_the_chat_utility/" class="md-nav__link">
+      <a href="../../chatbot-rulesets/03_the_chat_utility/" class="md-nav__link">
         The Chat utility
       </a>
     </li>
@@ -562,7 +547,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/courses/chatbot-rulesets/04_hide_the_logs/" class="md-nav__link">
+      <a href="../../chatbot-rulesets/04_hide_the_logs/" class="md-nav__link">
         Hiding the logs
       </a>
     </li>
@@ -576,7 +561,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/courses/chatbot-rulesets/05_personality_with_rulesets/" class="md-nav__link">
+      <a href="../../chatbot-rulesets/05_personality_with_rulesets/" class="md-nav__link">
         Personality
       </a>
     </li>
@@ -590,7 +575,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/courses/chatbot-rulesets/06_adding_manual_chat/" class="md-nav__link">
+      <a href="../../chatbot-rulesets/06_adding_manual_chat/" class="md-nav__link">
         Custom chat
       </a>
     </li>
@@ -604,7 +589,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/courses/chatbot-rulesets/07_manners_maketh_the_bot/" class="md-nav__link">
+      <a href="../../chatbot-rulesets/07_manners_maketh_the_bot/" class="md-nav__link">
         Manners maketh the bot
       </a>
     </li>
@@ -618,7 +603,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/courses/chatbot-rulesets/08_adding_another_ruleset_for_output/" class="md-nav__link">
+      <a href="../../chatbot-rulesets/08_adding_another_ruleset_for_output/" class="md-nav__link">
         Rulesets for output
       </a>
     </li>
@@ -632,7 +617,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/courses/chatbot-rulesets/09_formatting_chat_output/" class="md-nav__link">
+      <a href="../../chatbot-rulesets/09_formatting_chat_output/" class="md-nav__link">
         Formatting Output
       </a>
     </li>
@@ -646,7 +631,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/courses/chatbot-rulesets/10_markdown_madness/" class="md-nav__link">
+      <a href="../../chatbot-rulesets/10_markdown_madness/" class="md-nav__link">
         Markdown Madness
       </a>
     </li>
@@ -660,7 +645,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/courses/chatbot-rulesets/11_gleaming_the_chat/" class="md-nav__link">
+      <a href="../../chatbot-rulesets/11_gleaming_the_chat/" class="md-nav__link">
         Improving the Prompt
       </a>
     </li>
@@ -674,7 +659,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/courses/chatbot-rulesets/12_multiple_personas/" class="md-nav__link">
+      <a href="../../chatbot-rulesets/12_multiple_personas/" class="md-nav__link">
         Multiple Personas
       </a>
     </li>
@@ -688,7 +673,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/courses/chatbot-rulesets/13_adding_personality_colors/" class="md-nav__link">
+      <a href="../../chatbot-rulesets/13_adding_personality_colors/" class="md-nav__link">
         Colorful Personality
       </a>
     </li>
@@ -702,7 +687,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/courses/chatbot-rulesets/14_making_it_quick/" class="md-nav__link">
+      <a href="../../chatbot-rulesets/14_making_it_quick/" class="md-nav__link">
         Quick Feedback
       </a>
     </li>
@@ -721,14 +706,16 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" checked>
       
       
       
@@ -737,7 +724,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_3_3">
           <span class="md-nav__icon md-icon"></span>
           Compare Movies - Workflows
@@ -750,7 +737,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/courses/compare-movies-workflow/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         Introduction
       </a>
     </li>
@@ -762,11 +749,64 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="/courses/compare-movies-workflow/01_setup/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Setup
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Setup
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-project" class="md-nav__link">
+    Create a Project
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    Next Steps
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -778,7 +818,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/courses/compare-movies-workflow/02_concepts/" class="md-nav__link">
+      <a href="../02_concepts/" class="md-nav__link">
         Concepts
       </a>
     </li>
@@ -792,7 +832,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/courses/compare-movies-workflow/03_first_workflow/" class="md-nav__link">
+      <a href="../03_first_workflow/" class="md-nav__link">
         First Workflow
       </a>
     </li>
@@ -806,7 +846,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/courses/compare-movies-workflow/04_adding_flexibility/" class="md-nav__link">
+      <a href="../04_adding_flexibility/" class="md-nav__link">
         Adding Flexibility
       </a>
     </li>
@@ -820,7 +860,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/courses/compare-movies-workflow/05_using_tools/" class="md-nav__link">
+      <a href="../05_using_tools/" class="md-nav__link">
         Using Tools
       </a>
     </li>
@@ -834,7 +874,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/courses/compare-movies-workflow/06_workflow_outputs/" class="md-nav__link">
+      <a href="../06_workflow_outputs/" class="md-nav__link">
         Workflow Outputs
       </a>
     </li>
@@ -890,7 +930,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/faq/" class="md-nav__link">
+      <a href="../../../faq/" class="md-nav__link">
         FAQ
       </a>
     </li>
@@ -904,7 +944,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/contributing/" class="md-nav__link">
+      <a href="../../../contributing/" class="md-nav__link">
         Contributing
       </a>
     </li>
@@ -938,6 +978,35 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-a-project" class="md-nav__link">
+    Create a Project
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    Next Steps
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -948,9 +1017,58 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not Found</h1>
-  <p>Appologies - it seems we can't find the link you are looking for.</p>
+                  
 
+
+  <h1>Setup</h1>
+
+<p>As with any project, the first step is setting up your environment. Let's get started by ensuring you have a project structure ready to work with.</p>
+<h3 id="prerequisites">Prerequisites</h3>
+<div class="admonition tip">
+<p class="admonition-title">Important</p>
+<p>Since this is an <strong>intermediate level</strong> course, please ensure you've gone through the <a href="../../../setup/">Griptape Setup - Visual Studio Code</a> course to set up your environment. We will be starting from the code at that point.</p>
+</div>
+<ol>
+<li>
+<p><strong>Code Editor</strong>: We recommend using <strong>Visual Studio Code</strong> for this course, due to its handy features and Python support. However, if you have another favorite IDE or text editor, feel free to use that! </p>
+</li>
+<li>
+<p><strong>Python3.9+</strong>: Griptape requires Python 3.9 and above.</p>
+</li>
+<li>
+<p><strong>Python Environment Manager (for VS Code users)</strong>: This extension is not a hard requirement, but it does make managing your Python environments a lot easier. </p>
+</li>
+<li>
+<p><strong>OpenAI API Key</strong>: Our chatbot will be powered by <strong>gpt-4</strong>, which requires an API key from OpenAI. You can get your key from <a href="https://beta.openai.com/account/api-keys">OpenAI's website</a>.</p>
+</li>
+</ol>
+<p>Got everything installed? Awesome! Now, let's get started setting up our project.</p>
+<h3 id="create-a-project">Create a Project</h3>
+<p>Following the instructions in <a href="../../../setup/01_setting_up_environment/">Griptape Setup - Visual Studio Code </a> please:</p>
+<ol>
+<li>Create your project folder. Example: <code>griptape-compare-movies-workflow</code></li>
+<li>Set up your virtual environment</li>
+<li>Ensure you <code>pip install griptape python-dotenv</code></li>
+<li>Create a <code>.env</code> file with your <code>OPENAI_API_KEY</code></li>
+<li>Create your <code>app.py</code> file with the following code:</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">app.py</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="n">load_dotenv</span><span class="p">()</span> <span class="c1"># Load your environment</span>
+</span></code></pre></div></td></tr></table></div>
+<hr />
+<h2 id="next-steps">Next Steps</h2>
+<p>And there we have it, environment is all set up! In the next section <a href="../02_concepts/">Concepts</a>, we'll dive deeper into understanding the concepts of Pipelines, Workflows, and Tasks.</p>
+
+
+  
+
+
+
+
+                
               </article>
             </div>
           
@@ -968,6 +1086,42 @@
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Introduction" rel="prev">
+            <div class="md-footer__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Introduction
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../02_concepts/" class="md-footer__link md-footer__link--next" aria-label="Next: Concepts" rel="next">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Concepts
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">
@@ -1054,10 +1208,10 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "/", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.instant", "navigation.path", "navigation.footer", "navigation.prune", "navigation.tracking", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.annotate", "content.code.copy", "content.code.annotate"], "search": "/assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.instant", "navigation.path", "navigation.footer", "navigation.prune", "navigation.tracking", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.annotate", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="/assets/javascripts/bundle.220ee61c.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.220ee61c.min.js"></script>
       
     
   </body>
