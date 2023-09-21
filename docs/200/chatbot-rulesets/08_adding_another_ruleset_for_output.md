@@ -5,12 +5,12 @@
 Consider a situation where we have integrated the LLM (Language Learning Module) into our code. It becomes crucial for us to receive the output in a specific format that aligns with our requirements, like JSON. By employing an output ruleset, we can precisely control the structure and format of the chatbot's responses.
 
 ## Goal
-After completing this section, you'll be able use output rulesets to get responses from the LLM in the way most useful for your application.
+After completing this section, you'll be able to use output rulesets to get responses from the LLM in the way most useful for your application.
 
 ## New Ruleset
 ### JSON Ruleset
 
-To achieve our goal of formatting the response as JSON, we'll create a ruleset called "json_ruleset." This ruleset will contain a single rule that tells the chatbot to use JSON when formulating it's response. Place it after the kiwi_rulesest:
+To achieve our goal of formatting the response as JSON, we'll create a ruleset called "json_ruleset." This ruleset will contain a single rule that tells the chatbot to use JSON when formulating its response. Place it after `kiwi_rulesest`:
 
 ```python
 json_ruleset = Ruleset(
@@ -23,7 +23,7 @@ json_ruleset = Ruleset(
 
 ### Integration
 
-With the json_ruleset in hand, it's time to integrate it into our Agent. By including it in the list of rulesets available to the Agent, we can harness its power to control the response format.
+With `json_ruleset` in hand, it's time to integrate it into our Agent. By including it in the list of rulesets available to the Agent, we can harness its power to control the response format.
 
 ```python
 # Create the agent
@@ -33,7 +33,7 @@ agent = MyAgent(
 )
 ```
 
-Here, we modify the `MyAgent` instantiation to include both the `kiwi_ruleset` and `json_ruleset` in the `rulesets=[]` argument. This ensures that our chatbot possesses the kiwi personality traits while _also_ adhering to the desired response format specified by the json_ruleset.
+Here, we modify the `MyAgent` instantiation to include both `kiwi_ruleset` and `json_ruleset` in the `rulesets=[]` argument. This ensures that our chatbot possesses the kiwi personality traits while _also_ adhering to the desired response format specified by `json_ruleset`.
 
 ### Test
 
@@ -68,16 +68,16 @@ Enjoy the beauty of Wellington's top tourist destinations, neatly presented in a
 
 While this is an interesting example, let's use the ruleset in a way that helps control the way our application works.
 
-Currently, the user has to know to type "exit" to leave the chat. This is not a great user experience, as it's a hidden command. We are using a chat-interface... wouldn't it be great if we could simply _tell_ the chatbot when we were done chatting and it would quit on it's own?
+Currently, the user has to know to type "exit" to leave the chat. This is not a great user experience, as it's a hidden command. We are using a chat-interface... wouldn't it be great if we could simply _tell_ the chatbot when we were done chatting and it would quit on its own?
 
 Turns out, we can do just that - by using the `json_ruleset`.
 
-Modify the json ruleset to look like the following:
+Modify `json_ruleset` to look like the following:
 
 ```python
 json_ruleset = Ruleset(
     name='json_ruleset',
-    rules = [
+    rules=[
         Rule("Respond in plain text only with JSON objects that have the following keys: response, continue_chatting."),
         Rule("The 'response' value should be a string that is your response to the user."),
         Rule("If it sounds like the person is done chatting, set 'continue_chatting' to False, otherwise it is True"),
@@ -86,7 +86,7 @@ json_ruleset = Ruleset(
 
 ```
 
-The **first** rule tells the chatbot to respond in json, and specifies the keys. 
+The **first** rule tells the chatbot to respond in JSON and specifies the keys. 
 
 The **second** and **third** rules explain what the values for those keys should be. Notice the third one specifically says that if it sounds like the person is done chatting, set `continue_chatting` to `False`.
 
@@ -109,20 +109,20 @@ Kiwi: {
 
 See how `continue_chatting` returns false when it sounds like we're done talking?
 
-Let's now use this json output!
+Let's now use this JSON output!
 
 ### Import JSON
 
-First, we'll have to import the json library. To do that, add the following at the beginning of your script:
+First, we'll have to import the `json` library. To do that, add the following at the beginning of your script:
 
 ```python
 import json
 ```
 
 ### Load JSON
-Next, we'll use the `json.loads()` function to take the output from the agent's response and convert it into json data.
+Next, we'll use the `json.loads()` function to take the output from the agent's response and convert it into JSON data.
 
-Modify the start of the `respond` method of the `MyAgent` class, to look like:
+Modify the start of the `respond` method of the `MyAgent` class, to look like this:
 
 ```python  hl_lines="4-6"
     # ... truncated for brevity
@@ -134,7 +134,7 @@ Modify the start of the `respond` method of the `MyAgent` class, to look like:
     #...
 
 ```
-This creates two variables - `response` which will be the normal response from the chatobt, and `continue_chatting` which should be `True` or `False`.
+This creates two variables - `response` which will be the normal response from the chatbot, and `continue_chatting` which should be `True` or `False`.
 
 ### Update Print
 Modify the print statement where we get the response from the chatbot to look like:

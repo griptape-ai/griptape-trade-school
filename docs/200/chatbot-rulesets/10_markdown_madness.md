@@ -6,7 +6,7 @@ In this stage, we'll enhance our chatbot's code display by harnessing the power 
 
 ## Review
 
-First let's see why our current output doesn't work. Ask the chatbot to do something useful - like create a bash script that will create an alias to launch VS Code.
+First, let's see why our current output doesn't work. Ask the chatbot to do something useful - like create a bash script that will create an alias to launch VS Code.
 
 ```
 Chat with Kiwi: Can you create a bash script that will create an 
@@ -49,7 +49,7 @@ The `Markdown` class for the `rich` library allows for rendering formatted Markd
 
 ### Using it
 
-Next, we'll modify the `respond` method to use the `Markdown` class. There are a few things we'll need to do. First, we'll take the output of the chatbot's response and convert it into a formatted Markdown text using the following line:
+Next, we'll modify the `respond` method to use the `Markdown` class. There are a few things we'll need to do. First, we'll take the chatbot's `response` and convert it into formatted Markdown text using the following line:
 
 ```python hl_lines="5"
         # ...
@@ -60,7 +60,7 @@ Next, we'll modify the `respond` method to use the `Markdown` class. There are a
         # ...
 ```
 
-Then, we'll replace our `rprint` statement in the panel to use the `formatted_reponse` instead of the string we were sending earlier.
+Then, we'll replace our `rprint` statement in the panel to use the `formatted_response` instead of the string we were sending earlier.
 
 ```python
         # ...
@@ -71,7 +71,7 @@ Then, we'll replace our `rprint` statement in the panel to use the `formatted_re
 !!! Warning
     Make sure you don't do something like `rprint(Panel.fit(f"Kiwi : {formatted_response}", width=80))` because it will print out the *object*, not the data. 
 
-Here's the new `respond` method in it's entirety:
+Here's the new `respond` method in its entirety:
 
 ```python hl_lines="10 13"
 # Create a subclass for the Agent
@@ -96,7 +96,7 @@ class MyAgent(Agent):
 
 Finally, we'll change our `json_ruleset` to ensure the response works with Markdown.
 
-Modify the **second** rule in the `json_ruleset` so it specifies the response should be able to be safely converted into markdown format.
+Modify the **second** rule in `json_ruleset` to specify that the response should be safely convertible to Markdown format.
 
 ```python
         # ... previous code
@@ -107,10 +107,10 @@ And the result. I've added a screenshot so you can see how much better it looks.
 
 ![Alt text](assets/img/10_markdown_bash.png)
 
-To see the enhanced code display in action, run your chatbot and observe the beautifully formatted code snippets that were previously plain text. Try creating tables, csv files, python, tasks lists, etc. Enjoy the new level of elegance and readability brought by Markdown magic!
+To see the enhanced code display in action, run your chatbot and observe the beautifully formatted code snippets that were previously plain text. Try creating tables, CSV files, python scripts, task lists, etc. Enjoy the new level of elegance and readability brought by Markdown magic!
 
 ---
-## Code Checkpoint
+## Code Review
 
 Before moving forward, make sure your code works as expected.
 
@@ -143,7 +143,7 @@ json_ruleset = Ruleset(
     name="json_ruleset",
     rules=[
         Rule("Respond in plain text only with JSON objects that have the following keys: response, continue_chatting."),
-        Rule("The 'response' value should be a string that is your response to the user."),
+        Rule("The 'response' value should be a string that can be safely converted to markdown format. Include line returns when necessary."),
         Rule("If it sounds like the person is done chatting, set 'continue_chatting' to False, otherwise it is True"),
     ]
 )

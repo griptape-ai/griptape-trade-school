@@ -18,10 +18,10 @@ from rich.panel import Panel
 
 The **first** line imports the `print` library from `rich` and assigns an alias: `rprint`. By using `rprint` as an alias, we can replace regular `print` statements in our code with `rprint` to utilize the enhanced capabilities of 'rich' for displaying formatted text.
 
-For example, instead of using `print("Hello, World!")`, we can now use `rprint("Hello, World!")` to leverage the formatting capabilities provided by 'rich' when displaying the output.
+For example, instead of using `print("Hello, World!")`, we can now use `rprint("Hello, World!")` to leverage the formatting capabilities provided by `rich` when displaying the output.
 
 !!! Tip
-    Sometimes people will simply recommend overiding the standard print functionality by doing `from rich import print`, but that would actually replace other uses of `print` in your code. For this reason, I recommend importing it as `rprint` in order to ensure behavior we expect. But in reality, it's totally up to you. [Read the documentation](https://rich.readthedocs.io/en/stable/introduction.html#quick-start) for more information.
+    Sometimes people will simply recommend overriding the standard print functionality by doing `from rich import print`, but that would actually replace other uses of `print` in your code. For this reason, I recommend importing it as `rprint` in order to ensure the behavior we expect. But in reality, it's totally up to you. [Read the documentation](https://rich.readthedocs.io/en/stable/introduction.html#quick-start) for more information.
 
 The **second** line imports the Panel class from the `rich.panel` module. The Panel class represents a styled container that can be used to encapsulate and visually enhance content within a console output. It allows us to create panels with various styles, colors, and borders.
 
@@ -52,7 +52,7 @@ If you run this code you'll see a quick improvement.
 Chat with Kiwi: 
 ```
 
-Much better, right? We're not done yet..
+Much better, right? We're not done yet...
 
 ### Fitting it in
 
@@ -75,7 +75,7 @@ Chat with Kiwi: Say hello in 2 words as a kiwi
 
 ### Propper width
 
-Sometimes the response can be quite long and fill the terminal. In these cases, it's nice to also be able to give a maximum width to your reponse. You can do this by giving the `width` attribute. Used in combination with `fit`, the panel will be either the width of your content, or the width you specify with the attribute - whatever is smaller.
+Sometimes the response can be quite long and fill the terminal. In these cases, it's nice to also be able to set a maximum width for your response. You can do this by specifying the `width` parameter of `Panel.fit`. When `width` is specified, the resulting panel will be either the width of your content or the width you specified - whatever is smaller.
 
 Modify the prompt:
 

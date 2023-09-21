@@ -68,9 +68,9 @@ print(f"Kiwi: {agent_response.value.output}")
 chat(agent)
 ```
 
-This is not a great programming practice because it means any changes we want to make to the output of our chat will have to be done in multiple places. It make maintaining the code way more difficult, and it doens't adhere to the DRY principle (Don't Repeat Yourself).
+This is not a great programming practice because it means any changes we want to make to the output of our chat will have to be done in multiple places. It make maintaining the code way more difficult, and it doesn't adhere to the DRY principle (Don't Repeat Yourself).
 
-There are a numbmer of ways we could approach this, including:
+There are a number of ways we could approach this, including:
 
 - Create a `respond` function
 - Subclass the Agent and create a `respond` method.
@@ -104,7 +104,7 @@ Taking a look at both options, I think in the end it feels more consistent to us
 ## Adding the Method
 ### Subclass the Agent
 
-First we'll need to create a **subclass** for the Agent. This will allow us to create additional methods for the agent, and still inherit all the wonderful things Agent gives us.
+First, we'll need to create a **subclass** for the Agent. This will allow us to create additional methods for the agent, and still inherit all the wonderful things Agent gives us.
 
 Add the following lines before `agent = Agent()` in your code:
 
@@ -118,7 +118,7 @@ class MyAgent(Agent):
 
 ### The `Respond` Method
 
-Now, add the respond method to the MyAgent class and use the same agent_response = agent.run and print commands you used earlier. 
+Now, add the respond method to the MyAgent class. Use the same `agent_response = agent.run`, and print the commands you used earlier. 
 
 ```python
 # Create a subclass for the Agent
@@ -215,7 +215,7 @@ Kiwi: Good on ya, mate! Take care and have a ripper day!
 
 Finally, let's enhance the readability of the chat by adding a bit more space around the output of the chat.
 
-This can be done by modifying the `resopnd` method to add two print statements.
+This can be done by modifying the `respond` method to add two print statements.
 
 ``` python hl_lines="4 6"
 class MyAgent(Agent):
