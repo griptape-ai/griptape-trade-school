@@ -101,7 +101,9 @@ Bride')
 
 This is better, but it still provides more information than we need, as we really just want the movie name. 
 
-Luckily, the second item that's returned is the name of the movie. Since the first item is index 0, and the second is index 1, we can modify the filter to just give us the second item by wrapping the filter in parenthesis and adding `[1]` to the end.
+Luckily, the second item that's returned is the name of the movie. Since the first item is index 0, and the second is index 1, we can modify the filter to just give us the second item by wrapping the filter in parenthesis and adding `[1]` to the end.[^1]
+
+[^1]: Thank you to our [Discord](https://discord.gg/gnWRz88eym) friend **thequest4538** for the filter suggestion!
 
 ```python
     "Give me a summary of the movie: {{ (parent_outputs.items()|list|last)[1] }}"
