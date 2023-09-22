@@ -126,6 +126,6 @@ nav:
       - Workflow Outputs: courses/compare-movies-workflow/06_workflow_outputs.md
 
   - Help: 
-    - FAQ: faq.md
+    # - FAQ: faq.md
     - Contributing: contributing.md
     - Troubleshooting: troubleshooting.md
