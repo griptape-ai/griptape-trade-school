@@ -22,7 +22,7 @@ Let's demonstrate how this works by updating our `respond` method to add some co
 
 Change the `rprint` line to include the `style` attribute:
 
-```python hl_lines="6"
+```python hl_lines="7"
 class MyAgent(Agent):
     def chatbot(agent, user_input):
         # ...
@@ -75,7 +75,7 @@ Engage in a conversation with Kiwi and enjoy the interactive and intuitive natur
 
 ## Code Review
 
-```python linenums="1" title="app.py" hl_lines="9-10 49 51"
+```python linenums="1" title="app.py" hl_lines="9-10 52 68"
 from dotenv import load_dotenv
 import logging
 import json

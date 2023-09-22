@@ -96,7 +96,7 @@ Notice in the above image we've got two personas talking, but it's difficult to 
 ## Code Review
 We're making great progress. Review the code.
 
-```python linenums="1" title="app.py" hl_lines="27-50 84-85"
+```python linenums="1" title="app.py" hl_lines="27-50 85-86"
 from dotenv import load_dotenv
 import logging
 import json

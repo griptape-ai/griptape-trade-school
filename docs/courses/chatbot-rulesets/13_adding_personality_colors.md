@@ -72,7 +72,7 @@ class MyAgent(Agent):
 
 Then, update the `style` line in the `rprint` statement to use `color` instead of specifying it directly as we were before:
 
-```python hl_lines="6"
+```python hl_lines="7"
 class MyAgent(Agent):
     def respond(self, user_input):
         # ...
@@ -130,7 +130,7 @@ class MyAgent(Agent):
 
 Then, add a `title` and `title_align` in the `rprint` function:
 
-```python hl_lines="7-8"
+```python hl_lines="8-9"
 class MyAgent(Agent):
     def respond(self, user_input):
         # ...
@@ -156,7 +156,7 @@ Give it a try and see how much nicer it is!
 
 Lots of changes in this section, with some great usability enhancements! 
 
-```python linenums="1" title="app.py" hl_lines="25 33 41 58 72-73 80-82"
+```python linenums="1" title="app.py" hl_lines="25 33 41 58 72-73 81-83"
 from dotenv import load_dotenv
 import logging
 import json

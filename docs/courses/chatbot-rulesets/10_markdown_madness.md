@@ -114,7 +114,7 @@ To see the enhanced code display in action, run your chatbot and observe the bea
 
 Before moving forward, make sure your code works as expected.
 
-```python linenums="1" title="app.py"
+```python linenums="1" title="app.py" hl_lines="29"
 from dotenv import load_dotenv
 import logging
 import json
