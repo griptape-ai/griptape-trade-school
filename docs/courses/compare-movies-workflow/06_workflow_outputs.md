@@ -175,7 +175,7 @@ I this final section we learned out to get the `output` from the `workflow` in o
 
 Review your code.
 
-```python linenums="1" title="app.py" hl_lines="64-66"
+```python linenums="1" title="app.py" hl_lines="59-61"
 from dotenv import load_dotenv
 
 # Griptape 
@@ -222,12 +222,7 @@ for description in movie_descriptions:
         )
     
     summary_task = ToolkitTask(
-        """
-        Give me a very short summary of the movie from imdb:
-        {% for key, value in parent_outputs.items() %}
-        {{ value }}
-        {% endfor %}
-        """,
+        "Give me a summary of the movie: {{ (parent_outputs.items()|list|last)[1] }}",
         tools=[WebScraper()],
         prompt_driver=driver
         )

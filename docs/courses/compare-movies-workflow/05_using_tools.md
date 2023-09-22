@@ -95,23 +95,22 @@ For example, instead of using `{{ parent_outputs.items() }}`, we can filter it t
 And the result would be:
 
 ```shell
-Input: Give me a summary of the movie:('c477e9d08ca546c8b0c4fdc3aa1f7a9e', 'The Princess 
+Input: Give me a summary of the movie: ('c477e9d08ca546c8b0c4fdc3aa1f7a9e', 'The Princess 
 Bride')                                                                                                 
 ```
 
-This is better, but it still provides more information than we need, as we really just want the movie name.
+This is better, but it still provides more information than we need, as we really just want the movie name. 
 
-### Option 3: Use the For Loop
+Luckily, the second item that's returned is the name of the movie. Since the first item is index 0, and the second is index 1, we can modify the filter to just give us the second item by wrapping the filter in parenthesis and adding `[1]` to the end.
 
-You may recall we're using a Jinja2 for loop (`{% for item in list %}`) structure in our `compare_task`.
-
-We can use the same structure here, even though there's only one item.
 ```python
-"""Give me a summary of the movie:
-{% for key, value in parent_outputs.items() %}
-{{ value }}
-{% endfor %}
-"""
+    "Give me a summary of the movie: {{ (parent_outputs.items()|list|last)[1] }}"
+```
+
+This gives us:
+
+```shell
+Input: Give me a summary of the movie: The Princess Bride                                                                                                
 ```
 
 ### Compare all options
@@ -133,37 +132,21 @@ As you can see, there are multiple ways to get the result we're looking for. Rev
     ```python
     # code
     summary_task = ToolkitTask(
-        "Give me a summary of the movie: {{ parent_outputs.items()|list|last }}",
+        "Give me a summary of the movie: {{ (parent_outputs.items()|list|last)[1] }}",
         tools=[WebScraper()]
         )
 
     # result
-    ('c477e9d08ca546c8b0c4fdc3aa1f7a9e', 'The Princess Bride')
-    ```
-=== "For Loop"
-    ```python
-    # code
-    summary_task = ToolkitTask(
-        """
-        Give me a summary of the movie:
-        {% for key, value in parent_outputs.items() %}
-        {{ value }}
-        {% endfor %}
-        """,
-        tools=[WebScraper()]        
-        )
-    
-    # result
     The Princess Bride
     ```
 
-While the third option (using the for loop) is the longest, the result of just the name of the movie is cleanest - so for this example that's what we'll use.
+As you can see, Jinja filters are extremely powerful. Let's use the second option as it gives us exactly the result we are looking for: just the name of the movie.
 
 ### Add ToolkitTask
 
 Inside the `for description in movie_descriptions:` loop, add the `summary_task` *after* the `movie_task` but *before* the call to the `add_task` method of `workflow.`
 
-```python hl_lines="9-18"
+```python linenums="1" hl_lines="9-12"
 # ...
 
 # Iterate through the movie descriptions
@@ -173,12 +156,7 @@ for description in movie_descriptions:
         context={"description": description})
     
     summary_task = ToolkitTask(
-        """
-        Give me a summary of the movie:
-        {% for key, value in parent_outputs.items() %}
-        {{ value }}
-        {% endfor %}
-        """,
+        "Give me a summary of the movie: {{ (parent_outputs.items()|list|last)[1] }}",
         tools=[WebScraper()]
         )
     
@@ -296,12 +274,7 @@ for description in movie_descriptions:
         )
     
     summary_task = ToolkitTask(
-        """
-        Give me a very short summary of the movie from imdb:
-        {% for key, value in parent_outputs.items() %}
-        {{ value }}
-        {% endfor %}
-        """,
+        "Give me a summary of the movie: {{ (parent_outputs.items()|list|last)[1] }}",
         tools=[WebScraper()],
         prompt_driver=driver
         )
@@ -369,7 +342,7 @@ We added some of helpful functionality in this section, mainly getting wonderful
 
 Review your code.
 
-```python linenums="1" title="app.py" hl_lines="5-7 13-17 35 43 46-55 58-59"
+```python linenums="1" title="app.py" hl_lines="5-7 13-17 35 43 46-50 53-54"
 from dotenv import load_dotenv
 
 # Griptape 
@@ -416,12 +389,7 @@ for description in movie_descriptions:
         )
     
     summary_task = ToolkitTask(
-        """
-        Give me a very short summary of the movie from imdb:
-        {% for key, value in parent_outputs.items() %}
-        {{ value }}
-        {% endfor %}
-        """,
+        "Give me a summary of the movie: {{ (parent_outputs.items()|list|last)[1] }}",
         tools=[WebScraper()],
         prompt_driver=driver
         )

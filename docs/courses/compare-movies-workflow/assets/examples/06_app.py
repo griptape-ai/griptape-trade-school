@@ -44,12 +44,7 @@ for description in movie_descriptions:
         )
     
     summary_task = ToolkitTask(
-        """
-        Give me a very short summary of the movie from imdb:
-        {% for key, value in parent_outputs.items() %}
-        {{ value }}
-        {% endfor %}
-        """,
+        "Give me a summary of the movie: {{ (parent_outputs.items()|list|last)[1] }}",
         tools=[WebScraper()],
         prompt_driver=driver
         )
