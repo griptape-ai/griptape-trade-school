@@ -200,9 +200,9 @@ Much better. Go ahead and add a third movie to the structure and run it again. E
 
 ## Code Review
 
-There was not as much work in this section, but we did conver some important concepts. 
+There was not as much work in this section, but we did cover some important concepts. 
 
-* We made our code more flexible by using a list of descirptions to create PromptTasks instead of creating them one at a time.
+* We made our code more flexible by using a list of descriptions to create PromptTasks instead of creating them one at a time.
 * We used a Jinja2 template **for loop** to iterate through each incoming item.
 
 Review your code with the current state to make sure everything is working as expected.
