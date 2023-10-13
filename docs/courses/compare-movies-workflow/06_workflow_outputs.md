@@ -171,7 +171,7 @@ have become iconic films in American cinema.
 
 ## Code Review
 
-I this final section we learned out to get the `output` from the `workflow` in order to be able to integrate this workflow into our application.
+In this final section we learned out to get the `output` from the `workflow` in order to be able to integrate this workflow into our application.
 
 Review your code.
 
