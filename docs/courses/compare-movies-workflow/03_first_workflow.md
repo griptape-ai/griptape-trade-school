@@ -1,7 +1,7 @@
 # First Workflow
 
 ## Overview
-In this section we're going to create the first workflow in our Movie Comparison application. By the end of this section you will have a workflow that lets you create a cursury comparision between two movies.
+In this section we're going to create the first workflow in our Movie Comparison application. By the end of this section you will have a workflow that lets you create a cursory comparison between two movies.
 
 For example, if you pass it these two descriptions:
 
