@@ -2,14 +2,14 @@
 
 <iframe src="https://www.youtube.com/embed/QsQetOekCDA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-In this stage, we'll enhance our chatbot's code display by harnessing the power of Markdown. With Markdown, we can beautifully format and highlight code snippets to make them more readable and visually appealing. 
+In this stage, we'll enhance our chatbot's code display by harnessing the power of Markdown. With Markdown, we can beautifully format and highlight code snippets to make them more readable and visually appealing.
 
 ## Review
 
 First, let's see why our current output doesn't work. Ask the chatbot to do something useful - like create a bash script that will create an alias to launch VS Code.
 
 ```
-Chat with Kiwi: Can you create a bash script that will create an 
+Chat with Kiwi: Can you create a bash script that will create an
 alias for me to launch visual studio code?
 
 ╭──────────────────────────────────────────────────────────────────────────────╮
@@ -69,14 +69,14 @@ Then, we'll replace our `rprint` statement in the panel to use the `formatted_re
 ```
 
 !!! Warning
-    Make sure you don't do something like `rprint(Panel.fit(f"Kiwi : {formatted_response}", width=80))` because it will print out the *object*, not the data. 
+    Make sure you don't do something like `rprint(Panel.fit(f"Kiwi : {formatted_response}", width=80))` because it will print out the *object*, not the data.
 
 Here's the new `respond` method in its entirety:
 
 ```python hl_lines="10 13"
 # Create a subclass for the Agent
 class MyAgent(Agent):
-        
+
     def respond (self, user_input):
         agent_response = self.run(user_input)
         data = json.loads(agent_response.output.value)
@@ -88,7 +88,7 @@ class MyAgent(Agent):
         rprint("")
         rprint(Panel.fit(formatted_response, width=80))
         rprint("")
-        
+
         return continue_chatting
 ```
 
@@ -114,7 +114,7 @@ To see the enhanced code display in action, run your chatbot and observe the bea
 
 Before moving forward, make sure your code works as expected.
 
-```python linenums="1" title="app.py" hl_lines="29"
+```python linenums="1" title="app.py" hl_lines="29 43 46"
 from dotenv import load_dotenv
 import logging
 import json
@@ -123,7 +123,7 @@ import json
 from rich import print as rprint
 from rich.panel import Panel
 
-# Griptape 
+# Griptape
 from griptape.structures import Agent
 from griptape.rules import Rule, Ruleset
 
@@ -157,8 +157,10 @@ class MyAgent(Agent):
         response = data["response"]
         continue_chatting = data["continue_chatting"]
 
+        formatted_response = Markdown(response)
+
         rprint("")
-        rprint(Panel.fit(f"Kiwi: {response}", width=80))
+        rprint(Panel.fit(formatted_response, width=80))
         rprint("")
 
         return continue_chatting
