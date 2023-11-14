@@ -2,6 +2,15 @@
 
 <iframe  src="https://www.youtube.com/embed/OBT9DdTxKak" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
+!!! tip
+    There is a change worth noting since the recording of this video.
+    
+    Agent Output has changed from: 
+
+    `agent_response.output_task.output.value` to `agent_response.output_task.output.value`.
+
+    This change is reflected in the code in the course, but not in the video at this time.
+
 Consider a situation where we have integrated the LLM (Language Learning Module) into our code. It becomes crucial for us to receive the output in a specific format that aligns with our requirements, like JSON. By employing an output ruleset, we can precisely control the structure and format of the chatbot's responses.
 
 ## Goal
@@ -128,7 +137,7 @@ Modify the start of the `respond` method of the `MyAgent` class, to look like th
     # ... truncated for brevity
     def respond (self, user_input):
         agent_response = agent.run(user_input)
-        data = json.loads(agent_response.output.value)
+        data = json.loads(agent_response.output_task.output.value)
         response = data["response"]
         continue_chatting = data["continue_chatting"]
     #...
@@ -161,7 +170,7 @@ class MyAgent(Agent):
         
     def respond (self, user_input):
         agent_response = agent.run(user_input)
-        data = json.loads(agent_response.output.value)
+        data = json.loads(agent_response.output_task.output.value)
         response = data["response"]
         continue_chatting = data["continue_chatting"]
 
@@ -239,7 +248,7 @@ class MyAgent(Agent):
 
     def respond (self, user_input):
         agent_response = agent.run(user_input)
-        data = json.loads(agent_response.output.value)
+        data = json.loads(agent_response.output_task.output.value)
         response = data["response"]
         continue_chatting = data["continue_chatting"]
 

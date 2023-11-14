@@ -2,6 +2,15 @@
 
 <iframe src="https://www.youtube.com/embed/AXLWIIS8yTw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
+!!! tip
+    There is a change worth noting since the recording of this video.
+    
+    Agent Output has changed from: 
+
+    `agent_response.output_task.output.value` to `agent_response.output_task.output.value`.
+
+    This change is reflected in the code in the course, but not in the video at this time.
+
 This course covers two topics:
 
 - Adding manners
@@ -20,7 +29,7 @@ Add a call to the agent to introduce itself before the `# Run the agent` line:
 ```python hl_lines="1-3"
 # Introduce the agent
 agent_response = agent.run("Introduce yourself to the user.")
-print(f"Kiwi: {agent_response.output.value}")
+print(f"Kiwi: {agent_response.output_task.output.value}")
 
 # Run the agent
 chat(agent)
@@ -58,11 +67,11 @@ def chat(agent):
         else:
             # Keep on chatting
             agent_result = agent.run(user_input)
-            print (f"Kiwi: {agent_result.output.value}")
+            print (f"Kiwi: {agent_result.output_task.output.value}")
 
 # Introduce the agent
 agent_response = agent.run("Introduce yourself to the user.")
-print(f"Kiwi: {agent_response.output.value}")
+print(f"Kiwi: {agent_response.output_task.output.value}")
  
 # Run the agent
 chat(agent)
@@ -125,7 +134,7 @@ Now, add the respond method to the MyAgent class. Use the same `agent_response =
 class MyAgent(Agent):
     def respond (self, user_input):
         agent_response = agent.run(user_input)
-        print(f"Kiwi: {agent_response.output.value}") 
+        print(f"Kiwi: {agent_response.output_task.output.value}") 
 ```
 
 ### Update Agent
@@ -153,7 +162,7 @@ Finally, replace the lines where we were previously getting the result of the `a
 Replace:
 ```python
 agent_result = agent.run(user_input)
-print(f"Kiwi: {agent_result.output.value}")
+print(f"Kiwi: {agent_result.output_task.output.value}")
 ```
 
 with:
@@ -175,7 +184,7 @@ Since we just made some big changes, here are those alterations brought together
 class MyAgent(Agent):
     def respond (self, user_input):
         agent_response = agent.run(user_input)
-        print(f"Kiwi: {agent_response.output.value}")
+        print(f"Kiwi: {agent_response.output_task.output.value}")
 
 # ... truncated for brevity
 
@@ -222,7 +231,7 @@ class MyAgent(Agent):
     def respond (self, user_input):
         agent_response = agent.run(user_input)
         print("")
-        print(f"Kiwi: {agent_response.output.value}")
+        print(f"Kiwi: {agent_response.output_task.output.value}")
         print("")
 
 ```
@@ -259,7 +268,7 @@ class MyAgent(Agent):
     def respond (self, user_input):
         agent_response = agent.run(user_input)
         print("")
-        print(f"Kiwi: {agent_response.output.value}")
+        print(f"Kiwi: {agent_response.output_task.output.value}")
         print("")
 
 # Create the agent

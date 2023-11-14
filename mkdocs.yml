@@ -20,7 +20,7 @@ extra:
       link: https://www.youtube.com/@griptape-ai
     - icon: fontawesome/brands/python
       link: https://pypi.org/project/griptape/
-theme: 
+theme:
   name: material
   custom_dir: docs/overrides
   logo: assets/img/griptape-logo-light.png
@@ -49,12 +49,12 @@ theme:
     # - navigation.awesome-pages
     - content.code.annotate
   language: en
-markdown_extensions: 
+markdown_extensions:
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
           class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_code_format  
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - admonition
   - attr_list
   - md_in_html
@@ -77,55 +77,58 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.superfences
   - pymdownx.tabbed:
-      alternate_style: true 
+      alternate_style: true
   - pymdownx.mark
   - pymdownx.betterem
   - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:materialx.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+        # emoji_index: !!python/name:materialx.emoji.twemoji
+        # emoji_generator: !!python/name:materialx.emoji.to_svg
+
   - pymdownx.critic
   - pymdownx.caret
   - pymdownx.keys
   - pymdownx.mark
   - pymdownx.tilde
 
-#Navigation       
+#Navigation
 nav:
-  - Home: 
-    - Griptape Trade School: 'index.md'
-  - Setup: 
-    - Setting up for Griptape: setup/index.md
-    - Software: setup/01_setting_up_environment.md
-    - OpenAI: setup/02_openai.md
-    - Griptape: setup/03_griptape.md
-    - Resources: setup/04_helpful_resources.md
-  - Courses: 
-    - All Courses: courses.md
-    - Chatbot - Rulesets:
-      - Introduction: courses/chatbot-rulesets/index.md
-      - Setup: courses/chatbot-rulesets/01_setting_up_environment.md
-      - The Chat utility: courses/chatbot-rulesets/03_the_chat_utility.md
-      - Hiding the logs: courses/chatbot-rulesets/04_hide_the_logs.md
-      - Personality: courses/chatbot-rulesets/05_personality_with_rulesets.md
-      - Custom chat: courses/chatbot-rulesets/06_adding_manual_chat.md
-      - Manners maketh the bot: courses/chatbot-rulesets/07_manners_maketh_the_bot.md
-      - Rulesets for output: courses/chatbot-rulesets/08_adding_another_ruleset_for_output.md
-      - Formatting Output: courses/chatbot-rulesets/09_formatting_chat_output.md
-      - Markdown Madness: courses/chatbot-rulesets/10_markdown_madness.md
-      - Improving the Prompt: courses/chatbot-rulesets/11_gleaming_the_chat.md
-      - Multiple Personas: courses/chatbot-rulesets/12_multiple_personas.md
-      - Colorful Personality: courses/chatbot-rulesets/13_adding_personality_colors.md
-      - Quick Feedback: courses/chatbot-rulesets/14_making_it_quick.md
-    - Compare Movies - Workflows:
-      - Introduction: courses/compare-movies-workflow/index.md
-      - Setup: courses/compare-movies-workflow/01_setup.md
-      - Concepts: courses/compare-movies-workflow/02_concepts.md
-      - First Workflow: courses/compare-movies-workflow/03_first_workflow.md
-      - Adding Flexibility: courses/compare-movies-workflow/04_adding_flexibility.md
-      - Using Tools: courses/compare-movies-workflow/05_using_tools.md
-      - Workflow Outputs: courses/compare-movies-workflow/06_workflow_outputs.md
+  - Home:
+      - Griptape Trade School: "index.md"
+  - Setup:
+      - Setting up for Griptape: setup/index.md
+      - Software: setup/01_setting_up_environment.md
+      - OpenAI: setup/02_openai.md
+      - Griptape: setup/03_griptape.md
+      - Resources: setup/04_helpful_resources.md
+  - Courses:
+      - All Courses: courses.md
+      - Chatbot - Rulesets:
+          - Introduction: courses/chatbot-rulesets/index.md
+          - Setup: courses/chatbot-rulesets/01_setting_up_environment.md
+          - The Chat utility: courses/chatbot-rulesets/03_the_chat_utility.md
+          - Hiding the logs: courses/chatbot-rulesets/04_hide_the_logs.md
+          - Personality: courses/chatbot-rulesets/05_personality_with_rulesets.md
+          - Custom chat: courses/chatbot-rulesets/06_adding_manual_chat.md
+          - Manners maketh the bot: courses/chatbot-rulesets/07_manners_maketh_the_bot.md
+          - Rulesets for output: courses/chatbot-rulesets/08_adding_another_ruleset_for_output.md
+          - Formatting Output: courses/chatbot-rulesets/09_formatting_chat_output.md
+          - Markdown Madness: courses/chatbot-rulesets/10_markdown_madness.md
+          - Improving the Prompt: courses/chatbot-rulesets/11_gleaming_the_chat.md
+          - Multiple Personas: courses/chatbot-rulesets/12_multiple_personas.md
+          - Colorful Personality: courses/chatbot-rulesets/13_adding_personality_colors.md
+          - Quick Feedback: courses/chatbot-rulesets/14_making_it_quick.md
+      - Compare Movies - Workflows:
+          - Introduction: courses/compare-movies-workflow/index.md
+          - Setup: courses/compare-movies-workflow/01_setup.md
+          - Concepts: courses/compare-movies-workflow/02_concepts.md
+          - First Workflow: courses/compare-movies-workflow/03_first_workflow.md
+          - Adding Flexibility: courses/compare-movies-workflow/04_adding_flexibility.md
+          - Using Tools: courses/compare-movies-workflow/05_using_tools.md
+          - Workflow Outputs: courses/compare-movies-workflow/06_workflow_outputs.md
 
-  - Help: 
-    - FAQ: faq.md
-    - Contributing: contributing.md
-    - Troubleshooting: troubleshooting.md
+  - Help:
+      - FAQ: faq.md
+      - Contributing: contributing.md
+      - Troubleshooting: troubleshooting.md

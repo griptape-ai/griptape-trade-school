@@ -2,7 +2,7 @@
 
 Now that you've got your environment all set up, it's time to actually start moving. In this stage, we'll put together a basic Griptape application and see it in action. 
 
-<iframe  src="https://www.youtube.com/embed/_rg5rbzNc4c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<!-- <iframe  src="https://www.youtube.com/embed/_rg5rbzNc4c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
 
 ### Our Application
 

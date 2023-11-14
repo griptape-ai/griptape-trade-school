@@ -2,6 +2,11 @@
 
 <iframe src="https://www.youtube.com/embed/YBkb5alrH94" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
+!!! tip
+    In the above video I demonstrating importing `griptape-tools`. This is no longer required. The correct command is simply:
+
+    `pip install griptape`
+
 ## Course Description
 In this course, we will take a deep dive into creating a command-line interface (CLI) based conversational chatbot with an [Agent](https://docs.griptape.ai/en/latest/griptape-framework/structures/agents/) using Griptape's [Rulesets](https://docs.griptape.ai/en/latest/griptape-framework/structures/rulesets/). Not only will our chatbot be able to engage in conversation, but it will also have the unique ability to embody different personalities, making the interaction more dynamic and interesting. 
 
@@ -14,7 +19,7 @@ This course is aimed at **beginners** to **intermediate** level Python developer
 Before beginning this course, you will need:
 
 - An OpenAI API Key (available here: https://beta.openai.com/account/api-keys)
-- Python3.9+ installed on your machine
+- Python3.11+ installed on your machine
 - An IDE (such as Visual Studio Code or PyCharm) to write and manage your code
 
 If you don't have those items available, it's highly recommended you go through the [Griptape Setup - Visual Studio Code](../../setup/index.md) course to set up your environment.

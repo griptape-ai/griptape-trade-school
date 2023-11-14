@@ -79,7 +79,7 @@ class MyAgent(Agent):
 
     def respond (self, user_input):
         agent_response = self.run(user_input)
-        data = json.loads(agent_response.output.value)
+        data = json.loads(agent_response.output_task.output.value)
         response = data["response"]
         continue_chatting = data["continue_chatting"]
 
@@ -122,6 +122,7 @@ import json
 # Rich
 from rich import print as rprint
 from rich.panel import Panel
+from rich.markdown import Markdown
 
 # Griptape
 from griptape.structures import Agent
@@ -153,7 +154,7 @@ class MyAgent(Agent):
 
     def respond (self, user_input):
         agent_response = agent.run(user_input)
-        data = json.loads(agent_response.output.value)
+        data = json.loads(agent_response.output_task.output.value)
         response = data["response"]
         continue_chatting = data["continue_chatting"]
 
