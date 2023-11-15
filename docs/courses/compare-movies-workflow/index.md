@@ -2,28 +2,32 @@
 
 ``` mermaid
 graph TB
-    A[Workflow] 
-    B("Task 1a")
-    C("Task 1b"):::tool
-    I("Summary")
-    G("Task 2a")
-    H("Task 2b"):::tool
-    F("Task 3")
-    J(["\n  Output \n\n"]):::output
+    subgraph " "
+        direction TB
+        AA(["\n INPUT \n\n"]):::output
+        A(Start Task):::main 
+        B("Task 1a")
+        C("Task 1b"):::tool
+        I("End Task"):::main
+        G("Task 2a")
+        H("Task 2b"):::tool
+        F("Task 3")
+        J(["\n  Output \n\n"]):::output
+        AA --> A
+        A --> B --> C --> I
+        A --> G --> H --> I
+        A --> F
+        I --> J
+        F ---> I
+    end
 
-    A --> B --> C --> I
-    A --> G --> H --> I
-    A --> F
-    I --> J
-    F ---> I
-
+    classDef main fill:#4274ff1a, stroke:#426eff
     classDef dash stroke-dasharray: 5 5
     classDef tool stroke:#f06090
     classDef tool-dash stroke:#f06090,stroke-dasharray: 5 5
     classDef output fill:#5552,stroke:#555
 
 ```
-
 
 ## Course Description
 Griptape [Workflows](https://docs.griptape.ai/en/latest/griptape-framework/structures/workflows/) allow you to create complicated parent-child task relationships, where one task won't begin until all it's parent tasks have completed. Using movie narratives as our backdrop, you'll gain practical experience in establishing inter-task connections and seeing how they collaboratively weave a coherent story. Ideal for those keen on understanding the intricacies of Griptape's Workflows while engaging in a compelling thematic exploration.
@@ -38,7 +42,7 @@ Finally, once all tasks are finished, a final comparison task will be executed o
 
 ``` mermaid
 graph TB
-    A["<h4>Workflow</h4>
+    A["<h4>PromptTask: START</h4>
     Given some rough movie descriptions,
     describe their similarities.
     <br>"] --> AB(["A boy finds an alien"]):::Result
@@ -50,7 +54,7 @@ graph TB
     A --> AD(["Kid suddenly becomes big"]):::Result
     AD --> D("<b>PromptTask</b>:<br>Get Name"):::PromptTask
 
-    K("<b>PromptTask</b>:<br>Compare Movies"):::PromptTask
+    K("<b>PromptTask</b>:<br>END (Compare Movies)"):::PromptTask
     subgraph movie 1 [" "]
     B --> BE([E.T.]):::Result
     BE --> E("<b>ToolkitTask</b>:<br>Get Summary"):::ToolkitTask
