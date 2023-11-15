@@ -33,7 +33,7 @@ While this is handy to help visualize Workflows while we discuss them, it would 
 
 ## The to_graph method 
 
-The Workflow node has a method on it called `to_graph`. This method outputs the graph you created as a Python dict.
+The Workflow class has a method on it called `to_graph`. This method outputs the graph you created as a Python dict.
 
 Let's modify our code slightly to print out the dictionary.
 
@@ -66,7 +66,7 @@ In order to see the graph hierarchy, you don't need to run the workflow. So let'
 
 After the commented out `workflow.run()` line, add the following lines:
 
-```python hl_lines="3-7"
+```python hl_lines="4-8"
 # ...
 # workflow.run()
 
@@ -93,7 +93,7 @@ Run your code to see the result. It should look something like:
 }
 ```
 
-Now this probably isn't what you were expecting - it's not super clear what the node hierarchy is, and those numbers don't make much sense.
+Now this probably isn't what you were expecting - it's not super clear what the node hierarchy is, and those numbers don't give a lot of context.
 
 Essentially what you're looking at is a list of `task ids` and their `parent task ids`.
 
@@ -103,7 +103,7 @@ Notice the `END` task has *3* nodes that are it's parent: `'7224e9aef92e40728828
 
 Still not making sense? That's okay, let's clean up these task id names and things will become a little clearer.
 
-## Clean up the node ids
+## Clean up the node IDs
 
 The first thing we'll want to do is make sure that each Task has a unique ID that's a litte clearer to understand. This means we'll be adding an `id` attribute to the `movie_task` and the `summary_task`.
 
@@ -112,6 +112,7 @@ Find the section of the code where we create the `movie_task`. We're going to ad
 We could label the tasks something like "movie_task_1", "movie_task_2", etc.. but it might be nicer to make it a little clearer what each one does.
 
 So what if we used a bit of the description to describe the task? Something like:
+
 * `TITLE: A princes...`
 * `TITLE: A shark at...`
 
@@ -238,7 +239,7 @@ def convert_to_mermaid(data: Dict[str, Set[str]], identifiers: Dict[str, str]) -
             mermaid_graph += f'    {child_id}("{child}")\n'
         for parent in parents:
             parent_id = identifiers[parent]
-            mermaid_graph += f'    {parent_id}("{parent}") --> {child_id}["{child}"]\n'
+            mermaid_graph += f'    {parent_id}("{parent}") --> {child_id}("{child}")\n'
     return mermaid_graph
 
 
