@@ -186,6 +186,131 @@ The three `TITLE: ...` tasks are a parent of `START` and the `SUMMARY` tasks are
 
 The `END` task has 3 parents - the `SUMMARY` tasks.
 
+## Display with nodes
+
+This is fine for quick cases, but wouldn't it be better if you could actually display the graph in an easier to read way - similar to how we're using mermaid.js in this course?
+
+That's exactly what we're going to do. We'll create a utility we can use on Workflows to display the nodes just like we would with mermaid.
+
+### Create a display_graph.py file
+
+Save the following Python file as `display_graph.py` in the same directory as your `app.py`.
+
+```python
+"""
+Mermaid Graph Display Utility
+
+This utility allows for the visualization of Workflow Graphs
+using Mermaid.js. It generates an HTML page with a Mermaid graph based on a
+given graph data structure and opens it in the default web browser.
+
+Usage:
+    from display_graph import display_graph
+    display_graph(your_data)
+
+Requirements:
+    - Internet connection for Mermaid.js CDN.
+    - A web browser to view the generated graph.
+
+Author: jason@griptape.ai
+Date: Nov 15, 2023
+Version: 1.0
+"""
+
+import webbrowser
+import os
+import string
+from typing import Dict, Set
+
+
+# Create unique identifiers for each node in the graph
+def generate_identifiers(nodes):
+    id_generator = iter(string.ascii_uppercase)
+    return {node: next(id_generator) for node in nodes}
+
+
+# Convert the graph data to mermaid format
+def convert_to_mermaid(data: Dict[str, Set[str]], identifiers: Dict[str, str]) -> str:
+    mermaid_graph = "graph TD\n"
+    for child, parents in data.items():
+        child_id = identifiers[child]
+        if not parents:
+            mermaid_graph += f'    {child_id}("{child}")\n'
+        for parent in parents:
+            parent_id = identifiers[parent]
+            mermaid_graph += f'    {parent_id}("{parent}") --> {child_id}["{child}"]\n'
+    return mermaid_graph
+
+
+# Create the HTML content for the graph
+def html_content(mermaid_graph: str) -> str:
+    return f"""
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Mermaid Graph</title>
+        <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+        <script>mermaid.initialize({{ theme: 'dark', startOnLoad: true }});</script>
+        <style>
+            body {{
+        background-color: rgb(30, 33, 41);
+        color: rgba(226, 228, 233, 0.82);
+            }}
+        </style>
+    </head>
+    <body>
+        <div class="mermaid">
+            {mermaid_graph}
+        </div>
+    </body>
+    </html>
+    """
+
+
+# Display the graph in a web browser
+def display_graph(data: Dict[str, Set[str]]):
+    identifiers = generate_identifiers(data.keys())
+    mermaid_graph = convert_to_mermaid(data, identifiers)
+
+    file_path = "graph.html"
+    with open(file_path, "w") as file:
+        file.write(html_content(mermaid_graph))
+
+    webbrowser.open("file://" + os.path.realpath(file_path))
+
+```
+
+### Use display_graph to display your workflow graph
+
+Inside your `app.py`, you will need to first `import` the `display_graph` function.
+
+At the top of your script, add the following import:
+```python
+
+from display_graph import display_graph
+
+```
+
+Now at the bottom of your script, instead of using `rprint` to print out your graph, use `display_graph`
+
+```python
+# ...
+# workflow.run()
+
+# use the to_graph method to return the graph
+graph = workflow.to_graph()
+
+# print the graph
+display_graph(graph)
+
+```
+
+Execute your script and you should see an html page appear with your graph!
+
+![Workflow Graph](assets/img/mermaid_graph.png)
+
+Feel free to use this any time you need to quickly display your graph as it's being built.
+
 ## Finished
 
 !!! success
@@ -202,4 +327,3 @@ You have learned how to:
 * Get the output from a workflow for integration with other applications.
 
 We hope you enjoyed this course, and look forward to seeing what you're able to create with these new skills.
-

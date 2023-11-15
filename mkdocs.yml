@@ -86,6 +86,7 @@ markdown_extensions:
         # emoji_index: !!python/name:materialx.emoji.twemoji
         # emoji_generator: !!python/name:materialx.emoji.to_svg
 
+
   - pymdownx.critic
   - pymdownx.caret
   - pymdownx.keys
@@ -127,6 +128,7 @@ nav:
           - Adding Flexibility: courses/compare-movies-workflow/04_adding_flexibility.md
           - Using Tools: courses/compare-movies-workflow/05_using_tools.md
           - Workflow Outputs: courses/compare-movies-workflow/06_workflow_outputs.md
+          - Workflow Displaying Graph: courses/compare-movies-workflow/07_workflow_display_graph.md
 
   - Help:
       - FAQ: faq.md

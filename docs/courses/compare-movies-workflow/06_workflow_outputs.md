@@ -139,25 +139,8 @@ print(workflow.output_task.output.value)
 
 ```
 
-## Finished
-
-!!! success
-    Congratulations! You have created a successful Griptape Workflow!
-
-Well done, you've successfully created a Griptape Workflow that allows you to execute complex and interesting dependency graphs.
-
-You have learned how to:
-
-* Create tasks that can handle prompts and tools
-* Learned a bit about Jinja2 templates
-* Create parent/child relationships
-* Create tasks that are depending on multiple incoming tasks
-* Get the output from a workflow for integration with other applications.
-
-We hope you enjoyed this course, and look forward to seeing what you're able to create with these new skills.
-
 ---
-## Bonus Material
+## Next Step
 But wait.. don't stop yet!
 
 There's new bonus material we've recently added that helps you understand the structure of your workflow!
