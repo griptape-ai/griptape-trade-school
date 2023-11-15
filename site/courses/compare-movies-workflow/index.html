@@ -1104,21 +1104,26 @@
 
 <h1 id="learn-griptape-workflows-through-cinematic-comparison">Learn Griptape Workflows through Cinematic Comparison</h1>
 <pre class="mermaid"><code>graph TB
-    A[Workflow] 
-    B("Task 1a")
-    C("Task 1b"):::tool
-    I("Summary")
-    G("Task 2a")
-    H("Task 2b"):::tool
-    F("Task 3")
-    J(["\n  Output \n\n"]):::output
+    subgraph " "
+        direction TB
+        AA(["\n INPUT \n\n"]):::output
+        A(Start Task):::main 
+        B("Task 1a")
+        C("Task 1b"):::tool
+        I("End Task"):::main
+        G("Task 2a")
+        H("Task 2b"):::tool
+        F("Task 3")
+        J(["\n  Output \n\n"]):::output
+        AA --&gt; A
+        A --&gt; B --&gt; C --&gt; I
+        A --&gt; G --&gt; H --&gt; I
+        A --&gt; F
+        I --&gt; J
+        F ---&gt; I
+    end
 
-    A --&gt; B --&gt; C --&gt; I
-    A --&gt; G --&gt; H --&gt; I
-    A --&gt; F
-    I --&gt; J
-    F ---&gt; I
-
+    classDef main fill:#4274ff1a, stroke:#426eff
     classDef dash stroke-dasharray: 5 5
     classDef tool stroke:#f06090
     classDef tool-dash stroke:#f06090,stroke-dasharray: 5 5
@@ -1134,7 +1139,7 @@
 </ol>
 <p>Finally, once all tasks are finished, a final comparison task will be executed of the three movies and output the results.</p>
 <pre class="mermaid"><code>graph TB
-    A["&lt;h4&gt;Workflow&lt;/h4&gt;
+    A["&lt;h4&gt;PromptTask: START&lt;/h4&gt;
     Given some rough movie descriptions,
     describe their similarities.
     &lt;br&gt;"] --&gt; AB(["A boy finds an alien"]):::Result
@@ -1146,7 +1151,7 @@
     A --&gt; AD(["Kid suddenly becomes big"]):::Result
     AD --&gt; D("&lt;b&gt;PromptTask&lt;/b&gt;:&lt;br&gt;Get Name"):::PromptTask
 
-    K("&lt;b&gt;PromptTask&lt;/b&gt;:&lt;br&gt;Compare Movies"):::PromptTask
+    K("&lt;b&gt;PromptTask&lt;/b&gt;:&lt;br&gt;END (Compare Movies)"):::PromptTask
     subgraph movie 1 [" "]
     B --&gt; BE([E.T.]):::Result
     BE --&gt; E("&lt;b&gt;ToolkitTask&lt;/b&gt;:&lt;br&gt;Get Summary"):::ToolkitTask
