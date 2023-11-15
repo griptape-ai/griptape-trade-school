@@ -72,7 +72,7 @@ class MyAgent(Agent):
         console = Console()
         with console.status(spinner="simpleDotsScrolling", status=""):
             agent_response = agent.run(user_input)  
-        data = json.loads(agent_response.output.value)
+        data = json.loads(agent_response.output_task.output.value)
         response = data["response"]
         continue_chatting = data["continue_chatting"]
         color = data["favorite_color"]

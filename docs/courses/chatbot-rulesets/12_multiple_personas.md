@@ -60,12 +60,15 @@ switcher_ruleset = Ruleset(
 
 Let's now give the agent all these rulesets to work with. We'll simply add them to the list of `rulesets` in the `agent` instantiation.
 
+!!! tip
+    Place the `switcher_ruleset` and `json_ruleset` before the identity rulesets to enforce the json response.
+
 ```python hl_lines="4-5"
 # Create the agent
 agent = MyAgent(
     rulesets=[
-        kiwi_ruleset, zelda_ruleset, dad_ruleset, 
         switcher_ruleset, json_ruleset
+        kiwi_ruleset, zelda_ruleset, dad_ruleset, 
     ],
     logger_level=logging.ERROR
 )
@@ -162,7 +165,7 @@ class MyAgent(Agent):
 
     def respond (self, user_input):
         agent_response = agent.run(user_input)
-        data = json.loads(agent_response.output.value)
+        data = json.loads(agent_response.output_task.output.value)
         response = data["response"]
         continue_chatting = data["continue_chatting"]
 
@@ -181,8 +184,8 @@ class MyAgent(Agent):
 # Create the agent
 agent = MyAgent(
     rulesets=[
-        kiwi_ruleset, zelda_ruleset, dad_ruleset,
-        switcher_ruleset, json_ruleset  
+        switcher_ruleset, json_ruleset, 
+        kiwi_ruleset, zelda_ruleset, dad_ruleset
     ],
     logger_level=logging.ERROR
 )

@@ -1,6 +1,19 @@
 # Custom Chat
 <iframe src="https://www.youtube.com/embed/jCCWwxmgkwc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
+!!! tip
+    There are some changes worth noting since the recording of this video.
+    
+    1. The `Chat` utility has added a few new options. You can now provide `prompt_prefix`, `response_prefix`, `exit_keywords` and more.
+
+        Review the `Chat Utility` [reference guide](https://docs.griptape.ai/reference/griptape/utils/chat/) for a full breakdown.
+
+    2. Agent Output has changed from: 
+
+        `agent_result.output_task.output.value` to `agent_result.output_task.output.value`.
+
+        This change is reflected in the code in the course, but not in the video at this time.
+    
 While the chatbot is working, it's not very user-friendly yet. The `Q:` and `A:` prompts don't make for the most engaging for a user experience.
 
 In this step, we'll implement a manual chat experience, giving us more control over the conversation with our chatbot. We'll remove the Chat utility and create our own custom functions to facilitate interactive and dynamic conversations.
@@ -56,7 +69,7 @@ while is_chatting:
     # ... truncated for brevity ... #
 else:
     agent_result = agent.run(user_input)
-    print (f"Kiwi: {agent_result.output.value}")
+    print (f"Kiwi: {agent_result.output_task.output.value}")
 ```
 
 As you can see now, the agent runs, and we get the output stored in the variable agent_result. We can then print that output by using the `output.value` attribute.
@@ -79,7 +92,7 @@ def chat(agent):
         else:           
             # Keep on chatting
             agent_result = agent.run(user_input)
-            print (f"Kiwi: {agent_result.output.value}")
+            print (f"Kiwi: {agent_result.output_task.output.value}")
 ```
 
 ### Call
@@ -140,7 +153,7 @@ def chat(agent):
         else:
             # Keep on chatting
             agent_result = agent.run(user_input)
-            print (f"Kiwi: {agent_result.output.value}")
+            print (f"Kiwi: {agent_result.output_task.output.value}")
       
 # Run the agent
 chat(agent)
