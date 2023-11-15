@@ -118,14 +118,13 @@ So what if we used a bit of the description to describe the task? Something like
 
 So we can tell just by glancing at what each task represents.
 
-```python hl_lines="8"
+```python hl_lines="7"
 # ...
 # Iterate through the movie descriptions
 for description in movie_descriptions:
     movie_task = PromptTask(
         "What movie title is this? Return only the movie name: {{ description }}",
         context={"description": description},
-        prompt_driver=driver,
         id=f"TITLE: {description[:10]}..", # Use the first 10 characters of the description
     )
 
@@ -149,7 +148,7 @@ Execute that and look at the result:
 
 Notice how it's a little easier to understand? Let's do the same for the `summary_task`. Modify that ToolkitTask to have an id as well, and this time use the same description so we can see how the tasks are related:
 
-```python hl_lines="11"
+```python hl_lines="9"
 # ...
 # Iterate through the movie descriptions
 for description in movie_descriptions:
@@ -157,9 +156,7 @@ for description in movie_descriptions:
 
     summary_task = ToolkitTask(
         "Use metacritic to get a summary of this movie: {{ parent_outputs.values() | list |last }}",
-        tools=[WebScraper()],
-        task_memory=TaskMemory(),
-        prompt_driver=driver,
+        tools=[WebScraper(), TaskMemoryClient(off_prompt=False)],
         id=f"SUMMARY: {description[:10]}..."
     )
 
@@ -321,10 +318,11 @@ Well done, you've successfully created a Griptape Workflow that allows you to ex
 
 You have learned how to:
 
-* Create tasks that can handle prompts and tools
-* Learned a bit about Jinja2 templates
-* Create parent/child relationships
-* Create tasks that are depending on multiple incoming tasks
+* Create tasks that can handle prompts and tools.
+* Learned a bit about Jinja2 templates.
+* Create parent/child relationships.
+* Create tasks that are depending on multiple incoming tasks.
 * Get the output from a workflow for integration with other applications.
+* Understand the graph being created by displaying it with various methods.
 
 We hope you enjoyed this course, and look forward to seeing what you're able to create with these new skills.

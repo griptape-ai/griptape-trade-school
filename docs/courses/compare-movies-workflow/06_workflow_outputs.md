@@ -1,7 +1,7 @@
 # Workflow Outputs
 
 ## Overview
-In the previous section we added a `ToolkitTask` that used the `WebScraper` tool to get detailed information about the movies presented.
+In the previous section we added a `ToolkitTask` that used the `WebScraper` and `TaskMemoryClient` tools to get detailed information about the movies presented.
 
 In this section, we'll add the ability to get the `output` from the `workflow` in order to integrate it with whatever application we may be building.
 
@@ -69,25 +69,18 @@ In this final section we learned out to get the `output` from the `workflow` in 
 
 Review your code.
 
-```python linenums="1" title="app.py" hl_lines="65-66"
+```python linenums="1" title="app.py" hl_lines="54-55"
 from dotenv import load_dotenv
 
 # Griptape
 from griptape.structures import Workflow
 from griptape.tasks import PromptTask, ToolkitTask
-from griptape.tools import WebScraper
-from griptape.memory import TaskMemory
-from griptape.drivers import OpenAiChatPromptDriver
+from griptape.tools import WebScraper, TaskMemoryClient
 
 load_dotenv()
 
 # Create the workflow object
 workflow = Workflow()
-
-# Define the OpenAiPromptDriver with Max Tokens
-driver = OpenAiChatPromptDriver(
-    model="gpt-4", max_tokens=500  # you can experiment with the number of tokens
-)
 
 
 # Create tasks
@@ -99,7 +92,6 @@ end_task = PromptTask(
      {{ value }}
      {% endfor %}
     """,
-    prompt_driver=driver,
     id="END",
 )
 
@@ -119,13 +111,10 @@ for description in movie_descriptions:
     movie_task = PromptTask(
         "What movie title is this? Return only the movie name: {{ description }}",
         context={"description": description},
-        prompt_driver=driver,
     )
     summary_task = ToolkitTask(
         "Use metacritic to get a summary of this movie: {{ parent_outputs.values() | list |last }}",
-        tools=[WebScraper()],
-        task_memory=TaskMemory(),
-        prompt_driver=driver,
+        tools=[WebScraper(), TaskMemoryClient(off_prompt=False)],
     )
 
     workflow.insert_tasks(start_task, [movie_task], end_task)

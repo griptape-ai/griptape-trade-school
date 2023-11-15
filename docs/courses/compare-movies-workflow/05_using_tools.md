@@ -49,24 +49,24 @@ graph TB
 
 ## Import
 
-The three new classes we'll need to import are `TaskMemory`, `ToolkitTask`, and `WebScraper`.
+The three new classes we'll need to import are `ToolkitTask`, `TaskMemoryClient`, and `WebScraper`.
 
-**[TaskMemory](https://docs.griptape.ai/griptape-framework/tools/task-memory/)** is a way to handle data between tasks. It allows you to control where information is sent, keeping it off-prompt when required. 
 
 **[ToolkitTask](https://docs.griptape.ai/griptape-framework/structures/tasks/#toolkit-task**) is a task just like **PromptTask**, except it allows you to specify the use of Tools. 
 
+**[TaskMemoryClient](https://docs.griptape.ai/griptape-framework/tools/task-memory/)** is a way to handle data used in a task. It allows you to control where information is sent, keeping it off-prompt and away from the LLM when required. Note: in this course we'll be setting `off-prompt` to `False`, allowing the LLM to see the task results. In future courses we'll discuss ways to keep the data private.
+
 **[WebScraper](https://docs.griptape.ai/griptape-tools/official-tools/web-scraper/)** is a specific tool that allows the LLM to scrape the web for information. We'll use this to get a better summary of each movie.
 
-In the top of your application, modify the import statements to include TaskMemory, ToolkitTask, and WebScraper.
+In the top of your application, modify the import statements to include ToolkitTask, TaskMemoryClient, and WebScraper.
 
-```python hl_lines="5-7"
+```python hl_lines="5-6"
 from dotenv import load_dotenv
 
 # Griptape 
 from griptape.structures import Workflow
 from griptape.tasks import PromptTask, ToolkitTask
-from griptape.tools import WebScraper
-from griptape.memory import TaskMemory
+from griptape.tools import WebScraper, TaskMemoryClient
 
 ```
 
@@ -74,13 +74,12 @@ from griptape.memory import TaskMemory
 
 Now we'll add the `ToolkitTask` to the section of our code where we iterate through each movie description.
 
-We will call it the same way we do PromptTask, except the ToolkitTask takes a **list** of **tools** and we will also give it **task_memory** to allow it to keep track of the data it's working with.
+We will call it the same way we do PromptTask, except the ToolkitTask takes a **list** of **tools**. In this example, you can see that it's using two tools - **WebScraper** and **TaskMemoryClient**
 
 ```python
 summary_task = ToolkitTask(
     "Use metacritic to get a summary of this movie: {{ }}", 
-    tools = [WebScraper()],
-    task_memory = TaskMemory()
+    tools = [WebScraper(), TaskMemoryClient(off_prompt=False)],
     )
 ```
 
@@ -126,8 +125,7 @@ As you can see, there are multiple ways to get the result we're looking for. Rev
     # code
     summary_task = ToolkitTask(
         "Use metacritic to get a summary of this movie: {{ parent_outputs }}",
-        tools=[WebScraper()],
-        task_memory=TaskMemory()
+        tools=[WebScraper(), TaskMemoryClient(off_prompt=False)],
         )
 
     # result
@@ -138,8 +136,7 @@ As you can see, there are multiple ways to get the result we're looking for. Rev
     # code
     summary_task = ToolkitTask(
         "Use metacritic to get a summary of this movie: {{ parent_outputs.values()|list|last }}",
-        tools=[WebScraper()],
-        task_memory=TaskMemory()
+        tools=[WebScraper(), TaskMemoryClient(off_prompt=False)],
         )
 
     # result
@@ -150,9 +147,9 @@ As you can see, Jinja filters are extremely powerful. Let's use the second optio
 
 ### Add ToolkitTask
 
-Inside the `for description in movie_descriptions:` loop, add the `summary_task` *after* the `movie_task` but *before* the call to the `insert_task` method of `workflow.`
+Inside the `for description in movie_descriptions:` loop, add the `summary_task` *after* the `movie_task` but *before* the call to the `insert_tasks` method of `workflow.`
 
-```python linenums="1" hl_lines="9-13"
+```python linenums="1" hl_lines="9-12"
 # ...
 
 # Iterate through the movie descriptions
@@ -163,8 +160,7 @@ for description in movie_descriptions:
     
     summary_task = ToolkitTask(
         "Use metacritic to get a summary of this movie: {{ parent_outputs.values()|list|last  }}",
-        tools=[WebScraper()],
-        task_memory=TaskMemory()
+        tools=[WebScraper(), TaskMemoryClient(off_prompt=False)],
         )
     
     workflow.insert_tasks(start_task, [movie_task], end_task)
@@ -235,79 +231,6 @@ graph TB
     classDef tool-dash stroke:#f06090,stroke-dasharray: 5 5
 ```
 
-## Handling Rate Limit
-You may find through your testing that you run into `RateLimitErrors` where the Rate limit is reached for gpt4 in your org. The messages look something like:
-
-```shell
-WARNING:root:<RetryCallState 5541884496: attempt #1; slept for 0.0; last result: 
-failed (RateLimitError Rate limit reached for default-gpt-4 in organization 
-org-abc123def456 on tokens per min. Limit: 40000 / min. Please try again in 1ms. 
-Contact us through our help center at help.openai.com if you continue to have issues.)>
-```
-
-This is a specific warning for OpenAI when your organization has hit it's assigned limit rate. You can read more about it in [this article](https://help.openai.com/en/articles/6897202-ratelimiterror) by OpenAI.
-
-You can work around this issue by specifically setting the `max_tokens` with the **OpenAIChatPromptDriver**.
-
-### Import OpenAiChatPromptDriver
-
-In your `griptape` input statements at the top of your script, add the following line:
-
-```python
-from griptape.drivers import OpenAiChatPromptDriver
-```
-
-### Create the driver
-
-Now create a driver object for the OpenAiChatPromptDriver class. Note, you can add this anywhere before your first call to a `PromptTask`. I recommend calling it before `workflow`.
-
-```python
-# Define the OpenAiPromptDriver with Max Tokens
-driver = OpenAiChatPromptDriver(
-    model="gpt-4",
-    max_tokens=500 # you can experiment with the number of tokens
-)
-```
-
-### Update the Tasks
-
-For `end_task`, `movie_task`, and `summary_task` calls, add the `prompt_driver` parameter.
-
-
-```python linenums="1" hl_lines="10 20 26"
-# ...
-
-end_task = PromptTask(
-    """
-    How are these movies the same:
-     {% for value in parent_outputs.values() %} 
-     {{ value }}
-     {% endfor %}
-    """,
-    prompt_driver=driver,
-    id="END",
-)
-# ...
-
-# Iterate through the movie descriptions
-for description in movie_descriptions:
-    movie_task = PromptTask(
-        "What movie title is this? Return only the movie name: {{ description }}",
-        context={"description": description},
-        prompt_driver=driver,
-    )
-    summary_task = ToolkitTask(
-        "Use metacritic to get a summary of this movie: {{ parent_outputs.values() | list |last }}",
-        tools=[WebScraper()],
-        task_memory=TaskMemory(),
-        prompt_driver=driver,
-    )
-    
-    # ...
-```
-
-!!! tip
-    Notice we are defining the driver *per task*. This means you can use *different drivers* for each task. You may find that some tasks work absolutely fine with the `gpt-3.5-turbo` model instead of `gpt-4`. Or, if you've trained your own model for a specific task you can use that as well. The possibilities are endless. 
 
 
 ## Test
@@ -345,7 +268,7 @@ INFO Task END
 
 ```
 
-As you can see, the `compare` task has a lot more detail in it now. We're getting great summaries of the films, and therefore the output is even more detailed and valuable.
+As you can see, the `END` task has a lot more detail in it now. We're getting great summaries of the films, and therefore the output is even more detailed and valuable.
 
 !!! info "Experiment"
     You could enhance this output by providing more detail to the prompt compare prompt. For example, instead of just asking how they're the same, some options:
@@ -362,29 +285,22 @@ As you can see, the `compare` task has a lot more detail in it now. We're gettin
 
 ## Code Review
 
-We added some of helpful functionality in this section, mainly getting wonderful descriptions of these films from the web by using the `WebScraper` tool and `ToolkitTasks`. We also added the use of the `OpenAiChatPromptDriver` to control the `max_tokens` being used.
+We added some of helpful functionality in this section, mainly getting wonderful descriptions of these films from the web by using the `WebScraper` tool and `ToolkitTasks`.
 
 Review your code.
 
-```python linenums="1" title="app.py" hl_lines="5-8 15-18 30 50 55-56 60"
+```python linenums="1" title="app.py" hl_lines="5-6 45"
 from dotenv import load_dotenv
 
 # Griptape
 from griptape.structures import Workflow
 from griptape.tasks import PromptTask, ToolkitTask
-from griptape.tools import WebScraper
-from griptape.memory import TaskMemory
-from griptape.drivers import OpenAiChatPromptDriver
+from griptape.tools import WebScraper, TaskMemoryClient
 
 load_dotenv()
 
 # Create the workflow object
 workflow = Workflow()
-
-# Define the OpenAiPromptDriver with Max Tokens
-driver = OpenAiChatPromptDriver(
-    model="gpt-4", max_tokens=500  # you can experiment with the number of tokens
-)
 
 
 # Create tasks
@@ -396,7 +312,6 @@ end_task = PromptTask(
      {{ value }}
      {% endfor %}
     """,
-    prompt_driver=driver,
     id="END",
 )
 
@@ -416,13 +331,10 @@ for description in movie_descriptions:
     movie_task = PromptTask(
         "What movie title is this? Return only the movie name: {{ description }}",
         context={"description": description},
-        prompt_driver=driver,
     )
     summary_task = ToolkitTask(
         "Use metacritic to get a summary of this movie: {{ parent_outputs.values() | list |last }}",
-        tools=[WebScraper()],
-        task_memory=TaskMemory(),
-        prompt_driver=driver,
+        tools=[WebScraper(), TaskMemoryClient(off_prompt=False)],
     )
 
     workflow.insert_tasks(start_task, [movie_task], end_task)
