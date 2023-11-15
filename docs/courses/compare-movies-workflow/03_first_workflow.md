@@ -17,18 +17,43 @@ It will come back with:
 The hierarchy we will create looks like the following:
 
 ``` mermaid
-graph TB
-    A[Workflow] --> B(Movie 1) --> D(Compare Task)
-    A --> C(Movie 2) --> D
-
+graph TB 
+    subgraph " "
+        direction TB
+        B(Describe Workflow):::main --> C(Movie 1) --> E(Compare Task):::main
+        B --> D(Movie 2) --> E
+    end
+    
+    classDef main fill:#4274ff1a, stroke:#426eff
 ```
 
-As you can see, there are three tasks that will be created. Two will be siblings (Movie 1 and Movie 2), and one will be dependent on them to complete before it can execute (Compare Task).
+
+
+As you can see, there is a `Workflow` Structure, and four tasks that will be created. The **Start** and **End** tasks (Describe Workflow and Compare Task), and two siblings (Movie 1 and Movie 2). Compare Task will be dependent on them to complete before it can execute.
+
+!!! tip
+    Workflows must always have a **Start** and **End** task.
+
+To generate this structure, we will first create our Start and End tasks, and then **insert** the movie tasks. This will guarantee that our tasks exist in the workflow exactly where we want them.
+``` mermaid
+flowchart TB 
+    subgraph Step 2 ["Insert"]
+        direction TB
+        C(Describe Workflow):::main --> D(Movie 1) --> F(Compare Task):::main
+        C --> E(Movie 2) --> F
+    end
+
+    subgraph Step 1 ["Start & End"]
+        direction TB
+        A(Describe Workflow):::main --> B(Compare Task):::main
+    end
+
+    classDef main fill:#4274ff1a, stroke:#426eff
+```
 
 Let's get started.
 
 ## Importing Required Modules
-
 
 Before starting, we need to import the necessary modules. Open the `app.py` file you created in the [setup](01_setup.md) section and import the two Griptape classes you'll need: `Workflow` and `PromptTask`:
 
@@ -46,7 +71,7 @@ load_dotenv() # Load your environment
 !!! Note
     You might recall that `Agent` was also imported through `griptape.structures`. That's because `Agent`, `Workflow`, and `Pipeline` are all Griptape's ways of working with LLMs. 
 
-## First Workflow Tasks
+## Create Workflow Structure
 ### Initialize the Workflow
 
 Now, let's create the foundation for our Workflow. After the line `load_dotenv()`, create an instance of the Workflow class:
@@ -59,15 +84,14 @@ load_dotenv() # Load your environment
 workflow = Workflow()
 ```
 
-### Create a Task
+### Create a Start task
 
-Next, let's create our first `PromptTask`. This task will be used to simply ask to the LLM to tell us what movie we're talking about.
+First, we'll create our "start" task. This will be a simple `PromptTask` that lets the LLM know what we're going to do. 
 
 After the `workflow` line, add:
-
 ```python
 # Create tasks
-movie_1_task = PromptTask("What movie is this: boy finds alien in backyard.", id="movie_1")
+start_task = PromptTask("I will provide you a list of movies to compare.", id="START")
 ```
 
 There are two things that are important to point out in this task creation.
@@ -78,7 +102,6 @@ There are two things that are important to point out in this task creation.
 !!! important
     Every task in a workflow must have a unique id. If two tasks have the same id, the workflow will fail.
 
-
 ### Add Task to the Workflow
 
 You have created the task, but it's not yet part of the workflow. In order to do that, we'll need to use the `add_task` method.
@@ -87,15 +110,21 @@ After the PromptTask line, add:
 
 ```python
 # Add tasks to workflow
-workflow.add_task(movie_1_task)
+workflow.add_task(start_task)
 ```
 
 At this point, your workflow flow graph looks like:
 
 ``` mermaid
-graph TB
-    A[workflow] --> B(PromptTask: movie_1_task)
+graph TB 
+    subgraph " "
+        direction TB
+        B(PromptTask: START):::main
+    end
+    
+    classDef main fill:#4274ff1a, stroke:#426eff
 ```
+
 
 However if you execute your script, nothing will happen. That's because you need to tell the workflow graph to run.
 
@@ -110,17 +139,168 @@ workflow.run()
 
 Here's the result. Notice in the logs you can see the Task inputs and outputs:
 ``` shell
-[08/12/23 19:53:08] INFO     Task movie_1                                                                          
-                             Input: What movie is this?: A boy discovers an alien in his back yard                 
-[08/12/23 19:53:10] INFO     Task movie_1                                                                          
-                             Output: That sounds like the movie "E.T. the Extra-Terrestrial".                      
+[11/15/23 13:05:49] INFO     PromptTask START                                                                                   
+                             Input: I will provide you a list of movies to compare.                                             
+[11/15/23 13:05:52] INFO     PromptTask START                                                                                   
+                             Output: Sure, please provide the list of movies you want me to compare.                            
 ```
 
-As you can see, the LLM was able to determine what movie it was.
+As you can see, the LLM is ready to take a list of movies.
 
-## Another Task
+### Add the end task
 
-This is still a very linear pipeline. In fact, there's only one task in the workflow. Let's go ahead and add our second task.
+The next task we'll add will be the last task. This is a good place to create a task that summarizes what has been done, and then add it to the end of the workflow using the same `add_task` method.
+
+```python hl_lines="3 7"
+# Create tasks
+start_task = PromptTask("I will provide you a list of movies to compare.", id="START")
+end_task = PromptTask("How are the movies the same?", id="END")
+
+# Add tasks to workflow
+workflow.add_task(start_task)
+workflow.add_task(end_task)
+```
+
+``` mermaid
+graph TB 
+    subgraph " "
+        direction TB
+        B(PromptTask: START):::main --> C(PromptTask: END):::main
+    end
+    
+    classDef main fill:#4274ff1a, stroke:#426eff
+```
+
+!!! tip
+    This process has changed from versions of Griptape prior to v0.20.
+
+    In previous versions, the `add_task` method would add tasks as **siblings** of the parent task. With versions greater than 0.20, they add them one after another. To add tasks as **sibblings** you will be **inserting** tasks.
+
+    ```python
+    # Add tasks to workflow
+    workflow.add_task(start_task)
+    workflow.add_task(end_task)
+    ```
+
+    === "After Griptape 0.2.0"
+        ``` mermaid
+        graph TB 
+            subgraph " "
+                direction TB
+                B(PromptTask: START):::main --> C(PromptTask: END):::main
+            end
+            
+            classDef main fill:#4274ff1a, stroke:#426eff
+        ```
+
+    === "Before Griptape 0.2.0"
+        ``` mermaid
+        graph TB 
+            subgraph " "
+                direction TB
+                B(PromptTask: START):::main
+                C(PromptTask: END):::main
+            end
+            
+            classDef main fill:#4274ff1a, stroke:#426eff
+        ```
+
+## Add Tasks into Workflow
+### Create the first Movie Prompt task
+
+Now it's time to create the first task asking the LLM to identify a movie. This will be a `PromptTask`.
+
+In your code, after the `end_task`, add:
+
+```python hl_lines="5-6"
+# Create tasks
+start_task = PromptTask("I will provide you a list of movies to compare.", id="START")
+end_task = PromptTask("How are the movies the same?", id="END")
+
+# Create movie tasks
+movie_1_task = PromptTask("What movie is this: boy finds alien in backyard.", id="movie_1")
+```
+
+### Insert the Task into the Workflow
+
+You have created the task, but it's not yet part of the workflow. In order to do that, we'll need to use the `insert_tasks` method.
+
+The `insert_tasks` method takes a couple of arguments. It looks like this:
+```python
+workflow.insert_tasks(task_a, [task_c, task_d], task_b)
+workflow.insert_tasks(task_c, [task_e, task_f], task_b)
+```
+
+Notice the second argument is a `list` of tasks. This method will take two tasks that already have a parent/child relationship, and *insert* whatever tasks are listed in that second argument between them. 
+
+The graph above would look something like:
+
+``` mermaid
+graph TB 
+    subgraph " "
+        direction TB
+        A(task_a)
+        B(task_b)
+        C(task_c)
+        D(task_d)
+        E(task_e)
+        F(task_f)
+        A --> B --> D
+        A --> C --> E --> D
+        C --> F --> D
+    end
+    
+```
+
+We'll see this in more detail shortly, but for now let's just add the single task.
+
+In your script, after the `add_task` lines, add:
+
+```python
+# Add tasks to workflow
+workflow.insert_tasks(start_task, [movie_1_task], end_task)
+```
+
+At this point, your workflow flow graph looks like:
+    ``` mermaid
+    graph TB 
+        subgraph " "
+            direction TB
+            A(PromptTask: START):::main
+            B(PromptTask: movie_1_task)
+            C(PromptTask: END):::main
+            A --> B --> C
+        end
+        
+        classDef main fill:#4274ff1a, stroke:#426eff
+    ```
+
+### Run the Workflow
+
+Run the script to see the output.
+
+Here's the result. Notice the tasks being executed, and the summary where it tries to compare the results:
+
+``` shell
+[11/15/23 14:10:59] INFO     PromptTask START                                                                                   
+                             Input: I will provide you a list of movies to compare.                                             
+[11/15/23 14:11:00] INFO     PromptTask START                                                                                   
+                             Output: Sure, please provide the list of movies you want me to compare.                            
+                    INFO     PromptTask movie_1                                                                                 
+                             Input: What movie is this: boy finds alien in backyard.                                            
+[11/15/23 14:11:02] INFO     PromptTask movie_1                                                                                 
+                             Output: The movie you are referring to is likely "E.T. the Extra-Terrestrial" directed by Steven    
+                             Spielberg.                                                                                         
+                    INFO     PromptTask END                                                                                     
+                             Input: How are the movies the same?                                                                
+[11/15/23 14:11:06] INFO     PromptTask END                                                                                     
+                             Output: As an AI, I need specific movies to compare in order to provide similarities. Please       
+                             provide the names of the movies you want to compare.                                               
+```
+
+The LLM is unable to compare the results for two reasons - first, we only passed a single movie. Second, we didn't pass the information about the movie back to the LLM so it doesn't know what we were talking about. We'll take care of these one at a time.
+
+First, we'll add a second movie.
 
 ### Second Movie Task
 
@@ -140,112 +320,44 @@ movie_2_task = PromptTask("What movie is this?: a shark attacks a beach.", id="m
     Don't forget to add the id to the second task and make sure it's unique from the first task.
 
 ### Add Second Task to Workflow
-Just like before, we need to add `movie_2_task` to `workflow` with the `add_task` method.
+Just like before, we need to *insert* `movie_2_task` to `workflow` with the `insert_tasks` method. Modify the previous insert_tasks line to include both movie tasks.
 
-```python hl_lines="5"
+```python hl_lines="4"
 # ...
 
 # Add tasks to workflow
-workflow.add_task(movie_1_task)
-workflow.add_task(movie_2_task)
-
-# ...
-```
-This adds the task as a **sibling** of the first task, because we added it to the `workflow` object.
-
-You can see this in the resulting graph:
-``` mermaid
-graph TB
-    A[workflow] --> B(PromptTask: movie_1_task)
-    A --> C(PromptTask: movie_2_task)
-```
-
-And if we run the script, you'll see both tasks being executed *in parallel*, and both outputs.
-
-```shell
-[08/12/23 20:03:14] INFO     Task movie_1                                                                          
-                             Input: What movie is this?: A boy discovers an alien in his back yard                 
-                    INFO     Task movie_2                                                                          
-                             Input: What movie is this?: a shark attacks a beach.                                  
-[08/12/23 20:03:16] INFO     Task movie_1                                                                          
-                             Output: That sounds like the movie "E.T. the Extra-Terrestrial".                      
-                    INFO     Task movie_2                                                                          
-                             Output: That could be several movies, but the most famous one is probably "Jaws".  
-```
-## Comparison
-
-You'll remember that our goal in this section is to get a simple comparison of the two movies. In order to do this we'll need to create another task where we ask the LLM to compare the results of the previous tasks.
-
-### Comparison Task
-
-After the previous movie PromptTasks, create a compare task.
-
-``` python hl_lines="6"
-# ...
-
-movie_1_task = PromptTask("What movie is this?: A boy discovers an alien in his back yard", id="movie_1")
-movie_2_task = PromptTask("What movie is this?: a shark attacks a beach.", id="movie_2")
-
-compare_task = PromptTask("How are these movies the same?", id="compare")
-
-# ...
-```
-### Make the Compare Task a Child
-
-Now we get to create our first child task. We want the Compare task to only evaluate *after* the two movie tasks have completed.
-
-This can be done by using the `add_child` method with the task you want to be the `parent`.
-
-After the `workflow.add_task` lines, add the following:
-
-```python
-movie_1_task.add_child(compare_task)
-```
-This adds the `compare` task as a child to *only* the `movie_1` task. This is what the graph looks like:
-
-``` mermaid
-graph TB
-    A[workflow] --> B(PromptTask: movie_1_task)
-    A --> C(PromptTask: movie_2_task)
-    B --> D(PromptTask: compare_task)
-```
-
-This obviously isn't what we want, we want *both* movie tasks to be the parent of the compare task. Luckily, that's easily accomplished by by just adding another `add_child` line. Here's what that section of code should look like:
-
-```python hl_lines="9"
-# ...
-
-# Add tasks to the workflow
-workflow.add_task(movie_1_task)
-workflow.add_task(movie_2_task)
-
-# Add compare as a child
-movie_1_task.add_child(compare_task)
-movie_2_task.add_child(compare_task)
+workflow.insert_tasks(start_task, [movie_1_task, movie_2_task], end_task)
 
 # ...
 ```
 
-And the resulting graph:
-
-``` mermaid
-graph TB
-    A[workflow] --> B(PromptTask: movie_1_task)
-    A --> C(PromptTask: movie_2_task)
-    B --> D(PromptTask: compare_task)
-    C --> D
-```
 
 ### Test
 
-Go ahead and run the code and notice the result:
+Go ahead and run the code and notice that the two movie tasks executed in *parallel*:
 
 ```shell
 # ... truncated for brevity
 
-[08/12/23 20:54:56] INFO     Task compare                                                 
-                             Output: To provide an accurate response, could you please specify which movies you are
-                             referring to?            
+[11/15/23 14:14:32] INFO     PromptTask START                                                                                   
+                             Input: I will provide you a list of movies to compare.                                             
+[11/15/23 14:14:34] INFO     PromptTask START                                                                                   
+                             Output: Sure, I am ready to help you compare the movies. Please provide the list.                   
+                    INFO     PromptTask movie_2                                                                                 
+                             Input: What movie is this?: a shark attacks a beach.                                               
+                    INFO     PromptTask movie_1                                                                                 
+                             Input: What movie is this: boy finds alien in backyard.                                            
+[11/15/23 14:14:38] INFO     PromptTask movie_2                                                                                 
+                             Output: This could refer to several movies as shark attacks are a common theme in many films.      
+                             However, the most iconic one is "Jaws" directed by Steven Spielberg.                               
+                    INFO     PromptTask movie_1                                                                                 
+                             Output: This could refer to several movies, but the most famous one is probably "E.T. the          
+                             Extra-Terrestrial" directed by Steven Spielberg.                                                   
+                    INFO     PromptTask END                                                                                     
+                             Input: How are the movies the same?                                                                
+[11/15/23 14:14:41] INFO     PromptTask END                                                                                     
+                             Output: As an AI, I need more specific details to provide a comparison. Please provide the names of
+                             the movies you want to compare.                                                        
 ```
 
 Hmm. It doesn't look like the `compare` task knows what we're talking about. The workflow evaluated both we sent it, we can see that in the logs above, but the compare task has no knowledge of them. 
@@ -272,10 +384,10 @@ movie_2_task = PromptTask("What movie is this?: a shark attacks a beach.", id="m
 
 So `movie_1` and `movie_2` are the two ids we can use in our Jinja template. They can be specified like this: `{{ parent_outputs['movie_1'] }}` and `{{ parent_outputs['movie_2'] }}`
 
-Update the `compare` task to specify the particular ids of the parent_outputs. Note - I'm using `"""` in order to allow us to use multiple lines for the PromptTask string.
+Update the `END` task to specify the particular ids of the parent_outputs. Note - I'm using `"""` in order to allow us to use multiple lines for the PromptTask string.
 
 ```python
-compare_task = PromptTask("""
+end_task = PromptTask("""
     How are these movies the same:
     {{ parent_outputs['movie_1'] }}
     {{ parent_outputs['movie_2'] }}
@@ -289,19 +401,18 @@ compare_task = PromptTask("""
 When you run the script now, you should see a much better Input:
 
 ```shell
-[08/12/23 21:34:59] INFO     Task compare                                                                          
-                             Input:                                                                                
-                                 How are these movies the same:                                                    
-                                 That sounds like the movie "E.T. the Extra-Terrestrial".                          
-                                 That could be several movies, but the most famous one is probably "Jaws".         
-                                                                                                                   
-[08/12/23 21:35:02] INFO     Task compare                                                                          
-                             Output: Both "E.T. the Extra-Terrestrial" and "Jaws" are iconic films directed by     
-                             Steven Spielberg. They are known for their memorable storylines, groundbreaking       
-                             special effects for their time, and their significant impact on popular culture.  
+[11/15/23 14:19:24] INFO     PromptTask END        
+                             Input:                                                                                             
+                                 How are these movies the same:                                                                 
+                                 This could be referring to "E.T. the Extra-Terrestrial" directed by Steven Spielberg.          
+                                 This could be referring to several movies as shark attacks are a common theme in films.        
+                             However, the most iconic movie featuring a shark attack on a beach is "Jaws" directed by Steven    
+                             Spielberg.                                                                                         
+[11/15/23 14:19:26] INFO     PromptTask END
+                             Output: These movies are the same in that they are both directed by Steven Spielberg.
 ```
 
-The code works but it's if you look closely at the `compare` task input, you'll see that it's using the full string of the response from the prompts:
+The code works but it's if you look closely at the `END` task input, you'll see that it's using the full string of the response from the prompts:
 
 ``` shell
 How are these movies the same:                                                    
@@ -339,38 +450,41 @@ We covered quite a lot of ground creating your first workflow. Double-check your
 ```python linenums="1" title="app.py"
 from dotenv import load_dotenv
 
-# Griptape 
+# Griptape
 from griptape.structures import Workflow
 from griptape.tasks import PromptTask
 
-# Load environment variables
-load_dotenv()
+load_dotenv() 
 
-# Create a Workflow
+# Create the workflow object
 workflow = Workflow()
 
 # Create tasks
-movie_1_task = PromptTask(
-    "What movie is this? Return only the movie name: A boy discovers an alien in his back yard", 
-    id="movie_1")
-movie_2_task = PromptTask(
-    "What movie is this? Return only the movie name: a shark attacks a beach.", 
-    id="movie_2")
-
-compare_task = PromptTask("""
-    How are these movies the same:
-    {{parent_outputs['movie_1']}}
-    {{parent_outputs['movie_2']}}
+start_task = PromptTask("I will provide you a list of movies to compare.", id="START")
+end_task = PromptTask(
+    """
+    How are these movies the same: 
+    {{ parent_outputs['movie_1'] }}
+    {{ parent_outputs['movie_2'] }}
     """,
-    id="compare")
+    id="END",
+)
+# Create movie tasks
+movie_1_task = PromptTask(
+    "What movie is this? Return only the movie name: A boy discovers an alien in his back yard",
+    id="movie_1",
+)
+movie_2_task = PromptTask(
+    "What movie is this? Return only the movie name: a shark attacks a beach.",
+    id="movie_2",
+)
 
-# Add tasks to the workflow
-workflow.add_task(movie_1_task)
-workflow.add_task(movie_2_task)
+# Add tasks to workflow
+workflow.add_task(start_task)
+workflow.add_task(end_task)
 
-# Add compare as a child
-movie_1_task.add_child(compare_task)
-movie_2_task.add_child(compare_task)
+# Add tasks to workflow
+workflow.insert_tasks(start_task, [movie_1_task, movie_2_task], end_task)
 
 # Run the workflow
 workflow.run()

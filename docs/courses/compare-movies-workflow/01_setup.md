@@ -7,7 +7,7 @@ As with any project, the first step is setting up your environment. Let's get st
 
 1. **Code Editor**: We recommend using **Visual Studio Code** for this course, due to its handy features and Python support. However, if you have another favorite IDE or text editor, feel free to use that! 
 
-2. **Python3.9+**: Griptape requires Python 3.9 and above.
+2. **Python3.9+**: Griptape requires Python 3.11wor and above.
 
 3. **Python Environment Manager (for VS Code users)**: This extension is not a hard requirement, but it does make managing your Python environments a lot easier. 
 

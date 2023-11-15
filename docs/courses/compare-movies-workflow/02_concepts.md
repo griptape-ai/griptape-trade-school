@@ -5,7 +5,7 @@
 Frequently when creating applications you will want to execute a series of steps in a very specific order. Workflows and Pipelines are both structures that allow us to do that. They have many of the same features as Agents, but are more directable. Whereas Agents can be given behaviors and tools and will use them when prompted appropriately, Pipelines and Workflows utilize hieararchies of tasks in very specific ways.
 
 ### Pipelines
-[Pipelines](https://docs.griptape.ai/en/latest/griptape-framework/structures/pipelines/) are always a sequential series of steps - one task after another until it is finished. They have a **single output**, and just like [Agents](https://docs.griptape.ai/en/latest/griptape-framework/structures/agents/), they can use [Memory](https://docs.griptape.ai/en/latest/griptape-framework/structures/conversation-memory/).
+[Pipelines](https://docs.griptape.ai/en/latest/griptape-framework/structures/pipelines/) are always a sequential series of steps - one task after another until it is finished. 
 
 In this course we're going to be taking some rough descriptions of movies and getting their actual names, then getting the summaries from the web and comparing them. Doing this as a **Pipeline** might look something like:
 
@@ -39,7 +39,7 @@ Workflows are perfect for this sort of situation. They allow you to parallelize 
 ### Workflows
 [Workflows](https://docs.griptape.ai/en/latest/griptape-framework/structures/workflows/) allow for complex interactions, resembling tree branches.
 
-Workflows are **non-sequential** and can contain **multiple outputs**. Because their flows can be quite complicated, they don't contain ConversationalMemory.
+Workflows are **non-sequential** and individual tasks can depend on **multiple input tasks**. This allows you to create a single task that waits for all other tasks to complete before it can begin.
 
 This is what a Workflow might look like for doing what we mentiond above. 
 !!! Note
@@ -60,12 +60,18 @@ Notice how the movies can be evaluated in parallel, but the **Compare** task wil
 
 ## Tasks
 
-Before we dive in and start setting up our own workflow, it's important to review the concepts of Tasks. With Griptape, there are two types of tasks you'll be working with:
+Before we dive in and start setting up our own workflow, it's important to review the concepts of Tasks. With Griptape, there are many types of tasks you'll be working with, including:
 
-* **PromptTask**
-* **ToolkitTask**
+| Task Type | Description | Example |
+|-----------|-------------|---------|
+| **PromptTask** | General purpose prompting to the LLM. | `PromptTask("Tell me a story about skateboards")` |
+| **ToolkitTask** | Uses Griptape Tools to complete a task with Chain of Thought (CoT) reasoning. | `ToolkitTask("Summarize griptape.ai", tools=[WebScraper()])` |
+| **TookTask** | Similar to ToolkitTask, but only uses a single tool and no CoT. | `ToolTask("Give me the answer for 52-10", tool=Calculator())` |
+| **Extraction Tasks** | Various tasks associated with extracting information from text. | See examples in the [documentation](https://griptape.readthedocs.io/griptape-framework/structures/tasks/#extraction-task). 
+| **TextSummaryTask** | Summarizes text very efficiently | `TextSummaryTask("Imagine this is a massive amount of text.")` |
+| **TextQueryTask** | Can be used to query large bodies of text, for example a vector database. | See examples in the [documentation](https://griptape.readthedocs.io/griptape-framework/structures/tasks/#text-query-task) |
 
-Both of these task types are used to work with the LLM. They both take an input as a prompt, can take arguments, use specific drivers, and have parent/child relationships.
+In this course we will be focusing mostly on **Prompt Tasks** and **Toolkit Tasks**. Both of these task types are used to work with the LLM. They both take an input as a prompt, can take arguments, use specific drivers, and have parent/child relationships.
 The main difference between them is that **ToolkitTasks** can also use **tools** like Calculator(), FileBrowser(), and more. View all the tools available with Griptape [here](https://docs.griptape.ai/en/latest/griptape-tools/).
 
 ```python

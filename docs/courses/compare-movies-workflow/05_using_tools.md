@@ -3,11 +3,20 @@
 ## Overview
 We added flexibility in the last section to allow our application to handle an undefined number of movies. The workflow hierarchy looks like:
 
+
 ``` mermaid
-graph TB
-    A(Movie Descriptions) --> B("PromptTask: Movie Task 1") --> I("PromptTask: Compare")
-    A --> G("PromptTask: Movie Task <i>n</i>" ):::dash
-    G --> I
+graph TB 
+    subgraph " "
+        direction TB
+        A("PromptTask: Start"):::main 
+        B("PromptTask: Movie Task 1")
+        G("PromptTask: Movie Task <i>n</i>" ):::dash
+        I("PromptTask: End"):::main
+        A --> B --> I
+        A --> G --> I
+    end
+    
+    classDef main fill:#4274ff1a, stroke:#426eff
     classDef dash stroke-dasharray: 5 5
     classDef tool stroke:#f06090
 
@@ -16,38 +25,48 @@ graph TB
 However, the comparisons coming back don't feel very deep and meaningful. We'd like to get a more detailed analysis of the film comparisons by getting a better summary of each film from the web. 
 
 To do that we'll use add a `ToolkitTask` to our workflow for each movie. This will result in the following chart.
-.
-
-So in this section, we'll make our application more flexible by defining a **list** of movie descriptions, and then **iterate** through that list to create PromptTasks and insert them into the workflow.
 
 ``` mermaid
-graph TB
-    A(Movie Descriptions) --> B("PromptTask: Movie Task 1") --> C("ToolkitTask: Summary Task 1"):::tool --> I("PromptTask: Compare")
-    A --> G("PromptTask: Movie Task <i>n</i>" ):::dash  --> H("ToolkitTask: Summary Task <i>n</i>"):::tool-dash
-    H --> I
+graph TB 
+    subgraph " "
+        direction TB
+        A("PromptTask: Start"):::main 
+        B("PromptTask: Movie Task 1")
+        C("ToolkitTask: Summary Task 1"):::tool
+        G("PromptTask: Movie Task <i>n</i>" ):::dash
+        H("ToolkitTask: Summary Task <i>n</i>" ):::tool-dash
+        I("PromptTask: End"):::main
+        A --> B --> C --> I
+        A --> G --> H --> I
+    end
+    
+    classDef main fill:#4274ff1a, stroke:#426eff
     classDef dash stroke-dasharray: 5 5
     classDef tool stroke:#f06090
     classDef tool-dash stroke:#f06090,stroke-dasharray: 5 5
-
 ```
+
 
 ## Import
 
-The two new classes we'll need to import are `ToolkitTask` and `WebScraper`.
+The three new classes we'll need to import are `TaskMemory`, `ToolkitTask`, and `WebScraper`.
 
-**ToolkitTask** is a task just like **PromptTask**, except it allows you to specify the use of Tools. 
+**[TaskMemory](https://docs.griptape.ai/griptape-framework/tools/task-memory/)** is a way to handle data between tasks. It allows you to control where information is sent, keeping it off-prompt when required. 
 
-**WebScraper** is a specific tool that allows the LLM to scrape the web for information. We'll use this to get a better summary of each movie.
+**[ToolkitTask](https://docs.griptape.ai/griptape-framework/structures/tasks/#toolkit-task**) is a task just like **PromptTask**, except it allows you to specify the use of Tools. 
 
-In the top of your application, modify the import statements to include ToolkitTask and WebScraper
+**[WebScraper](https://docs.griptape.ai/griptape-tools/official-tools/web-scraper/)** is a specific tool that allows the LLM to scrape the web for information. We'll use this to get a better summary of each movie.
 
-```python hl_lines="5-6"
+In the top of your application, modify the import statements to include TaskMemory, ToolkitTask, and WebScraper.
+
+```python hl_lines="5-7"
 from dotenv import load_dotenv
 
 # Griptape 
 from griptape.structures import Workflow
 from griptape.tasks import PromptTask, ToolkitTask
 from griptape.tools import WebScraper
+from griptape.memory import TaskMemory
 
 ```
 
@@ -55,64 +74,47 @@ from griptape.tools import WebScraper
 
 Now we'll add the `ToolkitTask` to the section of our code where we iterate through each movie description.
 
-We will call it the same way we do PromptTask, except the ToolkitTask takes a **list** of **tools**.
+We will call it the same way we do PromptTask, except the ToolkitTask takes a **list** of **tools** and we will also give it **task_memory** to allow it to keep track of the data it's working with.
 
 ```python
 summary_task = ToolkitTask(
-    "Give me a summary of the movie: {{ }}", 
-    tools = [WebScraper()]
+    "Use metacritic to get a summary of this movie: {{ }}", 
+    tools = [WebScraper()],
+    task_memory = TaskMemory()
     )
 ```
 
 When we call the `ToolkitTask` we'll need to pass the output of the previous task (the movie_task) to it. There are a few options we can use to do this, depending on the needs of our application.
 
 ### Option 1: All Incoming Items
-If you recall from the [previous section](04_adding_flexibility.md), using the Jinja Template `{{ parent_outputs.items() }}` will give you a list of dicts from *all incoming tasks*. 
+If you recall from the [previous section](04_adding_flexibility.md), using the Jinja Template `{{ parent_outputs }}` will give you a list of dicts from *all incoming tasks*. 
     
 Example: 
 ``` python
-    "Give me a summary of the movie: {{ parent_outputs.items() }}"
+    "Use metacritic to get a summary of this movie: {{ parent_outputs }}"
 ```
 
 In this case, the return would look something like:
 ```
-Input: Give me a summary of the movie:dict_items([('aff5c7989898483c93a14f40467ec2be',   
-'E.T. the Extra-Terrestrial')])                                                                         
+Input: Get a summary of the movie: {'4aca083cdc5a4b76bb7ee7b91f0ec358': 'The Princess Bride'}                                                                       
 ```
 
-While this works, it does provide a *lot* of extraneous information. We know that there is only one item coming in - so it's not necessary to use this list of dicts. Jinja2 provides filters to reduce this.
+While this works, it does provide some extraneous information. We know that there is only one item coming in - so it's not necessary to use this list of dicts. Jinja2 provides filters to reduce this.
 
 ### Option 2: Filter for One Item
 
 Jinja2 allows you to use filters to return specific information. The format with Jinja2 is to use a `|` notation to add a filter.
 
-For example, instead of using `{{ parent_outputs.items() }}`, we can filter it to return a `list`, and then also get just the `last` item in the list. That would look like: `{{ parent_outputs.items()|list|last }}`:
+For example, we can use `{{ parent_outputs.values() | list }}`to return a `list` of values, and then also get just the `last` item in the list. That would look like: `{{ parent_outputs.values()|list|last }}`:
 
 ```python
-    "Give me a summary of the movie: {{ parent_outputs.items()|list|last }}"
+    "Use metacritic to get a summary of this movie: {{ parent_outputs.values()|list|last }}"
 ```
 
 And the result would be:
 
 ```shell
-Input: Give me a summary of the movie: ('c477e9d08ca546c8b0c4fdc3aa1f7a9e', 'The Princess 
-Bride')                                                                                                 
-```
-
-This is better, but it still provides more information than we need, as we really just want the movie name. 
-
-Luckily, the second item that's returned is the name of the movie. Since the first item is index 0, and the second is index 1, we can modify the filter to just give us the second item by wrapping the filter in parenthesis and adding `[1]` to the end.[^1]
-
-[^1]: Thank you to our [Discord](https://discord.gg/gnWRz88eym) friend **thequest4538** for the filter suggestion!
-
-```python
-    "Give me a summary of the movie: {{ (parent_outputs.items()|list|last)[1] }}"
-```
-
-This gives us:
-
-```shell
-Input: Give me a summary of the movie: The Princess Bride                                                                                                
+Input: Get a summary of the movie: The Princess Bride                      
 ```
 
 ### Compare all options
@@ -123,19 +125,21 @@ As you can see, there are multiple ways to get the result we're looking for. Rev
     ```python
     # code
     summary_task = ToolkitTask(
-        "Give me a summary of the movie: {{ parent_outputs.items() }}",
-        tools=[WebScraper()]
+        "Use metacritic to get a summary of this movie: {{ parent_outputs }}",
+        tools=[WebScraper()],
+        task_memory=TaskMemory()
         )
 
     # result
-    dict_items([('aff5c7989898483c93a14f40467ec2be', 'The Princess Bride')])                
+    {'4aca083cdc5a4b76bb7ee7b91f0ec358': 'The Princess Bride'} 
     ```
 === "Filter For One"
     ```python
     # code
     summary_task = ToolkitTask(
-        "Give me a summary of the movie: {{ (parent_outputs.items()|list|last)[1] }}",
-        tools=[WebScraper()]
+        "Use metacritic to get a summary of this movie: {{ parent_outputs.values()|list|last }}",
+        tools=[WebScraper()],
+        task_memory=TaskMemory()
         )
 
     # result
@@ -146,9 +150,9 @@ As you can see, Jinja filters are extremely powerful. Let's use the second optio
 
 ### Add ToolkitTask
 
-Inside the `for description in movie_descriptions:` loop, add the `summary_task` *after* the `movie_task` but *before* the call to the `add_task` method of `workflow.`
+Inside the `for description in movie_descriptions:` loop, add the `summary_task` *after* the `movie_task` but *before* the call to the `insert_task` method of `workflow.`
 
-```python linenums="1" hl_lines="9-12"
+```python linenums="1" hl_lines="9-13"
 # ...
 
 # Iterate through the movie descriptions
@@ -158,11 +162,12 @@ for description in movie_descriptions:
         context={"description": description})
     
     summary_task = ToolkitTask(
-        "Give me a summary of the movie: {{ (parent_outputs.items()|list|last)[1] }}",
-        tools=[WebScraper()]
+        "Use metacritic to get a summary of this movie: {{ parent_outputs.values()|list|last  }}",
+        tools=[WebScraper()],
+        task_memory=TaskMemory()
         )
     
-    workflow.add_task(movie_task)
+    workflow.insert_tasks(start_task, [movie_task], end_task)
 
 # ...
 ```
@@ -172,30 +177,38 @@ for description in movie_descriptions:
 At the moment we've created the Summary Task for each movie, but we haven't inserted them into the workflow.
 
 ``` mermaid
-graph TB
-    A(Movie Descriptions) --> B("PromptTask: Movie Task 1") --> I("PromptTask: Compare")
-    C("ToolkitTask: Summary Task 1"):::tool
-    H("ToolkitTask: Summary Task <i>n</i>"):::tool-dash
-    A --> G("PromptTask: Movie Task <i>n</i>" ):::dash  --> I
+graph TB 
+    subgraph " "
+        direction TB
+        C("ToolkitTask: Summary Task 1"):::tool
+        H("ToolkitTask: Summary Task <i>n</i>" ):::tool-dash
+        A("PromptTask: Start"):::main 
+        B("PromptTask: Movie Task 1")
+        G("PromptTask: Movie Task <i>n</i>" ):::dash
+        I("PromptTask: End"):::main
+        A --> B --> I
+        A --> G --> I
+    end
+    
+    classDef main fill:#4274ff1a, stroke:#426eff
     classDef dash stroke-dasharray: 5 5
     classDef tool stroke:#f06090
     classDef tool-dash stroke:#f06090,stroke-dasharray: 5 5
-
 ```
 
-To insert them, we'll need to update the `movie_task.add_child` method to call `summary_task` instead of `compare_task`. Then we'll add a call to `summary_task.add_child` to add `compare_task` to it.
+To insert them, we'll need to use another `insert_tasks` method call, this time telling it to insert between the `movie_task` and the `end_task`.
 
-Inside the `movie_description` for loop, after `workflow.add_task(movie_task)` modify the code to look like:
+Inside the `movie_description` for loop, after `workflow.insert_tasks(start_task, [movie_task], end_task)`
+modify the code to look like:
 
-```python hl_lines="7 8"
+```python hl_lines="7"
 # ...
 
 # Iterate through the movie descriptions
 for description in movie_descriptions:
     # ...
-    workflow.add_task(movie_task)
-    movie_task.add_child(summary_task)
-    summary_task.add_child(compare_task)
+    workflow.insert_tasks(start_task, [movie_task], end_task)
+    workflow.insert_tasks(movie_task, [summary_task], end_task)
 
 # ...
 ```
@@ -203,14 +216,23 @@ for description in movie_descriptions:
 Now the workflow graph looks like we expect:
 
 ``` mermaid
-graph TB
-    A(Movie Descriptions) --> B("PromptTask: Movie Task 1") --> C("ToolkitTask: Summary Task 1"):::tool --> I("PromptTask: Compare")
-    A --> G("PromptTask: Movie Task <i>n</i>" ):::dash  --> H("ToolkitTask: Summary Task <i>n</i>"):::tool-dash
-    H --> I
+graph TB 
+    subgraph " "
+        direction TB
+        A("PromptTask: Start"):::main 
+        B("PromptTask: Movie Task 1")
+        G("PromptTask: Movie Task <i>n</i>" ):::dash
+        C("ToolkitTask: Summary Task 1"):::tool
+        H("ToolkitTask: Summary Task <i>n</i>" ):::tool-dash
+        I("PromptTask: End"):::main
+        A --> B --> C --> I
+        A --> G --> H --> I
+    end
+    
+    classDef main fill:#4274ff1a, stroke:#426eff
     classDef dash stroke-dasharray: 5 5
     classDef tool stroke:#f06090
     classDef tool-dash stroke:#f06090,stroke-dasharray: 5 5
-
 ```
 
 ## Handling Rate Limit
@@ -249,37 +271,37 @@ driver = OpenAiChatPromptDriver(
 
 ### Update the Tasks
 
-For `compare_task`, `movie_task`, and `summary_task` calls, add the `prompt_driver` parameter.
+For `end_task`, `movie_task`, and `summary_task` calls, add the `prompt_driver` parameter.
 
 
-```python linenums="1" hl_lines="9 20 31"
+```python linenums="1" hl_lines="10 20 26"
 # ...
 
-compare_task = PromptTask("""
+end_task = PromptTask(
+    """
     How are these movies the same:
-    {% for key, value in parent_outputs.items() %}
-    {{ value }}
-    {% endfor %}
+     {% for value in parent_outputs.values() %} 
+     {{ value }}
+     {% endfor %}
     """,
-    prompt_driver=driver
-    id="compare"
-    )
-
+    prompt_driver=driver,
+    id="END",
+)
 # ...
 
 # Iterate through the movie descriptions
 for description in movie_descriptions:
     movie_task = PromptTask(
-        "What movie title is this? Return only the movie name: {{ description }} ",
+        "What movie title is this? Return only the movie name: {{ description }}",
         context={"description": description},
-        prompt_driver=driver
-        )
-    
+        prompt_driver=driver,
+    )
     summary_task = ToolkitTask(
-        "Give me a summary of the movie: {{ (parent_outputs.items()|list|last)[1] }}",
+        "Use metacritic to get a summary of this movie: {{ parent_outputs.values() | list |last }}",
         tools=[WebScraper()],
-        prompt_driver=driver
-        )
+        task_memory=TaskMemory(),
+        prompt_driver=driver,
+    )
     
     # ...
 ```
@@ -296,7 +318,7 @@ Execute the code and let's review the output logs.
     I've removed the timestamps from the logs to make it easier to read. Yours will most likely still have them.
 
 ```bash
-INFO Task compare                                  
+INFO Task END                                  
     Input:                                                                                                  
         How are these movies the same:                                                                      
         The movie "E.T. the Extra-Terrestrial" is about a troubled child who summons the courage to help a  
@@ -312,7 +334,7 @@ INFO Task compare
     adventure scenes. It is whimsical and romantic while also poking fun at the conventions of the fairy    
     tale genre. 
 
-INFO Task compare                                  
+INFO Task END                                  
     Output: While these three movies, "E.T. the Extra-Terrestrial", "Jaws", and "The Princess Bride", seem  
     very different in terms of plot and genre, they do share some similarities. All three films involve a   
     central conflict that requires the main characters to overcome significant challenges. In "E.T.", the   
@@ -344,61 +366,67 @@ We added some of helpful functionality in this section, mainly getting wonderful
 
 Review your code.
 
-```python linenums="1" title="app.py" hl_lines="5-7 13-17 35 43 46-50 53-54"
+```python linenums="1" title="app.py" hl_lines="5-8 15-18 30 50 55-56 60"
 from dotenv import load_dotenv
 
-# Griptape 
+# Griptape
 from griptape.structures import Workflow
 from griptape.tasks import PromptTask, ToolkitTask
 from griptape.tools import WebScraper
+from griptape.memory import TaskMemory
 from griptape.drivers import OpenAiChatPromptDriver
 
-
-# Load environment variables
 load_dotenv()
+
+# Create the workflow object
+workflow = Workflow()
 
 # Define the OpenAiPromptDriver with Max Tokens
 driver = OpenAiChatPromptDriver(
-    model="gpt-4",
-    max_tokens=500
+    model="gpt-4", max_tokens=500  # you can experiment with the number of tokens
 )
 
-# Create a Workflow
-workflow = Workflow()
+
+# Create tasks
+start_task = PromptTask("I will provide you a list of movies to compare.", id="START")
+end_task = PromptTask(
+    """
+    How are these movies the same:
+     {% for value in parent_outputs.values() %} 
+     {{ value }}
+     {% endfor %}
+    """,
+    prompt_driver=driver,
+    id="END",
+)
 
 # Create a list of movie descriptions
 movie_descriptions = [
     "A boy discovers an alien in his back yard",
     "A shark attacks a beach",
-    "A princess and a man named Wesley"
+    "A princess and a man named Wesley",
 ]
 
-compare_task = PromptTask("""
-    How are these movies the same:
-    {% for key, value in parent_outputs.items() %}
-    {{ value }}
-    {% endfor %}
-    """,
-    prompt_driver=driver,
-    id="compare")
+# Add tasks to workflow
+workflow.add_task(start_task)
+workflow.add_task(end_task)
 
 # Iterate through the movie descriptions
 for description in movie_descriptions:
     movie_task = PromptTask(
-        "What movie title is this? Return only the movie name: {{ description }} ",
+        "What movie title is this? Return only the movie name: {{ description }}",
         context={"description": description},
-        prompt_driver=driver
-        )
-    
+        prompt_driver=driver,
+    )
     summary_task = ToolkitTask(
-        "Give me a summary of the movie: {{ (parent_outputs.items()|list|last)[1] }}",
+        "Use metacritic to get a summary of this movie: {{ parent_outputs.values() | list |last }}",
         tools=[WebScraper()],
-        prompt_driver=driver
-        )
-    
-    workflow.add_task(movie_task)
-    movie_task.add_child(summary_task)
-    summary_task.add_child(compare_task)
+        task_memory=TaskMemory(),
+        prompt_driver=driver,
+    )
+
+    workflow.insert_tasks(start_task, [movie_task], end_task)
+    workflow.insert_tasks(movie_task, [summary_task], end_task)
 
 # Run the workflow
 workflow.run()
