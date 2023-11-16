@@ -23,7 +23,7 @@ class MyAgent(Agent):
     def respond (self, user_input):
         agent_response = agent.run(user_input)
         print("")
-        print(f"Kiwi: {agent_response.output.value}")
+        print(f"Kiwi: {agent_response.output_task.output.value}")
         print("")
 
 # Create the agent

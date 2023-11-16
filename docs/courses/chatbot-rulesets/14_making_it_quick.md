@@ -131,7 +131,7 @@ class MyAgent(Agent):
         with console.status(spinner="simpleDotsScrolling", status=""):
             agent_response = self.run(user_input)
 
-        data = json.loads(agent_response.output.value)
+        data = json.loads(agent_response.output_task.output.value)
         response = data["response"]
         continue_chatting = data["continue_chatting"]
         color = data["favorite_color"]
@@ -154,8 +154,8 @@ class MyAgent(Agent):
 # Create the agent
 agent = MyAgent(
     rulesets=[
-        kiwi_ruleset, zelda_ruleset, dad_ruleset,
-        switcher_ruleset, json_ruleset  
+        switcher_ruleset, json_ruleset,  
+        kiwi_ruleset, zelda_ruleset, dad_ruleset
     ],
     logger_level=logging.ERROR
 )

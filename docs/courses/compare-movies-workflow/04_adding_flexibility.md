@@ -15,7 +15,7 @@ Locate the section of your code where you create the list of movie tasks:
 ``` python
 # ...
 
-# Create tasks
+# Create movie tasks
 movie_1_task = PromptTask(
     "What movie is this? Return only the movie name: A boy discovers an alien in his back yard", 
     id="movie_1")
@@ -41,20 +41,15 @@ movie_descriptions = [
 
 Now to create our PromptTasks, we'll iterate through the list of movie_descriptions.
 
-Locate the code after the `compare_task` where we add tasks to the workflow:
+Locate the `insert_task` code where we inserted the tasks into the workflow:
 
 ```python
-# Add tasks to the workflow
-workflow.add_task(movie_1_task)
-workflow.add_task(movie_2_task)
-
-# Add compare as a child
-movie_1_task.add_child(compare_task)
-movie_2_task.add_child(compare_task)
+# Add tasks to workflow
+workflow.insert_tasks(start_task, [movie_1_task, movie_2_task], end_task)
 
 ```
 
-We will replace this with a for loop where we create the PromptTask and add it to the workflow.
+We will replace this with a for loop where we create the PromptTask then insert it.
 
 ```python
 # ...
@@ -67,10 +62,7 @@ for description in movie_descriptions:
             "description": description
         })
 
-    workflow.add_task(movie_task)
-
-    # Add compare as a child
-    movie_task.add_child(compare_task)
+    workflow.insert_tasks(start_task, [movie_task], end_task)
 
 # ...
 ```
@@ -80,15 +72,14 @@ As you can see, we:
 1. Iterate through each `description` in the list of `movie_descriptions`. 
 2. Create a `PromptTask` and pass that `description` to the `context` into a variable also called `description`.
 3. Use that variable via **Jinja2 templates** in the prompt itself: `{{ description }}`.
-4. Once the `PromptTask` is created, we add it to the workflow using the `add_task` method.
-5. Add `compare_task` as a child to the task using the `add_child` method.
+4. Once the `PromptTask` is created, we insert it to the workflow using the `insert_tasks` method.
 
-## Update Compare Task
+## Update End Task
 
-There's one final step we need to take before we can run this. In our `compare_task`, we're specifically identifying `movie_1` and `movie_2` in the prompt:
+There's one final step we need to take before we can run this. In our `end_task`, we're specifically identifying `movie_1` and `movie_2` in the prompt:
 
 ```python hl_lines="3-4"
-compare_task = PromptTask("""
+end_task = PromptTask("""
     How are these movies the same:
     {{parent_outputs['movie_1']}}
     {{parent_outputs['movie_2']}}
@@ -98,7 +89,7 @@ compare_task = PromptTask("""
 
 This will no longer work because we are not defining the ids when we create the PromptTask - we just let it come up with it's own unique identifiers. Also, we don't know exactly how many movies we might be comparing, so it doesn't make much sense to define and add each one individually.
 
-Luckily, intead of specifically specifying the items via id, we can just say "hey - give me all the input items" using `{{ parent_outputs.items() }}`. This will return the entire `dict` of items that are input to the task.
+Luckily, intead of specifically specifying the items via id, we can just say "hey - give me all the input items" using `{{ parent_outputs }}`. This will return the entire `python dictionary` of items that are input to the task.
 
 Replace the two lines:
 
@@ -110,7 +101,7 @@ Replace the two lines:
 with:
 
 ```python
-    {{ parent_outputs.items() }}
+    {{ parent_outputs }}
 ```
 
 The `compare_task` section should now look like:
@@ -118,7 +109,7 @@ The `compare_task` section should now look like:
 ```python hl_lines="3"
 compare_task = PromptTask("""
     How are these movies the same:
-    {{ parent_outputs.items() }}
+    {{ parent_outputs }}
     """,
     id="compare")
 ```
@@ -128,11 +119,10 @@ Let's run the code and see what we get.
 
 ```shell
 [08/13/23 10:08:28] INFO     Task compare                                                                                                                     
-                             Input:                                                                                                                           
-                                 How are these movies the same:                                                                                               
-                                 dict_items([('60b7763430c24ca1bb0bffacb016f37f', 'E.T. the Extra-Terrestrial'), ('f6810857060e4b029ff66ff8a2f35be9',         
-                             'Jaws')])                                                                                                                        
-                                                                                                                                                              
+                             Input:                                                               
+                                 How are these movies the same:{'74bd46cfd17a4ccaa92308029b508751': 'E.T. the                  
+                             Extra-Terrestrial', '90ed4594b9af4ad9ac2fe45cd53c7889': 'Jaws'}                                                             
+
 [08/13/23 10:08:31] INFO     Task compare                                                                                                                     
                              Output: Both 'E.T. the Extra-Terrestrial' and 'Jaws' are iconic movies directed by Steven Spielberg. They are known for their    
                              memorable storylines and have had a significant impact on popular culture.                                                       
@@ -144,35 +134,38 @@ We get the proper output for our task - it compares ET and Jaws as we expect. Bu
 ```shell
 Input:                                                                                                                           
     How are these movies the same:                                                                                               
-    dict_items([('60b7763430c24ca1bb0bffacb016f37f', 'E.T. the Extra-Terrestrial'), ('f6810857060e4b029ff66ff8a2f35be9',         
-'Jaws')])                               
+    {'74bd46cfd17a4ccaa92308029b508751': 'E.T. the Extra-Terrestrial', '90ed4594b9af4ad9ac2fe45cd53c7889': 'Jaws'}                                                             
+                              
 ```
 
-Instead of passing just the names of the movies, it's passing the entire dictionary of items. It *works* but it's messy. Don't worry, there's a way to clean this up using Jinja2 for loops.
+Instead of passing just the names of the movies, it's passing the entire dictionary of items. It *works* but it's extra data. Don't worry, there's a way to clean this up using Jinja2 for loops.
 
-## Iterate Through Items
+## Iterate through item values
 
 Jinja2 has a for loop structure that looks like:
 ```
-{% for item in list %}
-{{ item }}
+{% for value in list.values() %}
+{{ value }}
 {% endfor %}
 ```
 
 We can use this inside our PromptTask to iterate through the items and just output the names.
 
-Replace the `{{ parent_outputs.items }}` section of the `PromptTask` with a for loop that will get the key/value pairs (id, movie name) and output just the value.
+Replace the `{{ parent_outputs }}` section of the `PromptTask` with a for loop that will get the key/value pairs (id, movie name) and output just the value.
+
+!!! tip
+    For Jinja2 to iterate through the values of dict, you need to use `parent_outputs.values()`.
 
 ```python hl_lines="5-7"
 # ... 
 
-compare_task = PromptTask("""
+end_task = PromptTask("""
     How are these movies the same:
-    {% for key, value in parent_outputs.items() %}
+    {% for value in parent_outputs.values() %}
     {{ value }}
     {% endfor %}
     """,
-    id="compare")
+    id="END")
 
 # ...
 ```
@@ -182,7 +175,7 @@ compare_task = PromptTask("""
 Run the script again and let's see how it looks.
 
 ```shell
-INFO     Task compare
+INFO     Task END
             Input:
                 How are these movies the same:
                 E.T. the Extra-Terrestrial
@@ -207,7 +200,7 @@ There was not as much work in this section, but we did cover some important conc
 
 Review your code with the current state to make sure everything is working as expected.
 
-```python linenums="1" title="app.py" hl_lines="13-18 22-24 28-35"
+```python linenums="1" title="app.py" hl_lines="13-18 22-24 28-33"
 from dotenv import load_dotenv
 
 # Griptape 
@@ -227,22 +220,20 @@ movie_descriptions = [
     "A princess and a man named Wesley"
 ]
 
-compare_task = PromptTask("""
+end_task = PromptTask("""
     How are these movies the same:
-    {% for key, value in parent_outputs.items()%}
+    {% for value in parent_outputs.values()%}
     {{ value }}
     {% endfor %}
     """,
-    id="compare")
+    id="END")
 
 # Iterate through the movie descriptions
 for description in movie_descriptions:
     movie_task = PromptTask(
         "What movie title is this? Return only the movie name: {{ description }} ",
         context={"description": description})
-    workflow.add_task(movie_task)
-
-    movie_task.add_child(compare_task)
+    workflow.insert_tasks(start_task, [movie_task], end_task)
 
 # Run the workflow
 workflow.run()
