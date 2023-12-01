@@ -7,7 +7,7 @@ Welcome to the first step of our journey into creating a conversational chatbot!
 
 1. **Code Editor**: We recommend using **Visual Studio Code** for this course, due to its handy features and Python support. However, if you have another favorite IDE or text editor, feel free to use that! 
 
-2. **Python3.11+**: Griptape requires Python 3.11.
+2. **Python3.11**: Griptape requires Python 3.11.
 
 3. **Python Environment Manager (for VS Code users)**: This extension is not a hard requirement, but it does make managing your Python environments a lot easier. 
 
