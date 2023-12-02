@@ -58,7 +58,7 @@ These resources will provide additional information and context throughout the c
 ---
 ## Next Steps
 
-Get yourself all setup and ready by moving on to [Setup](01_setup.md).
+Get yourself all set up and ready by moving on to [Setup](01_setup.md).
 
 <!-- 
 ---
