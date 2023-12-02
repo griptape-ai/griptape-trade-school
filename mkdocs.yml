@@ -133,7 +133,8 @@ nav:
           - Introduction: courses/shotgrid-client/index.md
           - Setup: courses/shotgrid-client/01_setup.md
           - ShotGrid Signup: courses/shotgrid-client/02_shotgrid.md
-          - First Tool: courses/shotgrid-client/03_first_tool.md
+          - Understanding Tools: courses/shotgrid-client/03_understanding_tools.md
+          - Your First Tool: courses/shotgrid-client/04_first_tool.md
   - Help:
       - FAQ: faq.md
       - Contributing: contributing.md

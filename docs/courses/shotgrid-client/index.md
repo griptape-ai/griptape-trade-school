@@ -63,15 +63,6 @@ Get yourself all setup and ready by moving on to [Setup](01_setup.md).
 <!-- 
 ---
 
-Overview of Griptape's purpose and capabilities
-Step-by-step installation guide
-Signing Up for ShotGrid
-
-How to obtain a trial license for ShotGrid
-Basic navigation and features of ShotGrid
-Module 2: Exploring Basic Tools
-Demonstration of a Simple Tool with Griptape
-
 Explaining the functionality of a basic tool
 Hands-on demonstration using Griptape
 Building Your First Tool from a Template

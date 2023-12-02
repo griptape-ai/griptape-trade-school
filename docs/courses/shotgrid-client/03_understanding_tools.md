@@ -1,4 +1,4 @@
-# Your First Tool - DateTime
+# Understanding Tools - DateTime
 
 ## Overview
 In this module, we will explore the DateTime tool within Griptape, demonstrating its integration into an `Agent` and breaking down how activities function. We'll then show how you can use the tool in a `Pipeline` by employing `ToolTask` and `ToolkitTask`. But first, we must update our current app to give it access to an Agent.
@@ -182,10 +182,10 @@ In Griptape, a "tool" is a `Class`. It is a blueprint that defines the propertie
 Each tool has `activities` and `methods`.
 
 #### Methods
-Methods are functions that are associated with a class. In the case of the `DateTime` tool, it has a few methods - like `get_current_datetime`. They define specific actions the tool can perform.
+Methods are functions that are associated with a class. In the case of the `DateTime` tool, it has a few methods - `get_current_datetime` and `get_relative_datetime`. They define specific actions the tool can perform.
 
 #### Activities
-Activities are Python decorators that add information and certain features to methods - kind of like attaching a label or instruction. For example the `@activity` decorator in `DateTime` describes what the method does, and how it should behave.
+Activities are Python decorators that add information and certain features to methods - kind of like attaching a label or instruction. For example the `@activity` decorator in `DateTime` describes what the `get_current_datetime` method does ("Can be used to return current date and time"), and how it should behave.
 
 ### DateTime Structure
 
@@ -279,30 +279,32 @@ Action:
 }
 ```
 
-As you see in the DateTime Class, that method exists! 
+### Methods
 
-## Methods
+#### Basic Structure
 
-### Basic Structure
-
-Diving into the basic structure of a method, let's use the `get_current_datetime` as an example.
+Let's use the `get_current_datetime` to understand the structure of a method.
 
 ```python hl_lines="1"
-    def get_current_datetime(self, _: dict) -> BaseArtifact:
-        try:
-            current_datetime = datetime.now()
+def get_current_datetime(self, _: dict) -> BaseArtifact:
+    try:
+        current_datetime = datetime.now()
 
-            return TextArtifact(str(current_datetime))
-        except Exception as e:
-            return ErrorArtifact(f"error getting current datetime: {e}")
+        return TextArtifact(str(current_datetime))
+    except Exception as e:
+        return ErrorArtifact(f"error getting current datetime: {e}")
 
 ```
 
-* `get_current_datetime`: This is the name of the method we are defining. 
-* `(self, _: dict)`: These are the parameters the method takes. `self` refers to the object itself (common in class methods), and `_` is a placeholder for a parameter that is a dictionary (`dict`), but this dictionary is not actively used in the method.
-* `-> BaseArtifact`: This indicates that the method will return an object of type `BaseArtifact`. Griptape provides various artifacts, including Text, List, Blob, etc. You can learn more about them in the [documentation](https://docs.griptape.ai/en/latest/griptape-framework/data/artifacts/). 
+* `get_current_datetime`: This is the *name* of the method we are defining. 
+* `(self, _: dict)`: These are the *parameters* the method can take. `self` refers to the object itself (common in class methods), and `_` is a placeholder for a parameter that is a dictionary (`dict`), but this dictionary is not actively used in the method.
 
-Since we're not using `self`, or `_` in this method, and Python is a dynamically typed language so we don't need to specify what a function will return, this could probably be re-written more simply as:
+    !!! tip
+        Neither of these are used in this particular method, but they're there because it's good practice to include them.
+
+* `-> BaseArtifact`: This indicates that the method will *return* an object of type `BaseArtifact`. Griptape provides various artifacts, including Text, List, Blob, etc. You can learn more about them in the [documentation](https://docs.griptape.ai/en/latest/griptape-framework/data/artifacts/). 
+
+Since we're not using `self`, or `_` in this method, and Python is a dynamically typed language, we don't need to specify what a function will return. We could probably be write this method simply as:
 
 ```python
 def get_current_datetime():
@@ -310,18 +312,27 @@ def get_current_datetime():
 
 However, including type hints in method definitions is good practice as it enhances the overall quality and maintainability of our code.
 
-### Try / Except
+In summary, he's a great way to understand the `def` line:
+
+| Item | What it's used for |
+|------|---------------|
+| `def`  | Let's define a method! |
+| `get_current_datetime` | That's the name of my method! |
+| `(self, _: dict)` | Some stuff we're passing *to* the method! |
+| `--> BaseArtifact:` | The stuff I want to get back *from* the method! |
+
+#### Try / Except
 
 Moving further into the method, you'll see the `try` and `except` block. 
 
 ```python hl_lines="2 6"
-    def get_current_datetime(self, _: dict) -> BaseArtifact:
-        try:
-            current_datetime = datetime.now()
+def get_current_datetime(self, _: dict) -> BaseArtifact:
+    try:
+        current_datetime = datetime.now()
 
-            return TextArtifact(str(current_datetime))
-        except Exception as e:
-            return ErrorArtifact(f"error getting current datetime: {e}")
+        return TextArtifact(str(current_datetime))
+    except Exception as e:
+        return ErrorArtifact(f"error getting current datetime: {e}")
 
 ```
 
@@ -335,20 +346,34 @@ Moving further into the method, you'll see the `try` and `except` block.
     
 Using `try/except` is always good practice, *especially* with tools in Griptape. One of the benefits of using this is that `ErrorArtifacts` *get passed back to Griptape*. This means Griptape can evaluate the error, and try again - often fixing it's own mistake!
 
-### Return
+#### Return
 
 ```python hl_lines="5 7"
-    def get_current_datetime(self, _: dict) -> BaseArtifact:
-        try:
-            current_datetime = datetime.now()
+def get_current_datetime(self, _: dict) -> BaseArtifact:
+    try:
+        current_datetime = datetime.now()
 
-            return TextArtifact(str(current_datetime))
-        except Exception as e:
-            return ErrorArtifact(f"error getting current datetime: {e}")
+        return TextArtifact(str(current_datetime))
+    except Exception as e:
+        return ErrorArtifact(f"error getting current datetime: {e}")
 
 ```
 
 Finally, the `return` statements. Whatever is in these will be returned to the subtask in order to continue. As mentioned in the `try/except` section above, `ErrorArtifacts` are really important to return because it allows Griptape to try again.
+
+### Activities
+
+As mentioned previously, `activities` add information and certain features to methods. With Griptape Tools, they can provide simple information (like a description), or even schemas defining what kind of parameters should be passed.
+
+For the `get_current_datetime` method, there are no parameters, so the activity itself is quite simple - it's just a description that tells the LLM when to use it.
+
+```python
+@activity(config={"description": "Can be used to return current date and time."})
+```
+
+As you can see, any time the LLM determines the task is to return the current date and/or time, it will use this method.
+
+Notice with the `get_relative_datetime` method (the other method in the DateTime class) the activity is different - it says to return a _relative_ date and time, and also has a `schema` involved. We'll dive into this detail shortly - for now, let's just understand that any time the LLM thinks that it's task is to return something about the *current* date and time, it will use the `get_current_datetime` method.
 
 ### More Testing
 
@@ -371,6 +396,131 @@ Q: What's the current time as Beaker from the Muppets?
 A: As Beaker from the Muppets, the current time would be expressed as, "Meep meep, meep meep meep!"
 ```
 
+### Parameters
+
+Sometimes you want an activity to take a specific parameter. In the case of the `DateTime` tool, the `get_relative_datetime` needs to take a parameter to understand what the day _should be relative to_.
+
+Let's try it out. Run the app and ask how far away April 3rd is from today.
+
+```text hl_lines="7 13" 
+Q: How far away is april 3 from today?
+processing...
+[12/02/23 09:36:24] INFO     ToolkitTask c2187fcb4d3542628374158090fc5a5a                                                                                                                       
+                             Input: How far away is april 3 from today?                                                                                                                         
+[12/02/23 09:36:29] INFO     Subtask d849f1ccbb3a4d2ba6e1c84d9c42d7d6                                                                                                                           
+                             Thought: I need to find out the current date and then calculate the difference between the current date and April 3rd. I'll start by getting the current date.     
+                             Action: {"name": "DateTime", "path": "get_current_datetime", "input": {}}                                                                                          
+                    INFO     Subtask d849f1ccbb3a4d2ba6e1c84d9c42d7d6                                                                                                                           
+                             Response: 2023-12-02 09:36:29.251623                                                                                                                               
+[12/02/23 09:36:33] INFO     Subtask ef201acf47a441829ddcf5ef538acc0b                                                                                                                           
+                             Thought: Now that I have the current date, I need to calculate the difference between the current date and April 3rd. I'll use the "get_relative_datetime" action  
+                             to do this.                                                                                                                                                        
+                             Action: {"name": "DateTime", "path": "get_relative_datetime", "input": {"values": {"relative_date_string": "April 3, 2024"}}}                                      
+                    INFO     Subtask ef201acf47a441829ddcf5ef538acc0b                                                                                                                           
+                             Response: 2024-04-03 00:00:00                                                                                                                                      
+[12/02/23 09:36:39] INFO     ToolkitTask c2187fcb4d3542628374158090fc5a5a                                                                                                                       
+                             Output: April 3, 2024 is approximately 122 days from today, December 2, 2023.                                                                                      
+A: April 3, 2024 is approximately 122 days from today, December 2, 2023.
+```
+
+Notice there are a few actions happening now - the first is `get_current_datetime` to find out what "today" is, then the second is `get_relative_datetime` where it passes an input.
+
+```
+Action: {"name": "DateTime", "path": "get_current_datetime", "input": {}}
+
+Action: {"name": "DateTime", "path": "get_relative_datetime", "input": {"values": {"relative_date_string": "April 3, 2024"}}}
+```
+
+Before we dive into the parameters, there are two things worth pointing out:
+
+1. We didn't specify the number of steps it should take to get to the answer. We just asked one somewhat ambiguous question and the LLM figured out that it would take two tasks - getting the current date, and then getting the relative date.
+2. We also didn't specify the `relative_date_string` key/value pair. We didn't need to. The LLM saw what key/value pairs the `get_relative_datetime` method required, and figured out how to pass them. 
+
+This is why working with Griptape Tools starts to get really exciting - once you define the parameters clearly, the LLM can figure out the right way to pass the data.
+
+### Schema
+
+Schemas are how we define what parameters are going to be passed to the method. They are like a checlist for data. They're a set of rules that describe what kind of data you expect, and how it should be structured.
+
+For example, if you are creating a schema for a person you might say:
+
+* There must be a name, and it should be text.
+* There must be an age, and it should be a number.
+* There *might* be an email address. If there is, it should be in the format of an email address. If not, well that's just okay with us.
+
+Then the method can use the schema as a checklist to make sure everything matches. If age is written as text instead of a number (for example), you know there's a mistake.
+
+You can learn more about Python schemas in the [schema documentation](https://pypi.org/project/schema/).
+
+For Griptape Tool Activities, schemas are defined as part of the `config` dictionary using the `Schema` class.
+
+Let's look at the schema for `get_relative_datetime`:
+
+```python
+config={
+    "description": "Can be used to return a relative date and time.",
+    "schema": Schema(
+        {
+            Literal(
+                "relative_date_string",
+                description='Relative date in English. For example, "now EST", "20 minutes ago", '
+                '"in 2 days", "3 months, 1 week and 1 day ago", or "yesterday at 2pm"',
+            ): str
+        }
+    ),
+}
+
+```
+
+Right now the Schema has *one* parameter it's looking for: `relative_date_string`. The `description` tells us what kind of data it should be. It says:
+
+    Relative date in English. For example or example, "now EST", 
+    "20 minutes ago", "in 2 days", "3 months, 1 week and 1 day ago", 
+    or "yesterday at 2pm"
+
+Finally, the `: str` part means the information should be provided as a string, which basically is just a line of text. This could also be `: int`, `: dict`, `: list`, etc depending on your needs.
+
+#### Optional Parameters
+
+It's possible to also provide *optional* parameters with Schemas. For example, if we were making our own version of DateTime we could include something like:
+
+```python
+"schema": Schema(
+    {
+        Literal(
+            "relative_date_string",
+            description='Relative date in English.',
+        ): str,
+        Optional("timezone"): str  # This is an optional parameter
+    }
+),
+
+```
+
+## Code Review
+
+Throughout this section we've explored quite a bit about Griptape Tools. We learned how to import and use them, how they're structured, and what `methods` and `activities` are. You understand `schemas` and how they allow you to pass parameters to various `methods`.
+
+Before continuing, let's look at our app in it's current state where you can chat with the agent and ask important questions, like how much time you have before my birthday (April 3rd).
+
+
+```python title="app.py" linenums="1"
+from dotenv import load_dotenv
+from griptape.structures import Agent
+from griptape.utils import Chat
+from griptape.tools import DateTime
+
+load_dotenv()
+
+# Instantiate the agent
+agent = Agent(tools=[DateTime(off_prompt=False)])
+
+# Start chatting
+Chat(agent).start()
+
+```
+
+
 ---
 ## Next Steps
-Now that you have your environment set up and access to ShotGrid, you're ready to get started with Griptape Tools. In the [next section](03_first_tool.md), we'll get started by using one of Griptape's built in tools (DateTime) and understand how it works.
+You have access to DateTime (note quite as cool as SpaceTime, but still..). In the [next section](04_first_tool.md), you will build your first Griptape Tool.
