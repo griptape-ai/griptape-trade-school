@@ -240,28 +240,87 @@ Well done! Now go grab a snack and we'll continue.
 
 ## Code Review
 
-Throughout this section we've explored quite a bit about Griptape Tools. We learned how to import and use them, how they're structured, and what `methods` and `activities` are. You understand `schemas` and how they allow you to pass parameters to various `methods`.
-
-Before continuing, let's look at our app in it's current state where you can chat with the agent and ask important questions, like how much time you have before my birthday (April 3rd).
+You have added a Griptape Tool *and* modified it to add a new activity! Well done! Let's take a look at all the code to review it before moving on.
 
 
-```python title="app.py" linenums="1"
+### `app.py`
+```python title="app.py" linenums="1" hl_lines="6 11"
 from dotenv import load_dotenv
 from griptape.structures import Agent
 from griptape.utils import Chat
 from griptape.tools import DateTime
 
+from reverse_string_tool import ReverseStringTool
+
 load_dotenv()
 
 # Instantiate the agent
-agent = Agent(tools=[DateTime(off_prompt=False)])
+agent = Agent(tools=[DateTime(off_prompt=False), ReverseStringTool(off_prompt=False)])
 
 # Start chatting
 Chat(agent).start()
 
 ```
 
+### `reverse_string_tool/tool.py`
+``` python title="reverse_string_tool/tool.py" linenums="1" hl_lines="28-52"
+from __future__ import annotations
+from griptape.artifacts import TextArtifact, ErrorArtifact
+from griptape.tools import BaseTool
+from griptape.utils.decorators import activity
+from schema import Schema, Literal
+from attr import define
+
+
+@define
+class ReverseStringTool(BaseTool):
+    @activity(
+        config={
+            "description": "Can be used to reverse a string",
+            "schema": Schema(
+                {Literal("input", description="The string to be reversed"): str}
+            ),
+        }
+    )
+    def reverse_string(self, params: dict) -> TextArtifact | ErrorArtifact:
+        input_value = params["values"].get("input")
+
+        try:
+            return TextArtifact(input_value[::-1])
+
+        except Exception as e:
+            return ErrorArtifact(str(e))
+
+    @activity(
+        config={
+            "description": "Can be used to reverse a sentence",
+            "schema": Schema(
+                {Literal("input", description="The sentence to be reversed"): str}
+            ),
+        }
+    )
+    def reverse_sentence(self, params: dict) -> TextArtifact | ErrorArtifact:
+        input_value = params["values"].get("input")
+
+        try:
+            # Splitting the sentence into words
+            words = input_value.split()
+
+            # Reversing the list of words
+            reversed_words = words[::-1]
+
+            # Joining the reversed words back into a sentence
+            reversed_sentence = " ".join(reversed_words)
+
+            return TextArtifact(reversed_sentence)
+
+        except Exception as e:
+            return ErrorArtifact(str(e))
+
+
+```
+
 
 ---
 ## Next Steps
-Now that you have your environment set up and access to ShotGrid, you're ready to get started with Griptape Tools. In the [next section], we'll get started by using one of Griptape's built in tools (DateTime) and understand how it works.
+In the next section we'll begin our work to connect with ShotGrid, creating our first ShotGrid tool that will allow an agent to connect and authenticate with it.
