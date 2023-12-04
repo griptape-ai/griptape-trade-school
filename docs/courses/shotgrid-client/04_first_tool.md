@@ -323,4 +323,4 @@ class ReverseStringTool(BaseTool):
 
 ---
 ## Next Steps
-In the next section we'll begin our work to connect with ShotGrid, creating our first ShotGrid tool that will allow an agent to connect and authenticate with it.
+In the [next section](05_shotgrid_tool.md) we'll begin our work to connect with ShotGrid, creating our first ShotGrid tool that will allow an agent to connect and authenticate with it.
