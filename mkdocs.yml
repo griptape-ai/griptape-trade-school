@@ -137,6 +137,7 @@ nav:
           - Your First Tool: courses/shotgrid-client/04_first_tool.md
           - ShotGrid Tool: courses/shotgrid-client/05_shotgrid_tool.md
           - User Authentication: courses/shotgrid-client/06_shotgrid_user.md
+          - ShotGrid Mehtods: courses/shotgrid-client/07_method.md
   - Help:
       - FAQ: faq.md
       - Contributing: contributing.md
