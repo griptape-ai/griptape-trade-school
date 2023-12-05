@@ -1,436 +1,402 @@
-# Adding ShotGrid Methods
+# Vectorizing API Docs
 
 ## Overview
-You can now authenticate with ShotGrid via API and by Username/Password. At the moment, your application only verifies that it can connect to ShotGrid, it doesn't do much else.
+We have the ability to connect to the ShotGrid API and execute commands, but the knowledge the LLM has is restricted to what it was trained on. Let's provide the LLM with access to the most recent documentation, so it can use that to get more data.
 
-In this section we will add a method that allows you to do much, much more.
+The trick is that we want to allow the LLM to get access to this data _quickly_. We want it to be able to know how to find the right commands for the types of tasks we want to execute without needing to know _exactly_ that the method is `find` or `create` or `find_one`.
 
-## ShotGrid Methods
+Well, luckily Autodesk has provided pretty extensive API documentation available here: [https://developers.shotgridsoftware.com/python-api/reference.html#](https://developers.shotgridsoftware.com/python-api/reference.html#). There are additional pages available as well.
 
-ShotGrid comes wit ha number of methods to create, find, update, delete, and much more. Here's a small list of methods, with the [entire list](https://developers.shotgridsoftware.com/python-api/reference.html#shotgrid-methods) available in their documentation.
+We can provide this documentation to the LLM by creating a **Vector Store** of docs.
 
-|Method|Description| 
-|------|-----------|
-|`Shotgun.create` | Create a new entity of the specified entity_type| 
-|`Shotgun.find`   | Finds entities matching the given filters |
-|`Shotgun.update` | Update the specified entity with the supplied data |
-|`Shotgun.delete` | Retire (delete) a specified entity. |
-|`Shotgun.upload_thumbnail` | Upload a file from a local path and assign it as a thumbnal for the entity |
-|`Shotgun.summarize` | Summarize field data returned by a query. |
+## What is "Vector Storage"
 
-As you can see, there are a number of various methods we can use, and we _could_ create an activity/method for each one of these. However, our tool would get large, and end up being somewhat difficult to maintain. There would also be quite a lot of repetitive code, with each method importing the ShotGrid library and connecting.
+You can think of vector storage like a huge, organized bookshelf in a library where each book represents a piece of information, or data. In this library, instead of books being sorted by author or title, they're organized based on their content's "features" or "characteristics".
 
-Instead, we'll introduce a method to create a more "generic" tool, that will utilize the LLMs own knowledge of the ShotGrid API to generate the correct commands.
+Now imagine each book has a summary that describes its key points, and these summaries are used to arrange the books on the shelves. In vector storage, this summary is like a 'vector' - a list of numbers that represent the key features of the data. These vectors help in quickly finding the right book (or data) that you need.
 
-## Create `meta_method`
+When you want to find information related to a specific topic, the librarian quickly scans through these summaries and finds the books that closely match what you're looking for. This is much faster than reading all the books in their entirety, or going through it in random order.
 
-We're going to call this new method, the **Meta Method**. This method will allow you to execute _any_ of the methods ShotGrid offers.
+In technical terms, the data is converted into vectors (numerical representations) allowing for quick and accurate searches based on similarities in the vectors.
 
-### Description and Name
-First, in `shotgrid_tool/tool.py` make the following changes:
+This means I can ask for "ways to filter asset creation" and "asset creation, filtering methods" and "hey, can you filter the results for creating assets?" and get the same helpful information back!
 
-1. Change the description in the activity to "Can be used to execute ShotGrid methods"
-2. Re-name the method we currently have in the tool from `get_session_token` to `meta_method`
+## Vector Storage Process
 
-```python title="shotgrid_tool/tool.py" hl_lines="5 8"
+The process for providing the docs to the LLM looks like this:
+
+1. Create a Vector Database where we can store the documents. In this example we'll use a simple [Local Vector Store Driver](https://docs.griptape.ai/en/latest/griptape-framework/data/vector-store-drivers/#local-vector-store-driver).
+2. Create a [Vector Query Engine](https://docs.griptape.ai/en/latest/griptape-framework/data/query-engines/#vectorqueryengine) - an engine that's really good at searching Vector Databases
+3. Create a list of URLs to vectorize.
+4. For each url, load the data using a [WebLoader](https://docs.griptape.ai/en/latest/griptape-framework/data/loaders/#web-loader).
+5. For each bit of website data, upsert (update/insert) it into the Vector Store.
+6. Create a [Vector Store Client (Tool)](https://docs.griptape.ai/en/latest/griptape-tools/official-tools/vector-store-client/) that has access to the data and the query engine.
+7. Give the Vector Store Client to the Agent.
+
+``` mermaid
+graph TB
+    A(Create Vector DB)
+    B(Create Vector Query Engine)
+    C(Gather URLs)
+    D(URL 1)
+    E(URL 2)
+    F(URL 3)
+    G(Load Data)
+    H(Load Data)
+    I(Load Data)
+    J(Upsert)
+    K(Upsert)
+    L(Upsert)
+    M(Vector Store Client)
+    N(Agent)
+    A --> B --> C
+    C --> D --> G --> J --> M
+    C --> E --> H --> K --> M
+    C --> F --> I --> L --> M
+    M --> N
+    
+```
+
+### Vector Database
+
+Let's start by creating the Vector Database. We're going to use Griptape's [LocalVectorStoreDriver](https://docs.griptape.ai/en/latest/griptape-framework/data/vector-store-drivers/#local-vector-store-driver). 
+
+!!! tip
+    You could also use [Pinecone](https://www.pinecone.io/), [Marqo](https://www.marqo.ai/), [MongoDB](https://www.mongodb.com/atlas/database), [Redis](https://redis.io/), [OpenSearch](https://opensearch.org/), or [PGVector](https://github.com/pgvector/pgvector) - all are available as drivers for Griptape as described [in the documentation](https://docs.griptape.ai/en/latest/griptape-framework/data/vector-store-drivers/).
+
+Modify `app.py` to import the required drivers. In the case of the the Local Vector Store Driver we also need an Embedding Driver. We'll use the one from OpenAI, but you could also use one of the [other drivers](https://docs.griptape.ai/en/latest/griptape-framework/data/embedding-drivers/) available for Griptape.
+
+```python title="app.py" hl_lines="5"
 # ...
-
-    @activity(
-        config={
-            "description": "Can be used to execute ShotGrid methods.",
-        }
-    )
-    def meta_method(self, _: dict) -> TextArtifact | ErrorArtifact:
-        import shotgun_api3
-
+from griptape.structures import Agent
+from griptape.utils import Chat
+from griptape.tools import DateTime
+from griptape.drivers import LocalVectorStoreDriver, OpenAiEmbeddingDriver
 # ...
 
 ```
 
-### Parameters
+Now after the `load_dotenv()` line in `app.py`, create the vector database by instantiating `LocalVectorStoreDriver` and passing it an `embedding_driver`.
 
-Next, we'll need to add some parameters to the method. These will be things like - telling `meta_method` which ShotGrid method to call, and what `data` to pass it.
-
-For example, if we want to call the `find` method to find all character assets in project 155, and return the id, the name, and the description, we'd want to call it like this:
-
-```python
-sg.find(
-    "Asset", 
-    [
-        ['project', 'is', {'type': 'Project', 'id': 155}],
-        ['sg_asset_type', 'is', 'Character']
-    ],
-    ['id', 'code', 'description']
-    )
-```
-
-Or, if we wanted to delete a shot we'd call it this way:
-```python
-sg.delete("Shot", 2557)
-```
-
-So we need to pass the `method` (`find`, `delete`, `update`, etc), and the `data`- a dict of various parameters, depending on the type of method.
-
-This involves updating the activity schema, and telling the method itself to accept a list of `params`.
-
-### Update Schema
-
-Update the schema to accept two different parameters: `method` and `params`. We'll make sure we describe them well, giving the LLM proper context as to how to use the parameters.
-
-```python title="shotgrid_tool/tool.py" hl_lines="6-17"
+```python title="app.py" hl_lines="5-6"
 # ...
 
-    @activity(
-        config={
-            "description": "Can be used to execute ShotGrid methods.",
-            "schema": Schema(
-                {
-                    Literal(
-                        "method",
-                        description="Shotgrid method to execute. Example: find_one, find, create, update, delete, revive, upload_thumbnail",
-                    ): str,
-                    Literal(
-                        "params",
-                        description="Dictionary of parameters to pass to the method.",
-                    ): list,
-                }
-            ),
+load_dotenv()
 
-        }
-    )
+# Create the vector database
+vector_store_driver = LocalVectorStoreDriver(embedding_driver=OpenAiEmbeddingDriver())
 
 # ...
 ```
 
-### Update the method
+### Vector Query Engine
 
-Now we'll add the `params` parameter to `meta_method`. Replace `_: dict` with `params: dict`.
+Now that we have a database, we need a way to query it. This will be done using Griptape's [VectorQueryEngine](https://docs.griptape.ai/en/latest/griptape-framework/data/query-engines/#vectorqueryengine) which takes a `vector_store_driver`. Luckily we just created one!
 
-```python  title="shotgrid_tool/tool.py"  hl_lines="3"
+First import the engine into Gritpape by adding it to the imports section of your app.
+
+```python title="app.py" hl_lines="3"
+# ...
+from griptape.drivers import LocalVectorStoreDriver, OpenAiEmbeddingDriver
+from griptape.engines import VectorQueryEngine
 # ...
 
-    def meta_method(self, params: dict) -> TextArtifact | ErrorArtifact:
+```
+
+Next, create the engine. Add the following lines after the creation of the `vector_store_driver`.
+
+```python title="app.py" hl_lines="6-7"
+# ...
+
+# Create the vector database
+vector_store_driver = LocalVectorStoreDriver(embedding_driver=OpenAiEmbeddingDriver())
+
+# Create the query engine
+query_engine = VectorQueryEngine(vector_store_driver=vector_store_driver)
 
 # ...
 ```
 
-### Add method logic
+### Gather URLs
 
-We can now add the logic to the method that defines how we use the parameters we've just passed. Using a parameter within a Griptape Tool is pretty straightforward, you just access it with `params["values"][PARAMATER]`. For example, if I want the name of the method we passed, I can do `params["values"]["method"]`. Or if I want the parameters, I can query `params["values"]["params"]`.
+The relevant ShotGrid API documentation is available split over six web pages. The first is a general api reference page, and the rest are in their "cookbook". We'll create a list of these.
 
-So in this method we're going to do the following:
+Add the following lines after creating the query engine.
 
-1. Get the name of the method passed, and use that to find the _ShotGrid method object_ that we will be able to call (`sg.find`, `sg.delete`, `sg.update`, etc). 
-2. Get the parameters.
-3. Execute the method with the given parameters. Because ShotGrid parameters require a `dict`, we want to "unpack" the list of items given into individual arguments. This can be done using the `*` notation.
-4. Return the result as a string.
-
-```python title="shotgrid_tool/tool.py" hl_lines="16-25"
+```python title="app.py" hl_lines="6-14"
 # ...
-    def meta_method(self, params: dict) -> TextArtifact | ErrorArtifact:
-        import shotgun_api3
 
-        try:
-            if self.login_method == "api_key":
-                sg = shotgun_api3.Shotgun(
-                    # ...
-                )
+# Create the query engine
+query_engine = VectorQueryEngine(vector_store_driver=vector_store_driver)
 
-            else:
-                sg = shotgun_api3.Shotgun(
-                    # ...
-                )
-
-            # Get the method name from the params
-            sg_method = getattr(sg, params["values"]["method"])
-
-            # Get the params from the params
-            sg_params = params["values"]["params"]
-
-            # Execute the method with the params
-            sg_result = sg_method(*sg_params)
-
-            return TextArtifact(str(sg_result))  # Return the results of the connection
-
-        except Exception as e:
-            # ...
+# API Documentation
+shotgrid_api_urls = [
+    "https://developers.shotgridsoftware.com/python-api/reference.html",
+    "https://developers.shotgridsoftware.com/python-api/cookbook/usage_tips.html",
+    "https://developers.shotgridsoftware.com/python-api/cookbook/attachments.html",
+    "https://developers.shotgridsoftware.com/python-api/cookbook/tasks/updating_tasks.html",
+    "https://developers.shotgridsoftware.com/python-api/cookbook/tasks/task_dependencies.html",
+    "https://developers.shotgridsoftware.com/python-api/cookbook/tasks/split_tasks.html",
+]
 # ...
 ```
 
-### Test it out - Find
+### Load URL Content
 
-Let's perform a quick test. One good thing to do is list all the projects available to the current user.
+There are a number of Loaders available for Griptape to allow you to load textual data. You can load from the web, from pdf, sql, csv, and more. Review all the details in our [Loader documentation](https://docs.griptape.ai/en/latest/griptape-framework/data/loaders/).
 
-Normally you'd have to figure out the filter for the `sg.find` command, but in our case we can simply ask the chatbot - "What projects do I have access to?"
+In this case, we will be using the WebLoader to load the data from the HTML pages.
 
-!!! quote
-    What projects do I have access to?
+First import the WebLoader from `griptape.loaders` by adding the `import` statement in the `import` section of your app.
 
-```text
-Q: What projects do I have access to?
-processing...
-[12/06/23 06:15:23] INFO     ToolkitTask 974a92cff534416ea06eda9c21519461                                            
-                             Input: What projects do I have access to?                                               
-[12/06/23 06:15:36] INFO     Subtask c6d98edf1bab48e9a7fc0e4f7e151f73                                                
-                             Thought: To find out what projects the user has access to, I need to use the            
-                             ShotGridTool action with the "find" method. The "find" method will return all the       
-                             projects that the user has access to.                                                   
-                                                                                                                     
-                             Action:                                                                                 
-                             {                                                                                       
-                               "name": "ShotGridTool",                                                               
-                               "path": "meta_method",                                                                
-                               "input": {                                                                            
-                                 "values": {                                                                         
-                                   "method": "find",                                                                 
-                                   "params": ["Project", [], ["id", "name"]]                                         
-                                 }                                                                                   
-                               }                                                                                     
-                             }                                                                                       
-[12/06/23 06:15:56] INFO     Subtask c6d98edf1bab48e9a7fc0e4f7e151f73                                                
-                             Response: [{'type': 'Project', 'id': 63, 'name': 'Start From Scratch'}, {'type':        
-                             'Project', 'id': 69, 'name': 'Motion Capture Template'}, {'type': 'Project', 'id': 70,  
-                             'name': 'Demo: Animation'}, {'type': 'Project', 'id': 72, 'name': 'Demo: Game'},        
-                             {'type': 'Project', 'id': 78, 'name': 'Game Template'}, {'type': 'Project', 'id': 82,   
-                             'name': 'Film VFX Template'}, {'type': 'Project', 'id': 83, 'name': 'Episodic TV        
-                             Template'}, {'type': 'Project', 'id': 85, 'name': 'Demo: Animation with Cuts'}, {'type':
-                             'Project', 'id': 86, 'name': 'Game Outsourcing Template'}, {'type': 'Project', 'id': 87,
-                             'name': 'Demo: Automotive'}, {'type': 'Project', 'id': 88, 'name': 'Automotive Design   
-                             Template'}, {'type': 'Project', 'id': 89, 'name': 'Animation Template'}]                
-[12/06/23 06:16:05] INFO     ToolkitTask 974a92cff534416ea06eda9c21519461                                            
-                             Output: You have access to the following projects:                                      
-                             1. Start From Scratch                                                                   
-                             2. Motion Capture Template                                                              
-                             3. Demo: Animation                                                                      
-                             4. Demo: Game                                                                           
-                             5. Game Template                                                                        
-                             6. Film VFX Template                                                                    
-                             7. Episodic TV Template                                                                 
-                             8. Demo: Animation with Cuts                                                            
-                             9. Game Outsourcing Template                                                            
-                             10. Demo: Automotive                                                                    
-                             11. Automotive Design Template                                                          
-                             12. Animation Template                                                                  
-A: You have access to the following projects: 
-1. Start From Scratch
-2. Motion Capture Template
-3. Demo: Animation
-4. Demo: Game
-5. Game Template
-6. Film VFX Template
-7. Episodic TV Template
-8. Demo: Animation with Cuts
-9. Game Outsourcing Template
-10. Demo: Automotive
-11. Automotive Design Template
-12. Animation Template
+```python title="app.py" hl_lines="3"
+# ...
+from griptape.engines import VectorQueryEngine
+from griptape.loaders import WebLoader
+# ...
+
 ```
 
-Notice how you didn't need to know how to build the filter, figure out which ShotGrid method to use, or anything. The LLM figured it out for you.
+Then add the following lines to create a list of "artifacts" - loaded chunks of data.
 
-Let's look at this section of the output:
+```python title="app.py" hl_lines="8-11"
+# ...
 
+# API Documentation
+shotgrid_api_urls = [
+    # ...
+]
+
+# Load the API documentation
+artifacts = []
+for url in shotgrid_api_urls:
+    artifacts.append(WebLoader().load(url))
+
+# ...
+```
+
+### Upsert Content
+
+Now we'll upsert the data into the database.
+
+!!! question "What's an 'upsert?'"
+    Upsert is a great word - it is a combination of "insert" and "update". It's used frequently in databases to mean "Hey.. here's some data. Insert a new record into the database if doesn't exist, or update the record if it does."
+
+    Not only is it a great concept because it simplifies the process of ensuring the database contains a specific record, but it also is an awesome word to pull out at dinner parties.
+
+In order to give the database the right information, we'll need to provide a namespace to operate in, then we can upsert into that namespace.
+
+```python title="app.py" hl_lines="8-12"
+# ...
+
+# Load the API documentation
+artifacts = []
+for url in shotgrid_api_urls:
+    artifacts.append(WebLoader().load(url))
+
+# Upsert documentation  into the vector database
+namespace = "shotgrid_api"
+
+for artifact in artifacts:
+    query_engine.vector_store_driver.upsert_text_artifacts({namespace: artifact})
+
+# ...
+```
+
+### Vector Store Client
+
+Now we need to create the VectorStoreClient. This will be the tool we provide to the Agent that tells it how to access the vector database. Much like the ShotGridTool, the VectorStoreClient has a method that allows it to search vector databases.
+
+Because the VectorStoreClient is a Griptape Tool, you can add it to the `import` line where we're already importing `DateTime`
+
+```python title="app.py" hl_lines="4"
+# ...
+
+from griptape.utils import Chat
+from griptape.tools import DateTime, VectorStoreClient
+
+# ...
+```
+
+We can instantiate the tool in `app.py` after upserting the data. We'll provide a `description` so the LLM knows when to use it, and also access to the `query_engine` and `namespace`. 
+
+```python title="app.py" hl_lines="9-15"
+# ...
+
+# Upsert documentation  into the vector database
+namespace = "shotgrid_api"
+
+for artifact in artifacts:
+    query_engine.vector_store_driver.upsert_text_artifacts({namespace: artifact})
+
+# Instantiate the Vector Store Client
+vector_store_tool = VectorStoreClient(
+    description="Contains information about ShotGrid api. Use it to help with ShotGrid client requests.",
+    query_engine=query_engine,
+    namespace=namespace,
+    off_prompt=False,
+)
+
+# ...
+```
+
+### Give to Agent
+
+Lastly, let's give the `vector_store_tool` to the Agent so it can use it.
+
+```python title="app.py" hl_lines="8"
+# ...
+
+# Instantiate the agent
+agent = Agent(
+    tools=[
+        DateTime(off_prompt=False),
+        shotgrid_tool,
+        vector_store_tool
+        # ReverseStringTool(off_prompt=False),
+    ]
+)
+
+# ...
+```
+
+### Try it out
+
+A great way to test is to ask a specific question that the Agent would do better at when reading the supplied documentation.
+
+For example, there is documentation on how [ShotGrid Thinks when updating task dates](https://developers.shotgridsoftware.com/python-api/cookbook/tasks/updating_tasks.html).
+
+If you ask the question: "Tell me how ShotGrid thinks about updating task dates and what are the general rules?"
+
+When provided with the api documentation, the Agent will do the following:
 ```json
-Thought: To find out what projects the user has access to, I need to use the            
-ShotGridTool action with the "find" method. The "find" method will return all the       
-projects that the user has access to.                                                   
-                                                                                        
+Thought: To answer this question, I need to search the ShotGrid API documentation for   
+information about updating task dates. I will use the VectorStoreClient action to do    
+this.                                                                                   
+
 Action:                                                                                 
 {                                                                                       
-"name": "ShotGridTool",                                                               
-"path": "meta_method",                                                                
-"input": {                                                                            
-    "values": {                                                                         
-    "method": "find",                                                                 
-    "params": ["Project", [], ["id", "name"]]                                         
-    }                                                                                   
-}                                                                                     
+    "name": "VectorStoreClient",
+    "path": "search",
+    "input": {
+        "values": {
+            "query": "ShotGrid API update task dates" 
+        }
+    }                                                         
+}                                                                                       
+```
+
+... and then proceed to return a bunch of extremely helpful information.
+
+If you don't provide the api documentations and ask the same question, it gets confused and doesn't provide the right answer. It even hallucinates ShotGrid method that doesn't exist:
+
+```json
+Thought: To answer this question, I need to use the ShotGridTool action to execute the  
+ShotGrid method that provides information about updating task dates.
+
+Action:
+{
+    "name": "ShotGridTool",
+    "path": "meta_method",
+    "input": { 
+        "values":{
+            "method": "get_task_date_update_rules", 
+            "params":[]
+        }        
+    }   
 }                                                                                       
 
+Subtask 6688154d58ab4dd687680ff1c3081ca4
+Response: 'Shotgun' object has no attribute 'get_task_date_update_rules'                
 ```
-
-See how the LLM realized it needed to use the `find` method, and it created it's own list of parameters to pass!
-
-### Test it out - Create
-
-Let's run through another example. In this case we're going to create a new asset in one of our projects. I'll call this one "bob" and give him a description. Be creative - come up with your own character name.
-
-The prompt we'll give will simply be to tell it what project we want to add the asset in, what to name the character, and a bit of a description.
-
-!!! quote
-    Create a new character asset for me in "Demo: Animation with Cuts". Make it named "bob" and give it a description "bob is a legendary hula-hoop dancer"
-
-```text
-Q: Create a new character asset for me in "Demo: Animation with Cuts". Make it named "bob" and give it a description "bob is a legendary hula-hoop dancer"
-processing...
-[12/06/23 06:35:33] INFO     ToolkitTask 974a92cff534416ea06eda9c21519461                                            
-                             Input: Create a new character asset for me in "Demo: Animation with Cuts". Make it named
-                             "bob" and give it a description "bob is a legendary hula-hoop dancer"                   
-[12/06/23 06:35:44] INFO     Subtask ae5a4f62df2c4b24b99170350fcd5cd8                                                
-                             Thought: To create a new character asset, I need to use the ShotGridTool action with the
-                             "create" method. But first, I need to find the id of the "Demo: Animation with Cuts"    
-                             project.                                                                                
-                                                                                                                     
-                             Action: {"name": "ShotGridTool", "path": "meta_method", "input": {"values": {"method":  
-                             "find_one", "params": ["Project", [["name", "is", "Demo: Animation with Cuts"]],        
-                             ["id"]]}}}                                                                              
-[12/06/23 06:35:47] INFO     Subtask ae5a4f62df2c4b24b99170350fcd5cd8                                                
-                             Response: {'type': 'Project', 'id': 85}                                                 
-[12/06/23 06:36:02] INFO     Subtask b8e1809356864a68a11144692e6823a4                                                
-                             Thought: Now that I have the project id, I can use it to create a new character asset   
-                             named "bob" with the description "bob is a legendary hula-hoop dancer".                 
-                             Action: {"name": "ShotGridTool", "path": "meta_method", "input": {"values": {"method":  
-                             "create", "params": ["Asset", {"project": {"type": "Project", "id": 85}, "code": "bob", 
-                             "description": "bob is a legendary hula-hoop dancer", "sg_asset_type": "Character"}]}}} 
-[12/06/23 06:36:04] INFO     Subtask b8e1809356864a68a11144692e6823a4                                                
-                             Response: {'id': 1412, 'project': {'id': 85, 'name': 'Demo: Animation with Cuts',       
-                             'type': 'Project'}, 'code': 'bob', 'description': 'bob is a legendary hula-hoop dancer',
-                             'sg_asset_type': 'Character', 'type': 'Asset'}                                          
-[12/06/23 06:36:10] INFO     ToolkitTask 974a92cff534416ea06eda9c21519461                                            
-                             Output: I have created a new character asset named "bob" with the description "bob is a 
-                             legendary hula-hoop dancer" in the "Demo: Animation with Cuts" project. The asset id is 
-                             1412.                                                                                   
-A: I have created a new character asset named "bob" with the description "bob is a legendary hula-hoop dancer" in the "Demo: Animation with Cuts" project. The asset id is 1412.
-```
-
-There were some really interesting things that happened in this test!
-
-First, the LLM realized it needs the project id to create a new asset - but it wasn't provided with the id. So it performed a `find_one` method first to get the id.
-
-```json
-Thought: To create a new character asset, I need to use the ShotGridTool action with the
-"create" method. But first, I need to find the id of the "Demo: Animation with Cuts"    
-project.                                                                                
-
-Action: {
-    "name": "ShotGridTool", 
-    "path": "meta_method", 
-    "input": {
-        "values": {
-            "method":  "find_one",
-            "params": [
-                "Project", 
-                    [["name", "is", "Demo: Animation with Cuts"]],
-                    ["id"]
-                ]
-            }
-        }
-    }                                                                              
-
-```
-
-Then, once it had the id it could use the `create` method.
-
-```json
-Thought: Now that I have the project id, I can use it to create a new character asset   
-named "bob" with the description "bob is a legendary hula-hoop dancer".      
-
-Action: {
-    "name": "ShotGridTool", 
-    "path": "meta_method", 
-    "input": {
-        "values": {
-            "method":  "create", 
-            "params": [
-                "Asset", {
-                    "project": {"type": "Project", "id": 85}, 
-                    "code": "bob", 
-                    "description": "bob is a legendary hula-hoop dancer", 
-                    "sg_asset_type": "Character"
-                    }
-                ]
-            }
-        }
-    } 
-```
-
-Of course it also returned valuable information we could then use to perform more actions, including the asset id. Also, if you check on the frontend you can see the asset was indeed created with the description _and_ the name of the person who created it.
-
-![Asset Created](assets/img/shotgrid_asset_created.png)
 
 ## Code Review
 
-This was a short, but powerful step. We've modified our ShotGridTool to be able to use the ShotGrid api to execute any method available to it! Let's review the changes in `shotgrid_tool/tool.py`.
+We have certainly improved our Agent in this example - providing it greater context and knowlege about how to interact with the ShotGridTool. Let's review `app.py` and see all the changes that were made.
 
-```python linenums="1" title="shotgrid_tool/tool.py" hl_lines="31-43 46 64-73"
-from __future__ import annotations
-from griptape.artifacts import TextArtifact, ErrorArtifact
-from griptape.tools import BaseTool
-from griptape.utils.decorators import activity
-from schema import Schema, Literal
-from attr import define, field
+```python linenums="1" title="app.py" hl_lines="6-9 16-17 19-20 22-30 32-35 37-38 40-41 43-49 74"
+from dotenv import load_dotenv
+import os
+
+from griptape.structures import Agent
+from griptape.utils import Chat
+from griptape.tools import DateTime, VectorStoreClient
+from griptape.drivers import LocalVectorStoreDriver, OpenAiEmbeddingDriver
+from griptape.engines import VectorQueryEngine
+from griptape.loaders import WebLoader
+
+from reverse_string_tool import ReverseStringTool
+from shotgrid_tool import ShotGridTool
+
+load_dotenv()
+
+# Create the vector database
+vector_store_driver = LocalVectorStoreDriver(embedding_driver=OpenAiEmbeddingDriver())
+
+# Create the query engine
+query_engine = VectorQueryEngine(vector_store_driver=vector_store_driver)
+
+# API Documentation
+shotgrid_api_urls = [
+    "https://developers.shotgridsoftware.com/python-api/reference.html",
+    "https://developers.shotgridsoftware.com/python-api/cookbook/usage_tips.html",
+    "https://developers.shotgridsoftware.com/python-api/cookbook/attachments.html",
+    "https://developers.shotgridsoftware.com/python-api/cookbook/tasks/updating_tasks.html",
+    "https://developers.shotgridsoftware.com/python-api/cookbook/tasks/task_dependencies.html",
+    "https://developers.shotgridsoftware.com/python-api/cookbook/tasks/split_tasks.html",
+]
+
+# Load the API documentation
+artifacts = []
+for url in shotgrid_api_urls:
+    artifacts.append(WebLoader().load(url))
+
+# Upsert documentation  into the vector database
+namespace = "shotgrid_api"
+
+for artifact in artifacts:
+    query_engine.vector_store_driver.upsert_text_artifacts({namespace: artifact})
+
+# Instantiate the Vector Store Client
+vector_store_tool = VectorStoreClient(
+    description="Contains information about ShotGrid api. Use it to help with ShotGrid client requests.",
+    query_engine=query_engine,
+    namespace=namespace,
+    off_prompt=False,
+)
+
+SHOTGRID_URL = os.getenv("SHOTGRID_URL")
+SHOTGRID_API_KEY = os.getenv("SHOTGRID_API_KEY")
+SHOTGRID_SCRIPT = "Griptape API"
+SHOTGRID_USER = os.getenv("SHOTGRID_USER")
+SHOTGRID_PASSWORD = os.getenv("SHOTGRID_PASSWORD")
 
 
-@define
-class ShotGridTool(BaseTool):
-    """
-    Parameters:
-        base_url: Base URL for your your ShotGrid site
-        script_name: The name for your script
-        api_key: The script API key, given to you by ShotGrid
-        user_login: The user login name if login_method is "user"
-        user_password: The user password if login_method is "user"
-        login_method: "api_key" or "user" - depending on the mode of login we want
+# Instantiate the tool
+shotgrid_tool = ShotGridTool(
+    base_url=SHOTGRID_URL,
+    api_key=SHOTGRID_API_KEY,
+    script_name=SHOTGRID_SCRIPT,
+    user_login=SHOTGRID_USER,
+    user_password=SHOTGRID_PASSWORD,
+    login_method="user",
+    off_prompt=False,
+)
 
-    """
+# Instantiate the agent
+agent = Agent(
+    tools=[
+        DateTime(off_prompt=False),
+        shotgrid_tool,
+        vector_store_tool
+        # ReverseStringTool(off_prompt=False),
+    ]
+)
 
-    base_url: str = field(default=str, kw_only=True)
-    script_name: str = field(default=str, kw_only=True)
-    api_key: str = field(default=str, kw_only=True)
-    user_login: str = field(default=str, kw_only=True)
-    user_password: str = field(default=str, kw_only=True)
-    login_method: str = field(default="api_key", kw_only=True)
-
-    @activity(
-        config={
-            "description": "Can be used to execute ShotGrid methods.",
-            "schema": Schema(
-                {
-                    Literal(
-                        "method",
-                        description="Shotgrid method to execute. Example: find_one, find, create, update, delete, revive, upload_thumbnail",
-                    ): str,
-                    Literal(
-                        "params",
-                        description="Dictionary of parameters to pass to the method.",
-                    ): list,
-                }
-            ),
-        }
-    )
-    def meta_method(self, params: dict) -> TextArtifact | ErrorArtifact:
-        import shotgun_api3
-
-        try:
-            if self.login_method == "api_key":
-                sg = shotgun_api3.Shotgun(
-                    self.base_url,  # ShotGrid url
-                    script_name=self.script_name,  # Name of the ShotGrid script
-                    api_key=self.api_key,  # ShotGrid API key
-                )
-
-            else:
-                sg = shotgun_api3.Shotgun(
-                    self.base_url,  # ShotGrid url
-                    login=self.user_login,  # User login
-                    password=self.user_password,  # User password
-                )
-
-            # Get the method name from the params
-            sg_method = getattr(sg, params["values"]["method"])
-
-            # Get the params from the params
-            sg_params = params["values"]["params"]
-
-            # Execute the method with the params
-            sg_result = sg_method(*sg_params)
-
-            return TextArtifact(str(sg_result))  # Return the results of the connection
-
-        except Exception as e:
-            return ErrorArtifact(str(e))
+# Start chatting
+Chat(agent).start()
 ```
 
 ---
 ## Next Steps
-This has been a powerful step - we can do so much now! However, the current implementation relies on the LLM having been trained on data about the ShotGrid api. What if there wasn't much knowledge about it, or if the API has been updated? In the [next section](08_vectorized_docs.md), we'll provide the Agent access to the current API docs for it to use as reference to enhance it's abilities.
+While adding access to the API documentation has improved the performance of the agent significantly, we can keep improving it by providing some Rules and Rulesets, ensuring the agent knows when to use the VectorStore, and also giving it hints as to how to use the API more efficiently. That will be coming up in the next section.
