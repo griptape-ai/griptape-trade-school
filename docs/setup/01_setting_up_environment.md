@@ -34,7 +34,7 @@ If you have [Homebrew](https://brew.sh) installed:
     If you don't have Homebrew, you can install Python from the official website as mentioned above.
 
 !!! success "You did it!"
-    Congratulations, you've got Python!
+Congratulations, you've got Python!
 
 ## Visual Studio Code
 
@@ -47,7 +47,7 @@ Visual Studio Code (VS Code) provides the perfect environment for our Python cod
 3. Run the installer and follow the prompts
 
 !!! success
-    VS Code is now installed!
+VS Code is now installed!
 
 ### Creating the Project Folder
 
@@ -60,7 +60,7 @@ mkdir griptape-starter
 cd griptape-starter
 ```
 
-This creates a new folder called "griptape_starter" and moves into it.
+This creates a new folder called "griptape_intro" and moves into it.
 
 Alternatively, feel free to open up **Visual Studio Code** and create a new folder:
 
@@ -122,7 +122,7 @@ To be sure that your virtual environment is set up correctly, we'll check by ope
 ![Alt text](assets/img/01_griptape-starter-terminal.png)
 
 !!! note
-      You should see `.venv` in your prompt. If you don't see it, please run through the previous documentation to try again, or check out the [TroubleShooting](#execution-policy) section of this tutorial.
+You should see `.venv` in your prompt. If you don't see it, please run through the previous documentation to try again, or check out the [TroubleShooting](#execution-policy) section of this tutorial.
 
 ## Troubleshooting
 
@@ -131,8 +131,7 @@ To be sure that your virtual environment is set up correctly, we'll check by ope
 On some Windows systems, you may get an error that says something similar to:
 
 !!! failure
-
-    .venv\Scripts\Activate.ps1 cannot be loaded because running scripts is disabled on this system.
+.venv\Scripts\Activate.ps1 cannot be loaded because running scripts is disabled on this system.
 
 This is due to an execution policy. Don't worry, it's pretty easy to resolve.
 
@@ -147,7 +146,7 @@ This is due to an execution policy. Don't worry, it's pretty easy to resolve.
 2. Verify this worked by closing the Terminal and re-opening it. You should be able to execute scripts now without any errors.
 
 !!! info
-    You can learn more about Windows Execution Policies in the [Set-ExecutionPolicy documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.security/set-executionpolicy?view=powershell-7.3).
+You can learn more about Windows Execution Policies in the [Set-ExecutionPolicy documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.security/set-executionpolicy?view=powershell-7.3).
 
 ---
 
