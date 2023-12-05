@@ -1,4 +1,4 @@
-Welcome to the first step of our journey into creating a conversational chatbot! In this section, we will be focusing on setting up our work environment, which is the first step to any coding project. 
+As with any project, the first step is setting up your environment. Let's get started by ensuring you have a project structure ready to work with.
 
 ### Prerequisites
 
@@ -7,7 +7,7 @@ Welcome to the first step of our journey into creating a conversational chatbot!
 
 1. **Code Editor**: We recommend using **Visual Studio Code** for this course, due to its handy features and Python support. However, if you have another favorite IDE or text editor, feel free to use that! 
 
-2. **Python3.11**: Griptape requires Python 3.11.
+2. **Python3.11+**: Griptape requires Python 3.11.
 
 3. **Python Environment Manager (for VS Code users)**: This extension is not a hard requirement, but it does make managing your Python environments a lot easier. 
 
@@ -19,26 +19,18 @@ Got everything installed? Awesome! Now, let's get started setting up our project
 
 Following the instructions in [Griptape Setup - Visual Studio Code ](../../setup/01_setting_up_environment.md) please:
 
-1. Create your project folder. Example: `griptape-chatbot-with-rulesets-cli`
+1. Create your project folder. Example: `griptape-compare-movies-workflow`
 2. Set up your virtual environment
 3. Ensure you `pip install griptape python-dotenv`
 4. Create a `.env` file with your `OPENAI_API_KEY`
 5. Create your `app.py` file with the following code:
 
-```python
+```py title="app.py" linenums="1"
 from dotenv import load_dotenv
 
-from griptape.structures import Agent
-
 load_dotenv() # Load your environment
-
-# Create an agent
-agent = Agent()
-
-# Run the agent
-agent.run("I'm ready to chat.")
 ```
 
 ---
-
-And there we have it, our coding environment is all set up! In the next section [The Chat Utility](03_the_chat_utility.md), we'll look at one of the quickest ways of creating a Chatbot with Griptape.
+## Next Steps
+And there we have it, your environment is all set up! In the next section [ShotGrid](02_shotgrid.md), you'll sign up for an Autodesk ShotGrid trial account if you don't already have one.
