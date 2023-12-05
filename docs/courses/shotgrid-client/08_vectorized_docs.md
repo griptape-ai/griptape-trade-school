@@ -399,4 +399,4 @@ Chat(agent).start()
 
 ---
 ## Next Steps
-This has been a powerful step - we can do so much now! However, the current implementation relies on the LLM having been trained on data about the ShotGrid api. What if there wasn't much knowledge about it, or if the API has been updated? In the [next section](08_vectorized_docs.md), we'll provide the Agent access to the current API docs for it to use as reference to enhance it's abilities.
+While adding access to the API documentation has improved the performance of the agent significantly, we can keep improving it by providing some Rules and Rulesets, ensuring the agent knows when to use the VectorStore, and also giving it hints as to how to use the API more efficiently. That will be coming up in the next section.
