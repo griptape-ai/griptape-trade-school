@@ -21,11 +21,5 @@ Here's a list of resources to help you gain momentum and build your knowledge:
 
 - **OpenAI API**: Understand how OpenAI's API works. The [OpenAI API Documentation](https://platform.openai.com/docs/) is a great place to start.
 
-## Additional Links
-
-- **Language Learning Models (LLMs)**: Get a broader understanding of LLMs and how they're revolutionizing the field of AI. Here are some useful links:
-  - [What are Language Models?](https://lambdalabs.com/blog/what-are-language-models/)
-  - [Language Learning Models Explained](https://www.analyticsvidhya.com/blog/2021/09/language-learning-models-explained/)
-
 These resources will give you a deeper understanding and greater control as you navigate the landscape of programming with Python and Griptape. Happy coding!
 
