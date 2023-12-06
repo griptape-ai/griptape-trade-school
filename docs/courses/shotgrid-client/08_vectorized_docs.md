@@ -399,4 +399,4 @@ Chat(agent).start()
 
 ---
 ## Next Steps
-While adding access to the API documentation has improved the performance of the agent significantly, we can keep improving it by providing some Rules and Rulesets, ensuring the agent knows when to use the VectorStore, and also giving it hints as to how to use the API more efficiently. That will be coming up in the next section.
+While adding access to the API documentation has improved the performance of the agent significantly, we can keep improving it by providing some Rules and Rulesets, ensuring the agent knows when to use the VectorStore, and also giving it hints as to how to use the API more efficiently. That will be coming up in the [next section](09_rules.md).
