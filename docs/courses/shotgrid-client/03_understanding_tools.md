@@ -36,7 +36,7 @@ agent = Agent()
 Chat(agent).start()
 ```
 
-Here's the code in it's entirety:
+Here's the code in its entirety:
 
 ```python linenums="1" title="app.py"
 from dotenv import load_dotenv
@@ -140,7 +140,7 @@ Adding a tool is a relatively straightforward process. You simply `import` it, c
     A: Today is December 2, 2023.
     ```
 
-Notice the highlighted section above. This is the `subtask`, where the Agent is using Chain-of-thought to figure out what to do. It recognizes the need to use one of activities - in this case `get_current_datetime` to get the result.
+Notice the highlighted section above. This is the `subtask`, where the Agent is using Chain-of-thought to figure out what to do. It recognizes the need to use one of its activities - in this case `get_current_datetime` to get the result.
 
 Take a look at the `Action`:
 
@@ -166,14 +166,14 @@ Let's take a look at the `DateTime` class itself and see if we can determine wha
     from griptape.tools import DateTime
     ```
 
-* Hover over `DateTime` and choose `Ctrl+Click` (`Cmd+Click` on Mac). This will open the DateTime class for Griptape in your editor.
+* Hover over `DateTime` and `Ctrl+Click` (`Cmd+Click` on Mac). This will open the DateTime class for Griptape in your editor.
 
     !!!tip
         In Visual Studio Code, you can navigate to the Definition of a class by using `Ctrl+Click` (`Cmd+Click` on Mac). Learn more in the [documentation](https://code.visualstudio.com/docs/editor/editingevolved#_go-to-definition).
 
     ![DateTime](assets/img/DateTime.png)
 
-    As you can see in the editor, this is the DateTime class, ready for you to inspect. Jumping around between definitions of classes and functions you use is a very handy way to learn more about how tools are implement. 10 stars - would highly recommend.
+    As you can see in the editor, this is the DateTime class, ready for you to inspect. Jumping around between definitions of classes and functions you use is a very handy way to learn more about how tools are implemented. 10 stars - would highly recommend.
 
 ### Tool Structure
 
@@ -245,7 +245,7 @@ class DateTime(BaseTool):
 
 ```
 
-And each `method` has it's associated `activity`.
+And each `method` has its associated `activity`.
 
 ```python hl_lines="4 8-13"
 # ...
@@ -342,9 +342,9 @@ def get_current_datetime(self, _: dict) -> BaseArtifact:
 * `except` Block:
     * Code doesn't always work as expected, and the `except` block is what happens if `try` encounters an error.
     * `Exception as e` part catches any error and stores it in a variable `e`.
-    * Simply put, the `excpet` block says "If there was a problem in `try`, let's do this instead.
+    * Simply put, the `except` block says "If there was a problem in `try`, let's do this instead.
     
-Using `try/except` is always good practice, *especially* with tools in Griptape. One of the benefits of using this is that `ErrorArtifacts` *get passed back to Griptape*. This means Griptape can evaluate the error, and try again - often fixing it's own mistake!
+Using `try/except` is always good practice, *especially* with tools in Griptape. One of the benefits of using this is that `ErrorArtifacts` *get passed back to Griptape*. This means Griptape can evaluate the error, and try again - often fixing its own mistake!
 
 #### Return
 
@@ -440,7 +440,7 @@ This is why working with Griptape Tools starts to get really exciting - once you
 
 ### Schema
 
-Schemas are how we define what parameters are going to be passed to the method. They are like a checlist for data. They're a set of rules that describe what kind of data you expect, and how it should be structured.
+Schemas are how we define what parameters are going to be passed to the method. They are like a checklist for data. They're a set of rules that describe what kind of data you expect, and how it should be structured.
 
 For example, if you are creating a schema for a person you might say:
 
@@ -501,7 +501,7 @@ It's possible to also provide *optional* parameters with Schemas. For example, i
 
 Throughout this section we've explored quite a bit about Griptape Tools. We learned how to import and use them, how they're structured, and what `methods` and `activities` are. You understand `schemas` and how they allow you to pass parameters to various `methods`.
 
-Before continuing, let's look at our app in it's current state where you can chat with the agent and ask important questions, like how much time you have before my birthday (April 3rd).
+Before continuing, let's look at our app in its current state where you can chat with the agent and ask important questions, like how much time you have before my birthday (April 3rd).
 
 
 ```python title="app.py" linenums="1"

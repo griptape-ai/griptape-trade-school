@@ -70,4 +70,4 @@ Congratulations! You should now see your ShotGrid desktop and are all set to sta
 
 ---
 ## Next Steps
-Now that you have your environment set up and access to ShotGrid, you're ready to get started with Griptape Tools. In the [next section](03_understanding_tools.md), we'll get started by using one of Griptape's built in tools ([DateTime](https://docs.griptape.ai/en/latest/griptape-tools/official-tools/date-time/)) and understand how it works.
+Now that you have your environment set up and access to ShotGrid, you're ready to get started with Griptape Tools. In the [next section](03_understanding_tools.md), we'll get started by using one of Griptape's built-in tools ([DateTime](https://docs.griptape.ai/en/latest/griptape-tools/official-tools/date-time/)) and understand how it works.
