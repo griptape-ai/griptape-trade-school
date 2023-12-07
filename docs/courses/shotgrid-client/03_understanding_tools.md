@@ -91,9 +91,9 @@ As you can see, the LLM does not have access to any tools that tell it what day 
 
 ## Adding Tools
 
-Griptape Tools allow you to add functionality that Griptape structures (Agents, Pipelines, Workflows) can use. We'll use the DateTime tool to give the agent the ability to figure out the current time. For more information on the DateTime tool, you can visit the [DateTime Tool Documentation](https://docs.griptape.ai/en/latest/griptape-tools/official-tools/date-time/). 
+Griptape Tools allow you to add functionality that Griptape Structures (Agents, Pipelines, Workflows) can use. We'll use the DateTime tool to give the agent the ability to figure out the current time. 
 
-Adding a tool is a relatively straightforward process. You simply `import` it, configure it if necessary, and then give it to the Agent (or task). Some tools are more complicated than others, which is why we're getting started with a nice simple one.
+Adding a tool is a straightforward process. You `import` it, configure it if necessary, and then give it to the Agent (or task). Some tools are more complicated than others, which is why we're getting started with a nice simple one.
 
 ### Include DateTime
 
@@ -116,7 +116,10 @@ Adding a tool is a relatively straightforward process. You simply `import` it, c
     ```
 
     !!!tip "What is "off_prompt"?"
-        **Important Note**: Griptape directs outputs from tool activities into short-term [TaskMemory](https://docs.griptape.ai/en/latest/griptape-framework/tools/task-memory/), keeping them 'off_prompt' and secure from the LLM. To change this default for more direct interaction with the LLM, set the `off_prompt` parameter to `False`. This allows the LLM to access and respond to tool outputs directly.
+        **Important Note**: Griptape directs outputs from tool activities into short-term [TaskMemory](https://docs.griptape.ai/en/latest/griptape-framework/tools/task-memory/), keeping them 'off_prompt' and separate from the LLM. This makes it easy to work with big data securely and with low latency. To change this default for more direct interaction with the LLM, set the `off_prompt` parameter to `False`. This allows the LLM to access and respond to tool outputs directly.
+
+    !!!abstract "DateTime"
+        For more information on the DateTime tool, you can visit the [DateTime Tool Documentation](https://docs.griptape.ai/en/latest/griptape-tools/official-tools/date-time/). 
 
 ### Try it again
 
@@ -146,7 +149,7 @@ Adding a tool is a relatively straightforward process. You simply `import` it, c
     A: Today is December 2, 2023.
     ```
 
-Notice the highlighted section above. This is the `subtask`, where the Agent is using Chain-of-thought to figure out what to do. It recognizes the need to use one of its activities - in this case `get_current_datetime` to get the result.
+Notice the highlighted section above. This is the `subtask`, where the Agent is using [Chain-of-Thought](https://www.promptingguide.ai/techniques/cot) to figure out what to do. It recognizes the need to use one of its activities - in this case `get_current_datetime` to get the result.
 
 Take a look at the `Action`:
 
@@ -175,7 +178,7 @@ Let's take a look at the `DateTime` class itself and see if we can determine wha
 * Hover over `DateTime` and `Ctrl+Click` (`Cmd+Click` on Mac). This will open the DateTime class for Griptape in your editor.
 
     !!!tip
-        In Visual Studio Code, you can navigate to the Definition of a class by using `Ctrl+Click` (`Cmd+Click` on Mac). Learn more in the [documentation](https://code.visualstudio.com/docs/editor/editingevolved#_go-to-definition).
+        In Visual Studio Code, you can navigate to the Definition of a class by using `Ctrl+Click` (`Cmd+Click` on Mac). See the [documentation](https://code.visualstudio.com/docs/editor/editingevolved#_go-to-definition) to learn more about Visual Studio Code tips for code navigation.
 
     ![DateTime](assets/img/DateTime.png)
 
@@ -187,11 +190,23 @@ In Griptape, a "tool" is a `Class`. It is a blueprint that defines the propertie
 
 Each tool has `activities` and `methods`.
 
+```python
+# Example of a very simple class with an activity and method
+
+class SayHello():
+    @activity(config={
+        "description": "Can be used to say Hello!"
+        }
+    )
+    def say_hello():
+        return TextArtifact("Hello!")
+```
+
 #### Methods
-Methods are functions that are associated with a class. In the case of the `DateTime` tool, it has a few methods - `get_current_datetime` and `get_relative_datetime`. They define specific actions the tool can perform.
+Methods define the actions that the Tool can perform.MThey are implemented as Python functions in the class. In the case of the `DateTime` tool, it has a few methods - `get_current_datetime` and `get_relative_datetime`. They define specific actions the tool can perform.
 
 #### Activities
-Activities are Python decorators that add information and certain features to methods - kind of like attaching a label or instruction. For example the `@activity` decorator in `DateTime` describes what the `get_current_datetime` method does ("Can be used to return current date and time"), and how it should behave.
+Activities tell the LLM what the action does and when it might want to use it - kind of like attaching a label or instruction. They are implemented as a decorator above the Python method. For example the `@activity` decorator in `DateTime` describes what the `get_current_datetime` method does ("Can be used to return current date and time"), and how it should behave.
 
 ### DateTime Structure
 
@@ -230,7 +245,7 @@ class DateTime(BaseTool):
 
 ```
 
-If you look carefully, you can see there are **two** `methods`: `get_current_datetime` and `get_relative_datetime`.
+Notice there are **two** `methods`: `get_current_datetime` and `get_relative_datetime`.
 
 ```python hl_lines="5 14"
 # ...
@@ -310,7 +325,7 @@ def get_current_datetime(self, _: dict) -> BaseArtifact:
 
 * `-> BaseArtifact`: This indicates that the method will *return* an object of type `BaseArtifact`. Griptape provides various artifacts, including Text, List, Blob, etc. You can learn more about them in the [documentation](https://docs.griptape.ai/en/latest/griptape-framework/data/artifacts/). 
 
-Since we're not using `self`, or `_` in this method, and Python is a dynamically typed language, we don't need to specify what a function will return. We could probably be write this method simply as:
+Since we're not using `self`, or `_` in this method, and Python is a dynamically typed language, we don't need to specify what a function will return. We could probably be write this method as:
 
 ```python
 def get_current_datetime():
@@ -350,7 +365,7 @@ def get_current_datetime(self, _: dict) -> BaseArtifact:
     * `Exception as e` part catches any error and stores it in a variable `e`.
     * Simply put, the `except` block says "If there was a problem in `try`, let's do this instead.
     
-Using `try/except` is always good practice, *especially* with tools in Griptape. One of the benefits of using this is that `ErrorArtifacts` *get passed back to Griptape*. This means Griptape can evaluate the error, and try again - often fixing its own mistake!
+Using `try/except` is always good practice, *especially* with tools in Griptape. One of the benefits of using this is that `ErrorArtifacts` *get passed back to Griptape*. This means Griptape can evaluate the error, and try again - often fixing mistakes the LLM made in it's query!
 
 #### Return
 
@@ -365,7 +380,7 @@ def get_current_datetime(self, _: dict) -> BaseArtifact:
 
 ```
 
-Finally, the `return` statements. Whatever is in these will be returned to the subtask in order to continue. As mentioned in the `try/except` section above, `ErrorArtifacts` are really important to return because it allows Griptape to try again.
+Finally, the `return` statements. Whatever is in these will be returned to the subtask in order to continue. As mentioned in the `try/except` section above, `ErrorArtifacts` are important to return because it allows Griptape to try again.
 
 ### Activities
 
@@ -442,7 +457,7 @@ Before we dive into the parameters, there are two things worth pointing out:
 1. We didn't specify the number of steps it should take to get to the answer. We just asked one somewhat ambiguous question and the LLM figured out that it would take two tasks - getting the current date, and then getting the relative date.
 2. We also didn't specify the `relative_date_string` key/value pair. We didn't need to. The LLM saw what key/value pairs the `get_relative_datetime` method required, and figured out how to pass them. 
 
-This is why working with Griptape Tools starts to get really exciting - once you define the parameters clearly, the LLM can figure out the right way to pass the data.
+This is why working with Griptape Tools starts to get really exciting - once you define the parameters, the LLM can figure out the right way to pass the data.
 
 ### Schema
 
