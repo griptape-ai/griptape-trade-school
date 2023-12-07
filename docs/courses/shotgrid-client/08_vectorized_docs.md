@@ -3,7 +3,7 @@
 ## Overview
 We have the ability to connect to the ShotGrid API and execute commands, but the knowledge the LLM has is restricted to what it was trained on. Let's provide the LLM with access to the most recent documentation, so it can use that to get more data.
 
-The trick is that we want to allow the LLM to get access to this data _quickly_. We want it to be able to know how to find the right commands for the types of tasks we want to execute without needing to know _exactly_ that the method is `find` or `create` or `find_one`.
+The trick is that we want to allow the LLM to get access to this data _quickly_. We want it to be able to know how to find the right commands for the types of tasks we want to execute without needing to know _exactly_ what the method is `find` or `create` or `find_one`.
 
 Well, luckily Autodesk has provided pretty extensive API documentation available here: [https://developers.shotgridsoftware.com/python-api/reference.html#](https://developers.shotgridsoftware.com/python-api/reference.html#). There are additional pages available as well.
 
@@ -11,24 +11,24 @@ We can provide this documentation to the LLM by creating a **Vector Store** of d
 
 ## What is "Vector Storage"
 
-You can think of vector storage like a huge, organized bookshelf in a library where each book represents a piece of information, or data. In this library, instead of books being sorted by author or title, they're organized based on their content's "features" or "characteristics".
+You can think of vector storage as a huge, organized bookshelf in a library where each book represents a piece of information or data. In this library, instead of books being sorted by author or title, they're organized based on their content's "features" or "characteristics".
 
 Now imagine each book has a summary that describes its key points, and these summaries are used to arrange the books on the shelves. In vector storage, this summary is like a 'vector' - a list of numbers that represent the key features of the data. These vectors help in quickly finding the right book (or data) that you need.
 
-When you want to find information related to a specific topic, the librarian quickly scans through these summaries and finds the books that closely match what you're looking for. This is much faster than reading all the books in their entirety, or going through it in random order.
+When you want to find information related to a specific topic, the librarian quickly scans through these summaries and finds the books that closely match what you're looking for. This is much faster than reading all the books in their entirety or going through them in random order.
 
 In technical terms, the data is converted into vectors (numerical representations) allowing for quick and accurate searches based on similarities in the vectors.
 
-This means I can ask for "ways to filter asset creation" and "asset creation, filtering methods" and "hey, can you filter the results for creating assets?" and get the same helpful information back!
+This means I can ask for "ways to filter asset creation" "asset creation, filtering methods" and "Hey, can you filter the results for creating assets?" and get the same helpful information back!
 
 ## Vector Storage Process
 
 The process for providing the docs to the LLM looks like this:
 
-1. Create a Vector Database where we can store the documents. In this example we'll use a simple [Local Vector Store Driver](https://docs.griptape.ai/en/latest/griptape-framework/data/vector-store-drivers/#local-vector-store-driver).
+1. Create a Vector Database where we can store the documents. In this example, we'll use a simple [Local Vector Store Driver](https://docs.griptape.ai/en/latest/griptape-framework/data/vector-store-drivers/#local-vector-store-driver).
 2. Create a [Vector Query Engine](https://docs.griptape.ai/en/latest/griptape-framework/data/query-engines/#vectorqueryengine) - an engine that's really good at searching Vector Databases
 3. Create a list of URLs to vectorize.
-4. For each url, load the data using a [WebLoader](https://docs.griptape.ai/en/latest/griptape-framework/data/loaders/#web-loader).
+For each URL, load the data using a [WebLoader](https://docs.griptape.ai/en/latest/griptape-framework/data/loaders/#web-loader).
 5. For each bit of website data, upsert (update/insert) it into the Vector Store.
 6. Create a [Vector Store Client (Tool)](https://docs.griptape.ai/en/latest/griptape-tools/official-tools/vector-store-client/) that has access to the data and the query engine.
 7. Give the Vector Store Client to the Agent.
@@ -64,7 +64,7 @@ Let's start by creating the Vector Database. We're going to use Griptape's [Loca
 !!! tip
     You could also use [Pinecone](https://www.pinecone.io/), [Marqo](https://www.marqo.ai/), [MongoDB](https://www.mongodb.com/atlas/database), [Redis](https://redis.io/), [OpenSearch](https://opensearch.org/), or [PGVector](https://github.com/pgvector/pgvector) - all are available as drivers for Griptape as described [in the documentation](https://docs.griptape.ai/en/latest/griptape-framework/data/vector-store-drivers/).
 
-Modify `app.py` to import the required drivers. In the case of the the Local Vector Store Driver we also need an Embedding Driver. We'll use the one from OpenAI, but you could also use one of the [other drivers](https://docs.griptape.ai/en/latest/griptape-framework/data/embedding-drivers/) available for Griptape.
+Modify `app.py` to import the required drivers. In the case of the Local Vector Store Driver, we also need an Embedding Driver. We'll use the one from OpenAI, but you could also use one of the [other drivers](https://docs.griptape.ai/en/latest/griptape-framework/data/embedding-drivers/) available for Griptape.
 
 ```python title="app.py" hl_lines="5"
 # ...
@@ -93,7 +93,7 @@ vector_store_driver = LocalVectorStoreDriver(embedding_driver=OpenAiEmbeddingDri
 
 Now that we have a database, we need a way to query it. This will be done using Griptape's [VectorQueryEngine](https://docs.griptape.ai/en/latest/griptape-framework/data/query-engines/#vectorqueryengine) which takes a `vector_store_driver`. Luckily we just created one!
 
-First import the engine into Gritpape by adding it to the imports section of your app.
+First, import the engine into Gritpape by adding it to the imports section of your app.
 
 ```python title="app.py" hl_lines="3"
 # ...
@@ -119,7 +119,7 @@ query_engine = VectorQueryEngine(vector_store_driver=vector_store_driver)
 
 ### Gather URLs
 
-The relevant ShotGrid API documentation is available split over six web pages. The first is a general api reference page, and the rest are in their "cookbook". We'll create a list of these.
+The relevant ShotGrid API documentation is available split over six web pages. The first is a general API reference page, and the rest are in their "cookbook". We'll create a list of these.
 
 Add the following lines after creating the query engine.
 
@@ -143,7 +143,7 @@ shotgrid_api_urls = [
 
 ### Load URL Content
 
-There are a number of Loaders available for Griptape to allow you to load textual data. You can load from the web, from pdf, sql, csv, and more. Review all the details in our [Loader documentation](https://docs.griptape.ai/en/latest/griptape-framework/data/loaders/).
+There are a number of Loaders available for Griptape to allow you to load textual data. You can load from the web, from pdf, SQL, CSV, and more. Review all the details in our [Loader documentation](https://docs.griptape.ai/en/latest/griptape-framework/data/loaders/).
 
 In this case, we will be using the WebLoader to load the data from the HTML pages.
 
@@ -268,7 +268,7 @@ For example, there is documentation on how [ShotGrid Thinks when updating task d
 
 If you ask the question: "Tell me how ShotGrid thinks about updating task dates and what are the general rules?"
 
-When provided with the api documentation, the Agent will do the following:
+When provided with the API documentation, the Agent will do the following:
 ```json
 Thought: To answer this question, I need to search the ShotGrid API documentation for   
 information about updating task dates. I will use the VectorStoreClient action to do    
@@ -288,7 +288,7 @@ Action:
 
 ... and then proceed to return a bunch of extremely helpful information.
 
-If you don't provide the api documentations and ask the same question, it gets confused and doesn't provide the right answer. It even hallucinates ShotGrid method that doesn't exist:
+If you don't provide the API documentation and ask the same question, it gets confused and doesn't provide the right answer. It even hallucinates the ShotGrid method that doesn't exist:
 
 ```json
 Thought: To answer this question, I need to use the ShotGridTool action to execute the  
@@ -312,7 +312,7 @@ Response: 'Shotgun' object has no attribute 'get_task_date_update_rules'
 
 ## Code Review
 
-We have certainly improved our Agent in this example - providing it greater context and knowlege about how to interact with the ShotGridTool. Let's review `app.py` and see all the changes that were made.
+We have certainly improved our Agent in this example - providing it with greater context and knowledge about how to interact with the ShotGridTool. Let's review `app.py` and see all the changes that were made.
 
 ```python linenums="1" title="app.py" hl_lines="6-9 16-17 19-20 22-30 32-35 37-38 40-41 43-49 74"
 from dotenv import load_dotenv

@@ -4,14 +4,14 @@
 
 Interacting with the ShotGrid Tool via a chatbot is one way of working with it, but frequently you'll want to run tasks in a more directed flow. For example, what if you wanted to generate a thumbnail image for a newly created asset?
 
-Using a Griptape Pipeline, you can execute a series of tasks consistently, intead of trying to direct an Agent. For example, you can build a Pipeline that will:
+Using a Griptape Pipeline, you can execute a series of tasks consistently, instead of trying to direct an Agent. For example, you can build a Pipeline that will:
 
-1. When given an asset id, look up the name and description from ShotGrid using the ShotGrid Tool.
+1. When given an asset ID, look up the name and description from ShotGrid using the ShotGrid Tool.
 2. Generate a prompt for an Image Generation engine to create a thumbnail image in a particular style.
 3. Create the thumbnail.
 4. Use the ShotGrid Tool to upload the thumbnail back to the asset.
 
-In this section, we'll build this exact flow. Note, this is a bit more of an advanced flow.
+In this section, we'll build this exact flow. Note, that this is a bit more of an advanced flow.
 
 ## Importing 
 
@@ -38,7 +38,7 @@ shotgrid_agent_ruleset = Ruleset(
 
 ### Act as...
 
-We want the agent to have the correct context for it's work, so the first ruleset will tell it to act as a studio coordinator who is an expert in Autodesk ShotGrid
+We want the agent to have the correct context for its work, so the first ruleset will tell it to act as a studio coordinator who is an expert in Autodesk ShotGrid
 
 Create a parameter for `rules`, and then add this first rule to the list of rules:
 
@@ -58,7 +58,7 @@ shotgrid_agent_ruleset = Ruleset(
 
 ### Main objective
 
-Sometimes it's helpful to remind the LLM what it's main objective is. In this case, we want to remind it that we want it to update ShotGrid using the ShotGridTool.
+Sometimes it's helpful to remind the LLM what its main objective is. In this case, we want to remind it that we want it to update ShotGrid using the ShotGridTool.
 
 ```python title="app.py" hl_lines="8-10"
 # ...
@@ -121,7 +121,7 @@ shotgrid_agent_ruleset = Ruleset(
 
 ### Batch mode
 
-ShotGrid provides access to a `batch` method which allows you to perform multiple create, update, and delete operations in a single request. Each operation in the batch is specified as a dictionary, and the operations are performed in the order they are provided.
+ShotGrid provides access to a `batch` method that allows you to perform multiple create, update, and delete operations in a single request. Each operation in the batch is specified as a dictionary, and the operations are performed in the order they are provided.
 
 We would like to ensure the Agent uses batch mode when appropriate. 
 
@@ -148,7 +148,7 @@ shotgrid_agent_ruleset = Ruleset(
 
 !!! tip
     While working on the rule for batch mode, I found that the LLM was sometimes not using it and would jump to
-    just using create, or update methods instead. I asked the agent itself for a good rule to enforce using the `batch` method, and it came up with this very strict rule.
+just using create or update methods instead. I asked the agent for a good rule to enforce using the `batch` method, and it came up with this very strict rule.
 
     And .. it worked! Sometimes just asking the LLM for the best rule provides excellent results.
 
@@ -257,7 +257,7 @@ Go ahead and interact with the agent. Work with different projects, create and u
 
 ## Clean up
 
-Before moving on to the next section, let's remove some unused code from our app. We are no longerusing the ReverseStringTool, so you can happily remove it from the `imports` section, and also remove it from your Agent.
+Before moving on to the next section, let's remove some unused code from our app. We are no longer using the ReverseStringTool, so you can happily remove it from the `imports` section, and also remove it from your Agent.
 
 ## Code Review
 
