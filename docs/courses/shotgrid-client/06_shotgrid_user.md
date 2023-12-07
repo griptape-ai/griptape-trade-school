@@ -1,36 +1,36 @@
 # User Authentication with ShotGrid
 
 ## Overview
-We have our ShotGrid tool that authenticates via API Key. However, there are times where it's more suitable to authenticate via Username/Password. In fact, *most* of the time you will work with the ShotGrid API, you'll want to do so as a user, since it simulates the user interacting via the UI.
+We have our ShotGrid tool that authenticates via API Key. However, there are times when it's more suitable to authenticate via Username/Password. In fact, *most* of the time you will work with the ShotGrid API, you'll want to do so as a user, since it simulates the user interacting via the UI.
 
 In this section, we'll add authentication via Username/Password - and provide an option for you to choose which method of authentication you'd like when you instantiate the class.
 
 ## Setting up User Authentication
 
-Authenticating as a user for shotgrid requires a specific step by your users. They need to create a **Personal Access Token** on their [Autodesk profile page](https://profile.autodesk.com/security), and then _bind_ that token to their ShotGrid account.
+Authenticating as a user for ShotGrid requires a specific step by your users. They need to create a **Personal Access Token** on their [Autodesk profile page](https://profile.autodesk.com/security), and then _bind_ that token to their ShotGrid account.
 
 Once they do that, then they can authenticate via the ShotGrid API with their username and password.
 
 Both Username/Password _and_ the Personal Access Token _must be set up_ in order for authentication to work.
 
-Autodesk has documentation on this [on their website](https://help.autodesk.com/view/SGSUB/ENU/?guid=SG_Migration_mi_migration_account_mi_end_user_account_html), however I'll go through the steps here.
+Autodesk has documentation on this on their [website](https://help.autodesk.com/view/SGSUB/ENU/?guid=SG_Migration_mi_migration_account_mi_end_user_account_html), however, I'll go through the steps here.
 
 !!! tip "Important"
     These are steps the _user_ must take. You are not able to do this for them - any user you have in your studio must set up their own Personal Access Token and bind it to their ShotGrid account.
 
-### Create Personal Access Token
+### Create a Personal Access Token
 
 In this step, you will create a **personal access token** (PAT) and copy the token code. You will then use this and assign it to your ShotGrid account.
 
 1. Have the user log into their [Autodesk profile page](https://help.autodesk.com/view/SGSUB/ENU/?guid=SG_Migration_mi_migration_account_mi_end_user_account_html)
 
-2. Scroll down to **Personal access tokens**
+2. Scroll down to **Personal Access tokens****
 
 3. Choose **Generate**
 
 4. For **Product scope** choose **ShotGrid**
 
-5. For **Token name** choose **griptape-demo**
+5. For the **Token name** choose **griptape-demo**
 
 6. Choose **Generate**
 
@@ -48,7 +48,7 @@ You now have a **personal access token**.
 
 2. In your User Menu on the upper right of your screen, choose **[Account Settings](https://griptape-demo.shotgrid.autodesk.com/page/account_settings)**.
 
-3. Choose **Legacy Login and Personal Access Token** in the left hand sidebar.
+3. Choose **Legacy Login and Personal Access Token** in the left-hand sidebar.
 
     ![Personal Access Token](assets/img/shotgrid_pat.png)
 
@@ -69,7 +69,7 @@ It's also important that the user has a **Legacy Login** username and password. 
 
 In production, you will most likely have a method for having a user log in to ShotGrid, either through the ShotGrid Toolkit, or some other method.
 
-For the purposes of this course, we're going to use Environment Variables to store the username and password for simplicty sake. Please replace this method with your own favoriate method at a later date.
+For the purposes of this course, we're going to use Environment Variables to store the username and password for simplicity's sake. Please replace this method with your own favorite method at a later date.
 
 Open your `.env` file and add the `SHOTGRID_USER` and `SHOTGRID_PASSWORD`.
 
@@ -83,7 +83,7 @@ SHOTGRID_PASSWORD=supersecretpassword123
 
 ## Modify `tool.py` 
 
-Next we'll modify `shotgrid_tool/tool.py` to be able to accept the username and password. We'll also add another parameter `login_method` to determine if we're going to authenticate with an api key, or with a username.
+Next, we'll modify `shotgrid_tool/tool.py` to be able to accept the username and password. We'll also add another parameter `login_method` to determine if we're going to authenticate with an API key, or with a username.
 
 ### Add parameters
 
@@ -126,46 +126,17 @@ class ShotGridTool(BaseTool):
 Next, we'll add the two different methods of instantiating Shotgun - one where we use the api_key as we have been, and the other where we use the username/login.
 
 In the `try:` section of the `get_session_token` method, let's add an if/then statement, and the resulting logic:
-
-```python title="shotgrid_tool/tool.py" hl_lines="7-20"
-# ...
-
-    def get_session_token(self, _: dict) -> TextArtifact | ErrorArtifact:
-        import shotgun_api3
-
-        try:
-            if self.login_method == "api_key": 
-                print ('Logging in with API Key')
-                sg = shotgun_api3.Shotgun(
-                    self.base_url,  # ShotGrid url
-                    script_name=self.script_name,  # Name of the ShotGrid script
-                    api_key=self.api_key,  # ShotGrid API key
-                )
-            else:
-                print ('Logging in as a User')
-                sg = shotgun_api3.Shotgun(
-                    self.base_url,  # ShotGrid url
-                    login=self.user_login,  # User login
-                    password=self.user_password,  # User password
-                )
-
-            return TextArtifact(
-                sg.get_session_token()
-            )  # Return the results of the connection
-
-```
-
-At this point if you run the code, everything should still work the same as before, except you'll see a print statement saying that you're logging in with the API Key. We haven't changed our method of sending data to the tool yet, and we've set the default `login_method` to be `api_key`.
+At this point, if you run the code, everything should still work the same as before, except you'll see a print statement saying that you're logging in with the API Key. We haven't changed our method of sending data to the tool yet, and we've set the default `login_method` to be `api_key`.
 
 Go ahead and give it a try to make sure you're still connecting correctly.
 
 ## Update `app.py`
 
-In this step we'll modify `app.py` to instantiate the `ShotGridTool` with the user method of logging in. 
+In this step, we'll modify `app.py` to instantiate the `ShotGridTool` with the user method of logging in. 
 
 ### Get user/password env
 
-First we'll make sure to grab the username and password environment variables. Add the following two lines to `app.py`:
+First, we'll make sure to grab the username and password environment variables. Add the following two lines to `app.py`:
 
 ```python title="app.py" hl_lines="6-7"
 # ...
@@ -208,7 +179,7 @@ Go ahead and run the code - asking again if you are connected to ShotGrid. All w
 
 ## Code Review
 
-You completed an incredible amount of work in this section - updating your tool to handle both user and api key login credentials. Well done! Let's take a look at the latest versions of `app.py`, `.env`, and `shotgrid_tool/tool.py`. Note, we're only displaying files that have been modified in this section. 
+You completed an incredible amount of work in this section - updating your tool to handle both user and API key login credentials. Well done! Let's take a look at the latest versions of `app.py`, `.env`, and `shotgrid_tool/tool.py`. Note, that we're only displaying files that have been modified in this section. 
 
 ### `app.py`
 
