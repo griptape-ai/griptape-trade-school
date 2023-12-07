@@ -2,7 +2,7 @@
 
 ## Overview
 
-In the [Chatbot - Rulesets](../chatbot-rulesets/index.md) course you learned all about creating Griptape [Rules and Rulesets](https://docs.griptape.ai/en/dev/griptape-framework/structures/rulesets/) and how to use them to give an Agent directions. In that case it was mostly about providing personality and making sure the output was in json format. In this course we'll use rules to help direct the Agent to use `ShotGridTool` and Vector Database when appropriate.
+In the [Chatbot - Rulesets](../chatbot-rulesets/index.md) course you learned all about creating Griptape [Rules and Rulesets](https://docs.griptape.ai/en/dev/griptape-framework/structures/rulesets/) and how to use them to give an Agent directions. In that case, it was mostly about providing personality and making sure the output was in JSON format. In this course, we'll use rules to help direct the Agent to use `ShotGridTool` and Vector Database when appropriate.
 
 If you haven't viewed that course before, I highly recommend doing so - especially the section on creating [Personality](../chatbot-rulesets/05_personality_with_rulesets.md) as it provides a wonderful overview of creating and using Rulesets, what they're used for, and why Griptape has them.
 
@@ -40,7 +40,7 @@ shotgrid_agent_ruleset = Ruleset(
 
 ### Act as...
 
-We want the agent to have the correct context for it's work, so the first ruleset will tell it to act as a studio coordinator who is an expert in Autodesk ShotGrid
+We want the agent to have the correct context for its work, so the first ruleset will tell it to act as a studio coordinator who is an expert in Autodesk ShotGrid
 
 Create a parameter for `rules`, and then add this first rule to the list of rules:
 
@@ -60,7 +60,7 @@ shotgrid_agent_ruleset = Ruleset(
 
 ### Main objective
 
-Sometimes it's helpful to remind the LLM what it's main objective is. In this case, we want to remind it that we want it to update ShotGrid using the ShotGridTool.
+Sometimes it's helpful to remind the LLM what its main objective is. In this case, we want to remind it that we want it to update ShotGrid using the ShotGridTool.
 
 ```python title="app.py" hl_lines="8-10"
 # ...
@@ -123,7 +123,7 @@ shotgrid_agent_ruleset = Ruleset(
 
 ### Batch mode
 
-ShotGrid provides access to a `batch` method which allows you to perform multiple create, update, and delete operations in a single request. Each operation in the batch is specified as a dictionary, and the operations are performed in the order they are provided.
+ShotGrid provides access to a `batch` method that allows you to perform multiple create, update, and delete operations in a single request. Each operation in the batch is specified as a dictionary, and the operations are performed in the order they are provided.
 
 We would like to ensure the Agent uses batch mode when appropriate. 
 
@@ -150,7 +150,7 @@ shotgrid_agent_ruleset = Ruleset(
 
 !!! tip
     While working on the rule for batch mode, I found that the LLM was sometimes not using it and would jump to
-    just using create, or update methods instead. I asked the agent itself for a good rule to enforce using the `batch` method, and it came up with this very strict rule.
+    just using create or update methods instead. I asked the agent for a good rule to enforce using the `batch` method, and it came up with this very strict rule.
 
     And .. it worked! Sometimes just asking the LLM for the best rule provides excellent results.
 
@@ -259,7 +259,7 @@ Go ahead and interact with the agent. Work with different projects, create and u
 
 ## Clean up
 
-Before moving on to the next section, let's remove some unused code from our app. We are no longerusing the ReverseStringTool, so you can happily remove it from the `imports` section, and also remove it from your Agent.
+Before moving on to the next section, let's remove some unused code from our app. We are no longer using the ReverseStringTool, so you can happily remove it from the `imports` section, and also remove it from your Agent.
 
 ## Code Review
 
