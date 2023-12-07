@@ -1,7 +1,7 @@
 As with any project, the first step is setting up your environment. Let's get started by ensuring you have a project structure ready to work with.
 
 !!! Tip "Important"
-    Since this is an **intermediate level** course, please ensure you've gone through the [Griptape Setup - Visual Studio Code](../../setup/index.md) course to set up your environment. We will be starting from the code at that point.
+    Since this is an intermediate-level course, please ensure you've gone through the [Griptape Setup - Visual Studio Code](../../setup/index.md) course to set up your environment. We will be starting from the code at that point.
 
 ### Create a Project
 
