@@ -1,7 +1,7 @@
 # Creating the ShotGrid Tool
 
 ## Overview
-In this section we'll create our first ShotGrid Tool. It won't do much yet, just connect to ShotGrid and validate that it's got a valid connection by returning the session token.
+In this section, we'll create our first ShotGrid Tool. It won't do much yet, just connect to ShotGrid and validate that it's got a valid connection by returning the session token.
 
 ## Authenticating with ShotGrid
 
@@ -12,20 +12,20 @@ There are two ways that ShotGrid allows you to authenticate when working with th
 
 * Uses a unique key linked to a 'script' user.
 * Ideal for automated tasks not tied to specific users.
-* Advantages: Secure, controlled, suitable for general actions.
+* Advantages: Secure, controlled, and suitable for general actions.
 * Best for background tasks and general automation.
 
 ### Username/Password Authentication
 
 * Utilizes real user credentials.
 * Suitable for actions needing user attribution.
-* Advantages: Tracks user-specific actions, respects user permissions.
+* Advantages: Tracks user-specific actions, and respects user permissions.
 * Ideal for user-specific tasks and where precise permissions are crucial, triggers WebHooks.
 
 
 ### How to choose?
 
-API key authentication is easier to set up, but Username/Password authentication is more powerful. So which should we set up? Considering they both have their uses, we'll do both. First we'll start with the API key and validate the process works. Then we'll go through the Username/Password method.
+API key authentication is easier to set up, but Username/Password authentication is more powerful. So which should we set up? Considering they both have their uses, we'll do both. First, we'll start with the API key and validate the process works. Then we'll go through the Username/Password method.
 
 ## API Key
 
@@ -84,7 +84,7 @@ Now comes the fun part - the actual ShotGrid tool! We'll copy the Reverse String
 
 ### Delete `__pycache__`
 
-The `__pycache__` folder is a directory used by Python to store compiled compiled files. When you run a Python program it saves a 'shortcut' version of the program in this folder. The next time your un the same program, Python uses these shortcuts to start the program more quickly.
+The `__pycache__` folder is a directory used by Python to store compiled compiled files. When you run a Python program it saves a 'shortcut' version of the program in this folder. The next time you run the same program, Python uses these shortcuts to start the program more quickly.
 
 In this case, you don't want it because it holds the compiled code for the `reverse_string_tool`.
 
@@ -92,7 +92,7 @@ In this case, you don't want it because it holds the compiled code for the `reve
 
 ### Modify `__init__.py`
 
-Remember from earlier, the `__init__.py` file in Python is used to mark a directory as a Python package. In our current `__init__.py` file, it's being used to import the `ReverseStringTool` class. We're going to be replacing that class with our own: `ShotGridTool`. So we'll need to update this file.
+Remember from earlier, that the `__init__.py` file in Python is used to mark a directory as a Python package. In our current `__init__.py` file, it's being used to import the `ReverseStringTool` class. We're going to be replacing that class with our own: `ShotGridTool`. So we'll need to update this file.
 
 Replace all instances of `ReverseStringTool` with `ShotGridTool` in the file. _Note: we haven't created that class yet, we'll do that in a couple of steps._
 
@@ -105,7 +105,7 @@ __all__ = ["ShotGridTool"]
 
 ### Modify `manifest.yml`
 
-The `manifest.yml` file privides information for people and other downstream systems to understand what this tool is about. At the moment it contains information about the `Reverse String Tool`. Modify it to look like the following (don't forget to include your own contact email and legal details).
+The `manifest.yml` file provides information for people and other downstream systems to understand what this tool is about. At the moment it contains information about the `Reverse String Tool`. Modify it to look like the following (don't forget to include your own contact email and legal details).
 
 ```yaml title="shotgrid_tool/manifest.yaml"
 version: "v1"
@@ -120,7 +120,7 @@ legal_info_url: https://www.example.com/legal
 
 Some tools you create for Griptape will require various Python dependencies - other libraries that they need to operate correctly. ShotGrid is one of those tools - it requires the [ShotGrid library](git+https://github.com/shotgunsoftware/python-api.git), available from GitHub.  
 
-Griptape allows you to easily include these requirements by adding them to a `requirements.txt` file, located inside your tool folder. You will then import the required dependency _inside the method where it's used_. Wel'll cover that in more detail later.
+Griptape allows you to easily include these requirements by adding them to a `requirements.txt` file, located inside your tool folder. You will then import the required dependency _inside the method where it's used_. We'll cover that in more detail later.
 
 1. Select the `shotgrid_tool` folder and choose **Right Mouse Button** -> **New File..**
 2. Name the new file `requirements.txt`
@@ -131,7 +131,7 @@ git+https://github.com/shotgunsoftware/python-api.git
 ```
 
 !!! question "What's shotgun?"
-    You may notice that the ShotGrid API is called "shotgunsoftware". That's because ShotGrid _used_ to be named Shotgun before Autodesk renamed it in 2021. The API is still referenced by it's original name in order to reduce breaking changes.
+    You may notice that the ShotGrid API is called "shotgunsoftware". That's because ShotGrid _used_ to be named Shotgun before Autodesk renamed it in 2021. The API is still referenced by its original name in order to reduce breaking changes.
 
 ## Update `tool.py`
 
@@ -169,13 +169,13 @@ class ShotGridTool(BaseTool):
 
 When using the ShotGrid API there are some parameters that are required to authenticate. Reviewing the [documentation](https://developers.shotgridsoftware.com/python-api/reference.html#shotgun), we can see that there are at least three parameters we will always require:
 
-* **base_url** - The url for your ShotGrid site
+* **base_url** - The URL for your ShotGrid site
 * **script_name** - The name for your script
 * **api_key** - The script API key, given to you by ShotGrid
 
-We're going to add these to our Class, giving us access to them from with the various methods. In addition, we'll take advantage of the `attr.field` function, which will allow us to define attributes with default values, validators, converters and and various other options.
+We're going to add these to our Class, giving us access to them from the various methods. In addition, we'll take advantage of the `attr.field` function, which will allow us to define attributes with default values, validators, converters and various other options.
 
-First, let's make sure we're importing the `field` function properly. In `shotgrid_tool/tool.py` find the line which contains `from attr import define`, and then modify to add `, field` at the end.
+First, let's make sure we're importing the `field` function properly. In `shotgrid_tool/tool.py` find the line that contains `from attr` import define`, and then modify to add `, field` at the end.
 
 ```python title="shotgrid_tool/tool.py" hl_lines="3"
 # ...
@@ -213,7 +213,7 @@ class ShotGridTool(BaseTool):
 
 ### Update the Activity
 
-The method we're going to create will allow us to connect to the ShotGrid API. We need to describe that method and in the `@activity` section. The description itself should be pretty straightforward.. something like "Can be used to get the session token from ShotGrid". We won't need any parameters for this activity, as the url, script_name, and api_keys will come from the class itself. 
+The method we're going to create will allow us to connect to the ShotGrid API. We need to describe that method in the `@activity` section. The description itself should be pretty straightforward.. something like "Can be used to get the session token from ShotGrid". We won't need any parameters for this activity, as the URL, script_name, and api_keys will come from the class itself. 
 
 * Change the `description`
 * Remove the `schema` section of the activity. 
@@ -251,8 +251,7 @@ class ShotGridTool(BaseTool):
 ```
 
 ### Import ShotGrid
-
-In order to use the ShotGrid api, we'll need to now import the library. This is the library we added in `requirements.txt`. The unique spin on this is that instead of importing it at the beginning of our file, we'll import it _inside the method_. This will tell Griptape to install the requirement automatically.
+To use the ShotGrid API, we'll need to import the library. This is the library we added in `requirements.txt`. The unique spin on this is that instead of importing it at the beginning of our file, we'll import it _inside the method_. This will tell Griptape to install the requirement automatically.
 
 Add the following `import` after the definition of the method:
 
@@ -274,35 +273,8 @@ class ShotGridTool(BaseTool):
 
 Now we can use the ShotGrid API to attempt to get a session key. This is where we get to use the official `get_session_token` method from the API and the base_url, script_name, and api_keys.
 
-Inside the `try:` statement for the `get_session_token` method, create an instance of `Shotgun` class, and then return the result of the `get_session_token` method. Don't forget to include the `base_url`, `script_name`, and `api_key` we defined in the beginning of the Class. We will access them using the `self` parameter.
-
-
-
-```python title="shotgrid_tool/tool.py" hl_lines="10-15"
-# ...
-@define
-class ShotGridTool(BaseTool):
-    @activity(
-            #..
-    )
-    def get_session_token(self, _: dict) -> TextArtifact | ErrorArtifact:
-        # ...
-        try:
-            sg = shotgun_api3.Shotgun(
-                self.base_url,  # ShotGrid url
-                script_name=self.script_name,  # Name of the ShotGrid script
-                api_key=self.api_key,  # ShotGrid API key
-            )
-            return TextArtifact(sg.get_session_token()) # Return the results of the connection
-        
-        except Exception as e:
-            return ErrorArtifact(str(e))
-
-#...
-
-```
-
-### Delete second activity and method
+Inside the `try:` statement for the `get_session_token` method, create an instance of `Shotgun` class, and then return the result of the `get_session_token` method. Don't forget to include the `base_url`, `script_name`, and `api_key` we defined at the beginning of the Class. We will access them using the `self` parameter.
+Delete the second activity and method
 
 Lastly, we'll remove the second activity and method, as those are from our original version of the tool. Delete the method `reverse_sentence` and the activity associated with it.
 
@@ -377,7 +349,7 @@ from shotgrid_tool import ShotGridTool
 
 ### Import `os`
 
-We stored the url and api key in our `.env` file. In order to access them, we're going to use the `os.getenv` function. But to do that, we need the `os` library.
+We stored the URL and API key in our `.env` file. To access them, we're going to use the `os.getenv` function. But to do that, we need the `os` library.
 
 Add `import os` to the `imports` section of `app.py`.
 
@@ -390,7 +362,7 @@ import os
 
 ### Get the parameters
 
-Now, after we use the function `load_dotenv()`, we can pull the two parameters from our `.env` file, and also set the script name.
+Now, after we use the function `load_dotenv()`, we can pull the two parameters from our `.env` file and also set the script name.
 
 ```python title="app.py" hl_lines="4-6"
 # ...
@@ -494,7 +466,7 @@ Chat(agent).start()
 
 ### Successful Connection
 
-Now that you've got the ShotGridTool and `app.py` updated, let's give this a try. Go ahead and run `app.py`. The first time you run it, it will take a minute to install the Shotgun library, but as soon as it the `Q` prompt appears you can ask if you're connected.
+Now that you've got the ShotGridTool and `app.py` updated, let's give this a try. Go ahead and run `app.py`. The first time you run it, it will take a minute to install the Shotgun library, but as soon as it the prompt appears you can ask if you're connected.
 
 ```text
 Q: Am I connected to ShotGrid?
@@ -519,11 +491,11 @@ A: Yes, you are connected to ShotGrid.
 
 ```
 
-If you've set up everything correctly, it will return your session id and state that you're connected!
+If you've set up everything correctly, it will return your session ID and state that you're connected!
 
 ### Unsuccessful Connection
 
-It's good to double-check that thing are working correctly by knowingly providing incorrect credentials. Quit out of your application, and modify the `.env` file to change the `SHOTGRID_API_KEY` to something like "fake_key".
+It's good to double-check that things are working correctly by knowingly providing incorrect credentials. Quit your application, and modify the `.env` file to change the `SHOTGRID_API_KEY` to something like "fake_key".
 
 ```text title=".env"
 SHOTGRID_API_KEY=fake_key
@@ -554,7 +526,7 @@ A: No, you are not currently connected to ShotGrid. The authentication for the s
 
 ```
 
-As you can see, the script wasn't able to authenticate, and thus tells us the authentication failed. Congrats! Your failure means success!
+As you can see, the script wasn't able to authenticate and thus tells us the authentication failed. Congrats! Your failure means success!
 
 Before continuing, change the `.env` file back.
 
@@ -563,7 +535,7 @@ Before continuing, change the `.env` file back.
 
 ## Code Review
 
-Congratulations, there was a lot of work in this section, but in the end we now have an Agent that can authenticate with the ShotGrid API using a script-based API key! There are a number of files that have been updated throughtout this section, so definitely review the work here.
+Congratulations, there was a lot of work in this section, but in the end, we now have an Agent that can authenticate with the ShotGrid API using a script-based API key! There are a number of files that have been updated throughout this section, so definitely review the work here.
 
 ### `app.py`
 
