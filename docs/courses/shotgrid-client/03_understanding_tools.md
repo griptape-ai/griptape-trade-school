@@ -1,9 +1,15 @@
 # Understanding Tools - DateTime
 
 ## Overview
-In this module, we will explore the DateTime tool within Griptape, demonstrating its integration into an `Agent` and breaking down how activities function. We'll then show how you can use the tool in a `Pipeline` by employing `ToolTask` and `ToolkitTask`. But first, we must update our current app to give it access to an Agent.
+In this module, we will explore the DateTime tool within Griptape, demonstrating its integration into an `Agent` and breaking down how activities function. We'll then show how you can use the tool in a `Pipeline` by employing `ToolTask` and `ToolkitTask`. 
+
+## What is a Griptape Tool?
+
+Griptape Tools are like additional helpers when dealing with tasks that a Language Learning Model (LLM) can't handle by itself. They expand the capabilities of a system, allowing it to connect with external applications and use specific Python functionalities that aren't part of the LLM's standard toolkit. Whether it's for an automated workflow, a data processing pipeline, or an interactive agent, Griptape Tools provide the extra abilities needed to tackle a wider range of problems and tasks, enhancing the overall functionality and efficiency of the system.
 
 ## Setting up the Agent
+
+Let's update our current app to give it access to an Agent so we can interact with the LLM.
 
 ### Updating the app
 First, let's set up a basic Agent in our application. If you've taken the other courses, this should feel very familiar. Your current `app.py` file looks something like:
