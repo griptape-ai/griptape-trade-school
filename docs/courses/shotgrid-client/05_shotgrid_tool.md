@@ -213,7 +213,10 @@ class ShotGridTool(BaseTool):
 
 ### Update the Activity
 
-The method we're going to create will allow us to connect to the ShotGrid API. We need to describe that method and in the `@activity` section. The description itself should be pretty straightforward.. something like "Can be used to get the session token from ShotGrid". We won't need any parameters for this activity, as the url, script_name, and api_keys will come from the class itself.
+The method we're going to create will allow us to connect to the ShotGrid API. We need to describe that method and in the `@activity` section. The description itself should be pretty straightforward.. something like "Can be used to get the session token from ShotGrid". We won't need any parameters for this activity, as the url, script_name, and api_keys will come from the class itself. 
+
+* Change the `description`
+* Remove the `schema` section of the activity. 
 
 ```python title="shotgrid_tool/tool.py" hl_lines="6-8"
 # ...
