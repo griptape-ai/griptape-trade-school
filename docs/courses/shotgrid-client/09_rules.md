@@ -386,5 +386,19 @@ Chat(agent).start()
 ```
 
 ---
-## Next Steps
-...
+## Finished
+
+!!! success
+    Congratulations! You have created a Griptape ShotGrid Tool!
+
+Well done, you've successfully created a Griptape Tool that allows you to connect to and work with external applications.
+
+You have learned:
+
+* How Griptape Tools work.
+* How to build your own Tools.
+* How to handle user authentication with external tools.
+* How to vectorize and provide extra documentation to asset Griptape Agents.
+* How to craft Rules and Rulesets to sculpt the Agent's performance.
+
+We hope you enjoyed this course, please head over to [Discord](https://discord.gg/tTWjcjxFv9) and share your results!
