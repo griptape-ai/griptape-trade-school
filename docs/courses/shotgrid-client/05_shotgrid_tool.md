@@ -31,7 +31,7 @@ API key authentication is easier to set up, but Username/Password authentication
 
 ### Getting a key
 
-Before we create the tool, we'll need a ShotGrid Application Key. Autodesk handles this by allowing you to create an API script in the ShotGrid UI. It will return an API key for you. You can review the [official ShotGrid documentation](https://help.autodesk.com/view/SGDEV/ENU/?guid=SGD_py_python_api_create_manage_html), but as of December 2023, this is the process:
+Before we create the Tool, we'll need a ShotGrid Application Key. Autodesk handles this by allowing you to create an API script in the ShotGrid UI. It will return an API key for you. You can review the [official ShotGrid documentation](https://help.autodesk.com/view/SGDEV/ENU/?guid=SGD_py_python_api_create_manage_html), but as of December 2023, this is the process:
 
 1. Open the **Admin Menu** by clicking on your user in the upper right corner of ShotGrid
 2. Choose **Scripts**.
@@ -72,7 +72,7 @@ SHOTGRID_URL=https://your-shotgrid-name.shotgrid.autodesk.com
 
 ## Create ShotGrid Tool
 
-Now comes the fun part - the actual ShotGrid tool! We'll copy the Reverse String tool as a template and modify it to suit our needs.
+Now comes the fun part - the actual ShotGrid tool! We'll copy the Reverse String Tool as a template and modify it to suit our needs.
 
 ### Copy `reverse_string_tool`
 
@@ -105,7 +105,7 @@ __all__ = ["ShotGridTool"]
 
 ### Modify `manifest.yml`
 
-The `manifest.yml` file provides information for people and other downstream systems to understand what this tool is about. At the moment it contains information about the `Reverse String Tool`. Modify it to look like the following (don't forget to include your own contact email and legal details).
+The `manifest.yml` file provides information for people and other downstream systems to understand what this Tool is about. At the moment it contains information about the `Reverse String Tool`. Modify it to look like the following (don't forget to include your own contact email and legal details).
 
 ```yaml title="shotgrid_tool/manifest.yaml"
 version: "v1"
@@ -118,7 +118,7 @@ legal_info_url: https://www.example.com/legal
 
 ### Create `requirements.txt`
 
-Some tools you create for Griptape will require various Python dependencies - other libraries that they need to operate correctly. ShotGrid is one of those tools - it requires the [ShotGrid library](git+https://github.com/shotgunsoftware/python-api.git), available from GitHub.  
+Some Tools you create for Griptape will require various Python dependencies - other libraries that they need to operate correctly. ShotGrid is one of those Tools - it requires the [ShotGrid library](git+https://github.com/shotgunsoftware/python-api.git), available from GitHub.  
 
 Griptape allows you to easily include these requirements by adding them to a `requirements.txt` file, located inside your tool folder. You will then import the required dependency _inside the method where it's used_. We'll cover that in more detail later.
 
@@ -137,7 +137,7 @@ git+https://github.com/shotgunsoftware/python-api.git
 
 ### Description
 
-Now we're at the part where we update the ShotGrid tool itself. In this first example of the tool, we're simply going to use the `Shotgun.get_session_token()` method to verify that we can connect and have a valid session. So we'll be modifying `tool.py` with the following steps:
+Now we're at the part where we update the ShotGrid Tool itself. In this first example of the Tool, we're simply going to use the `Shotgun.get_session_token()` method to verify that we can connect and have a valid session. So we'll be modifying `tool.py` with the following steps:
 
 * Rename the class
 * Define parameters
@@ -276,7 +276,7 @@ Now we can use the ShotGrid API to attempt to get a session key. This is where w
 Inside the `try:` statement for the `get_session_token` method, create an instance of `Shotgun` class, and then return the result of the `get_session_token` method. Don't forget to include the `base_url`, `script_name`, and `api_key` we defined at the beginning of the Class. We will access them using the `self` parameter.
 Delete the second activity and method
 
-Lastly, we'll remove the second activity and method, as those are from our original version of the tool. Delete the method `reverse_sentence` and the activity associated with it.
+Lastly, we'll remove the second activity and method, as those are from our original version of the Tool. Delete the method `reverse_sentence` and the activity associated with it.
 
 ### Final `tool.py`
 
@@ -375,9 +375,9 @@ SHOTGRID_SCRIPT = "Griptape API" # The name of your script when you created your
 # ...
 ```
 
-### Instantiate the tool
+### Instantiate the Tool
 
-Now we'll instantiate the tool, passing it the required fields. Add the highlited lines to your `app.py`, and make sure to include the parameters we specified in the ShotGridTool:
+Now we'll instantiate the Tool, passing it the required fields. Add the highlited lines to your `app.py`, and make sure to include the parameters we specified in the ShotGridTool:
 
 ```python title="app.py" hl_lines="7-13"
 # ...
@@ -402,7 +402,7 @@ agent = Agent(
 
 ### Give ShotGridTool to Agent
 
-Lastly, let's give the Agent access to the tool! We no longer need the `ReverseStringTool``, so you can comment that out.
+Lastly, let's give the Agent access to the Tool! We no longer need the `ReverseStringTool``, so you can comment that out.
 
 ```python title="app.py" hl_lines="7-8"
 # ...
