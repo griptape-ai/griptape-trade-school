@@ -2,8 +2,7 @@
 
 ## Overview
 You can now authenticate with ShotGrid via API and by Username/Password. At the moment, your application only verifies that it can connect to ShotGrid, it doesn't do much else.
-
-In this section we will add a method that allows you to do much, much more.
+In this section, we will add a method that allows you to do much, much more.
 
 ## ShotGrid Methods
 
@@ -20,7 +19,7 @@ ShotGrid comes with a number of methods to create, find, update, delete, and muc
 
 As you can see, there are a number of various methods we can use, and we _could_ create an activity/method for each one of these. However, our tool would get large, and end up being somewhat difficult to maintain. There would also be quite a lot of repetitive code, with each method importing the ShotGrid library and connecting.
 
-Instead, we'll introduce a method to create a more "generic" tool, that will utilize the LLMs own knowledge of the ShotGrid API to generate the correct commands.
+Instead, we'll introduce a method to create a more "generic" tool, that will utilize the LLM's knowledge of the ShotGrid API to generate the correct commands.
 
 ## Create `meta_method`
 
@@ -51,7 +50,7 @@ First, in `shotgrid_tool/tool.py` make the following changes:
 
 Next, we'll need to add some parameters to the method. These will be things like - telling `meta_method` which ShotGrid method to call, and what `data` to pass it.
 
-For example, if we want to call the `find` method to find all character assets in project 155, and return the id, the name, and the description, we'd want to call it like this:
+For example, if we want to call the `find` method to find all character assets in Project 155, and return the id, the name, and the description, we'd want to call it like this:
 
 ```python
 sg.find(
@@ -71,7 +70,7 @@ sg.delete("Shot", 2557)
 
 So we need to pass the `method` (`find`, `delete`, `update`, etc), and the `data`- a dict of various parameters, depending on the type of method.
 
-This involves updating the activity schema, and telling the method itself to accept a list of `params`.
+This involves updating the activity schema and telling the method itself to accept a list of `params`.
 
 ### Update Schema
 
@@ -118,7 +117,7 @@ Now we'll add the `params` parameter to `meta_method`. Replace `_: dict` with `p
 
 We can now add the logic to the method that defines how we use the parameters we've just passed. Using a parameter within a Griptape Tool is pretty straightforward, you just access it with `params["values"][PARAMATER]`. For example, if I want the name of the method we passed, I can do `params["values"]["method"]`. Or if I want the parameters, I can query `params["values"]["params"]`.
 
-So in this method we're going to do the following:
+So in this method, we're going to do the following:
 
 1. Get the name of the method passed, and use that to find the _ShotGrid method object_ that we will be able to call (`sg.find`, `sg.delete`, `sg.update`, etc). 
 2. Get the parameters.
@@ -249,16 +248,16 @@ Action:
 
 ```
 
-See how the LLM realized it needed to use the `find` method, and it created it's own list of parameters to pass!
+See how the LLM realized it needed to use the `find` method, and it created its own list of parameters to pass!
 
 ### Test it out - Create
 
-Let's run through another example. In this case we're going to create a new asset in one of our projects. I'll call this one "bob" and give him a description. Be creative - come up with your own character name.
+Let's run through another example. In this case, we're going to create a new asset in one of our projects. I'll call this one "Bob" and give him a description. Be creative - come up with your own character name.
 
-The prompt we'll give will simply be to tell it what project we want to add the asset in, what to name the character, and a bit of a description.
+The prompt we'll give will simply be to tell it what project we want to add the asset in, what to name the character and a bit of a description.
 
 !!! quote
-    Create a new character asset for me in "Demo: Animation with Cuts". Make it named "bob" and give it a description "bob is a legendary hula-hoop dancer"
+    Create a new character asset for me in "Demo: Animation with Cuts". Make it named "Bob" and give it a description "Bob is a legendary hula-hoop dancer"
 
 ```text
 Q: Create a new character asset for me in "Demo: Animation with Cuts". Make it named "bob" and give it a description "bob is a legendary hula-hoop dancer"
@@ -295,7 +294,7 @@ A: I have created a new character asset named "bob" with the description "bob is
 
 There were some really interesting things that happened in this test!
 
-First, the LLM realized it needs the project id to create a new asset - but it wasn't provided with the id. So it performed a `find_one` method first to get the id.
+First, the LLM realized it needed the project ID to create a new asset - but it wasn't provided with the ID. So it performed a `find_one` method first to get the ID.
 
 ```json
 Thought: To create a new character asset, I need to use the ShotGridTool action with the
@@ -319,38 +318,14 @@ Action: {
 
 ```
 
-Then, once it had the id it could use the `create` method.
-
-```json
-Thought: Now that I have the project id, I can use it to create a new character asset   
-named "bob" with the description "bob is a legendary hula-hoop dancer".      
-
-Action: {
-    "name": "ShotGridTool", 
-    "path": "meta_method", 
-    "input": {
-        "values": {
-            "method":  "create", 
-            "params": [
-                "Asset", {
-                    "project": {"type": "Project", "id": 85}, 
-                    "code": "bob", 
-                    "description": "bob is a legendary hula-hoop dancer", 
-                    "sg_asset_type": "Character"
-                    }
-                ]
-            }
-        }
-    } 
-```
-
-Of course it also returned valuable information we could then use to perform more actions, including the asset id. Also, if you check on the frontend you can see the asset was indeed created with the description _and_ the name of the person who created it.
+Then, once it had the ID it could use the `create` method.
+Of course, it also returned valuable information we could then use to perform more actions, including the asset ID. Also, if you check on the frontend you can see the asset was indeed created with the description _and_ the name of the person who created it.
 
 ![Asset Created](assets/img/shotgrid_asset_created.png)
 
 ## Code Review
 
-This was a short, but powerful step. We've modified our ShotGridTool to be able to use the ShotGrid api to execute any method available to it! Let's review the changes in `shotgrid_tool/tool.py`.
+This was a short, but powerful step. We've modified our ShotGridTool to be able to use the ShotGrid API to execute any method available to it! Let's review the changes in `shotgrid_tool/tool.py`.
 
 ```python linenums="1" title="shotgrid_tool/tool.py" hl_lines="31-43 46 64-73"
 from __future__ import annotations
@@ -433,4 +408,4 @@ class ShotGridTool(BaseTool):
 
 ---
 ## Next Steps
-This has been a powerful step - we can do so much now! However, the current implementation relies on the LLM having been trained on data about the ShotGrid api. What if there wasn't much knowledge about it, or if the API has been updated? In the [next section](08_vectorized_docs.md), we'll provide the Agent access to the current API docs for it to use as reference to enhance it's abilities.
+This has been a powerful step - we can do so much now! However, the current implementation relies on the LLM having been trained on data about the ShotGrid API. What if there wasn't much knowledge about it, or if the API has been updated? In the [next section](08_vectorized_docs.md), we'll provide the Agent access to the current API docs for it to use as a reference to enhance its abilities.
