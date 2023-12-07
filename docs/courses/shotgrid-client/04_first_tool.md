@@ -7,7 +7,7 @@ We'll use a Griptape Tool Template that's available on GitHub to create our firs
 
 The tool template provided creates a `reverse_string` tool. It will take any text and reverse it. It's a nice simple example of how to use a tool with your LLM.
 
-The template contains examples on how to use the tool, testing, and more. The idea is that you can take this template and publish your own tool on GitHub to share with the world. 
+The template contains examples of how to use the tool, testing, and more. The idea is that you can take this template and publish your own tool on GitHub to share with the world. 
 
 For the purposes of *this course*, we'll keep things simple and just focus on the tool itself, using the code to create our own as part of our current project.
 
@@ -65,7 +65,7 @@ class ReverseStringTool(BaseTool):
 
 ```
 
-The highlighted lines illustrate that the tool (Class) is called `ReverseString`. It has is one module, `reverse_string`. It has an `activity` that says it "Can be used to reverse a string", and it appears to take one parameter named `input` which is described as "The string to be reversed".
+The highlighted lines illustrate that the tool (Class) is called `ReverseString`. It has one module, `reverse_string`. It has an `activity` that says it "Can be used to reverse a string", and it appears to take one parameter named `input` which is described as "The string to be reversed".
 
 ### Add it to app.py
 
@@ -80,13 +80,13 @@ from reverse_string_tool import ReverseStringTool
 !!! tip
     How do you know to choose `reverse_string_tool` and `ReverseStringTool` in the `import` statement?
 
-    The `__init__.py` file is a hint. You can think of that file as a sort of index or table of contents for the items in the folder. It's presence tells Python that the directory is a special kind of directory - a package from which you can import `modules`.
+    The `__init__.py` file is a hint. You can think of that file as a sort of index or table of contents for the items in the folder. Its presence tells Python that the directory is a special kind of directory - a package from which you can import `modules`.
 
     Because I saw that `__init__.py` file, I knew I could import modules *from* that folder. 
 
 ### Give it to the agent
 
-Remember, the agent takes a list of tools. We can add this tool to the agent by simply adding to the list.
+Remember, the agent takes a list of tools. We can add this tool to the agent by simply adding it to the list.
 
 Find the line where you instantiate the agent and add the `ReverseStringTool`:
 
@@ -168,7 +168,7 @@ It will:
 
 1. Change the *description* of the second activity to `Can be used to reverse a sentence` and the *schema description* to `The sentence to be reversed`.
 
-Here's the resulting code, with much of it commented out for brevity. I've highlited the specific sections where we replaced `string` with `sentence`. This new method won't actually reverse sentences yet, we will add that later.
+Here's the resulting code, with much of it commented out for brevity. I've highlighted the specific sections where we replaced `string` with `sentence`. This new method won't reverse sentences yet, we will add that later.
 
 ```python hl_lines="18-20 23"
 # ...
@@ -323,5 +323,5 @@ class ReverseStringTool(BaseTool):
 
 ---
 ## Next Steps
-In the [next section](02_shotgrid.md) we'll begin our work to connect with ShotGrid. First we'll make sure you're signed up for an account before creating our ShotGrid Tool.
+In the [next section](02_shotgrid.md), we'll begin our work to connect with ShotGrid. First, we'll make sure you're signed up for an account before creating our ShotGrid Tool.
 <!-- In the [next section](05_shotgrid_tool.md) we'll begin our work to connect with ShotGrid, creating our first ShotGrid tool that will allow an agent to connect and authenticate with it. -->

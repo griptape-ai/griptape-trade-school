@@ -4,12 +4,12 @@
 ## Course Description
 This course offers a friendly and accessible path to understand how [Griptape Tools](https://docs.griptape.ai/latest/griptape-tools/), functioning as specialized Python classes, enable Language Learning Models (LLMs) to interface with external APIs and datasets, thus broadening their operational scope.
 
-At the end of this course, you will have working Python code for a Griptape Tool that enables a Griptape Agent to invoke cababilities from [Autodesk ShotGrid](https://www.shotgridsoftware.com/). Imagine commanding the chatbot to "Create 20 assets for a 1950's kitchen counter, give them relevant descriptions, and set up initial task dependencies." This scenario encapsulates the kind of interactive and practical tasks you will be able to accomplish. 
+At the end of this course, you will have working Python code for a Griptape Tool that enables a Griptape Agent to invoke capabilities from [Autodesk](https://www.shotgridsoftware.com/) ShotGrid](https://www.shotgridsoftware.com/). Imagine commanding the chatbot to "Create 20 assets for a 1950's kitchen counter, give them relevant descriptions, and set up initial task dependencies." This scenario encapsulates the kind of interactive and practical tasks you will be able to accomplish. 
 
 ## What is ShotGrid?
 ShotGrid is Autodesk's production management software. It is used mainly to manage Media and Entertainment (Games, Film, Commercials, etc) productions. You can track deadlines, manage budgets, create and manage asset development, collaborate with others, and more. 
 
-It's got a rich Python API, which many studios have used to integrate it with various software tools like [Autodesk Maya](https://www.autodesk.com/za/products/maya/overview-dts), [SideFX Houdini](https://www.sidefx.com/products/houdini/), [Foundry Nuke](https://www.foundry.com/products/nuke-family/nuke), and many others.
+It's got a rich Python API, which many studios have used to integrate with various software tools like [Autodesk Maya](https://www.autodesk.com/za/products/maya/overview-dts), [SideFX Houdini](https://www.sidefx.com/products/houdini/), [Foundry Nuke](https://www.foundry.com/products/nuke-family/nuke), and many others.
 
 
 ## Who is this course for

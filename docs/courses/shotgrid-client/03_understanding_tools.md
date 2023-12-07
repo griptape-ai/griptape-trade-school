@@ -5,14 +5,14 @@ In this module, we will explore the DateTime tool within Griptape, demonstrating
 
 ## What is a Griptape Tool?
 
-Griptape Tools are like additional helpers when dealing with tasks that a Language Learning Model (LLM) can't handle by itself. They expand the capabilities of a system, allowing it to connect with external applications and use specific Python functionalities that aren't part of the LLM's standard toolkit. Whether it's for an automated workflow, a data processing pipeline, or an interactive agent, Griptape Tools provide the extra abilities needed to tackle a wider range of problems and tasks, enhancing the overall functionality and efficiency of the system.
+Griptape Tools are like additional helpers when dealing with tasks that a Language Learning Model (LLM) can't handle by itself. They expand the capabilities of a system, allowing it to connect with external applications and use specific Python functionalities that aren't part of the LLM's standard toolkit. Whether it's for an automated workflow, a data processing pipeline, or an interactive agent, Griptape Tools provides the extra abilities needed to tackle a wider range of problems and tasks, enhancing the overall functionality and efficiency of the system.
 
 ## Setting up the Agent
 
 Let's update our current app to give it access to an Agent so we can interact with the LLM.
 
 ### Updating the app
-First, let's set up a basic Agent in our application. If you've taken the other courses, this should feel very familiar. Your current `app.py` file looks something like:
+First, let's set up a basic Agent in our application. If you've taken the other courses, this should feel very familiar. Your current `app.py` file looks something like this:
 
 ```python linenums="1" title="app.py"
 from dotenv import load_dotenv
@@ -30,7 +30,7 @@ from griptape.utils import Chat
 # ...
 ```
 
-Then we'll instantiate the Agent, and call it with the chat utility. Add the following lines as the end of the code.
+Then we'll instantiate the Agent, and call it with the chat utility. Add the following lines at the end of the code.
 
 ```python
 # ...
@@ -149,7 +149,7 @@ Adding a tool is a straightforward process. You `import` it, configure it if nec
     A: Today is December 2, 2023.
     ```
 
-Notice the highlighted section above. This is the `subtask`, where the Agent is using [Chain-of-Thought](https://www.promptingguide.ai/techniques/cot) to figure out what to do. It recognizes the need to use one of its activities - in this case `get_current_datetime` to get the result.
+Notice the highlighted section above. This is the `subtask`, where the Agent is using [Chain-of-Thought](https://www.promptingguide.ai/techniques/cot) to figure out what to do. It recognizes the need to use one of its activities - in this case, `get_current_datetime` to get the result.
 
 Take a look at the `Action`:
 
@@ -203,10 +203,10 @@ class SayHello():
 ```
 
 #### Methods
-Methods define the actions that the Tool can perform.MThey are implemented as Python functions in the class. In the case of the `DateTime` tool, it has a few methods - `get_current_datetime` and `get_relative_datetime`. They define specific actions the tool can perform.
+Methods define the actions that the Tool can perform. They are implemented as Python functions in the class. In the case of the `DateTime` tool, it has a few methods - `get_current_datetime` and `get_relative_datetime`. They define specific actions the tool can perform.
 
 #### Activities
-Activities tell the LLM what the action does and when it might want to use it - kind of like attaching a label or instruction. They are implemented as a decorator above the Python method. For example the `@activity` decorator in `DateTime` describes what the `get_current_datetime` method does ("Can be used to return current date and time"), and how it should behave.
+Activities tell the LLM what the action does and when it might want to use it - kind of like attaching a label or instruction. They are implemented as a decorator above the Python method. For example, the `@activity`` decorator in `DateTime` describes what the `get_current_datetime` method does ("Can be used to return current date and time"), and how it should behave.
 
 ### DateTime Structure
 
@@ -325,7 +325,7 @@ def get_current_datetime(self, _: dict) -> BaseArtifact:
 
 * `-> BaseArtifact`: This indicates that the method will *return* an object of type `BaseArtifact`. Griptape provides various artifacts, including Text, List, Blob, etc. You can learn more about them in the [documentation](https://docs.griptape.ai/en/latest/griptape-framework/data/artifacts/). 
 
-Since we're not using `self`, or `_` in this method, and Python is a dynamically typed language, we don't need to specify what a function will return. We could probably be write this method as:
+Since we're not using `self`, or `_` in this method, and Python is a dynamically typed language, we don't need to specify what a function will return. We could probably write this method as:
 
 ```python
 def get_current_datetime():
@@ -365,7 +365,7 @@ def get_current_datetime(self, _: dict) -> BaseArtifact:
     * `Exception as e` part catches any error and stores it in a variable `e`.
     * Simply put, the `except` block says "If there was a problem in `try`, let's do this instead.
     
-Using `try/except` is always good practice, *especially* with tools in Griptape. One of the benefits of using this is that `ErrorArtifacts` *get passed back to Griptape*. This means Griptape can evaluate the error, and try again - often fixing mistakes the LLM made in it's query!
+Using `try/except` is always a good practice, *especially* with tools in Griptape. One of the benefits of using this is that `ErrorArtifacts` *get passed back to Griptape*. This means Griptape can evaluate the error, and try again - often fixing mistakes the LLM made in its query!
 
 #### Return
 
@@ -380,7 +380,7 @@ def get_current_datetime(self, _: dict) -> BaseArtifact:
 
 ```
 
-Finally, the `return` statements. Whatever is in these will be returned to the subtask in order to continue. As mentioned in the `try/except` section above, `ErrorArtifacts` are important to return because it allows Griptape to try again.
+Finally, the `return` statements. Whatever is in these will be returned to the subtask in order to continue. As mentioned in the `try/except` section above, `ErrorArtifacts` are important to return because they will allow Griptape to try again.
 
 ### Activities
 
@@ -394,7 +394,7 @@ For the `get_current_datetime` method, there are no parameters, so the activity 
 
 As you can see, any time the LLM determines the task is to return the current date and/or time, it will use this method.
 
-Notice with the `get_relative_datetime` method (the other method in the DateTime class) the activity is different - it says to return a _relative_ date and time, and also has a `schema` involved. We'll dive into this detail shortly - for now, let's just understand that any time the LLM thinks that it's task is to return something about the *current* date and time, it will use the `get_current_datetime` method.
+Notice with the `get_relative_datetime` method (the other method in the DateTime class) the activity is different - it says to return a _relative_ date and time and also has a `schema` involved. We'll dive into this detail shortly - for now, let's just understand that any time the LLM thinks that its task is to return something about the *current* date and time, it will use the `get_current_datetime` method.
 
 ### More Testing
 
@@ -422,29 +422,7 @@ A: As Beaker from the Muppets, the current time would be expressed as, "Meep mee
 Sometimes you want an activity to take a specific parameter. In the case of the `DateTime` tool, the `get_relative_datetime` needs to take a parameter to understand what the day _should be relative to_.
 
 Let's try it out. Run the app and ask how far away April 3rd is from today.
-
-```text hl_lines="7 13" 
-Q: How far away is april 3 from today?
-processing...
-[12/02/23 09:36:24] INFO     ToolkitTask c2187fcb4d3542628374158090fc5a5a                                                                                                                       
-                             Input: How far away is april 3 from today?                                                                                                                         
-[12/02/23 09:36:29] INFO     Subtask d849f1ccbb3a4d2ba6e1c84d9c42d7d6                                                                                                                           
-                             Thought: I need to find out the current date and then calculate the difference between the current date and April 3rd. I'll start by getting the current date.     
-                             Action: {"name": "DateTime", "path": "get_current_datetime", "input": {}}                                                                                          
-                    INFO     Subtask d849f1ccbb3a4d2ba6e1c84d9c42d7d6                                                                                                                           
-                             Response: 2023-12-02 09:36:29.251623                                                                                                                               
-[12/02/23 09:36:33] INFO     Subtask ef201acf47a441829ddcf5ef538acc0b                                                                                                                           
-                             Thought: Now that I have the current date, I need to calculate the difference between the current date and April 3rd. I'll use the "get_relative_datetime" action  
-                             to do this.                                                                                                                                                        
-                             Action: {"name": "DateTime", "path": "get_relative_datetime", "input": {"values": {"relative_date_string": "April 3, 2024"}}}                                      
-                    INFO     Subtask ef201acf47a441829ddcf5ef538acc0b                                                                                                                           
-                             Response: 2024-04-03 00:00:00                                                                                                                                      
-[12/02/23 09:36:39] INFO     ToolkitTask c2187fcb4d3542628374158090fc5a5a                                                                                                                       
-                             Output: April 3, 2024 is approximately 122 days from today, December 2, 2023.                                                                                      
-A: April 3, 2024 is approximately 122 days from today, December 2, 2023.
-```
-
-Notice there are a few actions happening now - the first is `get_current_datetime` to find out what "today" is, then the second is `get_relative_datetime` where it passes an input.
+Notice a few actions are happening now - the first is `get_current_datetime` to find out what "today" is, then the second is `get_relative_datetime` where it passes an input.
 
 ```
 Action: {"name": "DateTime", "path": "get_current_datetime", "input": {}}
@@ -454,10 +432,10 @@ Action: {"name": "DateTime", "path": "get_relative_datetime", "input": {"values"
 
 Before we dive into the parameters, there are two things worth pointing out:
 
-1. We didn't specify the number of steps it should take to get to the answer. We just asked one somewhat ambiguous question and the LLM figured out that it would take two tasks - getting the current date, and then getting the relative date.
+1. We didn't specify the number of steps it should take to get to the answer. We just asked one somewhat ambiguous question and the LLM figured out that it would take two tasks - getting the current date and then getting the relative date.
 2. We also didn't specify the `relative_date_string` key/value pair. We didn't need to. The LLM saw what key/value pairs the `get_relative_datetime` method required, and figured out how to pass them. 
 
-This is why working with Griptape Tools starts to get really exciting - once you define the parameters, the LLM can figure out the right way to pass the data.
+This is why working with Griptape Tools starts to get exciting - once you define the parameters, the LLM can figure out the right way to pass the data.
 
 ### Schema
 
@@ -497,7 +475,7 @@ Right now the Schema has *one* parameter it's looking for: `relative_date_string
 
     Relative date in English. For example or example, "now EST", 
     "20 minutes ago", "in 2 days", "3 months, 1 week and 1 day ago", 
-    or "yesterday at 2pm"
+    or "yesterday at 2 pm"
 
 Finally, the `: str` part means the information should be provided as a string, which basically is just a line of text. This could also be `: int`, `: dict`, `: list`, etc depending on your needs.
 
@@ -519,8 +497,7 @@ It's possible to also provide *optional* parameters with Schemas. For example, i
 ```
 
 ## Code Review
-
-Throughout this section we've explored quite a bit about Griptape Tools. We learned how to import and use them, how they're structured, and what `methods` and `activities` are. You understand `schemas` and how they allow you to pass parameters to various `methods`.
+Throughout this section, we've explored quite a bit about Griptape Tools. We learned how to import and use them, how they're structured, and what `methods` and `activities` are. You understand `schemas` and how they allow you to pass parameters to various `methods`.
 
 Before continuing, let's look at our app in its current state where you can chat with the agent and ask important questions, like how much time you have before my birthday (April 3rd).
 
@@ -544,4 +521,4 @@ Chat(agent).start()
 
 ---
 ## Next Steps
-You have access to DateTime (note quite as cool as SpaceTime, but still..). In the [next section](04_first_tool.md), you will build your first Griptape Tool.
+You have access to DateTime (not quite as cool as SpaceTime, but still..). In the [next section](04_first_tool.md), you will build your first Griptape Tool.
