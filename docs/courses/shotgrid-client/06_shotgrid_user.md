@@ -1,7 +1,7 @@
 # User Authentication with ShotGrid
 
 ## Overview
-We have our ShotGrid tool that authenticates via API Key. However, there are times when it's more suitable to authenticate via Username/Password. In fact, *most* of the time you will work with the ShotGrid API, you'll want to do so as a user, since it simulates the user interacting via the UI.
+We have our ShotGrid Tool that authenticates via API Key. However, there are times when it's more suitable to authenticate via Username/Password. In fact, *most* of the time you will work with the ShotGrid API, you'll want to do so as a user, since it simulates the user interacting via the UI.
 
 In this section, we'll add authentication via Username/Password - and provide an option for you to choose which method of authentication you'd like when you instantiate the class.
 
@@ -126,7 +126,7 @@ class ShotGridTool(BaseTool):
 Next, we'll add the two different methods of instantiating Shotgun - one where we use the api_key as we have been, and the other where we use the username/login.
 
 In the `try:` section of the `get_session_token` method, let's add an if/then statement, and the resulting logic:
-At this point, if you run the code, everything should still work the same as before, except you'll see a print statement saying that you're logging in with the API Key. We haven't changed our method of sending data to the tool yet, and we've set the default `login_method` to be `api_key`.
+At this point, if you run the code, everything should still work the same as before, except you'll see a print statement saying that you're logging in with the API Key. We haven't changed our method of sending data to the Tool yet, and we've set the default `login_method` to be `api_key`.
 
 Go ahead and give it a try to make sure you're still connecting correctly.
 
@@ -179,7 +179,7 @@ Go ahead and run the code - asking again if you are connected to ShotGrid. All w
 
 ## Code Review
 
-You completed an incredible amount of work in this section - updating your tool to handle both user and API key login credentials. Well done! Let's take a look at the latest versions of `app.py`, `.env`, and `shotgrid_tool/tool.py`. Note, that we're only displaying files that have been modified in this section. 
+You completed an incredible amount of work in this section - updating your Tool to handle both user and API key login credentials. Well done! Let's take a look at the latest versions of `app.py`, `.env`, and `shotgrid_tool/tool.py`. Note, that we're only displaying files that have been modified in this section. 
 
 ### `app.py`
 

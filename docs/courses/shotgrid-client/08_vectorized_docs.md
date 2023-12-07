@@ -205,7 +205,7 @@ for artifact in artifacts:
 
 ### Vector Store Client
 
-Now we need to create the VectorStoreClient. This will be the tool we provide to the Agent that tells it how to access the vector database. Much like the ShotGridTool, the VectorStoreClient has a method that allows it to search vector databases.
+Now we need to create the VectorStoreClient. This will be the Tool we provide to the Agent that tells it how to access the vector database. Much like the ShotGridTool, the VectorStoreClient has a method that allows it to search vector databases.
 
 Because the VectorStoreClient is a Griptape Tool, you can add it to the `import` line where we're already importing `DateTime`
 
@@ -218,7 +218,7 @@ from griptape.tools import DateTime, VectorStoreClient
 # ...
 ```
 
-We can instantiate the tool in `app.py` after upserting the data. We'll provide a `description` so the LLM knows when to use it, and also access to the `query_engine` and `namespace`. 
+We can instantiate the Tool in `app.py` after upserting the data. We'll provide a `description` so the LLM knows when to use it, and also access to the `query_engine` and `namespace`. 
 
 ```python title="app.py" hl_lines="9-15"
 # ...
