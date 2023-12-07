@@ -1,15 +1,15 @@
 # Your First Tool
 
 ## Overview
-We'll use a Griptape Tool Template that's available on GitHub to create our first tool, and then modify it slightly to demonstrate multiple activities.
+We'll use a Griptape Tool Template that's available on GitHub to create our first Tool, and then modify it slightly to demonstrate multiple activities.
 
 ## Getting the template
 
-The tool template provided creates a `reverse_string` tool. It will take any text and reverse it. It's a nice simple example of how to use a tool with your LLM.
+The Tool template provided creates a `reverse_string` Tool. It will take any text and reverse it. It's a nice simple example of how to use a Tool with your LLM.
 
-The template contains examples of how to use the tool, testing, and more. The idea is that you can take this template and publish your own tool on GitHub to share with the world. 
+The template contains examples of how to use the Tool, testing, and more. The idea is that you can take this template and publish your own Tool on GitHub to share with the world. 
 
-For the purposes of *this course*, we'll keep things simple and just focus on the tool itself, using the code to create our own as part of our current project.
+For the purposes of *this course*, we'll keep things simple and just focus on the Tool itself, using the code to create our own as part of our current project.
 
 1. Navigate to the [Gritptape tool-template repository](https://github.com/griptape-ai/tool-template) on GitHub.
 2. Find the **Code** button and click on it.
@@ -22,7 +22,7 @@ For the purposes of *this course*, we'll keep things simple and just focus on th
 
     ![Extracted contents of the zip file](assets/img/tool-template-main.png)
 
-    The **reverse_string_tool** folder is the one we are interested in, it contains the required files for the tool. You can read more about them in the [Griptape Custom Tool documentation](https://docs.griptape.ai/en/latest/griptape-tools/custom-tools/).
+    The **reverse_string_tool** folder is the one we are interested in, it contains the required files for the Tool. You can read more about them in the [Griptape Custom Tool documentation](https://docs.griptape.ai/en/latest/griptape-tools/custom-tools/).
 
 5. Copy the **reverse_string_tool** folder into the folder where your `app.py` file sits. 
 
@@ -35,7 +35,7 @@ For the purposes of *this course*, we'll keep things simple and just focus on th
 
 ## Use Reverse String
 
-Here's the code for the Reverse String tool (as of December 2023). I've highlighted some important lines from the code.
+Here's the code for the Reverse String Tool (as of December 2023). I've highlighted some important lines from the code.
 
 ```python linenums="1" hl_lines="10 11 13 14 17"
 from __future__ import annotations
@@ -65,11 +65,11 @@ class ReverseStringTool(BaseTool):
 
 ```
 
-The highlighted lines illustrate that the tool (Class) is called `ReverseString`. It has one module, `reverse_string`. It has an `activity` that says it "Can be used to reverse a string", and it appears to take one parameter named `input` which is described as "The string to be reversed".
+The highlighted lines illustrate that the Tool (Class) is called `ReverseString`. It has one module, `reverse_string`. It has an `activity` that says it "Can be used to reverse a string", and it appears to take one parameter named `input` which is described as "The string to be reversed".
 
 ### Add it to app.py
 
-Just like any other Griptape tool, you need to `import` the tool. However, because this tool isn't part of the default Griptape repository, the import line will look slightly different. Add the following line to `app.py`:
+Just like any other Griptape Tool, you need to `import` it. However, because this Tool isn't part of the default Griptape repository, the import line will look slightly different. Add the following line to `app.py`:
 
 ```python 
 # ...
@@ -86,7 +86,7 @@ from reverse_string_tool import ReverseStringTool
 
 ### Give it to the agent
 
-Remember, the agent takes a list of tools. We can add this tool to the agent by simply adding it to the list.
+Remember, the agent takes a list of Tools. We can add this Tool to the agent by simply adding it to the list.
 
 Find the line where you instantiate the agent and add the `ReverseStringTool`:
 
@@ -100,11 +100,11 @@ agent = Agent(tools=[DateTime(off_prompt=False), ReverseStringTool(off_prompt=Fa
 # ...
 ```
 
-Notice the agent now has access to *two* tools, `DateTime` and `ReverseStringTool`. 
+Notice the agent now has access to *two* Tools, `DateTime` and `ReverseStringTool`. 
 
 ### Test it out
 
-Now test the tool by running the application and asking it to say something in reverse.
+Now test the Tool by running the application and asking it to say something in reverse.
 
 ```text hl_lines="5-17"
 Q: can you say this in revese "I'm a lumberjack and I'm okay"
@@ -136,7 +136,7 @@ As you can see in the highlighted section above, the `Subtask` shows that the ag
 
 ### Combine requests
 
-You can absolutely use multiple tools at the same time. Try a few examples where you might use both the `DateTime` tool and the `ReverseStringTool`.
+You can absolutely use multiple Tools at the same time. Try a few examples where you might use both the `DateTime` Tool and the `ReverseStringTool`.
 
 ```text
 Q: Can you reverse the month?

@@ -17,9 +17,9 @@ ShotGrid comes with a number of methods to create, find, update, delete, and muc
 |`Shotgun.upload_thumbnail` | Upload a file from a local path and assign it as a thumbnal for the entity |
 |`Shotgun.summarize` | Summarize field data returned by a query. |
 
-As you can see, there are a number of various methods we can use, and we _could_ create an activity/method for each one of these. However, our tool would get large, and end up being somewhat difficult to maintain. There would also be quite a lot of repetitive code, with each method importing the ShotGrid library and connecting.
+As you can see, there are a number of various methods we can use, and we _could_ create an activity/method for each one of these. However, our Tool would get large, and end up being somewhat difficult to maintain. There would also be quite a lot of repetitive code, with each method importing the ShotGrid library and connecting.
 
-Instead, we'll introduce a method to create a more "generic" tool, that will utilize the LLM's knowledge of the ShotGrid API to generate the correct commands.
+Instead, we'll introduce a method to create a more "generic" Tool, that will utilize the LLM's knowledge of the ShotGrid API to generate the correct commands.
 
 ## Create `meta_method`
 
@@ -29,7 +29,7 @@ We're going to call this new method, the **Meta Method**. This method will allow
 First, in `shotgrid_tool/tool.py` make the following changes:
 
 1. Change the description in the activity to "Can be used to execute ShotGrid methods"
-2. Re-name the method we currently have in the tool from `get_session_token` to `meta_method`
+2. Re-name the method we currently have in the Tool from `get_session_token` to `meta_method`
 
 ```python title="shotgrid_tool/tool.py" hl_lines="5 8"
 # ...

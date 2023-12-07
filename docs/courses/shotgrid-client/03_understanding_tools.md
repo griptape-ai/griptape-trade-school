@@ -1,7 +1,7 @@
 # Understanding Tools - DateTime
 
 ## Overview
-In this module, we will explore the DateTime tool within Griptape, demonstrating its integration into an `Agent` and breaking down how activities function. We'll then show how you can use the tool in a `Pipeline` by employing `ToolTask` and `ToolkitTask`. 
+In this module, we will explore the DateTime Tool within Griptape, demonstrating its integration into an `Agent` and breaking down how activities function. We'll then show how you can use the tool in a `Pipeline` by employing `ToolTask` and `ToolkitTask`. 
 
 ## What is a Griptape Tool?
 
@@ -87,17 +87,17 @@ A: As an AI, I don't have real-time capabilities to provide the current date. Pl
 
 ```
 
-As you can see, the LLM does not have access to any tools that tell it what day it is. Luckily - Griptape provides a tool that does! The DateTime tool!
+As you can see, the LLM does not have access to any tools that tell it what day it is. Luckily - Griptape provides one that does! The DateTime Tool!
 
 ## Adding Tools
 
-Griptape Tools allow you to add functionality that Griptape Structures (Agents, Pipelines, Workflows) can use. We'll use the DateTime tool to give the agent the ability to figure out the current time. 
+Griptape Tools allow you to add functionality that Griptape Structures (Agents, Pipelines, Workflows) can use. We'll use the DateTime Tool to give the agent the ability to figure out the current time. 
 
-Adding a tool is a straightforward process. You `import` it, configure it if necessary, and then give it to the Agent (or task). Some tools are more complicated than others, which is why we're getting started with a nice simple one.
+Adding a Tool is a straightforward process. You `import` it, configure it if necessary, and then give it to the Agent (or task). Some Tools are more complicated than others, which is why we're getting started with a nice simple one.
 
 ### Include DateTime
 
-* Modify the import statements to include the DateTime tool:
+* Modify the import statements to include the DateTime Tool:
 
     ```python
     # ...
@@ -105,7 +105,7 @@ Adding a tool is a straightforward process. You `import` it, configure it if nec
     # ...
     ```
 
-* Next, provide the tool to the agent. Agents can work with multiple tools, so you will be adding it as a list. Modify the code where we instantiate the agent so it looks like:
+* Next, provide the Tool to the agent. Agents can work with multiple Tools, so you will be adding it as a list. Modify the code where we instantiate the agent so it looks like:
 
     ```python
     # ...
@@ -116,10 +116,10 @@ Adding a tool is a straightforward process. You `import` it, configure it if nec
     ```
 
     !!!tip "What is "off_prompt"?"
-        **Important Note**: Griptape directs outputs from tool activities into short-term [TaskMemory](https://docs.griptape.ai/en/latest/griptape-framework/tools/task-memory/), keeping them 'off_prompt' and separate from the LLM. This makes it easy to work with big data securely and with low latency. To change this default for more direct interaction with the LLM, set the `off_prompt` parameter to `False`. This allows the LLM to access and respond to tool outputs directly.
+        **Important Note**: Griptape directs outputs from Tool activities into short-term [TaskMemory](https://docs.griptape.ai/en/latest/griptape-framework/tools/task-memory/), keeping them 'off_prompt' and separate from the LLM. This makes it easy to work with big data securely and with low latency. To change this default for more direct interaction with the LLM, set the `off_prompt` parameter to `False`. This allows the LLM to access and respond to Tool outputs directly.
 
     !!!abstract "DateTime"
-        For more information on the DateTime tool, you can visit the [DateTime Tool Documentation](https://docs.griptape.ai/en/latest/griptape-tools/official-tools/date-time/). 
+        For more information on the DateTime Tool, you can visit the [DateTime Tool Documentation](https://docs.griptape.ai/en/latest/griptape-tools/official-tools/date-time/). 
 
 ### Try it again
 
@@ -182,13 +182,13 @@ Let's take a look at the `DateTime` class itself and see if we can determine wha
 
     ![DateTime](assets/img/DateTime.png)
 
-    As you can see in the editor, this is the DateTime class, ready for you to inspect. Jumping around between definitions of classes and functions you use is a very handy way to learn more about how tools are implemented. 10 stars - would highly recommend.
+    As you can see in the editor, this is the DateTime class, ready for you to inspect. Jumping around between definitions of classes and functions you use is a very handy way to learn more about how Tools are implemented. 10 stars - would highly recommend.
 
 ### Tool Structure
 
-In Griptape, a "tool" is a `Class`. It is a blueprint that defines the properties and behaviors the tool will have.
+In Griptape, a "Tool" is a `Class`. It is a blueprint that defines the properties and behaviors the Tool will have.
 
-Each tool has `activities` and `methods`.
+Each Tool has `activities` and `methods`.
 
 ```python
 # Example of a very simple class with an activity and method
@@ -203,7 +203,7 @@ class SayHello():
 ```
 
 #### Methods
-Methods define the actions that the Tool can perform. They are implemented as Python functions in the class. In the case of the `DateTime` tool, it has a few methods - `get_current_datetime` and `get_relative_datetime`. They define specific actions the tool can perform.
+Methods define the actions that the Tool can perform. They are implemented as Python functions in the class. In the case of the `DateTime` Tool, it has a few methods - `get_current_datetime` and `get_relative_datetime`. They define specific actions it can perform.
 
 #### Activities
 Activities tell the LLM what the action does and when it might want to use it - kind of like attaching a label or instruction. They are implemented as a decorator above the Python method. For example, the `@activity`` decorator in `DateTime` describes what the `get_current_datetime` method does ("Can be used to return current date and time"), and how it should behave.
@@ -365,7 +365,7 @@ def get_current_datetime(self, _: dict) -> BaseArtifact:
     * `Exception as e` part catches any error and stores it in a variable `e`.
     * Simply put, the `except` block says "If there was a problem in `try`, let's do this instead.
     
-Using `try/except` is always a good practice, *especially* with tools in Griptape. One of the benefits of using this is that `ErrorArtifacts` *get passed back to Griptape*. This means Griptape can evaluate the error, and try again - often fixing mistakes the LLM made in its query!
+Using `try/except` is always a good practice, *especially* with Tools in Griptape. One of the benefits of using this is that `ErrorArtifacts` *get passed back to Griptape*. This means Griptape can evaluate the error, and try again - often fixing mistakes the LLM made in its query!
 
 #### Return
 
@@ -398,7 +398,7 @@ Notice with the `get_relative_datetime` method (the other method in the DateTime
 
 ### More Testing
 
-Let's experiment with different ways of requesting the current time. Try requesting for day, time, date, day of the month, time of year, etc. Notice how the LLM is able to handle all these different results, with *only one method*.
+Let's experiment with different ways of requesting the current time. Try requesting for day, time, date, day of the month, time of year, etc. Notice how the LLM can handle all these different results, with *only one method*.
 
 ```
 Q: What's the date?
@@ -419,7 +419,7 @@ A: As Beaker from the Muppets, the current time would be expressed as, "Meep mee
 
 ### Parameters
 
-Sometimes you want an activity to take a specific parameter. In the case of the `DateTime` tool, the `get_relative_datetime` needs to take a parameter to understand what the day _should be relative to_.
+Sometimes you want an activity to take a specific parameter. In the case of the `DateTime` Tool, the `get_relative_datetime` needs to take a parameter to understand what the day _should be relative to_.
 
 Let's try it out. Run the app and ask how far away April 3rd is from today.
 Notice a few actions are happening now - the first is `get_current_datetime` to find out what "today" is, then the second is `get_relative_datetime` where it passes an input.
