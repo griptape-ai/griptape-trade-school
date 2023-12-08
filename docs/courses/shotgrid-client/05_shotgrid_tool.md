@@ -413,7 +413,8 @@ agent = Agent(
         DateTime(off_prompt=False),
         shotgrid_tool,
         # ReverseStringTool(off_prompt=False),
-    ]
+    ],
+    stream=True
 )
 
 # ...
@@ -454,7 +455,8 @@ agent = Agent(
         DateTime(off_prompt=False),
         shotgrid_tool,
         # ReverseStringTool(off_prompt=False),
-    ]
+    ],
+    stream=True
 )
 
 # Start chatting
@@ -570,7 +572,8 @@ agent = Agent(
         DateTime(off_prompt=False),
         shotgrid_tool,
         # ReverseStringTool(off_prompt=False),
-    ]
+    ],
+    stream=True
 )
 
 # Start chatting

@@ -95,7 +95,7 @@ Find the line where you instantiate the agent and add the `ReverseStringTool`:
 # ...
 
 # Instantiate the agent
-agent = Agent(tools=[DateTime(off_prompt=False), ReverseStringTool(off_prompt=False)])
+agent = Agent(tools=[DateTime(off_prompt=False), ReverseStringTool(off_prompt=False)], stream=True)
 
 # ...
 ```
@@ -255,7 +255,7 @@ from reverse_string_tool import ReverseStringTool
 load_dotenv()
 
 # Instantiate the agent
-agent = Agent(tools=[DateTime(off_prompt=False), ReverseStringTool(off_prompt=False)])
+agent = Agent(tools=[DateTime(off_prompt=False), ReverseStringTool(off_prompt=False)], stream=True)
 
 # Start chatting
 Chat(agent).start()

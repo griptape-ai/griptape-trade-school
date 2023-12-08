@@ -254,7 +254,8 @@ agent = Agent(
         shotgrid_tool,
         vector_store_tool
         # ReverseStringTool(off_prompt=False),
-    ]
+    ],
+    stream=True
 )
 
 # ...
@@ -390,7 +391,8 @@ agent = Agent(
         shotgrid_tool,
         vector_store_tool
         # ReverseStringTool(off_prompt=False),
-    ]
+    ],
+    stream=True
 )
 
 # Start chatting
