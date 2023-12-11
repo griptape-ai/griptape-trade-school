@@ -248,6 +248,7 @@ agent = Agent(
         # ReverseStringTool(off_prompt=False),
     ],
     rulesets=[shotgrid_agent_ruleset],
+    stream=True
 )
 
 # ...
@@ -378,6 +379,7 @@ shotgrid_agent_ruleset = Ruleset(
 agent = Agent(
     tools=[DateTime(off_prompt=False), shotgrid_tool, vector_store_tool],
     rulesets=[shotgrid_agent_ruleset],
+    stream=True
 )
 
 # Start chatting
