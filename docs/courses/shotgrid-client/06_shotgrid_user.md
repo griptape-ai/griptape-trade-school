@@ -306,4 +306,4 @@ class ShotGridTool(BaseTool):
 
 ---
 ## Next Steps
-You are making fantastic progress. Connecting to the ShotGrid API is exciting - but what would be _really_ exciting would be to be able to start creating assets and manipulating data in ShotGrid. That's what we'll do in the next section - set up our first method to start working with actual data.
+You are making fantastic progress. Connecting to the ShotGrid API is exciting - but what would be _really_ exciting would be to be able to start creating assets and manipulating data in ShotGrid. That's what we'll do in the [next section](07_method.md) - set up our first method to start working with actual data.
