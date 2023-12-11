@@ -129,7 +129,17 @@ nav:
           - Using Tools: courses/compare-movies-workflow/05_using_tools.md
           - Workflow Outputs: courses/compare-movies-workflow/06_workflow_outputs.md
           - Workflow Displaying Graph: courses/compare-movies-workflow/07_workflow_display_graph.md
-
+      - Griptape and Shotgrid - Tools:
+          - Introduction: courses/shotgrid-client/index.md
+          - Setup: courses/shotgrid-client/01_setup.md
+          - Understanding Tools: courses/shotgrid-client/03_understanding_tools.md
+          - Your First Tool: courses/shotgrid-client/04_first_tool.md
+          - ShotGrid Signup: courses/shotgrid-client/02_shotgrid.md
+          - ShotGrid Tool: courses/shotgrid-client/05_shotgrid_tool.md
+          - User Authentication: courses/shotgrid-client/06_shotgrid_user.md
+          - ShotGrid Methods: courses/shotgrid-client/07_method.md
+          - Vectorized Docs: courses/shotgrid-client/08_vectorized_docs.md
+          - Rules and Rulesets: courses/shotgrid-client/09_rules.md
   - Help:
       - FAQ: faq.md
       - Contributing: contributing.md
