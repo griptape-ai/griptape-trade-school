@@ -2,7 +2,7 @@
 
 Before we get started with the rest of the course, let's make sure you have access to [Autodesk ShotGrid](https://www.shotgridsoftware.com/).
 
-If you don't already have an account, Autodesk does provide access to a 30-day [free trial](https://www.shotgridsoftware.com/trial/)(https://www.shotgridsoftware.com/trial/) of ShotGrid, and you can even sign up *without a credit card*.
+If you don't already have an account, Autodesk does provide access to a 30-day [free trial](https://www.shotgridsoftware.com/trial/) (https://www.shotgridsoftware.com/trial/) of ShotGrid, and you can even sign up *without a credit card*.
 
 Nice!
 
