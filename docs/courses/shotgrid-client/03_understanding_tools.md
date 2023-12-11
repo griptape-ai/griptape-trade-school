@@ -36,7 +36,7 @@ Then we'll instantiate the Agent, and call it with the chat utility. Add the fol
 # ...
 
 # Instantiate the agent
-agent = Agent()
+agent = Agent(stream=True)
 
 # Start chatting
 Chat(agent).start()
@@ -52,7 +52,7 @@ from griptape.utils import Chat
 load_dotenv()
 
 # Instantiate the agent
-agent = Agent()
+agent = Agent(stream=True)
 
 # Start chatting
 Chat(agent).start()
@@ -111,7 +111,7 @@ Adding a Tool is a straightforward process. You `import` it, configure it if nec
     # ...
 
     # Instantiate the agent
-    agent = Agent(tools=[DateTime(off_prompt=False)])
+    agent = Agent(tools=[DateTime(off_prompt=False)], stream=True)
     # ...
     ```
 
@@ -511,7 +511,7 @@ from griptape.tools import DateTime
 load_dotenv()
 
 # Instantiate the agent
-agent = Agent(tools=[DateTime(off_prompt=False)])
+agent = Agent(tools=[DateTime(off_prompt=False)], stream=True)
 
 # Start chatting
 Chat(agent).start()
