@@ -71,6 +71,13 @@ Q:
 
 This is the prompt for the Chat, indicating you can now chat with the agent.
 
+!!! tip
+    You may see a different prompt than `Q:`. We are currently experimenting with different prompt suggestions to find something more intuitive. If you want to specify the prompt explicitly, you can pass the `prompt_prefix` parameter to the `Chat` utility.
+
+    ```python
+    Chat(agent, prompt_prefix="Q: ").start()
+    ``` 
+
 Ask the agent: `"What day is it?"`
 
 You will receive a response similar to this:
