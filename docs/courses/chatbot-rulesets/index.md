@@ -19,7 +19,7 @@ This course is aimed at **beginners** to **intermediate** level Python developer
 Before beginning this course, you will need:
 
 - An OpenAI API Key (available here: https://beta.openai.com/account/api-keys)
-- Python3.11+ installed on your machine
+- Python3.9+ installed on your machine
 - An IDE (such as Visual Studio Code or PyCharm) to write and manage your code
 
 If you don't have those items available, it's highly recommended you go through the [Griptape Setup - Visual Studio Code](../../setup/index.md) course to set up your environment.
