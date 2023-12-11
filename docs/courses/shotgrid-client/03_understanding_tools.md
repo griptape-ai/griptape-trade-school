@@ -213,7 +213,7 @@ class SayHello():
 Methods define the actions that the Tool can perform. They are implemented as Python functions in the class. In the case of the `DateTime` Tool, it has a few methods - `get_current_datetime` and `get_relative_datetime`. They define specific actions it can perform.
 
 #### Activities
-Activities tell the LLM what the action does and when it might want to use it - kind of like attaching a label or instruction. They are implemented as a decorator above the Python method. For example, the `@activity`` decorator in `DateTime` describes what the `get_current_datetime` method does ("Can be used to return current date and time"), and how it should behave.
+Activities tell the LLM what the action does and when it might want to use it - kind of like attaching a label or instruction. They are implemented as a decorator above the Python method. For example, the `@activity` decorator in `DateTime` describes what the `get_current_datetime` method does ("Can be used to return current date and time"), and how it should behave.
 
 ### DateTime Structure
 
