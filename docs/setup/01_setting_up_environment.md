@@ -8,15 +8,12 @@ Temporarily disable video
 -->
 ## Installing Python 
 
-![python logo](assets/img/python.png){ align=right } Before getting started with Griptape, you'll need to install Python. We currently recommend a Python version *less* than 3.12.
-
-!!! info
-    Griptape requires a Python version between `3.11` and *less* than `3.12`. We're working on updates to this and will update this course when that changes.
+![python logo](assets/img/python.png){ align=right } Before getting started with Griptape, you'll need to install Python. We currently recommend a Python version *greater* than 3.9.
 
 ### Windows or Linux
 
 1. Head over to the [official Python downloads page](https://www.python.org/downloads/)
-2. Click on the button that says "Python 3.11.x" (or the most recent 3.11 version) to download the installer
+2. Click on the button that says "Python 3.12.x" (or the most recent 3.12 version) to download the installer
 3. Run the installer, and make sure to check the box that says "Add Python to environment variables" before you click "Install"
 
    ![Windows Installer](assets/img/01_python_env_variables.png)
@@ -26,8 +23,8 @@ Temporarily disable video
 If you have [Homebrew](https://brew.sh) installed:
 
 1. Open your terminal
-2. Run the `command brew install python@3.11`
-3. After the installation is complete, run `brew link python@3.11`
+2. Run the `command brew install python@3.12`
+3. After the installation is complete, run `brew link python@3.12`
 
 !!! info
 
