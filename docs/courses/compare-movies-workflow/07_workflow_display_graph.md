@@ -3,7 +3,7 @@
 ## Overview
 Throughout the course you've been creating Workflows by adding and inserting various tasks.
 
-We've been displaying those workflow structures in this documentation by using the extremely helpful [Mermaid javascript libray](http://mermaid.js.org/).
+We've been displaying those workflow structures in this documentation by using the extremely helpful [Mermaid javascript libray](http://mermaid.js.org/){target="_blank"}.
 
 
 ``` mermaid

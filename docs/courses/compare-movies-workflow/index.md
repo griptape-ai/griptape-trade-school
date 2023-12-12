@@ -30,7 +30,7 @@ graph TB
 ```
 
 ## Course Description
-Griptape [Workflows](https://docs.griptape.ai/en/latest/griptape-framework/structures/workflows/) allow you to create complicated parent-child task relationships, where one task won't begin until all it's parent tasks have completed. Using movie narratives as our backdrop, you'll gain practical experience in establishing inter-task connections and seeing how they collaboratively weave a coherent story. Ideal for those keen on understanding the intricacies of Griptape's Workflows while engaging in a compelling thematic exploration.
+Griptape [Workflows](https://docs.griptape.ai/en/latest/griptape-framework/structures/workflows/){target="_blank"} allow you to create complicated parent-child task relationships, where one task won't begin until all it's parent tasks have completed. Using movie narratives as our backdrop, you'll gain practical experience in establishing inter-task connections and seeing how they collaboratively weave a coherent story. Ideal for those keen on understanding the intricacies of Griptape's Workflows while engaging in a compelling thematic exploration.
 ## What you will create
 Below you can see a representation of the workflow graph we will create in the course, where you will pass rough descriptions of movies, then for each movie a series of tasks will be executed:
 
@@ -94,7 +94,7 @@ This course is aimed at **intermediate** level Python developers who are interes
 ## Prerequisites
 Before beginning this course, you will need:
 
-- An OpenAI API Key (available here: https://beta.openai.com/account/api-keys)
+- An OpenAI API Key (available here: https://beta.openai.com/account/api-keys){target="_blank"}
 - Python3.9+ installed on your machine
 - An IDE (such as Visual Studio Code or PyCharm) to write and manage your code
 
@@ -112,9 +112,9 @@ The course will cover:
 ## Useful Resources
 These resources will provide additional information and context throughout the course:
 
-- [Griptape Documentation](https://github.com/griptape-ai/griptape)
-- [Visual Studio Code](https://code.visualstudio.com/)
-- [Jinja2 Documentation](https://jinja.palletsprojects.com/en/3.1.x/)
+- [Griptape Documentation](https://github.com/griptape-ai/griptape){target="_blank"}
+- [Visual Studio Code](https://code.visualstudio.com/){target="_blank"}
+- [Jinja2 Documentation](https://jinja.palletsprojects.com/en/3.1.x/){target="_blank"}
 
 
 ---
