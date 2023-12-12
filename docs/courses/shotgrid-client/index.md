@@ -2,14 +2,14 @@
 ![ShotGrid Assets view](assets/img/shotgrid_assets.png)
 
 ## Course Description
-This course offers a friendly and accessible path to understand how [Griptape Tools](https://docs.griptape.ai/latest/griptape-tools/), functioning as specialized Python classes, enable Language Learning Models (LLMs) to interface with external APIs and datasets, thus broadening their operational scope.
+This course offers a friendly and accessible path to understand how [Griptape Tools](https://docs.griptape.ai/latest/griptape-tools/){target="_blank"}, functioning as specialized Python classes, enable Language Learning Models (LLMs) to interface with external APIs and datasets, thus broadening their operational scope.
 
-At the end of this course, you will have working Python code for a Griptape Tool that enables a Griptape Agent to invoke capabilities from [Autodesk](https://www.shotgridsoftware.com/) ShotGrid](https://www.shotgridsoftware.com/). Imagine commanding the chatbot to "Create 20 assets for a 1950's kitchen counter, give them relevant descriptions, and set up initial task dependencies." This scenario encapsulates the kind of interactive and practical tasks you will be able to accomplish. 
+At the end of this course, you will have working Python code for a Griptape Tool that enables a Griptape Agent to invoke capabilities from [Autodesk](https://www.shotgridsoftware.com/){target="_blank"} [ShotGrid](https://www.shotgridsoftware.com/){target="_blank"}. Imagine commanding the chatbot to "Create 20 assets for a 1950's kitchen counter, give them relevant descriptions, and set up initial task dependencies." This scenario encapsulates the kind of interactive and practical tasks you will be able to accomplish. 
 
 ## What is ShotGrid?
 ShotGrid is Autodesk's production management software. It is used mainly to manage Media and Entertainment (Games, Film, Commercials, etc) productions. You can track deadlines, manage budgets, create and manage asset development, collaborate with others, and more. 
 
-It's got a rich Python API, which many studios have used to integrate with various software tools like [Autodesk Maya](https://www.autodesk.com/za/products/maya/overview-dts), [SideFX Houdini](https://www.sidefx.com/products/houdini/), [Foundry Nuke](https://www.foundry.com/products/nuke-family/nuke), and many others.
+It's got a rich Python API, which many studios have used to integrate with various software tools like [Autodesk Maya](https://www.autodesk.com/za/products/maya/overview-dts){target="_blank"}, [SideFX Houdini](https://www.sidefx.com/products/houdini/){target="_blank"}, [Foundry Nuke](https://www.foundry.com/products/nuke-family/nuke){target="_blank"}, and many others.
 
 
 ## Who is this course for
@@ -24,7 +24,7 @@ This course is specifically designed for a diverse group of learners.
 ## Prerequisites
 Before beginning this course, you will need:
 
-- An OpenAI API Key (available here: https://beta.openai.com/account/api-keys)
+- An OpenAI API Key (available here: https://beta.openai.com/account/api-keys){target="_blank"}
 - Python3.9+ installed on your machine
 - An IDE (such as Visual Studio Code or PyCharm) to write and manage your code
 
@@ -47,11 +47,11 @@ The course will cover:
 
 ## Useful Resources and Links
 
-- [Griptape Documentation](https://github.com/griptape-ai/griptape)
-- [Visual Studio Code](https://code.visualstudio.com/)
-- [Jinja2 Documentation](https://jinja.palletsprojects.com/en/3.1.x/)
-- [Autodesk ShotGrid](https://www.shotgridsoftware.com/)
-- [Autodesk Shotgrid Python API](https://developers.shotgridsoftware.com/python-api/)
+- [Griptape Documentation](https://github.com/griptape-ai/griptape){target="_blank"}
+- [Visual Studio Code](https://code.visualstudio.com/){target="_blank"}
+- [Jinja2 Documentation](https://jinja.palletsprojects.com/en/3.1.x/){target="_blank"}
+- [Autodesk ShotGrid](https://www.shotgridsoftware.com/){target="_blank"}
+- [Autodesk Shotgrid Python API](https://developers.shotgridsoftware.com/python-api/){target="_blank"}
 
 
 ---

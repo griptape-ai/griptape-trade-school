@@ -6,7 +6,7 @@ In this section, we will add a method that allows you to do much, much more.
 
 ## ShotGrid Methods
 
-ShotGrid comes with a number of methods to create, find, update, delete, and much more. Here's a small list of methods, with the [entire list](https://developers.shotgridsoftware.com/python-api/reference.html#shotgrid-methods) available in their documentation.
+ShotGrid comes with a number of methods to create, find, update, delete, and much more. Here's a small list of methods, with the [entire list](https://developers.shotgridsoftware.com/python-api/reference.html#shotgrid-methods){target="_blank"} available in their documentation.
 
 |Method|Description| 
 |------|-----------|

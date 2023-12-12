@@ -2,7 +2,7 @@
 
 ## Overview
 
-In the [Chatbot - Rulesets](../chatbot-rulesets/index.md) course you learned all about creating Griptape [Rules and Rulesets](https://docs.griptape.ai/en/dev/griptape-framework/structures/rulesets/) and how to use them to give an Agent directions. In that case, it was mostly about providing personality and making sure the output was in JSON format. In this course, we'll use rules to help direct the Agent to use `ShotGridTool` and Vector Database when appropriate.
+In the [Chatbot - Rulesets](../chatbot-rulesets/index.md) course you learned all about creating Griptape [Rules and Rulesets](https://docs.griptape.ai/en/dev/griptape-framework/structures/rulesets/){target="_blank"} and how to use them to give an Agent directions. In that case, it was mostly about providing personality and making sure the output was in JSON format. In this course, we'll use rules to help direct the Agent to use `ShotGridTool` and Vector Database when appropriate.
 
 If you haven't viewed that course before, I highly recommend doing so - especially the section on creating [Personality](../chatbot-rulesets/05_personality_with_rulesets.md) as it provides a wonderful overview of creating and using Rulesets, what they're used for, and why Griptape has them.
 
@@ -403,4 +403,4 @@ You have learned:
 * How to vectorize and provide extra documentation to asset Griptape Agents.
 * How to craft Rules and Rulesets to sculpt the Agent's performance.
 
-We hope you enjoyed this course, please head over to [Discord](https://discord.gg/tTWjcjxFv9) and share your results!
+We hope you enjoyed this course, please head over to [Discord](https://discord.gg/tTWjcjxFv9){target="_blank"} and share your results!

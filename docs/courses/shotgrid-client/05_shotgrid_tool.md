@@ -31,7 +31,7 @@ API key authentication is easier to set up, but Username/Password authentication
 
 ### Getting a key
 
-Before we create the Tool, we'll need a ShotGrid Application Key. Autodesk handles this by allowing you to create an API script in the ShotGrid UI. It will return an API key for you. You can review the [official ShotGrid documentation](https://help.autodesk.com/view/SGDEV/ENU/?guid=SGD_py_python_api_create_manage_html), but as of December 2023, this is the process:
+Before we create the Tool, we'll need a ShotGrid Application Key. Autodesk handles this by allowing you to create an API script in the ShotGrid UI. It will return an API key for you. You can review the [official ShotGrid documentation](https://help.autodesk.com/view/SGDEV/ENU/?guid=SGD_py_python_api_create_manage_html){target="_blank"}, but as of December 2023, this is the process:
 
 1. Open the **Admin Menu** by clicking on your user in the upper right corner of ShotGrid
 2. Choose **Scripts**.
@@ -118,7 +118,7 @@ legal_info_url: https://www.example.com/legal
 
 ### Create `requirements.txt`
 
-Some Tools you create for Griptape will require various Python dependencies - other libraries that they need to operate correctly. ShotGrid is one of those Tools - it requires the [ShotGrid library](git+https://github.com/shotgunsoftware/python-api.git), available from GitHub.  
+Some Tools you create for Griptape will require various Python dependencies - other libraries that they need to operate correctly. ShotGrid is one of those Tools - it requires the [ShotGrid library](git+https://github.com/shotgunsoftware/python-api.git){target="_blank"}, available from GitHub.  
 
 Griptape allows you to easily include these requirements by adding them to a `requirements.txt` file, located inside your tool folder. You will then import the required dependency _inside the method where it's used_. We'll cover that in more detail later.
 
@@ -167,7 +167,7 @@ class ShotGridTool(BaseTool):
 
 ### Define parameters
 
-When using the ShotGrid API there are some parameters that are required to authenticate. Reviewing the [documentation](https://developers.shotgridsoftware.com/python-api/reference.html#shotgun), we can see that there are at least three parameters we will always require:
+When using the ShotGrid API there are some parameters that are required to authenticate. Reviewing the [documentation](https://developers.shotgridsoftware.com/python-api/reference.html#shotgun){target="_blank"}, we can see that there are at least three parameters we will always require:
 
 * **base_url** - The URL for your ShotGrid site
 * **script_name** - The name for your script

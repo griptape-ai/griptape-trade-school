@@ -5,7 +5,7 @@ We have the ability to connect to the ShotGrid API and execute commands, but the
 
 The trick is that we want to allow the LLM to get access to this data _quickly_. We want it to be able to know how to find the right commands for the types of tasks we want to execute without needing to know _exactly_ what the method is `find` or `create` or `find_one`.
 
-Well, luckily Autodesk has provided pretty extensive API documentation available here: [https://developers.shotgridsoftware.com/python-api/reference.html#](https://developers.shotgridsoftware.com/python-api/reference.html#). There are additional pages available as well.
+Well, luckily Autodesk has provided pretty extensive API documentation available here: [https://developers.shotgridsoftware.com/python-api/reference.html#](https://developers.shotgridsoftware.com/python-api/reference.html#){target="_blank"}. There are additional pages available as well.
 
 We can provide this documentation to the LLM by creating a **Vector Store** of docs.
 
@@ -25,12 +25,12 @@ This means I can ask for "ways to filter asset creation" "asset creation, filter
 
 The process for providing the docs to the LLM looks like this:
 
-1. Create a Vector Database where we can store the documents. In this example, we'll use a simple [Local Vector Store Driver](https://docs.griptape.ai/en/latest/griptape-framework/data/vector-store-drivers/#local-vector-store-driver).
-2. Create a [Vector Query Engine](https://docs.griptape.ai/en/latest/griptape-framework/data/query-engines/#vectorqueryengine) - an engine that's really good at searching Vector Databases
+1. Create a Vector Database where we can store the documents. In this example, we'll use a simple [Local Vector Store Driver](https://docs.griptape.ai/en/latest/griptape-framework/data/vector-store-drivers/#local-vector-store-driver){target="_blank"}.
+2. Create a [Vector Query Engine](https://docs.griptape.ai/en/latest/griptape-framework/data/query-engines/#vectorqueryengine){target="_blank"} - an engine that's really good at searching Vector Databases
 3. Create a list of URLs to vectorize.
-For each URL, load the data using a [WebLoader](https://docs.griptape.ai/en/latest/griptape-framework/data/loaders/#web-loader).
+For each URL, load the data using a [WebLoader](https://docs.griptape.ai/en/latest/griptape-framework/data/loaders/#web-loader){target="_blank"}.
 5. For each bit of website data, upsert (update/insert) it into the Vector Store.
-6. Create a [Vector Store Client (Tool)](https://docs.griptape.ai/en/latest/griptape-tools/official-tools/vector-store-client/) that has access to the data and the query engine.
+6. Create a [Vector Store Client (Tool)](https://docs.griptape.ai/en/latest/griptape-tools/official-tools/vector-store-client/){target="_blank"} that has access to the data and the query engine.
 7. Give the Vector Store Client to the Agent.
 
 ``` mermaid
@@ -59,12 +59,12 @@ graph TB
 
 ### Vector Database
 
-Let's start by creating the Vector Database. We're going to use Griptape's [LocalVectorStoreDriver](https://docs.griptape.ai/en/latest/griptape-framework/data/vector-store-drivers/#local-vector-store-driver). 
+Let's start by creating the Vector Database. We're going to use Griptape's [LocalVectorStoreDriver](https://docs.griptape.ai/en/latest/griptape-framework/data/vector-store-drivers/#local-vector-store-driver){target="_blank"}. 
 
 !!! tip
-    You could also use [Pinecone](https://www.pinecone.io/), [Marqo](https://www.marqo.ai/), [MongoDB](https://www.mongodb.com/atlas/database), [Redis](https://redis.io/), [OpenSearch](https://opensearch.org/), or [PGVector](https://github.com/pgvector/pgvector) - all are available as drivers for Griptape as described [in the documentation](https://docs.griptape.ai/en/latest/griptape-framework/data/vector-store-drivers/).
+    You could also use [Pinecone](https://www.pinecone.io/){target="_blank"}, [Marqo](https://www.marqo.ai/){target="_blank"}, [MongoDB](https://www.mongodb.com/atlas/database){target="_blank"}, [Redis](https://redis.io/), [OpenSearch](https://opensearch.org/){target="_blank"}, or [PGVector](https://github.com/pgvector/pgvector){target="_blank"} - all are available as drivers for Griptape as described [in the documentation](https://docs.griptape.ai/en/latest/griptape-framework/data/vector-store-drivers/){target="_blank"}.
 
-Modify `app.py` to import the required drivers. In the case of the Local Vector Store Driver, we also need an Embedding Driver. We'll use the one from OpenAI, but you could also use one of the [other drivers](https://docs.griptape.ai/en/latest/griptape-framework/data/embedding-drivers/) available for Griptape.
+Modify `app.py` to import the required drivers. In the case of the Local Vector Store Driver, we also need an Embedding Driver. We'll use the one from OpenAI, but you could also use one of the [other drivers](https://docs.griptape.ai/en/latest/griptape-framework/data/embedding-drivers/){target="_blank"} available for Griptape.
 
 ```python title="app.py" hl_lines="5"
 # ...
@@ -91,7 +91,7 @@ vector_store_driver = LocalVectorStoreDriver(embedding_driver=OpenAiEmbeddingDri
 
 ### Vector Query Engine
 
-Now that we have a database, we need a way to query it. This will be done using Griptape's [VectorQueryEngine](https://docs.griptape.ai/en/latest/griptape-framework/data/query-engines/#vectorqueryengine) which takes a `vector_store_driver`. Luckily we just created one!
+Now that we have a database, we need a way to query it. This will be done using Griptape's [VectorQueryEngine](https://docs.griptape.ai/en/latest/griptape-framework/data/query-engines/#vectorqueryengine){target="_blank"} which takes a `vector_store_driver`. Luckily we just created one!
 
 First, import the engine into Gritpape by adding it to the imports section of your app.
 
@@ -143,7 +143,7 @@ shotgrid_api_urls = [
 
 ### Load URL Content
 
-There are a number of Loaders available for Griptape to allow you to load textual data. You can load from the web, from pdf, SQL, CSV, and more. Review all the details in our [Loader documentation](https://docs.griptape.ai/en/latest/griptape-framework/data/loaders/).
+There are a number of Loaders available for Griptape to allow you to load textual data. You can load from the web, from pdf, SQL, CSV, and more. Review all the details in our [Loader documentation](https://docs.griptape.ai/en/latest/griptape-framework/data/loaders/){target="_blank"}.
 
 In this case, we will be using the WebLoader to load the data from the HTML pages.
 
@@ -265,7 +265,7 @@ agent = Agent(
 
 A great way to test is to ask a specific question that the Agent would do better at when reading the supplied documentation.
 
-For example, there is documentation on how [ShotGrid Thinks when updating task dates](https://developers.shotgridsoftware.com/python-api/cookbook/tasks/updating_tasks.html).
+For example, there is documentation on how [ShotGrid Thinks when updating task dates](https://developers.shotgridsoftware.com/python-api/cookbook/tasks/updating_tasks.html){target="_blank"}.
 
 If you ask the question: "Tell me how ShotGrid thinks about updating task dates and what are the general rules?"
 
