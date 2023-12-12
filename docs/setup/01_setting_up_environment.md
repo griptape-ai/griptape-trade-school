@@ -12,7 +12,7 @@ Temporarily disable video
 
 ### Windows or Linux
 
-1. Head over to the [official Python downloads page](https://www.python.org/downloads/)
+1. Head over to the [official Python downloads page](https://www.python.org/downloads/){target="_blank"}
 2. Click on the button that says "Python 3.12.x" (or the most recent 3.12 version) to download the installer
 3. Run the installer, and make sure to check the box that says "Add Python to environment variables" before you click "Install"
 
@@ -20,7 +20,7 @@ Temporarily disable video
 
 ### macOS
 
-If you have [Homebrew](https://brew.sh) installed:
+If you have [Homebrew](https://brew.sh){target="_blank"} installed:
 
 1. Open your terminal
 2. Run the `command brew install python@3.12`
@@ -39,7 +39,7 @@ Congratulations, you've got Python!
 
 Visual Studio Code (VS Code) provides the perfect environment for our Python coding.
 
-1. Go to the [VS Code download page](https://code.visualstudio.com/Download)
+1. Go to the [VS Code download page](https://code.visualstudio.com/Download){target="_blank"}
 2. Download the version appropriate for your OS (Windows, Linux, or macOS)
 3. Run the installer and follow the prompts
 
@@ -71,10 +71,10 @@ Alternatively, feel free to open up **Visual Studio Code** and create a new fold
 
 ### Installing VS Code Python Extension
 
-The [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) for Visual Studio Code provides rich support for the Python language, including features like IntelliSence, linting, debugging, code formatting, and more. It really makes life easier for Python developers.
+The [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python){target="_blank"} for Visual Studio Code provides rich support for the Python language, including features like IntelliSence, linting, debugging, code formatting, and more. It really makes life easier for Python developers.
 
 1. With VS Code open, go to the Extensions tab, or choose **View --> Extensions**
-2. Search for `Python`, or go to [Python]((https://marketplace.visualstudio.com/items?itemName=ms-python.python) in your web browser.
+2. Search for `Python`, or go to [Python]((https://marketplace.visualstudio.com/items?itemName=ms-python.python){target="_blank"} in your web browser.
 3. Choose `Install`.
 4. Open the command Palette (`Ctrl`+`Shift`+`P` on Windows/Linux, `Cmd`+`Shift`+`P` on macOS), or choose **View --> Command Palette..**
 5. Type `Python` and you should see a list of specific commands for Python. This will confirm that the install was sucessful.
@@ -90,7 +90,7 @@ Python virtual environments are essential tools for keeping your projects organi
 Many developers use their **terminal** to manage their Python virtual environments. As this is a beginner level course, we'll use an Extension inside VS Code instead because it makes this a little bit easier.
 
 1. With VS Code open, go to the Extensions tab, or choose **View --> Extensions**
-2. Search for `Python Environment Manager`, or go to [Python Environment Manager](https://marketplace.visualstudio.com/items?itemName=donjayamanne.python-environment-manager) in your web browser.
+2. Search for `Python Environment Manager`, or go to [Python Environment Manager](https://marketplace.visualstudio.com/items?itemName=donjayamanne.python-environment-manager){target="_blank"} in your web browser.
 3. Choose `Install`.
 4. Open the Command Palette (`Ctrl`+`Shift`+`P` on Windows/Linux, `Cmd`+`Shift`+`P` on macOS), or choose **View --> Command Palette..**
 5. Search for `Python: Create Environment` and you should see it come up at the top of the command list.
@@ -143,7 +143,7 @@ This is due to an execution policy. Don't worry, it's pretty easy to resolve.
 2. Verify this worked by closing the Terminal and re-opening it. You should be able to execute scripts now without any errors.
 
 !!! info
-You can learn more about Windows Execution Policies in the [Set-ExecutionPolicy documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.security/set-executionpolicy?view=powershell-7.3).
+You can learn more about Windows Execution Policies in the [Set-ExecutionPolicy documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.security/set-executionpolicy?view=powershell-7.3){target="_blank"}.
 
 ---
 
