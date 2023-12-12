@@ -10,7 +10,7 @@ We'll do this by giving each persona a favorite color, then add another key to o
 
 ### Favorite Colors
 
-To assign colors to each persona, we'll add new rules to each of our identity ruleset to give them all favorite colors. You're welcome to use [Standard Colors](https://rich.readthedocs.io/en/stable/appendix/colors.html#appendix-colors), Hex, or rgb values. Whatever makes you happy.
+To assign colors to each persona, we'll add new rules to each of our identity ruleset to give them all favorite colors. You're welcome to use [Standard Colors](https://rich.readthedocs.io/en/stable/appendix/colors.html#appendix-colors){target="_blank"}, Hex, or RGB values. Whatever makes you happy.
 
 ```python
 
