@@ -3,7 +3,7 @@
 <iframe src="https://www.youtube.com/embed/YBkb5alrH94" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 !!! tip
-    In the above video I demonstrating importing `griptape-tools`. This is no longer required. The correct command is simply:
+    In the above video I demonstrate importing `griptape-tools`. This is no longer required. The correct command is simply:
 
     `pip install griptape`
 
