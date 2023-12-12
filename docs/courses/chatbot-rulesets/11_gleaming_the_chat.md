@@ -6,7 +6,7 @@ In this stage, we'll improve the chatbot experience by using colors with the `ri
 
 ## Style Class
 
-To add colors, we'll take advantage of the `Style` class from the `rich` library. This [class](https://rich.readthedocs.io/en/stable/style.html) allows you to use one of the 256 [Standard Colors](https://rich.readthedocs.io/en/stable/appendix/colors.html#appendix-colors) that are accepted in terminals, Hex values, or RGB values. It's pretty nice.
+To add colors, we'll take advantage of the `Style` class from the `rich` library. This [class](https://rich.readthedocs.io/en/stable/style.html){target="_blank"} allows you to use one of the 256 [Standard Colors](https://rich.readthedocs.io/en/stable/appendix/colors.html#appendix-colors){target="_blank"} that are accepted in terminals, Hex values, or RGB values. It's pretty nice.
 
 ### Import
 
@@ -65,7 +65,7 @@ In the updated code, we replaced the standard `input` function with `Prompt.ask(
 
 ![Alt text](assets/img/11_prompt_color.png)
 
-There are a few interesting options with the Prompt class that are worth exploring, including default values, a list of choices, and more. Check out the [documentation](https://rich.readthedocs.io/en/stable/prompt.html) for more goodness.
+There are a few interesting options with the Prompt class that are worth exploring, including default values, a list of choices, and more. Check out the [documentation](https://rich.readthedocs.io/en/stable/prompt.html){target="_blank"} for more goodness.
 
 ### Try it
 

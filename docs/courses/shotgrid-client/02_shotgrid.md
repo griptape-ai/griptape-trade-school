@@ -1,8 +1,8 @@
 # Autodesk ShotGrid - Signup
 
-Before we get started with the rest of the course, let's make sure you have access to [Autodesk ShotGrid](https://www.shotgridsoftware.com/).
+Before we get started with the rest of the course, let's make sure you have access to [Autodesk ShotGrid](https://www.shotgridsoftware.com/){target="_blank"}.
 
-If you don't already have an account, Autodesk does provide access to a 30-day [free trial](https://www.shotgridsoftware.com/trial/) (https://www.shotgridsoftware.com/trial/) of ShotGrid, and you can even sign up *without a credit card*.
+If you don't already have an account, Autodesk does provide access to a 30-day [free trial](https://www.shotgridsoftware.com/trial/){target="_blank"} of ShotGrid, and you can even sign up *without a credit card*.
 
 Nice!
 
@@ -15,7 +15,7 @@ Follow these steps to sign up for the ShotGrid free trial:
 
 ### Step 1: Visit the ShotGrid Free Trial Signup Site
 
-- Navigate to [ShotGrid Free Trial Signup Site](https://www.shotgridsoftware.com/trial/).
+- Navigate to [ShotGrid Free Trial Signup Site](https://www.shotgridsoftware.com/trial/){target="_blank"}.
 - Enter your email address in the provided field.
 - Click on `GET STARTED`.
 
@@ -60,7 +60,7 @@ Wait for ShotGrid to create your site. This process may take a few minutes.
 
 ### Additional Resource
 
-- For those new to ShotGrid, it is recommended to watch this [five-minute overview of ShotGrid](https://youtu.be/VbuOSjWVz7Q?si=KEs5IHT5wDfUViIN).
+- For those new to ShotGrid, it is recommended to watch this [five-minute overview of ShotGrid](https://youtu.be/VbuOSjWVz7Q?si=KEs5IHT5wDfUViIN){target="_blank"}.
 
 ### Conclusion
 

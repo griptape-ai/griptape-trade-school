@@ -11,7 +11,7 @@ In order to communicate with an LLM using Griptape, we'll need a key. To do this
 
 
 1. Go to the [OpenAI](https://beta.openai.com/account) website and sign up for an account if you don't have one already.
-2. After logging in, navigate to the [API](https://beta.openai.com/account/api-keys) section of your dashboard.
+2. After logging in, navigate to the [API](https://beta.openai.com/account/api-keys){target="_blank"} section of your dashboard.
 
     ![Alt text](assets/img/01_openai_api_key.png)
 
@@ -38,7 +38,7 @@ Understanding and using environment variables is a key aspect of programming. In
 In the terminal, run the command `pip install python-dotenv` to install the package. 
 
 !!! info 
-    You can learn more about pip and python-dotenv by visiting their PyPi page: [https://pypi.org/project/python-dotenv/](https://pypi.org/project/python-dotenv/).
+    You can learn more about pip and python-dotenv by visiting their PyPi page: [https://pypi.org/project/python-dotenv/](https://pypi.org/project/python-dotenv/){target="_blank"}.
 
 ![Alt Text](assets/img/01_install_python-dotenv.png)
 

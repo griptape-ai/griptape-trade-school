@@ -11,7 +11,7 @@ As with any project, the first step is setting up your environment. Let's get st
 
 3. **Python Environment Manager (for VS Code users)**: This extension is not a hard requirement, but it does make managing your Python environments a lot easier. 
 
-4. **OpenAI API Key**: Our chatbot will be powered by **gpt-4**, which requires an API key from OpenAI. You can get your key from [OpenAI's website](https://beta.openai.com/account/api-keys).
+4. **OpenAI API Key**: Our chatbot will be powered by **gpt-4**, which requires an API key from OpenAI. You can get your key from [OpenAI's website](https://beta.openai.com/account/api-keys){target="_blank"}.
 
 Got everything installed? Awesome! Now, let's get started setting up our project.
 

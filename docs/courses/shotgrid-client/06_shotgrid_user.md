@@ -7,13 +7,13 @@ In this section, we'll add authentication via Username/Password - and provide an
 
 ## Setting up User Authentication
 
-Authenticating as a user for ShotGrid requires a specific step by your users. They need to create a **Personal Access Token** on their [Autodesk profile page](https://profile.autodesk.com/security), and then _bind_ that token to their ShotGrid account.
+Authenticating as a user for ShotGrid requires a specific step by your users. They need to create a **Personal Access Token** on their [Autodesk profile page](https://profile.autodesk.com/security){target="_blank"}, and then _bind_ that token to their ShotGrid account.
 
 Once they do that, then they can authenticate via the ShotGrid API with their username and password.
 
 Both Username/Password _and_ the Personal Access Token _must be set up_ in order for authentication to work.
 
-Autodesk has documentation on this on their [website](https://help.autodesk.com/view/SGSUB/ENU/?guid=SG_Migration_mi_migration_account_mi_end_user_account_html), however, I'll go through the steps here.
+Autodesk has documentation on this on their [website](https://help.autodesk.com/view/SGSUB/ENU/?guid=SG_Migration_mi_migration_account_mi_end_user_account_html){target="_blank"}, however, I'll go through the steps here.
 
 !!! tip "Important"
     These are steps the _user_ must take. You are not able to do this for them - any user you have in your studio must set up their own Personal Access Token and bind it to their ShotGrid account.
@@ -22,7 +22,7 @@ Autodesk has documentation on this on their [website](https://help.autodesk.com/
 
 In this step, you will create a **personal access token** (PAT) and copy the token code. You will then use this and assign it to your ShotGrid account.
 
-1. Have the user log into their [Autodesk profile page](https://help.autodesk.com/view/SGSUB/ENU/?guid=SG_Migration_mi_migration_account_mi_end_user_account_html)
+1. Have the user log into their [Autodesk profile page](https://help.autodesk.com/view/SGSUB/ENU/?guid=SG_Migration_mi_migration_account_mi_end_user_account_html){target="_blank"}
 
 2. Scroll down to **Personal Access tokens****
 
@@ -46,7 +46,7 @@ You now have a **personal access token**.
 
 1. Log into your ShotGrid site.
 
-2. In your User Menu on the upper right of your screen, choose **[Account Settings](https://griptape-demo.shotgrid.autodesk.com/page/account_settings)**.
+2. In your User Menu on the upper right of your screen, choose **[Account Settings](https://griptape-demo.shotgrid.autodesk.com/page/account_settings){target="_blank"}**.
 
 3. Choose **Legacy Login and Personal Access Token** in the left-hand sidebar.
 

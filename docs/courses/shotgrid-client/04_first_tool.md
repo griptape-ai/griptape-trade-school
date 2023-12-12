@@ -11,7 +11,7 @@ The template contains examples of how to use the Tool, testing, and more. The id
 
 For the purposes of *this course*, we'll keep things simple and just focus on the Tool itself, using the code to create our own as part of our current project.
 
-1. Navigate to the [Gritptape tool-template repository](https://github.com/griptape-ai/tool-template) on GitHub.
+1. Navigate to the [Gritptape tool-template repository](https://github.com/griptape-ai/tool-template){target="_blank"} on GitHub.
 2. Find the **Code** button and click on it.
 3. Choose **Download zip** to download a zip file of the project.
 
@@ -22,7 +22,7 @@ For the purposes of *this course*, we'll keep things simple and just focus on th
 
     ![Extracted contents of the zip file](assets/img/tool-template-main.png)
 
-    The **reverse_string_tool** folder is the one we are interested in, it contains the required files for the Tool. You can read more about them in the [Griptape Custom Tool documentation](https://docs.griptape.ai/en/latest/griptape-tools/custom-tools/).
+    The **reverse_string_tool** folder is the one we are interested in, it contains the required files for the Tool. You can read more about them in the [Griptape Custom Tool documentation](https://docs.griptape.ai/en/latest/griptape-tools/custom-tools/){target="_blank"}.
 
 5. Copy the **reverse_string_tool** folder into the folder where your `app.py` file sits. 
 

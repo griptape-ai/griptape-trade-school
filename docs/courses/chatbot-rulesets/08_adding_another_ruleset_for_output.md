@@ -281,4 +281,4 @@ chat(agent)
 ## Next Steps
 
 In the next stage, [Formatting Chat Output](09_formatting_chat_output.md), 
- we'll make the chat interface more visually appealing and chat-like using the [rich library](https://rich.readthedocs.io/en/stable/introduction.html). Get ready to add some style and flair to your conversations!
+ we'll make the chat interface more visually appealing and chat-like using the [rich library](https://rich.readthedocs.io/en/stable/introduction.html){target="_blank"}. Get ready to add some style and flair to your conversations!

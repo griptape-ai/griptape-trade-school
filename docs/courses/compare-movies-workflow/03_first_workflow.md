@@ -369,7 +369,7 @@ That's because we need to *pass* the results of the previous task to the current
 In order to send the data to the PromptTask, we need to somehow feed the result of the previous task's execution to the prompt.
 
 ### Jinja2
-Griptape uses the [Jinja2](https://jinja.palletsprojects.com/en/3.1.x/) template engine, which allows you to insert data into the prompt. There's a lot of power available with Jinja templates, but in this course we'll keep our focus rather small.
+Griptape uses the [Jinja2](https://jinja.palletsprojects.com/en/3.1.x/){target="_blank"} template engine, which allows you to insert data into the prompt. There's a lot of power available with Jinja templates, but in this course we'll keep our focus rather small.
 
 Jinja templates access variables using the `{{ }}` syntax. **Tasks** have a property `parent_outputs` that tell us what objects are coming into the node.
 
