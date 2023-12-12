@@ -194,7 +194,7 @@ Then, add the definitions in the top section of the Class:
 class ShotGridTool(BaseTool):
     """
     Parameters:
-        base_url: Base URL for your your ShotGrid site
+        base_url: Base URL for your ShotGrid site
         script_name: The name for your script
         api_key: The script API key, given to you by ShotGrid
     """
