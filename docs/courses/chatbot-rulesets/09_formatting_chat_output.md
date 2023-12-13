@@ -4,7 +4,7 @@
 
 ## Rich Library
 
-To make the chatbot output look more chat-like, we'll use the [`rich`](https://rich.readthedocs.io/) library. This library provides advanced formatting and styling options for the console output. We'll modify the chatbot function to apply formatting to the agent's responses. 
+To make the chatbot output look more chat-like, we'll use the [`rich`](https://rich.readthedocs.io/){target="_blank"} library. This library provides advanced formatting and styling options for the console output. We'll modify the chatbot function to apply formatting to the agent's responses. 
 
 ### Import
 
@@ -21,7 +21,7 @@ The **first** line imports the `print` library from `rich` and assigns an alias:
 For example, instead of using `print("Hello, World!")`, we can now use `rprint("Hello, World!")` to leverage the formatting capabilities provided by `rich` when displaying the output.
 
 !!! Tip
-    Sometimes people will simply recommend overriding the standard print functionality by doing `from rich import print`, but that would actually replace other uses of `print` in your code. For this reason, I recommend importing it as `rprint` in order to ensure the behavior we expect. But in reality, it's totally up to you. [Read the documentation](https://rich.readthedocs.io/en/stable/introduction.html#quick-start) for more information.
+    Sometimes people will simply recommend overriding the standard print functionality by doing `from rich import print`, but that would actually replace other uses of `print` in your code. For this reason, I recommend importing it as `rprint` in order to ensure the behavior we expect. But in reality, it's totally up to you. [Read the documentation](https://rich.readthedocs.io/en/stable/introduction.html#quick-start){target="_blank"} for more information.
 
 The **second** line imports the Panel class from the `rich.panel` module. The Panel class represents a styled container that can be used to encapsulate and visually enhance content within a console output. It allows us to create panels with various styles, colors, and borders.
 
