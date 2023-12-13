@@ -11,7 +11,7 @@
 
     This change is reflected in the code in the course, but not in the video at this time.
 
-Consider a situation where we have integrated the LLM (Language Learning Module) into our code. It becomes crucial for us to receive the output in a specific format that aligns with our requirements, like JSON. By employing an output ruleset, we can precisely control the structure and format of the chatbot's responses.
+Consider a situation where we have integrated the LLM (Large Language Module) into our code. It becomes crucial for us to receive the output in a specific format that aligns with our requirements, like JSON. By employing an output ruleset, we can precisely control the structure and format of the chatbot's responses.
 
 ## Goal
 After completing this section, you'll be able to use output rulesets to get responses from the LLM in the way most useful for your application.
