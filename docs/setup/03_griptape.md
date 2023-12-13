@@ -24,7 +24,7 @@ Speaking of interacting with Griptape... we need to install it!
 
 Just like we installed the `python_dotenv` library, we need to do the same with Griptape. 
 
-Open your Terminal and use `pip` to install `griptape`:
+Navigate to **Terminal** in **VSCode** and use `pip` to install `griptape`:
 
 ```sh
 pip install griptape
