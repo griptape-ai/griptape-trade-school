@@ -43,7 +43,7 @@ agent = Agent(
 
 The main thing to be aware of is that these components always exist. You choose the model with the **Driver**, use the **Engine** to facilitate the use of the model, and then access the engine with either a **Task** or a **Tool**.
 
-In this course, because we're focusing on image generation as part of a pipeline, we'll use generate images using a task.
+In this course, because we're focusing on image generation as part of a _Pipeline_, we'll generate images using a _Task_.
 
 ## The Image Task
 
@@ -131,7 +131,7 @@ Notice we're giving it the `image_generation_engine` we defined earlier as `imag
 Give your application a test run. In the results you will see an ImageGenerationTask getting run, and then information on the image size and where it's written out. Here's a section of the resulting log. I've highlighted the log information of the file being written. 
 
 !!! info
-    Notice the image name _is not_ in the `Output` text. Currently that's information available that doesn't pass back from the image generation text. However, I'll demonstrate how to get later in this section.
+    Notice the image name _is not_ in the `Output` text. Currently that's information available that doesn't pass back from the image generation text. However, I'll demonstrate how to get it later in this section.
 
 ```text hl_lines="5-6"
 [12/16/23 17:58:27] INFO     PromptTask Create Prompt Task                                                                            
@@ -186,12 +186,14 @@ Take a look at the [Context](https://docs.griptape.ai/latest/griptape-framework/
 
 We know the `parent_output` doesn't include the information we want - but what about the `parent`? What attributes are available in the task itself?
 
-In order to discover that, we need to know what kind of `Artifact` the task outputs. This will tell us the attributes we can get. For example, the `BaseArtifact` contains attributes like `id`, `name`, `value`, and `type`. This means any type of artifact based on the `BaseArtifact` will have those attributes, and you can get them by using something like `{{ parent.output.value }}`.
+In order to discover that, we need to know what kind of `Artifact` the task outputs. This will tell us the attributes we can get. For example, the `BaseArtifact` contains attributes like `id`, `name`, `value`, and `type`. This means any type of artifact based on the `BaseArtifact` will have those attributes, and you can get them by using something like `{{ parent.output.value }}`, `{{ parent.output.id}}`, `{{parent.output.name}}`, etc.
 
 !!! tip
     Artifacts are used for passing different types of data between Griptape components. 
 
-However, if we do this with our code you'll see that the `value` being passed back from the ImageGenerationTask is the base64 encoding of the image. It's _way_ too big for the LLM, and isn't what we want anyway. To demonstrate (and so you don't need to do this yourself), I'm going to replace the `{{ parent_output }}` in the `display_image_task` with `{{ parent.output.value }}` and show the results.
+However, if we do this with our code you'll see that the `value` being passed back from the ImageGenerationTask are the _raw bytes of the image_. It's _way_ too big for the LLM, and isn't what we want anyway. 
+
+To demonstrate (and so you don't need to do it yourself), I'm going to replace the `{{ parent_output }}` in the `display_image_task` with `{{ parent.output.value }}` and show the results.
 
 ```python hl_lines="6"
 # ...
@@ -323,7 +325,7 @@ Run the code and in the logs take a look at the `Input` to the `Display Image Ta
                             Output: [Displaying Image: image_artifact_231217060336_570j.png]
 ```
 
-See how it now gives us the name of the image? This is exactly what we need, except it's not the _full path_. Remember in the `ImageGenerationTask` we're specifyin the `output_dir`. We should be sure to include this as well.
+See how it now gives us the name of the image? This is exactly what we need, except it's not the _full path_. Remember in the `ImageGenerationTask` we're specifying the `output_dir`. We should be sure to include this as well.
 
 Let's add some more context to the task, providing the `output_dir`. We'll also create a variable earlier in our code for the `output_dir` so we only need to define it once.
 
