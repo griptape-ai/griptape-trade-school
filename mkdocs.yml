@@ -128,6 +128,12 @@ nav:
           - Using Tools: courses/compare-movies-workflow/05_using_tools.md
           - Workflow Outputs: courses/compare-movies-workflow/06_workflow_outputs.md
           - Workflow Displaying Graph: courses/compare-movies-workflow/07_workflow_display_graph.md
+      - Image Generation - Pipelines:
+          - Introduction: courses/create-image-pipeline/index.md
+          - Setup: courses/create-image-pipeline/01_setup.md
+          - Concepts: courses/create-image-pipeline/02_concepts.md
+          - First Pipeline: courses/create-image-pipeline/03_first_pipeline.md
+          - Creating Images: courses/create-image-pipeline/04_creating_images.md
       - Griptape and Shotgrid - Tools:
           - Introduction: courses/shotgrid-client/index.md
           - Setup: courses/shotgrid-client/01_setup.md
