@@ -24,14 +24,12 @@ For the purposes of *this course*, we'll keep things simple and just focus on th
 
     The **reverse_string_tool** folder is the one we are interested in, it contains the required files for the Tool. You can read more about them in the [Griptape Custom Tool documentation](https://docs.griptape.ai/en/latest/griptape-tools/custom-tools/){target="_blank"}.
 
-5. Copy the **reverse_string_tool** folder into the folder where your `app.py` file sits. 
+5. Copy the **reverse_string_tool** folder into the folder where your `app.py` and `test_tool.py` files sit. 
 
     !!!tip
         You can just drag the folder from your Finder or Windows Explorer and drop it directly into Visual Studio Code to copy it.
 
-    You should now see the folder in Visual Studio Code next to `app.py` and `.env`.
-
-    ![Reverse String Tool in Visual Studio Code](assets/img/reverse-string-tool.png)
+    You should now see the folder in Visual Studio Code next to `app.py`, `test_tool.py`, and `.env`.
 
 ## Use Reverse String
 
@@ -84,68 +82,69 @@ from reverse_string_tool import ReverseStringTool
 
     Because I saw that `__init__.py` file, I knew I could import modules *from* that folder. 
 
-### Give it to the agent
+### Give it to the task
 
-Remember, the agent takes a list of Tools. We can add this Tool to the agent by simply adding it to the list.
+Remember, the `ToolkitTask` takes a list of Tools. We can add this Tool to the task by simply adding it to the list.
 
-Find the line where you instantiate the agent and add the `ReverseStringTool`:
+Find the line where you create the task and add the `ReverseStringTool`:
 
-```python 
-
+```python hl_lines="6"
 # ...
 
-# Instantiate the agent
-agent = Agent(tools=[DateTime(off_prompt=False), ReverseStringTool(off_prompt=False)])
+# Create task
+task = ToolkitTask(
+    "{{ args[0] }}",
+    tools=[DateTime(off_prompt=False), ReverseStringTool(off_prompt=False)],
+    id="Task",
+)
 
 # ...
 ```
 
-Notice the agent now has access to *two* Tools, `DateTime` and `ReverseStringTool`. 
+Notice the task now has access to *two* Tools, `DateTime` and `ReverseStringTool`. 
 
 ### Test it out
 
-Now test the Tool by running the application and asking it to say something in reverse.
+Now test the Tool by running modifying the prompt to say something in reverse.
 
-```text hl_lines="5-17"
-Q: can you say this in revese "I'm a lumberjack and I'm okay"
-processing...
-[12/03/23 05:56:54] INFO    ToolkitTask 656bcf9d58654d53a60ae24a7dad6af2
-                    Input: can you say this in revese "I'm a lumberjack and I'm okay"
-[12/03/23 05:57:01] INFO    Subtask 6eeda1fd106a480ebaa8fe112fffdfe6
-                    Thought: I need to use the ReverseStringTool action to reverse the given string.
-                    Action:
-                        {
-                            "name": "ReverseStringTool",
-                            "path": "reverse_string",
-                            "input":
-                            {
-                                "values":
-                                {
-                                    "input": "I'm a lumberjack and I'm okay"
-                                }
-                            }
-                        }                                                                                                                
-                    INFO    Subtask 6eeda1fd106a480ebaa8fe112fffdfe6
-                    Response: yako m'I dna kcajrebmul a m'I
-                                             
-[12/03/23 05:57:03] INFO    ToolkitTask 656bcf9d58654d53a60ae24a7dad6af2
-                    Output: The reversed string is "yako m'I dna kcajrebmul a m'I". 
-                        A: The reversed string is "yako m'I dna kcajrebmul a m'I".
-
+```python
+pipeline.run("Can you say this line in reverse: 'I'm a lumberjack and I'm okay'")
 ```
 
-As you can see in the highlighted section above, the `Subtask` shows that the agent has decided to use the ReverseStringTool action.
+```text hl_lines="3-15"
+[12/18/23 05:43:55] INFO    ToolkitTask Task
+                            Input: Can you say this line in reverse: 'I'm a lumberjack and I'm okay'
+[12/18/23 05:43:59] INFO    Subtask 09bbf86167214c0f994bbbba94445e0c
+                            Thought: I need to use the ReverseStringTool action to reverse the given string.
+
+                            Action:
+                            {
+                                "name":"ReverseStringTool",
+                                "path":"reverse_string",
+                                "input": {
+                                    "values": {
+                                        "input": "I'm a lumberjack and I'm okay"
+                                    }
+                                }
+                             }
+                    INFO    Subtask 09bbf86167214c0f994bbbba94445e0c
+                            Response: yako m'I dna kcajrebmul a m'I
+[12/18/23 05:44:01] INFO    ToolkitTask Task
+                            Output: The reversed string is 'yako m'I dna kcajrebmul a m'I'.   
+```
+
+As you can see in the highlighted section above, the `Subtask` shows that the ToolkitTask has decided to use the ReverseStringTool action.
 
 ### Combine requests
 
 You can absolutely use multiple Tools at the same time. Try a few examples where you might use both the `DateTime` Tool and the `ReverseStringTool`.
 
 ```text
-Q: Can you reverse the month?
-A: The reversed month is "rebmeceD".
+pipeline.run("Can you reverse the month?")
+Output: The reversed month is "rebmeceD".
 
-Q: Tell me how many days there are until December 25th, and then reverse the entire response
-A: The reversed response is "syad 32 era ereht".
+pipeline.run("Tell me how many days there are until December 25th, and then reverse the entire response")
+Output: The reversed response is "syad 32 era ereht".
 ```
 
 ## Adding a method
@@ -234,8 +233,8 @@ Within the `reverse_sentence` method, find the section of code after `try:` and 
 Now that you've added this new method, let's give it a try!
 
 ```text
-Q: Can you reverse the words in this sentence? "I must eat, therefore, I am hungry".
-A: The reversed sentence is "hungry am I therefore, eat, must I".
+pipeline.run("Can you reverse the words in this sentence? \"I must eat, therefore, I am hungry\".")
+Output: The reversed sentence is "hungry am I therefore, eat, must I".
 ```
 
 Well done! Now go grab a snack and we'll continue.
@@ -246,21 +245,32 @@ You have added a Griptape Tool *and* modified it to add a new activity! Well don
 
 
 ### `test_tool.py`
-```python title="test_tool.py" linenums="1" hl_lines="6 11"
+```python title="test_tool.py" linenums="1" 
 from dotenv import load_dotenv
-from griptape.structures import Agent
-from griptape.utils import Chat
+from griptape.structures import Pipeline
+from griptape.tasks import PromptTask, ToolkitTask
 from griptape.tools import DateTime
-
 from reverse_string_tool import ReverseStringTool
 
 load_dotenv()
 
-# Instantiate the agent
-agent = Agent(tools=[DateTime(off_prompt=False), ReverseStringTool(off_prompt=False)], stream=True)
+# Create the pipeline
+pipeline = Pipeline()
 
-# Start chatting
-Chat(agent).start()
+# Create task
+task = ToolkitTask(
+    "{{ args[0] }}",
+    tools=[DateTime(off_prompt=False), ReverseStringTool(off_prompt=False)],
+    id="Task",
+)
+
+# Add task to the pipeline
+pipeline.add_task(task)
+
+# Run the pipeline
+pipeline.run(
+    'Can you reverse the words in this sentence? "I must eat, therefore, I am hungry".'
+)
 
 ```
 
