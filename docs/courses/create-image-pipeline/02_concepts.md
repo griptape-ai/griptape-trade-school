@@ -61,7 +61,7 @@ Before we dive in and start setting up our own Pipeline, it's important to revie
 | **TextQueryTask** | Can be used to query large bodies of text, for example a vector database. | See examples in the [documentation](https://griptape.readthedocs.io/griptape-framework/structures/tasks/#text-query-task){target="_blank"} |
 | **ImageGenerationTask** | Can be used to generate images. | `ImageGenerationTask("watercolor butterfly"), image_generation_engine=image_engine`|
 
-In this course, we will be focusing mostly on **Prompt Tasks** and **Image Generation Tasks**. 
+In this course, we will be focusing mostly on **Prompt Tasks**, **Toolkit Tasks**, and **Image Generation Tasks**. 
 
 
 ```python
