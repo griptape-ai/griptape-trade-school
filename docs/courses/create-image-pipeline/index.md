@@ -1,6 +1,6 @@
 # Image Generation Pipeline
 
-<div class="grid gallery" markdown>
+<div class="grid-gallery" markdown>
 - ![summer](assets/img/summer.png) 
 - ![cat](assets/img/cat_ice_cream.png)
 - ![cow](assets/img/cow.png)
