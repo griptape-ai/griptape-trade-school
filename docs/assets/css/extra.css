@@ -82,24 +82,24 @@ iframe {
 
 /* Grid Gallery */
 .grid.gallery li {
-  padding: 0px;
-  box-shadow: none;
-  transition: none;
-  background-color: inherit;
+  padding: 0px !important;
+  box-shadow: none !important;
+  transition: none !important;
+  background-color: inherit !important;
 }
 .grid.gallery ul li img {
-  float: none;
-  margin: 0px;
-  width: auto;
-  height: auto;
-  padding: 0;
-  border-radius: 10px;
+  float: none !important;
+  margin: 0px !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 0 !important;
+  border-radius: 10px !important;
 }
 
 .grid.gallery > ul li:hover {
-  box-shadow: none;
-  background-color: none;
-  transform: none;
+  box-shadow: none !important;
+  background-color: none !important;
+  transform: none !important;
 }
 
 /* HERO area */
