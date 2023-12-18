@@ -121,10 +121,12 @@ generate_image_task = ImageGenerationTask(
 # ...
 ```
 
-Notice we're giving it the `image_generation_engine` we defined earlier as `image_engine`. We're also specifying an `output_dir` of `./images`. This will ensure the image is generated in that directory. If you don't pass `output_dir`, it will just create the image in the directory the script lives.
+Notice we're giving it the `image_generation_engine` we defined earlier as `image_engine`. We're also specifying an `output_dir` of `./images`. This will ensure the image is generated in that directory. 
 
 !!! tip
-    With the ImageGenerationTask you can specify _either_ the output file name (`output_file`) or the directory you want the images to appear in (`output_dir`). I recommend just doing the output_dir, as we'll get the name of the image artifact in the next task.
+    With the ImageGenerationTask, if you want to save the file to disk you must specify specify _either_ the output file name (`output_file`) or the directory you want the images to appear in (`output_dir`). If you don't, the image generated will only exist in the `ImageArtifact`. 
+    
+    I recommend saving hte file using `output_dir`, as we'll be able to retrieve the name of the image artifact in the next task.
 
 ### Test
 
