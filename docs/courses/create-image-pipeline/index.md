@@ -41,7 +41,7 @@ This course is aimed at **intermediate** level Python developers who are interes
 ## Prerequisites
 Before beginning this course, you will need:
 
-- An OpenAI API Key (available here: https://beta.openai.com/account/api-keys){target="_blank"}
+- An OpenAI API Key (available here: [OpenAI](https://beta.openai.com/account/api-keys){target="_blank"})
 - Python3.9+ installed on your machine
 - An IDE (such as Visual Studio Code or PyCharm) to write and manage your code
 
@@ -52,7 +52,8 @@ It's also recommended to view the [Compare Movies Workflow](../compare-movies-wo
 ## Image Generation Engines
 The course will cover some of the Image Generation Engines available for Griptape, including [OpenAI DALL·E 3](https://openai.com/dall-e-3){target="_blank"}, [Leonardo.AI](https://leonardo.ai/){target="_blank"}, and [Stable Diffusion running on Amazon Bedrock](https://aws.amazon.com/bedrock/stable-diffusion/){target="_blank"} 
 
-DALL·E 3 is available with an OpenAI API key, but if you'd like to use Leonardo.AI or Stable Diffusion on Amazon Bedrock, you will require keys for them.
+### DALL·E 3
+* DALL·E 3 is available with an OpenAI API key.
 
 ### Leonardo.ai
 * Sign up for a [Leonardo.Ai account](https://docs.leonardo.ai/docs){target="_blank"}
