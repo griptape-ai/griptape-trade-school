@@ -1,5 +1,7 @@
 # First pipeline
 
+![first pipeline](assets/img/first_pipeline_ever.png)
+
 ## Overview
 In this section, we're going to create a "pseudocode" pipeline for our image generation application. When finished you will have a pipeline that walks through each step of the image generation process, without actually generating an image. 
 

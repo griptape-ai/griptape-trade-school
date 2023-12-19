@@ -1,5 +1,7 @@
 # Creating Images
 
+![images](assets/img/images.png)
+
 ## Overview
 Image Generation via Griptape is handled via a few components.
 
