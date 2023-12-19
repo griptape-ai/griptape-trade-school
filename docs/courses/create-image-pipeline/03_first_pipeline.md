@@ -18,14 +18,12 @@ The pipeline we will create looks like the following:
 
 ``` mermaid
 graph TB
-    subgraph " "
-        direction TB
-        AA(["\n INPUT \n\n"]):::output
-        B("Prompt Task")
-        C("Fake Image Generation Task")
-        I("Fake View Image Task")
-        AA --> B --> C --> I
-    end
+    direction TB
+    AA(["\n INPUT \n\n"]):::output
+    B("Prompt Task")
+    C("Fake Image Generation Task")
+    I("Fake View Image Task")
+    AA --> B --> C --> I
 
     classDef main fill:#4274ff1a, stroke:#426eff
     classDef dash stroke-dasharray: 5 5
@@ -166,10 +164,8 @@ At this point, your pipeline flow graph looks like:
 
 ``` mermaid
 graph TB 
-    subgraph " "
-        direction TB
-        B(Create Prompt Task):::main
-    end
+    direction TB
+    B(Create Prompt Task):::main
     
     classDef main fill:#4274ff1a, stroke:#426eff
 ```
@@ -312,12 +308,10 @@ This is the current pipeline:
 
 ``` mermaid
 graph TB 
-    subgraph " "
-        direction TB
-        B(Create Prompt Task):::main
-        C(Generate Image Task):::main
-        B --> C
-    end
+    direction TB
+    B(Create Prompt Task):::main
+    C(Generate Image Task):::main
+    B --> C
     
     classDef main fill:#4274ff1a, stroke:#426eff
 ```
@@ -446,13 +440,12 @@ Again, let's review the new pipeline:
 
 ``` mermaid
 graph TB 
-    subgraph " "
-        direction TB
-        B(Create Prompt Task):::main
-        C(Generate Image Task):::main
-        D(Display Image Task):::main
-        B --> C --> D
-    end
+    direction TB
+    B(Create Prompt Task):::main
+    C(Generate Image Task):::main
+    D(Display Image Task):::main
+    B --> C --> D
+    
     
     classDef main fill:#4274ff1a, stroke:#426eff
 ```
