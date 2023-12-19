@@ -204,8 +204,13 @@ Try out different options to see what works best for your use case. Here are thr
 
 ## Bedrock Titan
 
+The `AmazonBedrockTitanImageGenerationModelDriver` utilizes [Amazon Titan](https://aws.amazon.com/bedrock/titan/){target="_blank"} for image generation. 
 
+It currently has a few options, with more being added soon. The current list is:
 
+```yaml
+task_type: The default is TEXT_IMAGE. 
+```
 
 ## Next Step
 You now have a working pipeline for creating and displaying an image. Now we'll start taking a look at some of the options available to us with each of the Image Generation Drivers available in Griptape. 
