@@ -1,5 +1,7 @@
 # Your First Tool
 
+![create tool](assets/img/create_tool.png)
+
 ## Overview
 We'll use a Griptape Tool Template that's available on GitHub to create our first Tool, and then modify it slightly to demonstrate multiple activities.
 

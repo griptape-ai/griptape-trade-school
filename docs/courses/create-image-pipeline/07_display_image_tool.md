@@ -1,7 +1,9 @@
 # Display Image Tool
 
+![gallery](assets/img/gallery.png)
+
 ## Overview
-In this section we'll create the Display Image Tool. It will take the file path for the image generated, and use whatever the default image viewer is for the operating system to display it.
+In this section, we'll create the Display Image Tool. It will take the file path for the image generated, and use whatever the default image viewer is for the operating system to display it.
 
 ### Copy `reverse_string_tool`
 
@@ -437,4 +439,4 @@ legal_info_url: https://www.example.com/legal
 ```
 
 ## Next Step
-You now have a working pipeline for creating and displaying an image. Now we'll start taking a look at some of the options available to us with each of the Image Generation Drivers available in Griptape. 
+You now have a working pipeline for creating and displaying an image. Now we'll take a look at some of the options available to us with each of the Image Generation Drivers available in Griptape. Let's start with [OpenAI DALL·E 3](08_dalle-3.md).

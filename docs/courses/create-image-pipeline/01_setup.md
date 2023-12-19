@@ -1,3 +1,5 @@
+![hammer](assets/img/hammer.png)
+
 As with any project, the first step is setting up your environment. Let's get started by ensuring you have a project structure ready to work with.
 
 !!! Tip "Important"

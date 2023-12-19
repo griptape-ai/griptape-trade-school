@@ -1,5 +1,7 @@
 # Main Concepts
 
+![pipeline](assets/img/pipeline.png)
+
 ## Understanding Pipelines and Workflows
 
 Pipelines and Workflows are both Griptape Structures that execute a series of tasks. 
