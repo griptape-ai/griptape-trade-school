@@ -59,7 +59,7 @@ The course will cover some of the Image Generation Engines available for Griptap
 * Sign up for a [Leonardo.Ai account](https://docs.leonardo.ai/docs){target="_blank"}
 * Save your `LEONARDO_API_KEY` in your `.env` file.
 
-### Stable Diffusion on Amazon Bedrock
+### Amazon Bedrock
 * Ensure you have an AWS account
 * Ensure you have access to the appropriate model by following the [Amazon Documentation](https://docs.aws.amazon.com/bedrock/latest/userguide/model-access.html){target="_blank"}
 * Add the following environment variables to your `.env` file:
