@@ -226,5 +226,19 @@ It currently has a few options, with more being added soon. The current list is:
 task_type: The default is TEXT_IMAGE. 
 ```
 
-## Next Step
-You now have a working pipeline for creating and displaying an image. Now we'll start taking a look at some of the options available to us with each of the Image Generation Drivers available in Griptape. 
+## Finished
+
+!!! success
+    Congratulations! You have created a successful Griptape Image Generation Pipeline!
+
+Fantastic work, you've successfully created a Griptape Pipeline that allows you to consistently execute a series of steps to generate an image.
+
+You have learned how to:
+
+* Create tasks that can handle prompts and tools.
+* Learned a bit about Jinja2 templates.
+* Create parent/child relationships.
+* Use Image Generation Tasks.
+* Create your own Custom Tools.
+
+We hope you enjoyed this course, and look forward to seeing what you're able to create with these new skills. If you'd like to take things further, try and see how you can implement pipelines into your existing workflows! Share your results in our [Discord](https://discord.gg/tTWjcjxFv9){target="_blank"}!
