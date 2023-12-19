@@ -1,10 +1,24 @@
 # Amazon Bedrock
 
+![amazon titan](assets/img/amazon-header.png)
+
 ## Overview
 
 Amazon Bedrock offers a couple of different image generation models, and thus the method of using them is slightly different than DALL·E 3 and Leonardo.Ai.
 
 Instead of just importing one driver, you import `AmazonBedrockImageGenerationDriver` and then the model driver: `AmazonBedrockStableDiffusionImageGenerationModelDriver` or `AmazonBedrockTitanImageGenerationModelDriver`.
+
+When specifying which model driver, you _also_ will need to specify the `model` in the `AmazonBedrockImageGenerationDriver`.
+
+It looks something like:
+
+```python
+image_driver = AmazonBedrockImageGenerationDriver(
+    model="stability.stable-diffusion-xl-v0", # Model Definition
+    image_generation_model_driver=AmazonBedrockStableDiffusionImageGenerationModelDriver(), # Driver
+    # ...
+)
+```
 
 We'll get into the specifics, but first it's important to ensure you have access to Amazon Bedrock, as it's a requirement to use either of these two models.
 

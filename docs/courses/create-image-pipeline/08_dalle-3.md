@@ -1,5 +1,7 @@
 # DALL·E 3
 
+![dalle 3](assets/img/dalle-header.png)
+
 ## Overview
 You've been creating images using DALL·E 3 in this course so far, but you've been using some minimal options with the `OpenAiDalleImageGenerationDriver`. Let's take a look at some of the other options available in Griptape.
 
@@ -113,8 +115,7 @@ OpenAiDalleImageGenerationDriver(
 
 You can choose which API you'd like to use. Griptape allows either `open_ai` or `azure` if you're using DALL·E on Microsoft Azure.
 
-
-```
+---
 
 ## Next Step
-You now have a working pipeline for creating and displaying an image. Now we'll start taking a look at some of the options available to us with each of the Image Generation Drivers available in Griptape. 
+Learn more about using [Leonardo.ai](09_leonardo-ai.md) in the next section.
