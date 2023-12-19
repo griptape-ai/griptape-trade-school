@@ -1,5 +1,7 @@
 # Leonardo.AI
 
+![Leonardo](assets/img/leonardo-header.jpeg)
+
 ## Overview
 [Leonardo.Ai](https://leonardo.ai){target="_blank"} is a powerful image generation model that offers some fantastic options. Two notable ones are the ability to train and utilize a model to achieve a specific graphic style. Another is the ability to set a `seed` value - providing more consistent output.
 
@@ -161,4 +163,4 @@ image_driver = LeonardoImageGenerationDriver(
 ```
 
 ## Next Step
-You now have a working pipeline for creating and displaying an image. Now we'll start taking a look at some of the options available to us with each of the Image Generation Drivers available in Griptape. 
+Another option is to use Amazon Bedrock and their image models. Check out the [next section](10_amazon-bedrock.md) for details.
