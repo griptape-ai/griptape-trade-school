@@ -224,6 +224,22 @@ It currently has a few options, with more being added soon. The current list is:
 
 ```yaml
 task_type: The default is TEXT_IMAGE. 
+quality: 'standard' or 'premium'.
+cfg_scale: How strictly the diffusion process adheres to the prompt text (higher values keep your image closer to your prompt). The default is 7.
+```
+
+Here's an example, of using it while setting `quality` and image height/width.
+
+```python
+image_driver = AmazonBedrockImageGenerationDriver(
+    session=session,
+    model="amazon.titan-image-generator-v1",
+    image_generation_model_driver=AmazonBedrockTitanImageGenerationModelDriver(
+        quality='premium'
+    ),
+    image_height=1024,
+    image_width=1024,
+)
 ```
 
 ## Finished

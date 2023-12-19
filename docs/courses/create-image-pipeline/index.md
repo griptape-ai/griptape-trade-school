@@ -10,22 +10,15 @@
 
 ## Course Description
 
-Welcome to our course on Griptape Pipelines, where we'll be exploring this powerful feature through the practical example of image generation. In this course, you'll learn how to use Griptape Pipelines to seamlessly link together various tasks to create a cohesive workflow.
-
-Our focus will be on how to set up a pipeline that can take a concept, apply a specific style, and incorporate a description to generate an image. Plus, we'll show you how to create a Griptape Tool to display the image after it's created.
-
-This course is designed to be approachable and informative, ideal for anyone looking to understand the fundamentals of Griptape Pipelines. Whether you're a developer, a hobbyist, or just curious about how pipelines can enhance your projects, this course will provide you with the practical skills and knowledge needed to get started. So let's jump in and explore the exciting possibilities that Griptape Pipelines have to offer!
-
+<div class="mermaid-float-right">
 ``` mermaid
 graph TB
-    subgraph " "
-        direction TB
-        AA(["\n INPUT \n\n"]):::output
-        B("Prompt Task")
-        C("Image Generation Task"):::tool
-        I("View Image Task"):::main
-        AA --> B --> C --> I
-    end
+    direction TB
+    AA(["\n INPUT \n\n"]):::output
+    B("Prompt Task")
+    C("Image Generation Task"):::tool
+    I("View Image Task"):::main
+    AA --> B --> C --> I
 
     classDef main fill:#4274ff1a, stroke:#426eff
     classDef dash stroke-dasharray: 5 5
@@ -34,6 +27,13 @@ graph TB
     classDef output fill:#5552,stroke:#555
 
 ```
+</div>
+
+Welcome to our course on Griptape Pipelines, where we'll be exploring this powerful feature through the practical example of image generation. In this course, you'll learn how to use Griptape Pipelines to seamlessly link together various tasks to create a cohesive workflow.
+
+Our focus will be on how to set up a pipeline that can take a concept, apply a specific style, and incorporate a description to generate an image. Plus, we'll show you how to create a Griptape Tool to display the image after it's created.
+
+This course is designed to be approachable and informative, ideal for anyone looking to understand the fundamentals of Griptape Pipelines. Whether you're a developer, a hobbyist, or just curious about how pipelines can enhance your projects, this course will provide you with the practical skills and knowledge needed to get started. So let's jump in and explore the exciting possibilities that Griptape Pipelines have to offer!
 
 ## Who is this course for
 This course is aimed at **intermediate** level Python developers who are interested in learning about Griptape Workflows and how to handle parent/child task relationships. 

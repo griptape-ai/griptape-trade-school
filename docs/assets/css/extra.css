@@ -6,6 +6,12 @@
 .mermaid {
   text-align: center;
 }
+
+.mermaid-float-right {
+  float: right;
+  margin-left: 20px;
+}
+
 /* Make youtube videos full screen */
 iframe {
   width: 100%;
