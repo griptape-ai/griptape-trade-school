@@ -3,9 +3,9 @@
 ![dalle 3](assets/img/dalle-header.png)
 
 ## Overview
-You've been creating images using DALL·E 3 in this course so far, but you've been using some minimal options with the `OpenAiDalleImageGenerationDriver`. Let's take a look at some of the other options available in Griptape.
+You've been creating images using DALL·E 3 in this course so far, but you've been using some basic attributes with the `OpenAiDalleImageGenerationDriver`. Let's take a look at some of the other attributes available in Griptape.
 
-Here's an example of calling driver with various options set:
+Here's an example of calling driver with various attributes set:
 
 ```python
 image_driver = OpenAiDalleImageGenerationDriver(
@@ -48,7 +48,7 @@ We will cover the most commonly edited attributes.
 
 Griptape provides access to two different OpenAI DALL·E models, DALL·E 2 and DALL·E 3. To choose them, you'll set `model` to either `dall-e-2` or `dall-e-3`.
 
-There are different attributes available, depending on the model. Here's how you would specify DALL·E 3:
+There are different attributes available, depending on the model.
 
 ```python
 OpenAiDalleImageGenerationDriver( model="dall-e-3" ) # DALL·E 3

@@ -11,7 +11,7 @@ Griptape Tools are like additional helpers when dealing with tasks that a Large 
 
 ## Setting up the Pipeline
 
-Let's create a new application called `test_tool.py`. We'll use this to test working with the Tool in a way that doesn't impact our current script.
+Let's create a new application called `test_tool.py`. We'll use this to test working with the Tool in a way that doesn't impact our current application.
 
 ### Create `test_tool.py`
 
@@ -484,7 +484,7 @@ It's possible to also provide *optional* parameters with Schemas. For example, i
 ## Code Review
 Throughout this section, we've explored quite a bit about Griptape Tools. We learned how to import and use them, how they're structured, and what `methods` and `activities` are. You understand `schemas` and how they allow you to pass parameters to various `methods`.
 
-Before continuing, let's look at our app in its current state where you can send a prompt to the Pipeline and ask important questions, like how much time you have before my birthday (April 3rd).
+Before continuing, let's look at `test_tool.py` in its current state where you can send a prompt to the Pipeline and ask important questions, like how much time you have before my birthday (April 3rd).
 
 
 ```python title="test_tool.py" linenums="1"
