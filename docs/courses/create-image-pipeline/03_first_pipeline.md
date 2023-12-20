@@ -393,7 +393,7 @@ In this task, we'll "display" the image to the user. Later in the course, we'll 
 
 ### Fake View Image
 
-The fake view image task will also be a PromptTask that tells the LLM to pretend to display the image to the viewer. Just like before, it will pretend to take the `output` from the parent task, and feed it to this one.
+The fake view image task will also be a PromptTask that tells the LLM to pretend to display the image to the viewer. Just like before, it will take the `output` from the parent task, and feed it to this one.
 
 Update the `app.py` file by inserting a new `display_image_task` after the previous `generate_image_task`.
 

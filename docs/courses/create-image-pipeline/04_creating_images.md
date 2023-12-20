@@ -43,13 +43,13 @@ agent = Agent(
 )
 ```
 
-The main thing to be aware of is that these components always exist. You choose the model with the **Driver**, use the **Engine** to facilitate the use of the model, and then access the engine with either a **Task** or a **Tool**.
+The main thing to be aware of is that you must use _both_ components - Driver and Engine. You choose the model with the **Driver**, use the **Engine** to facilitate the use of the model, and then access the engine with either a **Task** or a **Tool**.
 
 In this course, because we're focusing on image generation as part of a _Pipeline_, we'll generate images using a _Task_.
 
 ## The Image Task
 
-In order to get started, we'll begin by replacing the Fake Image Generation task with a real one, using OpenAI DALL·E 3. We'll start with the basics, and adjust settings in a future step. For now, we just want to get things working.
+To get started, we'll begin by replacing the Fake Image Generation task with a real one, using OpenAI DALL·E 3. We'll start with the basics, and adjust settings in a future step. For now, we just want to get things working.
 
 ### Imports
 
@@ -128,16 +128,16 @@ Notice we're giving it the `image_generation_engine` we defined earlier as `imag
 !!! tip
     With the ImageGenerationTask, if you want to save the file to disk you must specify specify _either_ the output file name (`output_file`) or the directory you want the images to appear in (`output_dir`). If you don't, the image generated will only exist in the `ImageArtifact`. 
     
-    I recommend saving hte file using `output_dir`, as we'll be able to retrieve the name of the image artifact in the next task.
+    I recommend saving the file using `output_dir`, as we'll be able to retrieve the name of the image artifact in the next task.
 
 ### Test
 
-Give your application a test run. In the results you will see an ImageGenerationTask getting run, and then information on the image size and where it's written out. Here's a section of the resulting log. I've highlighted the log information of the file being written. 
+Give your application a test run. In the results you will see an ImageGenerationTask getting run, and then information on the image size and where it's written out. Here's a section of the resulting log. I've highlighted the log information of the file being written and the Output. 
 
 !!! info
-    Notice the image name _is not_ in the `Output` text. Currently that's information available that doesn't pass back from the image generation text. However, I'll demonstrate how to get it later in this section.
+    Notice the image name _is not_ in the `Output` text. It's part of the INFO, but not in Output - therefore not getting passed back from the Image Generation Task. I'll demonstrate how to get it later in this section.
 
-```text hl_lines="5-6"
+```text hl_lines="5-8"
 [12/16/23 17:58:27] INFO     PromptTask Create Prompt Task                                                                            
                              Output: "Generate an image of a cow, styled and framed as if it were taken with a 1970s Polaroid camera."
                     INFO     ImageGenerationTask Generate Image Task                                                                  
@@ -309,7 +309,7 @@ display_image_task = PromptTask(
 ```
 
 !!! note
-    It's important to note that it's not `{{ parent_output_value }}`. We're grabbing attributes of `parent` task. We need to use `.`, not `_`.
+    It's important to note that it's not `{{ parent_output_name }}`. We're grabbing an attribute of `parent` task. We need to use `.`, not `_`.
     
 ### Test
 

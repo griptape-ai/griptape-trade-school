@@ -268,7 +268,7 @@ Now that we have the tool, let's update our application to use it.
 
 Just like we imported the `ReverseStringTool` in the previous lesson, we need to import the `DisplayImageTool` into our application in order to use it.
 
-Add the following import statement in the imports section of your `app.py`:
+Add the following import statement in the imports section of your `app.py` (_note: we're back working on `app.py`, not `test_tool.py`_):
 
 ```python title="app.py" hl_lines="2"
 # ...
@@ -438,5 +438,15 @@ contact_email: contact@example.com
 legal_info_url: https://www.example.com/legal
 ```
 
+---
+## Are we there yet?
+
+
+Congratulations! At this point, you have completed the main requirements for this course! You've built a pipeline that can execute multiple tasks to generate and display an image! You could high-five yourself, call your friends and brag about your accomplishments, and go eat a nice pizza to celebrate.
+
+![pizza](assets/img/pizza.png)
+
+Or... continue with the next steps and learn more about various parameters for DALL·E 3, Leonardo.Ai, and Amazon Bedrock image generation.
+
 ## Next Step
-You now have a working pipeline for creating and displaying an image. Now we'll take a look at some of the options available to us with each of the Image Generation Drivers available in Griptape. Let's start with [OpenAI DALL·E 3](08_dalle-3.md).
+Let's take a look at some of the attributes available to us with each of the Image Generation Drivers available in Griptape. Let's start with [OpenAI DALL·E 3](08_dalle-3.md).

@@ -3,7 +3,7 @@
 As with any project, the first step is setting up your environment. Let's get started by ensuring you have a project structure ready to work with.
 
 !!! Tip "Important"
-    Since this is an intermediate-level course, please ensure you've gone through the [Griptape Setup - Visual Studio Code](../../setup/index.md) course to set up your environment. We will be starting from the code at that point.
+    Since this is an intermediate-level course, please ensure you've gone through the [Griptape Setup](../../setup/index.md) course to set up your environment. We will be starting from the code at that point.
 
 ### Create a Project
 
@@ -27,6 +27,4 @@ load_dotenv() # Load your environment
 
 ---
 ## Next Steps
-Your environment is all set up! In the [next section](01_setup.md), we will dive into the concepts of Griptape Pipelines.
-
-<!-- And there we have it, your environment is all set up! In the next section [ShotGrid](02_shotgrid.md), you'll sign up for an Autodesk ShotGrid trial account if you don't already have one. -->
+Your environment is all set up! In the [next section](02_concepts.md), we will dive into the concepts of Griptape Pipelines.
