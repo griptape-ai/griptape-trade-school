@@ -962,8 +962,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#stable-diffusion-on-amazon-bedrock" class="md-nav__link">
-    Stable Diffusion on Amazon Bedrock
+  <a href="#amazon-bedrock" class="md-nav__link">
+    Amazon Bedrock
   </a>
   
 </li>
@@ -1095,6 +1095,48 @@
     <li class="md-nav__item">
       <a href="07_display_image_tool/" class="md-nav__link">
         Displaying Images
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="08_dalle-3/" class="md-nav__link">
+        DALL·E 3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="09_leonardo-ai/" class="md-nav__link">
+        Leonardo.AI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10_amazon-bedrock/" class="md-nav__link">
+        Amazon Bedrock
       </a>
     </li>
   
@@ -1437,8 +1479,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#stable-diffusion-on-amazon-bedrock" class="md-nav__link">
-    Stable Diffusion on Amazon Bedrock
+  <a href="#amazon-bedrock" class="md-nav__link">
+    Amazon Bedrock
   </a>
   
 </li>
@@ -1485,7 +1527,7 @@
 
 
 <h1 id="image-generation-pipeline">Image Generation Pipeline</h1>
-<div class="grid gallery">
+<div class="grid-gallery">
 <ul>
 <li><img alt="summer" src="assets/img/summer.png" /> </li>
 <li><img alt="cat" src="assets/img/cat_ice_cream.png" /></li>
@@ -1494,18 +1536,14 @@
 </ul>
 </div>
 <h2 id="course-description">Course Description</h2>
-<p>Welcome to our course on Griptape Pipelines, where we'll be exploring this powerful feature through the practical example of image generation. In this course, you'll learn how to use Griptape Pipelines to seamlessly link together various tasks to create a cohesive workflow.</p>
-<p>Our focus will be on how to set up a pipeline that can take a concept, apply a specific style, and incorporate a description to generate an image. Plus, we'll show you how to save these images with designated filenames, making your work both creative and organized.</p>
-<p>This course is designed to be approachable and informative, ideal for anyone looking to understand the fundamentals of Griptape Pipelines. Whether you're a developer, a hobbyist, or just curious about how pipelines can enhance your projects, this course will provide you with the practical skills and knowledge needed to get started. So let's jump in and explore the exciting possibilities that Griptape Pipelines have to offer!</p>
+<div class="mermaid-float-right">
 <pre class="mermaid"><code>graph TB
-    subgraph " "
-        direction TB
-        AA(["\n INPUT \n\n"]):::output
-        B("Prompt Task")
-        C("Image Generation Task"):::tool
-        I("View Image Task"):::main
-        AA --&gt; B --&gt; C --&gt; I
-    end
+    direction TB
+    AA(["\n INPUT \n\n"]):::output
+    B("Prompt Task")
+    C("Image Generation Task"):::tool
+    I("View Image Task"):::main
+    AA --&gt; B --&gt; C --&gt; I
 
     classDef main fill:#4274ff1a, stroke:#426eff
     classDef dash stroke-dasharray: 5 5
@@ -1513,8 +1551,13 @@
     classDef tool-dash stroke:#f06090,stroke-dasharray: 5 5
     classDef output fill:#5552,stroke:#555
 </code></pre>
+</div>
+
+<p>Welcome to our course on Griptape Pipelines, where we'll be exploring this powerful feature through the practical example of image generation. In this course, you'll learn how to use Griptape Pipelines to seamlessly link together various tasks to create a cohesive workflow.</p>
+<p>Our focus will be on how to set up a pipeline that can take a concept, apply a specific style, and incorporate a description to generate an image. Plus, we'll show you how to create a Griptape Tool to display the image after it's created.</p>
+<p>This course is designed to be approachable and informative, ideal for anyone looking to understand the fundamentals of Griptape Pipelines. Whether you're a developer, a hobbyist, or just curious about how pipelines can enhance your projects, this course will provide you with the practical skills and knowledge needed to get started. So let's jump in and explore the exciting possibilities that Griptape Pipelines have to offer!</p>
 <h2 id="who-is-this-course-for">Who is this course for</h2>
-<p>This course is aimed at <strong>intermediate</strong> level Python developers who are interested in learning about Griptape Workflows and how to handle parent/child task relationships. </p>
+<p>This course is aimed at <strong>intermediate</strong> level Python developers who are interested in learning about Griptape Pipelines and how to handle parent/child task relationships, Griptape Tools, and image generation. </p>
 <h2 id="prerequisites">Prerequisites</h2>
 <p>Before beginning this course, you will need:</p>
 <ul>
@@ -1525,7 +1568,7 @@
 <p>If you don't have those items available, it's highly recommended you go through the <a href="../../setup/">Griptape Setup - Visual Studio Code</a> course to set up your environment.</p>
 <p>It's also recommended to view the <a href="../compare-movies-workflow/">Compare Movies Workflow</a> course if you haven't viewed it before, as it contains some similar concepts to the Pipeline course.</p>
 <h2 id="image-generation-engines">Image Generation Engines</h2>
-<p>The course will cover some of the Image Generation Engines available for Griptape, including <a href="https://openai.com/dall-e-3" target="_blank">OpenAI DALL·E 3</a>, <a href="https://leonardo.ai/" target="_blank">Leonardo.AI</a>, and <a href="https://aws.amazon.com/bedrock/stable-diffusion/" target="_blank">Stable Diffusion running on Amazon Bedrock</a> </p>
+<p>The course will cover some of the Image Generation Engines available for Griptape, including <a href="https://openai.com/dall-e-3" target="_blank">OpenAI DALL·E 3</a>, <a href="https://leonardo.ai/" target="_blank">Leonardo.AI</a>, and <a href="https://aws.amazon.com/bedrock/stable-diffusion/" target="_blank">Image Generation Engines running on Amazon Bedrock</a> </p>
 <h3 id="dalle-3">DALL·E 3</h3>
 <ul>
 <li>DALL·E 3 is available with an OpenAI API key.</li>
@@ -1535,14 +1578,14 @@
 <li>Sign up for a <a href="https://docs.leonardo.ai/docs" target="_blank">Leonardo.Ai account</a></li>
 <li>Save your <code>LEONARDO_API_KEY</code> in your <code>.env</code> file.</li>
 </ul>
-<h3 id="stable-diffusion-on-amazon-bedrock">Stable Diffusion on Amazon Bedrock</h3>
+<h3 id="amazon-bedrock">Amazon Bedrock</h3>
 <ul>
 <li>Ensure you have an AWS account</li>
 <li>Ensure you have access to the appropriate model by following the <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/model-access.html" target="_blank">Amazon Documentation</a></li>
 <li>Add the following environment variables to your <code>.env</code> file:<ul>
-<li>AWS_REGION_NAME</li>
-<li>AWS_ACCESS_KEY_ID</li>
-<li>AWS_SECRET_ACCESS_KEY</li>
+<li><code>AWS_REGION_NAME</code></li>
+<li><code>AWS_ACCESS_KEY_ID</code></li>
+<li><code>AWS_SECRET_ACCESS_KEY</code></li>
 </ul>
 </li>
 </ul>
@@ -1552,6 +1595,7 @@
 <li>Creating Griptape Pipelines</li>
 <li>Creating Griptape Tasks</li>
 <li>Investigate Image Generation Engines</li>
+<li>Building a Tool to display the resulting image</li>
 </ul>
 <h2 id="useful-resources-and-links">Useful Resources and Links</h2>
 <ul>

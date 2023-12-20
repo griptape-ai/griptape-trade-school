@@ -12,7 +12,7 @@
         <link rel="prev" href="../06_first_tool/">
       
       
-        <link rel="next" href="../../shotgrid-client/">
+        <link rel="next" href="../08_dalle-3/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.5.1, mkdocs-material-9.1.21">
@@ -1223,6 +1223,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#are-we-there-yet" class="md-nav__link">
+    Are we there yet?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#next-step" class="md-nav__link">
     Next Step
   </a>
@@ -1233,6 +1240,48 @@
   
 </nav>
       
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_dalle-3/" class="md-nav__link">
+        DALL·E 3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09_leonardo-ai/" class="md-nav__link">
+        Leonardo.AI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_amazon-bedrock/" class="md-nav__link">
+        Amazon Bedrock
+      </a>
     </li>
   
 
@@ -1737,6 +1786,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#are-we-there-yet" class="md-nav__link">
+    Are we there yet?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#next-step" class="md-nav__link">
     Next Step
   </a>
@@ -1759,8 +1815,9 @@
 
 
 <h1 id="display-image-tool">Display Image Tool</h1>
+<p><img alt="gallery" src="../assets/img/gallery.png" /></p>
 <h2 id="overview">Overview</h2>
-<p>In this section we'll create the Display Image Tool. It will take the file path for the image generated, and use whatever the default image viewer is for the operating system to display it.</p>
+<p>In this section, we'll create the Display Image Tool. It will take the file path for the image generated, and use whatever the default image viewer is for the operating system to display it.</p>
 <h3 id="copy-reverse_string_tool">Copy <code>reverse_string_tool</code></h3>
 <ol>
 <li>
@@ -2012,7 +2069,7 @@
 <p>Now that we have the tool, let's update our application to use it.</p>
 <h3 id="import-displayimagetool">Import DisplayImageTool</h3>
 <p>Just like we imported the <code>ReverseStringTool</code> in the previous lesson, we need to import the <code>DisplayImageTool</code> into our application in order to use it.</p>
-<p>Add the following import statement in the imports section of your <code>app.py</code>:</p>
+<p>Add the following import statement in the imports section of your <code>app.py</code> (<em>note: we're back working on <code>app.py</code>, not <code>test_tool.py</code></em>):</p>
 <div class="highlight"><span class="filename">app.py</span><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># ...</span>
 </span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="hll"><span class="kn">from</span> <span class="nn">display_image_tool</span> <span class="kn">import</span> <span class="n">DisplayImageTool</span>
 </span></span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
@@ -2214,8 +2271,13 @@
 </span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="nt">contact_email</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">contact@example.com</span>
 </span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="nt">legal_info_url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://www.example.com/legal</span>
 </span></code></pre></div>
+<hr />
+<h2 id="are-we-there-yet">Are we there yet?</h2>
+<p>Congratulations! At this point, you have completed the main requirements for this course! You've built a pipeline that can execute multiple tasks to generate and display an image! You could high-five yourself, call your friends and brag about your accomplishments, and go eat a nice pizza to celebrate.</p>
+<p><img alt="pizza" src="../assets/img/pizza.png" /></p>
+<p>Or... continue with the next steps and learn more about various parameters for DALL·E 3, Leonardo.Ai, and Amazon Bedrock image generation.</p>
 <h2 id="next-step">Next Step</h2>
-<p>You now have a working pipeline for creating and displaying an image. Now we'll start taking a look at some of the options available to us with each of the Image Generation Drivers available in Griptape. </p>
+<p>Let's take a look at some of the attributes available to us with each of the Image Generation Drivers available in Griptape. Let's start with <a href="../08_dalle-3/">OpenAI DALL·E 3</a>.</p>
 
 
   
@@ -2262,13 +2324,13 @@
         
         
           
-          <a href="../../shotgrid-client/" class="md-footer__link md-footer__link--next" aria-label="Next: Introduction" rel="next">
+          <a href="../08_dalle-3/" class="md-footer__link md-footer__link--next" aria-label="Next: DALL·E 3" rel="next">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Introduction
+                DALL·E 3
               </div>
             </div>
             <div class="md-footer__button md-icon">

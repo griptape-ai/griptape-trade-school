@@ -1163,6 +1163,48 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_dalle-3/" class="md-nav__link">
+        DALL·E 3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09_leonardo-ai/" class="md-nav__link">
+        Leonardo.AI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_amazon-bedrock/" class="md-nav__link">
+        Amazon Bedrock
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1609,6 +1651,7 @@
 
 
 <h1 id="creating-images">Creating Images</h1>
+<p><img alt="images" src="../assets/img/images.png" /></p>
 <h2 id="overview">Overview</h2>
 <p>Image Generation via Griptape is handled via a few components.</p>
 <ul>
@@ -1642,10 +1685,10 @@
 </span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="p">)]</span>
 </span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="p">)</span>
 </span></code></pre></div>
-<p>The main thing to be aware of is that these components always exist. You choose the model with the <strong>Driver</strong>, use the <strong>Engine</strong> to facilitate the use of the model, and then access the engine with either a <strong>Task</strong> or a <strong>Tool</strong>.</p>
+<p>The main thing to be aware of is that you must use <em>both</em> components - Driver and Engine. You choose the model with the <strong>Driver</strong>, use the <strong>Engine</strong> to facilitate the use of the model, and then access the engine with either a <strong>Task</strong> or a <strong>Tool</strong>.</p>
 <p>In this course, because we're focusing on image generation as part of a <em>Pipeline</em>, we'll generate images using a <em>Task</em>.</p>
 <h2 id="the-image-task">The Image Task</h2>
-<p>In order to get started, we'll begin by replacing the Fake Image Generation task with a real one, using OpenAI DALL·E 3. We'll start with the basics, and adjust settings in a future step. For now, we just want to get things working.</p>
+<p>To get started, we'll begin by replacing the Fake Image Generation task with a real one, using OpenAI DALL·E 3. We'll start with the basics, and adjust settings in a future step. For now, we just want to get things working.</p>
 <h3 id="imports">Imports</h3>
 <p>To use the Driver, Engine, and Task we'll need to add them to our <code>imports</code> section in <code>app.py</code>. You'll modify <code>griptape.tasks</code> to inlude <code>ImageGenerationTask</code>, and add imports for the Driver and Engine.</p>
 <div class="highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># ...</span>
@@ -1705,13 +1748,13 @@
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>With the ImageGenerationTask, if you want to save the file to disk you must specify specify <em>either</em> the output file name (<code>output_file</code>) or the directory you want the images to appear in (<code>output_dir</code>). If you don't, the image generated will only exist in the <code>ImageArtifact</code>. </p>
-<p>I recommend saving hte file using <code>output_dir</code>, as we'll be able to retrieve the name of the image artifact in the next task.</p>
+<p>I recommend saving the file using <code>output_dir</code>, as we'll be able to retrieve the name of the image artifact in the next task.</p>
 </div>
 <h3 id="test">Test</h3>
-<p>Give your application a test run. In the results you will see an ImageGenerationTask getting run, and then information on the image size and where it's written out. Here's a section of the resulting log. I've highlighted the log information of the file being written. </p>
+<p>Give your application a test run. In the results you will see an ImageGenerationTask getting run, and then information on the image size and where it's written out. Here's a section of the resulting log. I've highlighted the log information of the file being written and the Output. </p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>Notice the image name <em>is not</em> in the <code>Output</code> text. Currently that's information available that doesn't pass back from the image generation text. However, I'll demonstrate how to get it later in this section.</p>
+<p>Notice the image name <em>is not</em> in the <code>Output</code> text. It's part of the INFO, but not in Output - therefore not getting passed back from the Image Generation Task. I'll demonstrate how to get it later in this section.</p>
 </div>
 <div class="highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>[12/16/23 17:58:27] INFO     PromptTask Create Prompt Task                                                                            
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>                             Output: &quot;Generate an image of a cow, styled and framed as if it were taken with a 1970s Polaroid camera.&quot;
@@ -1719,9 +1762,9 @@
 </span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>                             Input: &quot;Generate an image of a cow, styled and framed as if it were taken with a 1970s Polaroid camera.&quot; 
 </span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="hll">[12/16/23 17:58:41] INFO     Saving [Image, dimensions: 1024x1024, type: image/png, size: 3147861 bytes] to                           
 </span></span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="hll">                             /Users/jason/Documents/courses/griptape-image-pipeline/images/image_artifact_231216175841_iuy3.png       
-</span></span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>                    INFO     ImageGenerationTask Generate Image Task                                                                  
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>                             Output: Image, dimensions: 1024x1024, type: image/png, size: 3147861 bytes                               
-</span></code></pre></div>
+</span></span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="hll">                    INFO     ImageGenerationTask Generate Image Task                                                                  
+</span></span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="hll">                             Output: Image, dimensions: 1024x1024, type: image/png, size: 3147861 bytes                               
+</span></span></code></pre></div>
 <p>As you can see, the image has been written to the <code>./images</code> directory. Let's take a look at it!</p>
 <p><img alt="Cow" src="../assets/img/image_artifact_231216175841_iuy3.png" /></p>
 <p>Beautiful! </p>
@@ -1842,7 +1885,7 @@
 </span></code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>It's important to note that it's not <code>{{ parent_output_value }}</code>. We're grabbing attributes of <code>parent</code> task. We need to use <code>.</code>, not <code>_</code>.</p>
+<p>It's important to note that it's not <code>{{ parent_output_name }}</code>. We're grabbing an attribute of <code>parent</code> task. We need to use <code>.</code>, not <code>_</code>.</p>
 </div>
 <h3 id="test_1">Test</h3>
 <p>Run the code and in the logs take a look at the <code>Input</code> to the <code>Display Image Task</code>.</p>
