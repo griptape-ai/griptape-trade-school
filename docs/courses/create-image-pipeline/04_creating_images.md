@@ -132,12 +132,12 @@ Notice we're giving it the `image_generation_engine` we defined earlier as `imag
 
 ### Test
 
-Give your application a test run. In the results you will see an ImageGenerationTask getting run, and then information on the image size and where it's written out. Here's a section of the resulting log. I've highlighted the log information of the file being written. 
+Give your application a test run. In the results you will see an ImageGenerationTask getting run, and then information on the image size and where it's written out. Here's a section of the resulting log. I've highlighted the log information of the file being written and the Output. 
 
 !!! info
-    Notice the image name _is not_ in the `Output` text. Currently that's information available that doesn't pass back from the image generation text. However, I'll demonstrate how to get it later in this section.
+    Notice the image name _is not_ in the `Output` text. It's part of the INFO, but not in Output - therefore not getting passed back from the Image Generation Task. I'll demonstrate how to get it later in this section.
 
-```text hl_lines="5-6"
+```text hl_lines="5-8"
 [12/16/23 17:58:27] INFO     PromptTask Create Prompt Task                                                                            
                              Output: "Generate an image of a cow, styled and framed as if it were taken with a 1970s Polaroid camera."
                     INFO     ImageGenerationTask Generate Image Task                                                                  
@@ -309,7 +309,7 @@ display_image_task = PromptTask(
 ```
 
 !!! note
-    It's important to note that it's not `{{ parent_output_value }}`. We're grabbing attributes of `parent` task. We need to use `.`, not `_`.
+    It's important to note that it's not `{{ parent_output_name }}`. We're grabbing an attribute of `parent` task. We need to use `.`, not `_`.
     
 ### Test
 

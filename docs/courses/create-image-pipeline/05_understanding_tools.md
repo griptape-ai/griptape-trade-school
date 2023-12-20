@@ -7,7 +7,7 @@ In this module, we will explore the DateTime Tool within Griptape, demonstrating
 
 ## What is a Griptape Tool?
 
-Griptape Tools are like additional helpers when dealing with tasks that a Language Learning Model (LLM) can't handle by itself. They expand the capabilities of a system, allowing it to connect with external applications and use specific Python functionalities that aren't part of the LLM's standard toolkit. Whether it's for an automated workflow, a data processing pipeline, or an interactive agent, Griptape Tools provides the extra abilities needed to tackle a wider range of problems and tasks, enhancing the overall functionality and efficiency of the system.
+Griptape Tools are like additional helpers when dealing with tasks that a Large Language Model (LLM) can't handle by itself. They expand the capabilities of a system, allowing it to connect with external applications and use specific Python functionalities that aren't part of the LLM's standard toolkit. Whether it's for an automated workflow, a data processing pipeline, or an interactive agent, Griptape Tools provides the extra abilities needed to tackle a wider range of problems and tasks, enhancing the overall functionality and efficiency of the system.
 
 ## Setting up the Pipeline
 
