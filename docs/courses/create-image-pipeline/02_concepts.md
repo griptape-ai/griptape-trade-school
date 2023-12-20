@@ -19,7 +19,7 @@ In this course, we're going to be taking a topic to draw, and then execute a con
 4. View the image
     * Once the image is generated, we'll want to do something with it. In this case, we can open the image to view it.
 
-The flow of will look like:
+The flow of tasks will look like:
 
 ``` mermaid
 graph LR

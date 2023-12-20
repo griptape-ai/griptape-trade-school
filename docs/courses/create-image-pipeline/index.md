@@ -36,7 +36,7 @@ Our focus will be on how to set up a pipeline that can take a concept, apply a s
 This course is designed to be approachable and informative, ideal for anyone looking to understand the fundamentals of Griptape Pipelines. Whether you're a developer, a hobbyist, or just curious about how pipelines can enhance your projects, this course will provide you with the practical skills and knowledge needed to get started. So let's jump in and explore the exciting possibilities that Griptape Pipelines have to offer!
 
 ## Who is this course for
-This course is aimed at **intermediate** level Python developers who are interested in learning about Griptape Workflows and how to handle parent/child task relationships. 
+This course is aimed at **intermediate** level Python developers who are interested in learning about Griptape Pipelines and how to handle parent/child task relationships, Griptape Tools, and image generation. 
 
 ## Prerequisites
 Before beginning this course, you will need:
@@ -50,7 +50,7 @@ If you don't have those items available, it's highly recommended you go through 
 It's also recommended to view the [Compare Movies Workflow](../compare-movies-workflow/index.md) course if you haven't viewed it before, as it contains some similar concepts to the Pipeline course.
 
 ## Image Generation Engines
-The course will cover some of the Image Generation Engines available for Griptape, including [OpenAI DALL·E 3](https://openai.com/dall-e-3){target="_blank"}, [Leonardo.AI](https://leonardo.ai/){target="_blank"}, and [Stable Diffusion running on Amazon Bedrock](https://aws.amazon.com/bedrock/stable-diffusion/){target="_blank"} 
+The course will cover some of the Image Generation Engines available for Griptape, including [OpenAI DALL·E 3](https://openai.com/dall-e-3){target="_blank"}, [Leonardo.AI](https://leonardo.ai/){target="_blank"}, and [Image Generation Engines running on Amazon Bedrock](https://aws.amazon.com/bedrock/stable-diffusion/){target="_blank"} 
 
 ### DALL·E 3
 * DALL·E 3 is available with an OpenAI API key.
@@ -63,9 +63,9 @@ The course will cover some of the Image Generation Engines available for Griptap
 * Ensure you have an AWS account
 * Ensure you have access to the appropriate model by following the [Amazon Documentation](https://docs.aws.amazon.com/bedrock/latest/userguide/model-access.html){target="_blank"}
 * Add the following environment variables to your `.env` file:
-    * AWS_REGION_NAME
-    * AWS_ACCESS_KEY_ID
-    * AWS_SECRET_ACCESS_KEY
+    * `AWS_REGION_NAME`
+    * `AWS_ACCESS_KEY_ID`
+    * `AWS_SECRET_ACCESS_KEY`
 
 
 ## Course Outline
@@ -74,6 +74,7 @@ The course will cover:
 * Creating Griptape Pipelines
 * Creating Griptape Tasks
 * Investigate Image Generation Engines
+* Building a Tool to display the resulting image
 
 ## Useful Resources and Links
 
