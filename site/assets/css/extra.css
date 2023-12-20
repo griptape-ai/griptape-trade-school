@@ -6,6 +6,12 @@
 .mermaid {
   text-align: center;
 }
+
+.mermaid-float-right {
+  float: right;
+  margin-left: 20px;
+}
+
 /* Make youtube videos full screen */
 iframe {
   width: 100%;
@@ -81,25 +87,35 @@ iframe {
 }
 
 /* Grid Gallery */
-.grid.gallery li {
-  padding: 0px;
-  box-shadow: none;
-  transition: none;
-  background-color: inherit;
-}
-.grid.gallery ul li img {
-  float: none;
-  margin: 0px;
-  width: auto;
-  height: auto;
-  padding: 0;
-  border-radius: 10px;
+.grid-gallery {
+  grid-template-columns: repeat(auto-fill, minmax(45%, 1fr));
 }
 
-.grid.gallery > ul li:hover {
-  box-shadow: none;
-  background-color: none;
-  transform: none;
+.grid-gallery ul {
+  margin: 0 !important;
+  list-style: none;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 2em !important;
+}
+
+.grid-gallery li {
+  margin-left: 0px !important;
+  padding: 0px;
+  flex: 1 0 45% !important;
+  /* border: 1px solid #2e2e2e; */
+  margin: 0;
+}
+.grid-3 li {
+  margin-left: 0px !important;
+  padding: 0px;
+  flex: 1 0 20% !important;
+  /* border: 1px solid #2e2e2e; */
+  margin: 0;
+}
+
+.grid-gallery ul li img {
+  border-radius: 10px;
 }
 
 /* HERO area */
