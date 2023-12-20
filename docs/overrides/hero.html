@@ -40,7 +40,7 @@
                     <span class="c1"># Create an Agent and give it a tool</span><br>
                     <span class="n">agent</span>
                     <span class="o">=</span>
-                    <span class="n">Agent</span><span class="p">(</span><span class="n">tools=</span><span class="p">[</span><span class="n">WebScraper()</span><span class="p">]</span><span class="p">)</span>
+                    <span class="n">Agent</span><span class="p">(</span><span class="n">tools=</span><span class="p">[</span><span class="n">WebScraper(off_prompt=False)</span><span class="p">]</span><span class="p">)</span>
                     <br><br>
                     <span class="c1"># Run the Agent</span><br>
                     <span class="n">agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>

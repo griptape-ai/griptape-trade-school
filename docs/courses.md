@@ -13,9 +13,17 @@
 
     ![img](courses/compare-movies-workflow/assets/img/flowchart.png)
     
-    Learn how to work with Griptape Workflow Structures to create flexable and powerful hierarchies of tasks. This course demonstrates these concepts by comparing movies, utilizing PromptTasks and ToolkitTasks to analyze text and search the web.
+    Learn how to work with Griptape Workflow Structures to create flexible and powerful hierarchies of tasks. This course demonstrates these concepts by comparing movies, utilizing PromptTasks and ToolkitTasks to analyze text and search the web.
     
     [:octicons-arrow-right-24: Take the course](courses/compare-movies-workflow/index.md)
+
+-   # Image Generation with Griptape Pipelines
+
+    ![img](courses/create-image-pipeline/assets/img/pipeline-guy.png)
+    
+    Explore Griptape Pipelines through the practical example of image generation. In this course, you'll learn how to seamlessly link together various tasks to create a consistent and repeatable pipeline.
+    
+    [:octicons-arrow-right-24: Take the course](courses/create-image-pipeline/index.md)
 
 -   # Griptape and ShotGrid: A Practical Approach to Tool Integration
 
