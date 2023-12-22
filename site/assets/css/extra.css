@@ -254,3 +254,8 @@ a.ln {
     width: 100%;
   }
 }
+
+/* Read the docs */
+.rst-versions.rst-badge {
+  bottom: 80px !important;
+}
