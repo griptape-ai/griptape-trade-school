@@ -2167,9 +2167,53 @@
     
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.instant", "navigation.path", "navigation.footer", "navigation.prune", "navigation.tracking", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.annotate", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
-    
+     
       <script src="../../../assets/javascripts/bundle.220ee61c.min.js"></script>
       
     
+<script>
+  window.intercomSettings = {
+    api_base: "https://api-iam.intercom.io",
+    app_id: "t8pfeo91",
+  };
+</script>
+
+<script>
+  // We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/t8pfeo91'
+  (function () {
+    var w = window;
+    var ic = w.Intercom;
+    if (typeof ic === "function") {
+      ic("reattach_activator");
+      ic("update", w.intercomSettings);
+    } else {
+      var d = document;
+      var i = function () {
+        i.c(arguments);
+      };
+      i.q = [];
+      i.c = function (args) {
+        i.q.push(args);
+      };
+      w.Intercom = i;
+      var l = function () {
+        var s = d.createElement("script");
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://widget.intercom.io/widget/t8pfeo91";
+        var x = d.getElementsByTagName("script")[0];
+        x.parentNode.insertBefore(s, x);
+      };
+      if (document.readyState === "complete") {
+        l();
+      } else if (w.attachEvent) {
+        w.attachEvent("onload", l);
+      } else {
+        w.addEventListener("load", l, false);
+      }
+    }
+  })();
+</script>
+
   </body>
 </html>
