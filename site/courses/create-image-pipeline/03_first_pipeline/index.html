@@ -1183,6 +1183,48 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_dalle-3/" class="md-nav__link">
+        DALL·E 3
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09_leonardo-ai/" class="md-nav__link">
+        Leonardo.AI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_amazon-bedrock/" class="md-nav__link">
+        Amazon Bedrock
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1649,6 +1691,7 @@
 
 
 <h1 id="first-pipeline">First pipeline</h1>
+<p><img alt="first pipeline" src="../assets/img/first_pipeline_ever.png" /></p>
 <h2 id="overview">Overview</h2>
 <p>In this section, we're going to create a "pseudocode" pipeline for our image generation application. When finished you will have a pipeline that walks through each step of the image generation process, without actually generating an image. </p>
 <p>For example, if you pass the topic: "a skateboard"</p>
@@ -1661,14 +1704,12 @@
 </ol>
 <p>The pipeline we will create looks like the following:</p>
 <pre class="mermaid"><code>graph TB
-    subgraph " "
-        direction TB
-        AA(["\n INPUT \n\n"]):::output
-        B("Prompt Task")
-        C("Fake Image Generation Task")
-        I("Fake View Image Task")
-        AA --&gt; B --&gt; C --&gt; I
-    end
+    direction TB
+    AA(["\n INPUT \n\n"]):::output
+    B("Prompt Task")
+    C("Fake Image Generation Task")
+    I("Fake View Image Task")
+    AA --&gt; B --&gt; C --&gt; I
 
     classDef main fill:#4274ff1a, stroke:#426eff
     classDef dash stroke-dasharray: 5 5
@@ -1775,10 +1816,8 @@ Based on these substitutions in our <em>actual</em> example, the prompt sent to 
 </span></span></code></pre></div>
 <p>At this point, your pipeline flow graph looks like:</p>
 <pre class="mermaid"><code>graph TB 
-    subgraph " "
-        direction TB
-        B(Create Prompt Task):::main
-    end
+    direction TB
+    B(Create Prompt Task):::main
 
     classDef main fill:#4274ff1a, stroke:#426eff</code></pre>
 <p>However, if you execute your script, nothing will happen. That's because you need to tell the pipeline graph to run.</p>
@@ -1924,12 +1963,10 @@ Based on these substitutions in our <em>actual</em> example, the prompt sent to 
 </span></code></pre></div></td></tr></table></div>
 <p>This is the current pipeline:</p>
 <pre class="mermaid"><code>graph TB 
-    subgraph " "
-        direction TB
-        B(Create Prompt Task):::main
-        C(Generate Image Task):::main
-        B --&gt; C
-    end
+    direction TB
+    B(Create Prompt Task):::main
+    C(Generate Image Task):::main
+    B --&gt; C
 
     classDef main fill:#4274ff1a, stroke:#426eff</code></pre>
 <p>As you can see, it contains the two tasks we specified, in the order we added them to the pipeline.</p>
@@ -1994,7 +2031,7 @@ Based on these substitutions in our <em>actual</em> example, the prompt sent to 
 <h2 id="create-second-fake-task">Create Second "Fake Task"</h2>
 <p>In this task, we'll "display" the image to the user. Later in the course, we'll create our own Griptape Tool to do this and we'll swap that into the pipeline.</p>
 <h3 id="fake-view-image">Fake View Image</h3>
-<p>The fake view image task will also be a PromptTask that tells the LLM to pretend to display the image to the viewer. Just like before, it will pretend to take the <code>output</code> from the parent task, and feed it to this one.</p>
+<p>The fake view image task will also be a PromptTask that tells the LLM to pretend to display the image to the viewer. Just like before, it will take the <code>output</code> from the parent task, and feed it to this one.</p>
 <p>Update the <code>app.py</code> file by inserting a new <code>display_image_task</code> after the previous <code>generate_image_task</code>.</p>
 <div class="highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># ...</span>
 </span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>
@@ -2030,13 +2067,12 @@ Based on these substitutions in our <em>actual</em> example, the prompt sent to 
 </span></code></pre></div>
 <p>Again, let's review the new pipeline:</p>
 <pre class="mermaid"><code>graph TB 
-    subgraph " "
-        direction TB
-        B(Create Prompt Task):::main
-        C(Generate Image Task):::main
-        D(Display Image Task):::main
-        B --&gt; C --&gt; D
-    end
+    direction TB
+    B(Create Prompt Task):::main
+    C(Generate Image Task):::main
+    D(Display Image Task):::main
+    B --&gt; C --&gt; D
+
 
     classDef main fill:#4274ff1a, stroke:#426eff</code></pre>
 <h3 id="test">Test</h3>
@@ -2304,9 +2340,57 @@ Based on these substitutions in our <em>actual</em> example, the prompt sent to 
     
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.instant", "navigation.path", "navigation.footer", "navigation.prune", "navigation.tracking", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.annotate", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
-    
+     
       <script src="../../../assets/javascripts/bundle.220ee61c.min.js"></script>
       
+        
+          <script src="../../../js/adjust-button.js"></script>
+        
+      
     
+<script>
+  window.intercomSettings = {
+    api_base: "https://api-iam.intercom.io",
+    app_id: "t8pfeo91",
+  };
+</script>
+
+<script>
+  // We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/t8pfeo91'
+  (function () {
+    var w = window;
+    var ic = w.Intercom;
+    if (typeof ic === "function") {
+      ic("reattach_activator");
+      ic("update", w.intercomSettings);
+    } else {
+      var d = document;
+      var i = function () {
+        i.c(arguments);
+      };
+      i.q = [];
+      i.c = function (args) {
+        i.q.push(args);
+      };
+      w.Intercom = i;
+      var l = function () {
+        var s = d.createElement("script");
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://widget.intercom.io/widget/t8pfeo91";
+        var x = d.getElementsByTagName("script")[0];
+        x.parentNode.insertBefore(s, x);
+      };
+      if (document.readyState === "complete") {
+        l();
+      } else if (w.attachEvent) {
+        w.attachEvent("onload", l);
+      } else {
+        w.addEventListener("load", l, false);
+      }
+    }
+  })();
+</script>
+
   </body>
 </html>

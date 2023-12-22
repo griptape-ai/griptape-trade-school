@@ -5,6 +5,8 @@ plugins:
   - search
 extra_css:
   - assets/css/extra.css
+extra_javascript:
+  - "js/adjust-button.js"
 extra:
   analytics:
     provider: google
