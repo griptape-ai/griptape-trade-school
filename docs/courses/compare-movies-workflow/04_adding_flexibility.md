@@ -213,6 +213,9 @@ load_dotenv()
 # Create a Workflow
 workflow = Workflow()
 
+# Create tasks
+start_task = PromptTask("I will provide you a list of movies to compare.", id="START")
+
 # Create a list of movie descriptions
 movie_descriptions = [
     "A boy discovers an alien in his back yard",
@@ -243,4 +246,4 @@ workflow.run()
 ## Next Step
 Our code works, but the descriptions of the movies aren't as detailed as they could be. It would be better if we could search the web for detailed information about the movies, and use those results for a more comprehensive comparison.
 
-In the next section we will add to our workflow by adding a ToolkitTask that uses the `WebScraper` tool to get more detailed information. Jump to [Using Tools](05_using_tools.md) when you're ready to continue.
+In the next section, we will add to our workflow by adding a ToolkitTask that uses the `WebScraper` tool to get more detailed information. Jump to [Using Tools](05_using_tools.md) when you're ready to continue.
