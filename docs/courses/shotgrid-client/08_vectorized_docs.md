@@ -93,7 +93,7 @@ vector_store_driver = LocalVectorStoreDriver(embedding_driver=OpenAiEmbeddingDri
 
 Now that we have a database, we need a way to query it. This will be done using Griptape's [VectorQueryEngine](https://docs.griptape.ai/en/latest/griptape-framework/data/query-engines/#vectorqueryengine){target="_blank"} which takes a `vector_store_driver`. Luckily we just created one!
 
-First, import the engine into Gritpape by adding it to the imports section of your app.
+First, import the engine into Griptape by adding it to the imports section of your app.
 
 ```python title="app.py" hl_lines="3"
 # ...

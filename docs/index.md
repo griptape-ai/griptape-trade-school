@@ -18,7 +18,7 @@ template: hero.html
       
     ![img](assets/img/illustrations/workingman2.png)
 
-    How can you learn coding without helpfuls snippets? We use actual code, with actual line numbers, highliting changes as you work your way through the class.
+    How can you learn coding without helpful snippets? We use actual code, with actual line numbers, highlighting changes as you work your way through the class.
 
     ```py linenums="1"
     # Run an agent

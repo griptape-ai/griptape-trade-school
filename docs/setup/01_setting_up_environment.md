@@ -77,7 +77,7 @@ The [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-py
 2. Search for `Python`, or go to [Python]((https://marketplace.visualstudio.com/items?itemName=ms-python.python){target="_blank"} in your web browser.
 3. Choose `Install`.
 4. Open the command Palette (`Ctrl`+`Shift`+`P` on Windows/Linux, `Cmd`+`Shift`+`P` on macOS), or choose **View --> Command Palette..**
-5. Type `Python` and you should see a list of specific commands for Python. This will confirm that the install was sucessful.
+5. Type `Python` and you should see a list of specific commands for Python. This will confirm that the install was successful.
 
    ![Python Commands](assets/img/01_python_installed.png)
 

@@ -188,5 +188,5 @@ chat(agent)
 
 ## Next Steps
 
-In the next section, [Improving the Prompt](11_gleaming_the_chat.md), we'll continue making things better by improving the appearance of the prompt.
+In the next section: [Improving the Prompt](11_gleaming_the_chat.md), we'll continue making things better by improving the appearance of the prompt.
 

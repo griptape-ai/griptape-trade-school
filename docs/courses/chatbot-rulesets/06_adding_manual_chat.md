@@ -160,4 +160,4 @@ chat(agent)
 ```
 ## Next Steps
 
-Congratulations on implementing manual chat functionality and taking control of the conversation! In the next section [Manners Maketh the Bot](07_manners_maketh_the_bot.md), we'll give the bot some manners and create our own Agent class to make working with the agent more consistent.
+Congratulations on implementing manual chat functionality and taking control of the conversation! In the next section: [Manners Maketh the Bot](07_manners_maketh_the_bot.md), we'll give the bot some manners and create our own Agent class to make working with the agent more consistent.

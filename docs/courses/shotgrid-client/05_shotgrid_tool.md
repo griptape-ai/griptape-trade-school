@@ -145,7 +145,7 @@ Now we're at the part where we update the ShotGrid Tool itself. In this first ex
 * Rename the method to `get_session_token`
 * Import ShotGrid
 * Connect to ShotGrid
-* Selet second activity
+* Select second activity
 
 
 ### Rename the Class
@@ -470,7 +470,7 @@ Chat(agent).start()
 Now that you've got the ShotGridTool and `app.py` updated, let's give this a try. Go ahead and run `app.py`. The first time you run it, it will take a minute to install the Shotgun library, but as soon as it the prompt appears you can ask if you're connected.
 
 ```text
-Q: Am I connected to ShotGrid?
+User: Am I connected to ShotGrid?
 processing...
 [12/05/23 11:20:13] INFO     ToolkitTask 0591d3c40f38422abb1b2abc0a7c2761                                                                                       
                              Input: Am I connected to ShotGrid?                                                                                                 
@@ -488,7 +488,7 @@ processing...
                              Response: a71268be154c2b539d774aa864793882                                                                                         
 [12/05/23 11:20:22] INFO     ToolkitTask 0591d3c40f38422abb1b2abc0a7c2761                                                                                       
                              Output: Yes, you are connected to ShotGrid.                                                                                        
-A: Yes, you are connected to ShotGrid.
+Assistant: Yes, you are connected to ShotGrid.
 
 ```
 
@@ -505,7 +505,7 @@ SHOTGRID_API_KEY=fake_key
 Run the script again, and check to see if you're connected.
 
 ```text
-Q: Am I connected to ShotGrid?
+User: Am I connected to ShotGrid?
 processing...
 [12/05/23 11:32:10] INFO     ToolkitTask 49b621b92b6c4da98496e90862b4e171                                                                                       
                              Input: Am I connected to ShotGrid?                                                                                                 
@@ -523,7 +523,7 @@ processing...
                              Response: Can't authenticate script 'Griptape API'                                                                                 
 [12/05/23 11:32:21] INFO     ToolkitTask 49b621b92b6c4da98496e90862b4e171                                                                                       
                              Output: No, you are not currently connected to ShotGrid. The authentication for the script 'Griptape API' failed.                  
-A: No, you are not currently connected to ShotGrid. The authentication for the script 'Griptape API' failed.
+Assistant: No, you are not currently connected to ShotGrid. The authentication for the script 'Griptape API' failed.
 
 ```
 

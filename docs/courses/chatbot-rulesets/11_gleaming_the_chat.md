@@ -155,4 +155,4 @@ chat(agent)
 
 ## Next Steps
 
-In the next section, [Multiple Personas](12_multiple_personas.md), we'll dive into an explosion of personality by using Rulesets to create multiple personas to chat with.
+In the next section: [Multiple Personas](12_multiple_personas.md), we'll dive into an explosion of personality by using Rulesets to create multiple personas to chat with.

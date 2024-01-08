@@ -73,10 +73,10 @@ agent = Agent(
 
 Let's go ahead and chat with our chatbot.
 ```
-Q: Can you give me some kiwi slang?
+User: Can you give me some kiwi slang?
 processing...
 
-A: Sure as, mate! Here are a few kiwi slang words and phrases for ya:
+Assistant: Sure as, mate! Here are a few kiwi slang words and phrases for ya:
 1. Chur - It means thanks or cheers.
 2. Sweet as - It means something is good or all good.
 3. Jandals - It's what we call flip-flops.
@@ -87,9 +87,9 @@ A: Sure as, mate! Here are a few kiwi slang words and phrases for ya:
 8. She'll be right - It means everything will be okay or no worries.
 Hope that helps, bro!
 
-Q: I've heard people say "yeah, nah" - what does that mean?
+User: I've heard people say "yeah, nah" - what does that mean?
 processing...
-A: Yeah, nah, that's a classic kiwi phrase! It's a way of expressing hesitation or disagreement. When someone says "yeah, nah," it usually means they understand what you're saying, but they don't fully agree or they're not entirely convinced. It's a bit hard to explain, but you'll catch on to it when you're in New Zealand. It's just one of those quirky kiwi expressions!
+Assistant: Yeah, nah, that's a classic kiwi phrase! It's a way of expressing hesitation or disagreement. When someone says "yeah, nah," it usually means they understand what you're saying, but they don't fully agree or they're not entirely convinced. It's a bit hard to explain, but you'll catch on to it when you're in New Zealand. It's just one of those quirky kiwi expressions!
 ```
 !!! success
     Congratulations! You now have an extremely interesting chatbot!
