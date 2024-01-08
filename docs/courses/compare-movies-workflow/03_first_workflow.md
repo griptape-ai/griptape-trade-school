@@ -174,7 +174,7 @@ graph TB
 !!! tip
     This process has changed from versions of Griptape prior to v0.20.
 
-    In previous versions, the `add_task` method would add tasks as **siblings** of the parent task. With versions greater than 0.20, they add them one after another. To add tasks as **sibblings** you will be **inserting** tasks.
+    In previous versions, the `add_task` method would add tasks as **siblings** of the parent task. With versions greater than 0.20, they add them one after another. To add tasks as **siblings** you will be **inserting** tasks.
 
     ```python
     # Add tasks to workflow

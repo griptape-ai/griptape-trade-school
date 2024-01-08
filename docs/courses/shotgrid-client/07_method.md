@@ -166,7 +166,7 @@ Normally you'd have to figure out the filter for the `sg.find` command, but in o
     What projects do I have access to?
 
 ```text
-Q: What projects do I have access to?
+User: What projects do I have access to?
 processing...
 [12/06/23 06:15:23] INFO     ToolkitTask 974a92cff534416ea06eda9c21519461                                            
                              Input: What projects do I have access to?                                               
@@ -210,7 +210,7 @@ processing...
                              10. Demo: Automotive                                                                    
                              11. Automotive Design Template                                                          
                              12. Animation Template                                                                  
-A: You have access to the following projects: 
+Assistant: You have access to the following projects: 
 1. Start From Scratch
 2. Motion Capture Template
 3. Demo: Animation
@@ -260,7 +260,7 @@ The prompt we'll give will simply be to tell it what project we want to add the 
     Create a new character asset for me in "Demo: Animation with Cuts". Make it named "Bob" and give it a description "Bob is a legendary hula-hoop dancer"
 
 ```text
-Q: Create a new character asset for me in "Demo: Animation with Cuts". Make it named "bob" and give it a description "bob is a legendary hula-hoop dancer"
+User: Create a new character asset for me in "Demo: Animation with Cuts". Make it named "bob" and give it a description "bob is a legendary hula-hoop dancer"
 processing...
 [12/06/23 06:35:33] INFO     ToolkitTask 974a92cff534416ea06eda9c21519461                                            
                              Input: Create a new character asset for me in "Demo: Animation with Cuts". Make it named
@@ -289,7 +289,7 @@ processing...
                              Output: I have created a new character asset named "bob" with the description "bob is a 
                              legendary hula-hoop dancer" in the "Demo: Animation with Cuts" project. The asset id is 
                              1412.                                                                                   
-A: I have created a new character asset named "bob" with the description "bob is a legendary hula-hoop dancer" in the "Demo: Animation with Cuts" project. The asset id is 1412.
+Assistant: I have created a new character asset named "bob" with the description "bob is a legendary hula-hoop dancer" in the "Demo: Animation with Cuts" project. The asset id is 1412.
 ```
 
 There were some really interesting things that happened in this test!

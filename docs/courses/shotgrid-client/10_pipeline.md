@@ -15,7 +15,7 @@ In this section, we'll build this exact flow. Note, that this is a bit more of a
 
 ## Importing 
 
-We will need some of the following Gritpape Classes for this to work
+We will need some of the following Griptape Classes for this to work
 
 
 

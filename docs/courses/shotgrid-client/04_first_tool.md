@@ -107,7 +107,7 @@ Notice the agent now has access to *two* Tools, `DateTime` and `ReverseStringToo
 Now test the Tool by running the application and asking it to say something in reverse.
 
 ```text hl_lines="5-17"
-Q: can you say this in revese "I'm a lumberjack and I'm okay"
+User: can you say this in revese "I'm a lumberjack and I'm okay"
 processing...
 [12/03/23 05:56:54] INFO     ToolkitTask 656bcf9d58654d53a60ae24a7dad6af2                                                                     
                              Input: can you say this in revese "I'm a lumberjack and I'm okay"                                                
@@ -128,7 +128,7 @@ processing...
                              Response: yako m'I dna kcajrebmul a m'I                                                                          
 [12/03/23 05:57:03] INFO     ToolkitTask 656bcf9d58654d53a60ae24a7dad6af2                                                                     
                              Output: The reversed string is "yako m'I dna kcajrebmul a m'I".                                                  
-A: The reversed string is "yako m'I dna kcajrebmul a m'I".
+Assistant: The reversed string is "yako m'I dna kcajrebmul a m'I".
 
 ```
 
@@ -139,11 +139,11 @@ As you can see in the highlighted section above, the `Subtask` shows that the ag
 You can absolutely use multiple Tools at the same time. Try a few examples where you might use both the `DateTime` Tool and the `ReverseStringTool`.
 
 ```text
-Q: Can you reverse the month?
-A: The reversed month is "rebmeceD".
+User: Can you reverse the month?
+Assistant: The reversed month is "rebmeceD".
 
-Q: Tell me how many days there are until December 25th, and then reverse the entire response
-A: The reversed response is "syad 32 era ereht".
+User: Tell me how many days there are until December 25th, and then reverse the entire response
+Assistant: The reversed response is "syad 32 era ereht".
 ```
 
 ## Adding a method
@@ -232,8 +232,8 @@ Within the `reverse_sentence` method, find the section of code after `try:` and 
 Now that you've added this new method, let's give it a try!
 
 ```text
-Q: Can you reverse the words in this sentence? "I must eat, therefore, I am hungry".
-A: The reversed sentence is "hungry am I therefore, eat, must I".
+User: Can you reverse the words in this sentence? "I must eat, therefore, I am hungry".
+Assistant: The reversed sentence is "hungry am I therefore, eat, must I".
 ```
 
 Well done! Now go grab a snack and we'll continue.

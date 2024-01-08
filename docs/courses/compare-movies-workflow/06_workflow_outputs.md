@@ -33,7 +33,7 @@ graph TB
 
 Looking at our current workflow, you can see that there's one last task - the `End` task. Ideally we can run the workflow and get the output of this last task.
 
-**Every** task in Griptape has an attribute on it called `output_task`. If you took the Converational Chatbot course, you would have seen it when customizing the output of the agent.
+**Every** task in Griptape has an attribute on it called `output_task`. If you took the Conversational Chatbot course, you would have seen it when customizing the output of the agent.
 
 We can use this `output_task` of the `workflow` to get the final output value.
 
