@@ -75,7 +75,7 @@ This is the prompt for the Chat, indicating you can now chat with the agent.
     You may see a different prompt than `Q:`. We are currently experimenting with different prompt suggestions to find something more intuitive. If you want to specify the prompt explicitly, you can pass the `prompt_prefix` parameter to the `Chat` utility.
 
     ```python
-    Chat(agent, prompt_prefix="Q: ").start()
+    Chat(agent, prompt_prefix="User: ").start()
     ``` 
 
 Ask the agent: `"What day is it?"`
@@ -83,14 +83,14 @@ Ask the agent: `"What day is it?"`
 You will receive a response similar to this:
 
 ```text
-Q: What day is it?
+User: What day is it?
 processing...
 [12/02/23 05:23:35] INFO     PromptTask 8774d4cf5d2e4630bce4937864a6dd81                                      
                              Input: What day is it?                                                           
 [12/02/23 05:23:39] INFO     PromptTask 8774d4cf5d2e4630bce4937864a6dd81                                      
                              Output: As an AI, I don't have real-time capabilities to provide the current     
                              date. Please check your device for the current date.                             
-A: As an AI, I don't have real-time capabilities to provide the current date. Please check your device for the current date.
+Assistant: As an AI, I don't have real-time capabilities to provide the current date. Please check your device for the current date.
 
 ```
 
@@ -135,7 +135,7 @@ Adding a Tool is a straightforward process. You `import` it, configure it if nec
     You'll see a very different response this time, something similar to the following:
 
     ```text hl_lines="5-16"
-    Q: What day is it?
+    User: What day is it?
     processing...
     [12/02/23 06:07:08] INFO     ToolkitTask 0024a33acd8946deac94355ca92ccfde                                     
                                 Input: What day is it?                                                           
@@ -153,7 +153,7 @@ Adding a Tool is a straightforward process. You `import` it, configure it if nec
                                 Response: 2023-12-02 06:07:12.902983                                             
     [12/02/23 06:07:15] INFO     ToolkitTask 0024a33acd8946deac94355ca92ccfde                                     
                                 Output: Today is December 2, 2023.                                               
-    A: Today is December 2, 2023.
+    Assistant: Today is December 2, 2023.
     ```
 
 Notice the highlighted section above. This is the `subtask`, where the Agent is using [Chain-of-Thought](https://www.promptingguide.ai/techniques/cot){target="_blank"} to figure out what to do. It recognizes the need to use one of its activities - in this case, `get_current_datetime` to get the result.
@@ -408,20 +408,20 @@ Notice with the `get_relative_datetime` method (the other method in the DateTime
 Let's experiment with different ways of requesting the current time. Try requesting for day, time, date, day of the month, time of year, etc. Notice how the LLM can handle all these different results, with *only one method*.
 
 ```
-Q: What's the date?
-A: Today's date is December 2, 2023.
+User: What's the date?
+Assistant: Today's date is December 2, 2023.
 
-Q: What day of the week is it?
-A: Today is Saturday.
+User: What day of the week is it?
+Assistant: Today is Saturday.
 
-Q: What's the time in New Zealand?
-A: The current time in New Zealand is 07:58 on December 2, 2023.
+User: What's the time in New Zealand?
+Assistant: The current time in New Zealand is 07:58 on December 2, 2023.
 
-Q: What's the time if Yoda said it?
-A: The current time in Yoda's speech would be, "58 past 7 it is."
+User: What's the time if Yoda said it?
+Assistant: The current time in Yoda's speech would be, "58 past 7 it is."
 
-Q: What's the current time as Beaker from the Muppets?
-A: As Beaker from the Muppets, the current time would be expressed as, "Meep meep, meep meep meep!"
+User: What's the current time as Beaker from the Muppets?
+Assistant: As Beaker from the Muppets, the current time would be expressed as, "Meep meep, meep meep meep!"
 ```
 
 ### Parameters

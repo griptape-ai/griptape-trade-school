@@ -11,7 +11,7 @@ In order to communicate with an LLM using Griptape, we'll need a key. To do this
 
 
 1. Go to the [OpenAI](https://beta.openai.com/account) website and sign up for an account if you don't have one already.
-2. After logging in, navigate to the [API](https://beta.openai.com/account/api-keys){target="_blank"} section of your dashboard.
+2. After logging in, navigate to the [API Keys](https://beta.openai.com/account/api-keys){target="_blank"} section of your dashboard.
 
     ![Alt text](assets/img/01_openai_api_key.png)
 

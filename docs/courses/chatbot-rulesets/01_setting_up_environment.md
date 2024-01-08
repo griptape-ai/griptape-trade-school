@@ -7,7 +7,7 @@ Welcome to the first step of our journey into creating a conversational chatbot!
 
 1. **Code Editor**: We recommend using **Visual Studio Code** for this course, due to its handy features and Python support. However, if you have another favorite IDE or text editor, feel free to use that! 
 
-2. **Python3.9+**: Griptape requires Python 3.9+.
+2. **Python 3.9+**: Griptape requires Python 3.9+.
 
 3. **Python Environment Manager (for VS Code users)**: This extension is not a hard requirement, but it does make managing your Python environments a lot easier. 
 
@@ -41,4 +41,4 @@ agent.run("I'm ready to chat.")
 
 ---
 
-And there we have it, our coding environment is all set up! In the next section [The Chat Utility](03_the_chat_utility.md), we'll look at one of the quickest ways of creating a Chatbot with Griptape.
+And there we have it, our coding environment is all set up! In the next section: [The Chat Utility](03_the_chat_utility.md), we'll look at one of the quickest ways of creating a Chatbot with Griptape.

@@ -18,7 +18,7 @@ This course is aimed at **beginners** to **intermediate** level Python developer
 ## Prerequisites
 Before beginning this course, you will need:
 
-- An OpenAI API Key (available here: https://beta.openai.com/account/api-keys){target="_blank"}
+- An OpenAI API Key (available from [OpenAI's website](https://beta.openai.com/account/api-keys){target="_blank"})
 - Python3.9+ installed on your machine
 - An IDE (such as Visual Studio Code or PyCharm) to write and manage your code
 
@@ -48,4 +48,4 @@ These resources will provide additional information and context throughout the c
 ---
 ## Next Steps
 
-Head on to the first stage [01 - Setting Up Your Environment](01_setting_up_environment.md) to get started!
+Head on to the first stage [Setting Up Your Environment](01_setting_up_environment.md) to get started!

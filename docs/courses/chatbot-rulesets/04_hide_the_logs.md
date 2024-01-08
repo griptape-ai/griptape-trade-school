@@ -59,12 +59,12 @@ Chat(agent).start()
 Go ahead and execute the script and have a chat.
 
 ```
-Q: Give me a haiku about python skateboarders
+User: Give me a haiku about python skateboarders
 processing...
-A: Python skateboarders
+Assistant: Python skateboarders
 Glide on wheels, swift and free
 Thrilling tricks they show
-Q: 
+User: 
 ```
 
 !!! Success

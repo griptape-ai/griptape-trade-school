@@ -49,7 +49,7 @@ Here, we modify the `MyAgent` instantiation to include both `kiwi_ruleset` and `
 Prepare for an exciting conversation as we engage our chatbot in a quest for knowledge about Wellington's top tourist destinations. Let's dive in:
 
 ```json
-Q: "Hey chatbot, what are the top three tourist destinations in Wellington? Can you give me a name and a description?"
+Chat with Kiwi: "Hey chatbot, what are the top three tourist destinations in Wellington? Can you give me a name and a description?"
 
 Kiwi: {
   "message": "Absolutely, mate! Here are the top three tourist destinations in Wellington with a brief description:",
@@ -280,5 +280,5 @@ chat(agent)
 
 ## Next Steps
 
-In the next stage, [Formatting Chat Output](09_formatting_chat_output.md), 
+In the next section: [Formatting Chat Output](09_formatting_chat_output.md), 
  we'll make the chat interface more visually appealing and chat-like using the [rich library](https://rich.readthedocs.io/en/stable/introduction.html){target="_blank"}. Get ready to add some style and flair to your conversations!

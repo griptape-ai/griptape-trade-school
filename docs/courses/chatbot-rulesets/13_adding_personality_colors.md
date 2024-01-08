@@ -270,4 +270,4 @@ chat(agent)
 
 ## Next Steps
 
-In the next stage: [Quick Feedback](14_making_it_quick.md), we'll make the chatbot feel a bit more responsive to user input by giving it a spinner so it doesn't feel like it's lagging while the LLM is fetching it's response.
+In the next section: [Quick Feedback](14_making_it_quick.md), we'll make the chatbot feel a bit more responsive to user input by giving it a spinner so it doesn't feel like it's lagging while the LLM is fetching it's response.

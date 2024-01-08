@@ -62,20 +62,20 @@ It's time to play around with your chatbot. Ask it some questions, have a laugh,
 Here's a quick example of a not-very-funny joke with the chatbot:
 
 ```
-Q: Hello!
+User: Hello!
 processing...
 [07/20/23 06:37:45] INFO     Task 167f55dda2be46a7bc9002a48214dbf4                                                                                                                   
                              Input: Hello!                                                                                                                                           
 [07/20/23 06:37:46] INFO     Task 167f55dda2be46a7bc9002a48214dbf4                                                                                                                   
                              Output: Hello! How can I assist you today?                                                                                                              
-A: Hello! How can I assist you today?
-Q: Tell me a joke about python
+Assistant: Hello! How can I assist you today?
+User: Tell me a joke about python
 processing...
 [07/20/23 06:37:58] INFO     Task 167f55dda2be46a7bc9002a48214dbf4                                                                                                                   
                              Input: Tell me a joke about python                                                                                                                      
 [07/20/23 06:38:00] INFO     Task 167f55dda2be46a7bc9002a48214dbf4                                                                                                                   
                              Output: Why did the python programmer get bitten by a snake? Because they forgot to use a python exception handler!                                     
-A: Why did the python programmer get bitten by a snake? Because they forgot to use a python exception handler!
+Assistant: Why did the python programmer get bitten by a snake? Because they forgot to use a python exception handler!
 ```
 
 ### Exiting
@@ -85,7 +85,7 @@ A: Why did the python programmer get bitten by a snake? Because they forgot to u
    So go ahead, chat away, exchange jokes, discuss Python's quirks, and when it's time to say goodbye, just type `exit` and gracefully conclude your interaction.
 
 ```
-Q: exit
+User: exit
 exiting...
 ```
 

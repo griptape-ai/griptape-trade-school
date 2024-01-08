@@ -53,7 +53,7 @@ To get started, we'll begin by replacing the Fake Image Generation task with a r
 
 ### Imports
 
-To use the Driver, Engine, and Task we'll need to add them to our `imports` section in `app.py`. You'll modify `griptape.tasks` to inlude `ImageGenerationTask`, and add imports for the Driver and Engine.
+To use the Driver, Engine, and Task we'll need to add them to our `imports` section in `app.py`. You'll modify `griptape.tasks` to include `ImageGenerationTask`, and add imports for the Driver and Engine.
 
 ```python hl_lines="5-7"
 # ...
@@ -108,7 +108,7 @@ image_engine = ImageGenerationEngine(image_generation_driver=image_driver)
 
 ### Replace the ImageTask
 
-Next, we'll replace our fake image generation task with a _real_ image generation task. Find the section of the code where we're creating the image task with `generate_image_task` and replace it withis `ImageGenerationTask`.
+Next, we'll replace our fake image generation task with a _real_ image generation task. Find the section of the code where we're creating the image task with `generate_image_task` and replace it with `ImageGenerationTask`.
 
 ```python
 # ...
@@ -401,7 +401,7 @@ Perfect! That's exactly what we need to be able to give to the _real_ display im
 
 ## Code Review
 
-You can now generate an image using the prompt. Excellent work! Let's review the current state of our applicaiton:
+You can now generate an image using the prompt. Excellent work! Let's review the current state of our application:
 
 ```python linenums="1" title="app.py" hl_lines="5-7 11-12 14-17 19-20 36-41 46 48"
 from dotenv import load_dotenv

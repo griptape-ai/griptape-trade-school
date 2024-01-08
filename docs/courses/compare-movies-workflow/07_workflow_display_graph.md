@@ -3,7 +3,7 @@
 ## Overview
 Throughout the course you've been creating Workflows by adding and inserting various tasks.
 
-We've been displaying those workflow structures in this documentation by using the extremely helpful [Mermaid javascript libray](http://mermaid.js.org/){target="_blank"}.
+We've been displaying those workflow structures in this documentation by using the extremely helpful [Mermaid javascript library](http://mermaid.js.org/){target="_blank"}.
 
 
 ``` mermaid
@@ -105,7 +105,7 @@ Still not making sense? That's okay, let's clean up these task id names and thin
 
 ## Clean up the node IDs
 
-The first thing we'll want to do is make sure that each Task has a unique ID that's a litte clearer to understand. This means we'll be adding an `id` attribute to the `movie_task` and the `summary_task`.
+The first thing we'll want to do is make sure that each Task has a unique ID that's a little clearer to understand. This means we'll be adding an `id` attribute to the `movie_task` and the `summary_task`.
 
 Find the section of the code where we create the `movie_task`. We're going to add an `id` attribute to it. However, we can't just give it a value of "movie_task" - or *each movie PromptTask will have the same id*. This is not allowed with Workflows - each task needs to be unique.
 

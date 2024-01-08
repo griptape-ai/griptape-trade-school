@@ -73,7 +73,7 @@ Chat with Kiwi: Say hello in 2 words as a kiwi
 ╰──────────────────────╯
 ```
 
-### Propper width
+### Proper width
 
 Sometimes the response can be quite long and fill the terminal. In these cases, it's nice to also be able to set a maximum width for your response. You can do this by specifying the `width` parameter of `Panel.fit`. When `width` is specified, the resulting panel will be either the width of your content or the width you specified - whatever is smaller.
 

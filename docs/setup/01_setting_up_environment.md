@@ -23,7 +23,7 @@ Temporarily disable video
 If you have [Homebrew](https://brew.sh){target="_blank"} installed:
 
 1. Open your terminal
-2. Run the `command brew install python@3.12`
+2. Run the command `brew install python@3.12`
 3. After the installation is complete, run `brew link python@3.12`
 
 !!! info
@@ -71,13 +71,13 @@ Alternatively, feel free to open up **Visual Studio Code** and create a new fold
 
 ### Installing VS Code Python Extension
 
-The [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python){target="_blank"} for Visual Studio Code provides rich support for the Python language, including features like IntelliSence, linting, debugging, code formatting, and more. It really makes life easier for Python developers.
+The [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python){target="_blank"} for Visual Studio Code provides rich support for the Python language, including features like IntelliSense, linting, debugging, code formatting, and more. It really makes life easier for Python developers.
 
 1. With VS Code open, go to the Extensions tab, or choose **View --> Extensions**
 2. Search for `Python`, or go to [Python]((https://marketplace.visualstudio.com/items?itemName=ms-python.python){target="_blank"} in your web browser.
 3. Choose `Install`.
 4. Open the command Palette (`Ctrl`+`Shift`+`P` on Windows/Linux, `Cmd`+`Shift`+`P` on macOS), or choose **View --> Command Palette..**
-5. Type `Python` and you should see a list of specific commands for Python. This will confirm that the install was sucessful.
+5. Type `Python` and you should see a list of specific commands for Python. This will confirm that the install was successful.
 
    ![Python Commands](assets/img/01_python_installed.png)
 

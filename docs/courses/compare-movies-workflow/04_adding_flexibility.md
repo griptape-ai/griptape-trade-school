@@ -26,7 +26,7 @@ movie_2_task = PromptTask(
 # ...
 ```
 
-We're going to replace this entire section with a `descriptions` list instead. This will be a list of python dictionaries with an "id" and a "descriptoin".
+We're going to replace this entire section with a `descriptions` list instead. This will be a list of python dictionaries with an "id" and a "description".
 
 It should look something like:
 ``` python 
@@ -89,7 +89,7 @@ end_task = PromptTask("""
 
 This will no longer work because we are not defining the ids when we create the PromptTask - we just let it come up with it's own unique identifiers. Also, we don't know exactly how many movies we might be comparing, so it doesn't make much sense to define and add each one individually.
 
-Luckily, intead of specifically specifying the items via id, we can just say "hey - give me all the input items" using `{{ parent_outputs }}`. This will return the entire `python dictionary` of items that are input to the task.
+Luckily, instead of specifically specifying the items via id, we can just say "hey - give me all the input items" using `{{ parent_outputs }}`. This will return the entire `python dictionary` of items that are input to the task.
 
 Replace the two lines:
 

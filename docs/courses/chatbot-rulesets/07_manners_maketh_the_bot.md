@@ -299,4 +299,4 @@ chat(agent)
 
 ### Next Steps
 
-Congratulations on implementing manual chat functionality and taking control of the conversation! In the next section [Adding Another Ruleset](08_adding_another_ruleset_for_output.md), we'll explore the world of output rulesets, unlocking the ability to control the chatbot's responses in different formats such as JSON, YAML, or even haiku.
+Congratulations on implementing manual chat functionality and taking control of the conversation! In the next section: [Adding Another Ruleset](08_adding_another_ruleset_for_output.md), we'll explore the world of output rulesets, unlocking the ability to control the chatbot's responses in different formats such as JSON, YAML, or even haiku.

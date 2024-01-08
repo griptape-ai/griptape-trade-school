@@ -2,7 +2,7 @@
 
 ## Understanding Workflows and Pipelines
 
-Frequently when creating applications you will want to execute a series of steps in a very specific order. Workflows and Pipelines are both structures that allow us to do that. They have many of the same features as Agents, but are more directable. Whereas Agents can be given behaviors and tools and will use them when prompted appropriately, Pipelines and Workflows utilize hieararchies of tasks in very specific ways.
+Frequently when creating applications you will want to execute a series of steps in a very specific order. Workflows and Pipelines are both structures that allow us to do that. They have many of the same features as Agents, but are more directable. Whereas Agents can be given behaviors and tools and will use them when prompted appropriately, Pipelines and Workflows utilize hierarchies of tasks in very specific ways.
 
 ### Pipelines
 [Pipelines](https://docs.griptape.ai/en/latest/griptape-framework/structures/pipelines/){target="_blank"} are always a sequential series of steps - one task after another until it is finished. 
@@ -32,7 +32,7 @@ graph LR
 
 ```
 
-As you can tell, this could get quite unweildy. In addition, it doesn't make much sense for getting the name of the 4th movie to have to wait until the summary of the 3rd movie is figured out, as they're not really dependent on each other.
+As you can tell, this could get quite unwieldy. In addition, it doesn't make much sense for getting the name of the 4th movie to have to wait until the summary of the 3rd movie is figured out, as they're not really dependent on each other.
 
 Workflows are perfect for this sort of situation. They allow you to parallelize tasks that aren't dependent. Let's see how something like this might look.
 
@@ -41,7 +41,7 @@ Workflows are perfect for this sort of situation. They allow you to parallelize 
 
 Workflows are **non-sequential** and individual tasks can depend on **multiple input tasks**. This allows you to create a single task that waits for all other tasks to complete before it can begin.
 
-This is what a Workflow might look like for doing what we mentiond above. 
+This is what a Workflow might look like for doing what we mentioned above. 
 !!! Note
     The graph is drawn top to bottom for this example because it's easier to understand the flow of data, but it can be drawn in either direction.
 

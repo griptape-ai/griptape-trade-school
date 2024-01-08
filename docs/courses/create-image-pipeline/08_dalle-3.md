@@ -23,7 +23,7 @@ Drivers may change over time. At the time of this writing, certain attributes ar
 
 To see them, simply hover over the `OpenAiDalleImageGenerationDriver` in Visual Studio Code and ++ctrl++ click, ++cmd++ click, or choose `Right Mouse Button --> Go to Definition..`. This will open the class in a new tab.
 
-As of December 19, 2023 the attributes availaboe for the `OpenAiDalleeImageGenerationDriver` are:
+As of December 19, 2023 the attributes available for the `OpenAiDalleeImageGenerationDriver` are:
 
 ```yaml
 model: OpenAI DALLE model, for example 'dall-e-2' or 'dall-e-3'.
