@@ -3,7 +3,7 @@
 ![create tool](assets/img/clock.png)
 
 ## Overview
-In this module, we will explore the DateTime Tool within Griptape, demonstrating its use with a `Pipeline`, break down how `Activities` work, and integrate via `ToolTask` and `ToolkitTasks`.
+In this module, we will explore the DateTime Tool within Griptape, demonstrate its use with a `Pipeline`, break down how `Activities` work, and integrate via `ToolTask` and `ToolkitTasks`.
 
 ## What is a Griptape Tool?
 

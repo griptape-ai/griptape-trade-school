@@ -19,23 +19,23 @@ driver = OpenAiDalleImageGenerationDriver(
 )
 
 # Create an Image Generation Engine
-engine = ImageGenerationEngine( image_generation_driver=driver )
+engine = PromptImageGenerationEngine( image_generation_driver=driver )
 
 # Create an Image Generation Task
-task = ImageGenerationTask(
+task = PromptImageGenerationTask(
     "Create a drawing of a pineapple",
     image_generation_engine=engine,
     output_dir="./images"
 )
 ```
 
-Once you generate the task, you would add it to the pipeline or workflow.
+Once you generate the task, you will add it to the pipeline or workflow.
 
-You can also use the `ImageGenerator` tool and assign it to an Agent. It takes many of the same arguments. If you had previously created the `driver` and `engine` as specified above, you would do something like:
+You can also use the `PromptImageGenerationClient` tool and assign it to an Agent. It takes many of the same arguments. If you had previously created the `driver` and `engine` as specified above, you would do something like:
 
 ```python
 agent = Agent(
-    tools=[ImageGenerator(
+    tools=[PromptImageGenerationClient(
         image_generation_engine=engine,
         output_dir="./images",
         off_prompt=False,
@@ -53,16 +53,16 @@ To get started, we'll begin by replacing the Fake Image Generation task with a r
 
 ### Imports
 
-To use the Driver, Engine, and Task we'll need to add them to our `imports` section in `app.py`. You'll modify `griptape.tasks` to include `ImageGenerationTask`, and add imports for the Driver and Engine.
+To use the Driver, Engine, and Task we'll need to add them to our `imports` section in `app.py`. You'll modify `griptape.tasks` to include `PromptImageGenerationTask`, and add imports for the Driver and Engine.
 
 ```python hl_lines="5-7"
 # ...
 
 # Griptape
 from griptape.structures import Pipeline
-from griptape.tasks import PromptTask, ImageGenerationTask
+from griptape.tasks import PromptTask, PromptImageGenerationTask
 from griptape.drivers import OpenAiDalleImageGenerationDriver
-from griptape.engines import ImageGenerationEngine
+from griptape.engines import PromptImageGenerationEngine
 
 # ...
 ```
@@ -100,7 +100,7 @@ image_driver = OpenAiDalleImageGenerationDriver(
 )
 
 # Create the engine
-image_engine = ImageGenerationEngine(image_generation_driver=image_driver)
+image_engine = PromptImageGenerationEngine(image_generation_driver=image_driver)
 
 # Create the pipeline object
 # ...
@@ -108,12 +108,12 @@ image_engine = ImageGenerationEngine(image_generation_driver=image_driver)
 
 ### Replace the ImageTask
 
-Next, we'll replace our fake image generation task with a _real_ image generation task. Find the section of the code where we're creating the image task with `generate_image_task` and replace it with `ImageGenerationTask`.
+Next, we'll replace our fake image generation task with a _real_ image generation task. Find the section of the code where we're creating the image task with `generate_image_task` and replace it with `PromptImageGenerationTask`.
 
 ```python
 # ...
 
-generate_image_task = ImageGenerationTask(
+generate_image_task = PromptImageGenerationTask(
     "{{ parent_output }}",
     image_generation_engine=image_engine,
     output_dir="./images",
@@ -126,7 +126,7 @@ generate_image_task = ImageGenerationTask(
 Notice we're giving it the `image_generation_engine` we defined earlier as `image_engine`. We're also specifying an `output_dir` of `./images`. This will ensure the image is generated in that directory. 
 
 !!! tip
-    With the ImageGenerationTask, if you want to save the file to disk you must specify specify _either_ the output file name (`output_file`) or the directory you want the images to appear in (`output_dir`). If you don't, the image generated will only exist in the `ImageArtifact`. 
+    With the `PromptImageGenerationTask`, if you want to save the file to disk you must specify specify _either_ the output file name (`output_file`) or the directory you want the images to appear in (`output_dir`). If you don't, the image generated will only exist in the `ImageArtifact`. 
     
     I recommend saving the file using `output_dir`, as we'll be able to retrieve the name of the image artifact in the next task.
 
@@ -144,7 +144,7 @@ Give your application a test run. In the results you will see an ImageGeneration
                              Input: "Generate an image of a cow, styled and framed as if it were taken with a 1970s Polaroid camera." 
 [12/16/23 17:58:41] INFO     Saving [Image, dimensions: 1024x1024, type: image/png, size: 3147861 bytes] to                           
                              /Users/jason/Documents/courses/griptape-image-pipeline/images/image_artifact_231216175841_iuy3.png       
-                    INFO     ImageGenerationTask Generate Image Task                                                                  
+                    INFO     PromptImageGenerationTask Generate Image Task                                                                  
                              Output: Image, dimensions: 1024x1024, type: image/png, size: 3147861 bytes                               
 ```
 
@@ -156,12 +156,12 @@ Beautiful!
 
 ## The Display Image Task
 
-At the moment if you look at the output from the `Display Image task`, we're using `{{ parent_output }}` to get the data from the `ImageGenerationTask`. However, looking at the logs you can see the information does not contain the information we want - the path to the actual file. I've highlighted the `Output` from the `ImageGenerationTask`, and the `input` for the `Display Image Task`. Notice the image name isn't there.
+At the moment if you look at the output from the `Display Image task`, we're using `{{ parent_output }}` to get the data from the `PromptImageGenerationTask`. However, looking at the logs you can see the information does not contain the information we want - the path to the actual file. I've highlighted the `Output` from the `PromptImageGenerationTask`, and the `input` for the `Display Image Task`. Notice the image name isn't there.
 
 ```text hl_lines="4 6-8"
 [12/17/23 05:16:32] INFO    Saving [Image, dimensions: 1024x1024, type: image/png, size: 3147861 bytes] to
                             /Users/jason/Documents/courses/griptape-image-pipeline/images/image_artifact_231217051632_wazr.png
-                    INFO    ImageGenerationTask Generate Image Task
+                    INFO    PromptImageGenerationTask Generate Image Task
                     Output: Image, dimensions: 1024x1024, type: image/png, size: 3147861 bytes
                     INFO    PromptTask Display Image Task
                     Input:
@@ -234,15 +234,15 @@ But what other attributes are available?
 
 To discover this, we need to navigate our code and view what Artifact the `ImageGenerationTask` outputs.
 
-### ImageGenerationTask Artifact
+### PromptImageGenerationTask Artifact
 
 In Visual Studio Code, you can learn more about components of your code by Navigating to it. 
 
-To do this, hover over `ImageGenerationTask` use the Keyboard shortcut ++command++ on Mac, or ++ctrl++ on Windows and click on it. Additionally, you can just click on `ImageGenerationTask` with the Right Mouse Button and choose **Go to Definition**
+To do this, hover over `PromptImageGenerationTask` use the Keyboard shortcut ++command++ on Mac, or ++ctrl++ on Windows and click on it. Additionally, you can just click on `PromptImageGenerationTask` with the Right Mouse Button and choose **Go to Definition**
 
 ![Go to Definition](assets/img/go_to_definition.png)
 
-This will open the class definition `ImageGenerationTask` in your editor (`image_generation_task.py`).
+This will open the class definition `PromptImageGenerationTask` in your editor (`prompt_image_generation_task.py`).
 
 If you scroll down in the code until you find the section where the `run` method is defined, you'll see the output artifact:
 
@@ -318,7 +318,7 @@ Run the code and in the logs take a look at the `Input` to the `Display Image Ta
 ```text hl_lines="5-8"
 [12/17/23 06:03:36] INFO    Saving [Image, dimensions: 1024x1024, type: image/png, size: 3147861 bytes] to
                             /Users/jason/Documents/courses/griptape-image-pipeline/images/image_artifact_231217060336_570j.png             
-                    INFO    ImageGenerationTask Generate Image Task
+                    INFO    PromptImageGenerationTask Generate Image Task
                             Output: Image, dimensions: 1024x1024, type: image/png, size: 3147861 bytes
                     INFO    PromptTask Display Image Task 
                             Input:
@@ -329,7 +329,7 @@ Run the code and in the logs take a look at the `Input` to the `Display Image Ta
                             Output: [Displaying Image: image_artifact_231217060336_570j.png]
 ```
 
-See how it now gives us the name of the image? This is exactly what we need, except it's not the _full path_. Remember in the `ImageGenerationTask` we're specifying the `output_dir`. We should be sure to include this as well.
+See how it now gives us the name of the image? This is exactly what we need, except it's not the _full path_. Remember in the `PromptImageGenerationTask` we're specifying the `output_dir`. We should be sure to include this as well.
 
 Let's add some more context to the task, providing the `output_dir`. We'll also create a variable earlier in our code for the `output_dir` so we only need to define it once.
 
@@ -351,12 +351,12 @@ output_dir = "./images"
 
 ### Replace in `generate_image_task`
 
-Now go down to the `generate_image_task` and use the `output_dir` variable in the `ImageGenerationTask`.
+Now go down to the `generate_image_task` and use the `output_dir` variable in the `PromptImageGenerationTask`.
 
 ```python title="app.py" hl_lines="6"
 # ...
 
-generate_image_task = ImageGenerationTask(
+generate_image_task = PromptImageGenerationTask(
     "{{ parent_output }}",
     image_generation_engine=image_engine,
     output_dir=output_dir,
@@ -408,9 +408,9 @@ from dotenv import load_dotenv
 
 # Griptape
 from griptape.structures import Pipeline
-from griptape.tasks import PromptTask, ImageGenerationTask
+from griptape.tasks import PromptTask, PromptImageGenerationTask
 from griptape.drivers import OpenAiDalleImageGenerationDriver
-from griptape.engines import ImageGenerationEngine
+from griptape.engines import PromptImageGenerationEngine
 
 load_dotenv()  # Load your environment
 
@@ -423,7 +423,7 @@ image_driver = OpenAiDalleImageGenerationDriver(
 )
 
 # Create the engine
-image_engine = ImageGenerationEngine(image_generation_driver=image_driver)
+image_engine = PromptImageGenerationEngine(image_generation_driver=image_driver)
 
 # Create the pipeline object
 pipeline = Pipeline()
@@ -439,7 +439,7 @@ create_prompt_task = PromptTask(
     id="Create Prompt Task",
 )
 
-generate_image_task = ImageGenerationTask(
+generate_image_task = PromptImageGenerationTask(
     "{{ parent_output }}",
     image_generation_engine=image_engine,
     output_dir=output_dir,
@@ -474,4 +474,4 @@ All three of these methods are valid, but in the context of this course we're go
 
 In the near future we'll be creating a course specifically around creating and sharing Tools. For now, we're going to re-purpose material from the [Shotgrid Client](../shotgrid-client/index.md) course where we discuss creating tools. The next two sections of this course are taken from there. They give a detailed [understanding](05_understanding_tools.md) of tools, and help you create your [first tool](06_first_tool.md).
 
-If you already have created tools in the past, and have a deep understanding of how to create them, feel free to skip ahead to the [Display Image Tool](07_display_image_tool.md) section. Othewise, let's dive in and learn more about how [Griptape Tools](05_understanding_tools.md) work.
+If you already have created tools in the past, and have a deep understanding of how to create them, feel free to skip ahead to the [Display Image Tool](07_display_image_tool.md) section. Otherwise, let's dive in and learn more about how [Griptape Tools](05_understanding_tools.md) work.

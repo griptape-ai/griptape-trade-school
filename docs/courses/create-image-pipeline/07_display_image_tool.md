@@ -315,9 +315,9 @@ from dotenv import load_dotenv
 
 # Griptape
 from griptape.structures import Pipeline
-from griptape.tasks import PromptTask, ImageGenerationTask, ToolkitTask
+from griptape.tasks import PromptTask, PromptImageGenerationTask, ToolkitTask
 from griptape.drivers import OpenAiDalleImageGenerationDriver
-from griptape.engines import ImageGenerationEngine
+from griptape.engines import PromptImageGenerationEngine
 
 from display_image_tool import DisplayImageTool
 
@@ -332,7 +332,7 @@ image_driver = OpenAiDalleImageGenerationDriver(
 )
 
 # Create the engine
-image_engine = ImageGenerationEngine(image_generation_driver=image_driver)
+image_engine = PromptImageGenerationEngine(image_generation_driver=image_driver)
 
 # Create the pipeline object
 pipeline = Pipeline()
@@ -348,7 +348,7 @@ create_prompt_task = PromptTask(
     id="Create Prompt Task",
 )
 
-generate_image_task = ImageGenerationTask(
+generate_image_task = PromptImageGenerationTask(
     "{{ parent_output }}",
     image_generation_engine=image_engine,
     output_dir=output_dir,
