@@ -74,7 +74,7 @@ The course will cover:
 * Creating Griptape Pipelines
 * Creating Griptape Tasks
 * Investigate Image Generation Engines
-* Building a Tool to display the resulting image
+* Using a `CodeExecutionTask` to display the resulting image
 
 ## Useful Resources and Links
 

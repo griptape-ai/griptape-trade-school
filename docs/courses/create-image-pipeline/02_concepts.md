@@ -62,8 +62,9 @@ Before we dive in and start setting up our own Pipeline, it's important to revie
 | **TextSummaryTask** | Summarizes text very efficiently | `TextSummaryTask("Imagine this is a massive amount of text.")` |
 | **TextQueryTask** | Can be used to query large bodies of text, for example a vector database. | See examples in the [documentation](https://griptape.readthedocs.io/griptape-framework/structures/tasks/#text-query-task){target="_blank"} |
 | **PromptImageGenerationTask** | Can be used to generate images based off a text prompt. | `PromptImageGenerationTask("watercolor butterfly"), image_generation_engine=image_engine`|
+| **CodeExecutionTask** | Can be used to execute code. | `CodeExecutionTask(run_fn=reverse_string)`|
 
-In this course, we will be focusing mostly on **Prompt Tasks**, **Toolkit Tasks**, and **Image Generation Tasks**. 
+In this course, we will be focusing mostly on **Prompt Tasks**, **Image Generation Tasks**, and **Code Execution Tasks**. 
 
 
 ```python

@@ -126,13 +126,13 @@ generate_image_task = PromptImageGenerationTask(
 Notice we're giving it the `image_generation_engine` we defined earlier as `image_engine`. We're also specifying an `output_dir` of `./images`. This will ensure the image is generated in that directory. 
 
 !!! tip
-    With the `PromptImageGenerationTask`, if you want to save the file to disk you must specify specify _either_ the output file name (`output_file`) or the directory you want the images to appear in (`output_dir`). If you don't, the image generated will only exist in the `ImageArtifact`. 
+    With the `PromptImageGenerationTask`, if you want to save the file to disk you must specify _either_ the output file name (`output_file`) or the directory you want the images to appear in (`output_dir`). If you don't, the image generated will only exist in the `ImageArtifact`. 
     
     I recommend saving the file using `output_dir`, as we'll be able to retrieve the name of the image artifact in the next task.
 
 ### Test
 
-Give your application a test run. In the results you will see an ImageGenerationTask getting run, and then information on the image size and where it's written out. Here's a section of the resulting log. I've highlighted the log information of the file being written and the Output. 
+Give your application a test run. In the results you will see a `PromptImageGenerationTask` getting run, and then information on the image size and where it's written out. Here's a section of the resulting log. I've highlighted the log information of the file being written and the Output. 
 
 !!! info
     Notice the image name _is not_ in the `Output` text. It's part of the INFO, but not in Output - therefore not getting passed back from the Image Generation Task. I'll demonstrate how to get it later in this section.
@@ -140,7 +140,7 @@ Give your application a test run. In the results you will see an ImageGeneration
 ```text hl_lines="5-8"
 [12/16/23 17:58:27] INFO     PromptTask Create Prompt Task                                                                            
                              Output: "Generate an image of a cow, styled and framed as if it were taken with a 1970s Polaroid camera."
-                    INFO     ImageGenerationTask Generate Image Task                                                                  
+                    INFO     PromptImageGenerationTask Generate Image Task                                                                  
                              Input: "Generate an image of a cow, styled and framed as if it were taken with a 1970s Polaroid camera." 
 [12/16/23 17:58:41] INFO     Saving [Image, dimensions: 1024x1024, type: image/png, size: 3147861 bytes] to                           
                              /Users/jason/Documents/courses/griptape-image-pipeline/images/image_artifact_231216175841_iuy3.png       
@@ -466,12 +466,10 @@ pipeline.run("a cow")
 ## Next Step
 Our next task is to replace our fake Display Image with a real one. There are a few ways we can achieve this within a Griptape Pipeline. 
 
-1. **Tasks** - Create a new type of Task that just displays an image.
-2. **Tools** - Create a Tool that displays an image, and then use `ToolTaask` or `ToolkitTask` to integrate it into the Pipeline.
+1. **Tasks** - Use a `CodeExecutionTask` to execute a Python function that will display the image.
+2. **Tools** - Create a Tool that displays an image, and then use `ToolTask` or `ToolkitTask` to integrate it into the Pipeline.
 3. **Plain ol' Python** - Because we're running a Pipeline in Python, we can just ignore adding anything to our structure and just display the output of the Image Generation task as we want.
 
-All three of these methods are valid, but in the context of this course we're going to look at creating our own Tool to display the image. The reason for this is flexibility with integration in future workflows. Imagine creating images with an Agent through a chat experience. If you have a Tool, you can simply add it to the Agent and ask it to display the image whenever it's ready. You can insert it into a Pipeline or Workflow by using `ToolTask` or `ToolkitTask`. The possibilities are numerous.
+All three of these methods are valid, but in the context of this course, we're going to learn how to use the `CodeExecutionTask` to run a simple Python function within the Pipeline. This will be a great example of how to include generic Python code within Pipelines and Workflows _that does not hit an LLM_.
 
-In the near future we'll be creating a course specifically around creating and sharing Tools. For now, we're going to re-purpose material from the [Shotgrid Client](../shotgrid-client/index.md) course where we discuss creating tools. The next two sections of this course are taken from there. They give a detailed [understanding](05_understanding_tools.md) of tools, and help you create your [first tool](06_first_tool.md).
-
-If you already have created tools in the past, and have a deep understanding of how to create them, feel free to skip ahead to the [Display Image Tool](07_display_image_tool.md) section. Otherwise, let's dive in and learn more about how [Griptape Tools](05_understanding_tools.md) work.
+Let's dive in and learn how to use the `CodeExecutionTask` to [display an image](07_display_image_task.md).
