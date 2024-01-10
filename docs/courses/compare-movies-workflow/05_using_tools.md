@@ -52,11 +52,11 @@ graph TB
 The three new classes we'll need to import are `ToolkitTask`, `TaskMemoryClient`, and `WebScraper`.
 
 
-**[ToolkitTask](https://docs.griptape.ai/griptape-framework/structures/tasks/#toolkit-task){target="_blank"}** is a task just like **PromptTask**, except it allows you to specify the use of Tools. 
+**[ToolkitTask](https://docs.griptape.ai/latest/griptape-framework/structures/tasks/#toolkit-task){target="_blank"}** is a task just like **PromptTask**, except it allows you to specify the use of Tools. 
 
-**[TaskMemoryClient](https://docs.griptape.ai/griptape-framework/tools/task-memory/){target="_blank"}** is a way to handle data used in a task. It allows you to control where information is sent, keeping it off-prompt and away from the LLM when required. Note: in this course we'll be setting `off-prompt` to `False`, allowing the LLM to see the task results. In future courses we'll discuss ways to keep the data private.
+**[TaskMemoryClient](https://docs.griptape.ai/latest/griptape-framework/tools/task-memory/){target="_blank"}** is a way to handle data used in a task. It allows you to control where information is sent, keeping it off-prompt and away from the LLM when required. Note: in this course we'll be setting `off-prompt` to `False`, allowing the LLM to see the task results. In future courses we'll discuss ways to keep the data private.
 
-**[WebScraper](https://docs.griptape.ai/griptape-tools/official-tools/web-scraper/){target="_blank"}** is a specific tool that allows the LLM to scrape the web for information. We'll use this to get a better summary of each movie.
+**[WebScraper](https://docs.griptape.ai/latest/griptape-tools/official-tools/web-scraper/){target="_blank"}** is a specific tool that allows the LLM to scrape the web for information. We'll use this to get a better summary of each movie.
 
 In the top of your application, modify the import statements to include ToolkitTask, TaskMemoryClient, and WebScraper.
 
