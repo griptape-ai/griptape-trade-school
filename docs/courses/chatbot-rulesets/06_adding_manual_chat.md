@@ -6,7 +6,7 @@
     
     1. The `Chat` utility has added a few new options. You can now provide `prompt_prefix`, `response_prefix`, `exit_keywords` and more.
 
-        Review the `Chat Utility` [reference guide](https://docs.griptape.ai/reference/griptape/utils/chat/){target="_blank"} for a full breakdown.
+        Review the `Chat Utility` [reference guide](https://docs.griptape.ai/latest/reference/griptape/utils/chat/){target="_blank"} for a full breakdown.
 
     2. Agent Output has changed from: 
 

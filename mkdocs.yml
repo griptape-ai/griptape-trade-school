@@ -136,9 +136,7 @@ nav:
           - Concepts: courses/create-image-pipeline/02_concepts.md
           - First Pipeline: courses/create-image-pipeline/03_first_pipeline.md
           - Creating Images: courses/create-image-pipeline/04_creating_images.md
-          - Understanding Tools: courses/create-image-pipeline/05_understanding_tools.md
-          - Your First Tool: courses/create-image-pipeline/06_first_tool.md
-          - Displaying Images: courses/create-image-pipeline/07_display_image_tool.md
+          - Displaying Images: courses/create-image-pipeline/07_display_image_task.md
           - DALL·E 3: courses/create-image-pipeline/08_dalle-3.md
           - Leonardo.AI: courses/create-image-pipeline/09_leonardo-ai.md
           - Amazon Bedrock: courses/create-image-pipeline/10_amazon-bedrock.md

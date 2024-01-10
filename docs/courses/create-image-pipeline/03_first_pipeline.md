@@ -389,7 +389,7 @@ You're making great progress. Let's continue by adding the next task to display 
 
 ## Create Second "Fake Task"
 
-In this task, we'll "display" the image to the user. Later in the course, we'll create our own Griptape Tool to do this and we'll swap that into the pipeline.
+In this task, we'll "display" the image to the user. Later in the course, we'll use the `CodeExecutionTask` to execute a function to do this and swap that into the pipeline.
 
 ### Fake View Image
 
