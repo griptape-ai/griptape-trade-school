@@ -36,7 +36,7 @@ Our focus will be on how to set up a pipeline that can take a concept, apply a s
 This course is designed to be approachable and informative, ideal for anyone looking to understand the fundamentals of Griptape Pipelines. Whether you're a developer, a hobbyist, or just curious about how pipelines can enhance your projects, this course will provide you with the practical skills and knowledge needed to get started. So let's jump in and explore the exciting possibilities that Griptape Pipelines have to offer!
 
 ## Who is this course for
-This course is aimed at **intermediate** level Python developers who are interested in learning about Griptape Pipelines and how to handle parent/child task relationships, Griptape Tools, and image generation. 
+This course is aimed at **intermediate** level Python developers who are interested in learning about Griptape Pipelines and how to handle parent/child task relationships, Griptape Tasks, and image generation. 
 
 ## Prerequisites
 Before beginning this course, you will need:
