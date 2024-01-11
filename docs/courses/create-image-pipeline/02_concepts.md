@@ -83,7 +83,7 @@ image_prompt_task = PromptTask(
 image_generation_task = PromptImageGenerationTask(
     "{{ parent_output }}", # The output of the parent task
     image_generation_engine=PromptImageGenerationEngine(
-        image_generation_driver=OpenAiDalleImageGenerationDriver(
+        image_generation_driver=OpenAiImageGenerationDriver(
             model="dall-e-3", api_type="open_ai", image_size="1024x1024"
         ),
     ),

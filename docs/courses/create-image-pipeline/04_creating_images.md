@@ -14,7 +14,7 @@ For example, to create an image with OpenAI DALL·E 3 as a **task** you could do
 ```python
 
 # Create an Image Generation Driver
-driver = OpenAiDalleImageGenerationDriver(
+driver = OpenAiImageGenerationDriver(
     model="dall-e-3", api_type="open_ai", image_size="1024x1024"
 )
 
@@ -61,7 +61,7 @@ To use the Driver, Engine, and Task we'll need to add them to our `imports` sect
 # Griptape
 from griptape.structures import Pipeline
 from griptape.tasks import PromptTask, PromptImageGenerationTask
-from griptape.drivers import OpenAiDalleImageGenerationDriver
+from griptape.drivers import OpenAiImageGenerationDriver
 from griptape.engines import PromptImageGenerationEngine
 
 # ...
@@ -79,7 +79,7 @@ In `app.py`, create the driver before you create the pipeline.
 load_dotenv()  # Load your environment
 
 # Create the driver
-image_driver = OpenAiDalleImageGenerationDriver(
+image_driver = OpenAiImageGenerationDriver(
     model="dall-e-3", api_type="open_ai", image_size="1024x1024"
 )
 
@@ -95,7 +95,7 @@ The engine facilitates the use of the particular model. It will be what we pass 
 # ...
 
 # Create the driver
-image_driver = OpenAiDalleImageGenerationDriver(
+image_driver = OpenAiImageGenerationDriver(
     model="dall-e-3", api_type="open_ai", image_size="1024x1024"
 )
 
@@ -409,7 +409,7 @@ from dotenv import load_dotenv
 # Griptape
 from griptape.structures import Pipeline
 from griptape.tasks import PromptTask, PromptImageGenerationTask
-from griptape.drivers import OpenAiDalleImageGenerationDriver
+from griptape.drivers import OpenAiImageGenerationDriver
 from griptape.engines import PromptImageGenerationEngine
 
 load_dotenv()  # Load your environment
@@ -418,7 +418,7 @@ load_dotenv()  # Load your environment
 output_dir = "./images"
 
 # Create the driver
-image_driver = OpenAiDalleImageGenerationDriver(
+image_driver = OpenAiImageGenerationDriver(
     model="dall-e-3", api_type="open_ai", image_size="1024x1024"
 )
 

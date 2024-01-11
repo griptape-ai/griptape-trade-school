@@ -3,12 +3,12 @@
 ![dalle 3](assets/img/dalle-header.png)
 
 ## Overview
-You've been creating images using DALL·E 3 in this course so far, but you've been using some basic attributes with the `OpenAiDalleImageGenerationDriver`. Let's take a look at some of the other attributes available in Griptape.
+You've been creating images using DALL·E 3 in this course so far, but you've been using some basic attributes with the `OpenAiImageGenerationDriver`. Let's take a look at some of the other attributes available in Griptape.
 
 Here's an example of calling driver with various attributes set:
 
 ```python
-image_driver = OpenAiDalleImageGenerationDriver(
+image_driver = OpenAiImageGenerationDriver(
     model="dall-e-3", 
     api_type="open_ai", 
     image_size="1024x1024", 
@@ -21,7 +21,7 @@ image_driver = OpenAiDalleImageGenerationDriver(
 
 Drivers may change over time. At the time of this writing, certain attributes are available - but this is guaranteed to evolve. To stay up to date, it's recommended to review the Driver Classes periodically to see what the attributes are.
 
-To see them, simply hover over the `OpenAiDalleImageGenerationDriver` in Visual Studio Code and ++ctrl++ click, ++cmd++ click, or choose `Right Mouse Button --> Go to Definition..`. This will open the class in a new tab.
+To see them, simply hover over the `OpenAiImageGenerationDriver` in Visual Studio Code and ++ctrl++ click, ++cmd++ click, or choose `Right Mouse Button --> Go to Definition..`. This will open the class in a new tab.
 
 As of December 19, 2023 the attributes available for the `OpenAiDalleeImageGenerationDriver` are:
 
@@ -51,10 +51,10 @@ Griptape provides access to two different OpenAI DALL·E models, DALL·E 2 and D
 There are different attributes available, depending on the model.
 
 ```python
-OpenAiDalleImageGenerationDriver( model="dall-e-3" ) # DALL·E 3
+OpenAiImageGenerationDriver( model="dall-e-3" ) # DALL·E 3
 ```
 ```python
-OpenAiDalleImageGenerationDriver( model="dall-e-2" ) # DALL·E 2
+OpenAiImageGenerationDriver( model="dall-e-2" ) # DALL·E 2
 ```
 
 ## Size
@@ -66,7 +66,7 @@ When using DALL·E 3, you have access to 3 sizes: `1024x1024`, `1024x1792`, and 
 Set the size using the `image_size` attribute:
 
 ```python
-OpenAiDalleImageGenerationDriver( 
+OpenAiImageGenerationDriver( 
     model="dall-e-3",
     image_size: "1024x1024" 
     ) 
@@ -85,7 +85,7 @@ Here are two examples of pineapples created with the same prompt we've been usin
 </div>
 
 ```python
-OpenAiDalleImageGenerationDriver( 
+OpenAiImageGenerationDriver( 
     model="dall-e-3",
     style="vivid"
     ) 
@@ -104,7 +104,7 @@ With the images below, the left is `standard`, right is `hd`.
 </div>
 
 ```python
-OpenAiDalleImageGenerationDriver( 
+OpenAiImageGenerationDriver( 
     model="dall-e-3",
     quality="hd"
     ) 
