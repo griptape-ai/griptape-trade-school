@@ -67,7 +67,7 @@ Let's now give the agent all these rulesets to work with. We'll simply add them 
 # Create the agent
 agent = MyAgent(
     rulesets=[
-        switcher_ruleset, json_ruleset
+        switcher_ruleset, json_ruleset,
         kiwi_ruleset, zelda_ruleset, dad_ruleset, 
     ],
     logger_level=logging.ERROR

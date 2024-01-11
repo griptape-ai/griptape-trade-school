@@ -14,7 +14,7 @@
 
         This change is reflected in the code in the course, but not in the video at this time.
     
-While the chatbot is working, it's not very user-friendly yet. The `Q:` and `A:` prompts don't make for the most engaging for a user experience.
+While the chatbot is working, it's not very user-friendly yet. The `User:` and `Assistant:` prompts don't make for the most engaging for a user experience.
 
 In this step, we'll implement a manual chat experience, giving us more control over the conversation with our chatbot. We'll remove the Chat utility and create our own custom functions to facilitate interactive and dynamic conversations.
 
@@ -86,8 +86,8 @@ Here's the code for the `chat` function and the way we can call it:
 def chat(agent):
     is_chatting = True
     while is_chatting:
-        user_result = input("Chat with Kiwi: ")
-        if user_result == "exit":
+        user_input = input("Chat with Kiwi: ")
+        if user_input == "exit":
             is_chatting = False
         else:           
             # Keep on chatting

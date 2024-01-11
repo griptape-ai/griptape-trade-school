@@ -56,17 +56,17 @@ graph TB
 
 ```
 
-Notice how the movies can be evaluated in parallel, but the **Compare** task will wait until all it's **parent** tasks are completed. 
+Notice how the movies can be evaluated in parallel, but the **Compare** task will wait until all its **parent** tasks are completed. 
 
 ## Tasks
 
-Before we dive in and start setting up our own workflow, it's important to review the concepts of Tasks. With Griptape, there are many types of tasks you'll be working with, including:
+Before we dive in and start setting up our own workflow, it's important to review the concepts of Tasks. With Griptape, there are many types of Tasks you'll be working with, including:
 
 | Task Type | Description | Example |
 |-----------|-------------|---------|
 | **PromptTask** | General purpose prompting to the LLM. | `PromptTask("Tell me a story about skateboards")` |
 | **ToolkitTask** | Uses Griptape Tools to complete a task with Chain of Thought (CoT) reasoning. | `ToolkitTask("Summarize griptape.ai", tools=[WebScraper()])` |
-| **TookTask** | Similar to ToolkitTask, but only uses a single tool and no CoT. | `ToolTask("Give me the answer for 52-10", tool=Calculator())` |
+| **ToolTask** | Similar to ToolkitTask, but only uses a single tool and no CoT. | `ToolTask("Give me the answer for 52-10", tool=Calculator())` |
 | **Extraction Tasks** | Various tasks associated with extracting information from text. | See examples in the [documentation](https://griptape.readthedocs.io/griptape-framework/structures/tasks/#extraction-task){target="_blank"}. 
 | **TextSummaryTask** | Summarizes text very efficiently | `TextSummaryTask("Imagine this is a massive amount of text.")` |
 | **TextQueryTask** | Can be used to query large bodies of text, for example a vector database. | See examples in the [documentation](https://griptape.readthedocs.io/griptape-framework/structures/tasks/#text-query-task){target="_blank"} |

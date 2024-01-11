@@ -392,7 +392,7 @@ end_task = PromptTask("""
     {{ parent_outputs['movie_1'] }}
     {{ parent_outputs['movie_2'] }}
     """,
-    id="compare")
+    id="END")
 
 ```
 

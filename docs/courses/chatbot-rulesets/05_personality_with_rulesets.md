@@ -61,10 +61,12 @@ We will update our instantiation of the Agent class and pass the kiwi_ruleset as
     
     We'll demonstrate this in a later lesson.
 
-```python hl_lines="3"
+```python hl_lines="3-5"
 # Create the agent
 agent = Agent(
-    rulesets=[kiwi_ruleset],  
+    rulesets=[
+        kiwi_ruleset
+    ],  
     logger_level=logging.ERROR
 )
 ```

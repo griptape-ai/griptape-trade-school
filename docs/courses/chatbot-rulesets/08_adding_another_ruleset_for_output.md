@@ -11,7 +11,7 @@
 
     This change is reflected in the code in the course, but not in the video at this time.
 
-Consider a situation where we have integrated the LLM (Large Language Module) into our code. It becomes crucial for us to receive the output in a specific format that aligns with our requirements, like JSON. By employing an output ruleset, we can precisely control the structure and format of the chatbot's responses.
+Consider a situation where we have integrated the LLM (Large Language Model) into our code. It becomes crucial for us to receive the output in a specific format that aligns with our requirements, like JSON. By employing an output ruleset, we can precisely control the structure and format of the chatbot's responses.
 
 ## Goal
 After completing this section, you'll be able to use output rulesets to get responses from the LLM in the way most useful for your application.
@@ -19,7 +19,7 @@ After completing this section, you'll be able to use output rulesets to get resp
 ## New Ruleset
 ### JSON Ruleset
 
-To achieve our goal of formatting the response as JSON, we'll create a ruleset called "json_ruleset." This ruleset will contain a single rule that tells the chatbot to use JSON when formulating its response. Place it after `kiwi_rulesest`:
+To achieve our goal of formatting the response as JSON, we'll create a ruleset called "json_ruleset". This ruleset will contain a single rule that tells the chatbot to use JSON when formulating its response. Place it after `kiwi_rulesest`:
 
 ```python
 json_ruleset = Ruleset(
