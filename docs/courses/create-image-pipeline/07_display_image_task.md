@@ -167,7 +167,7 @@ from griptape.tasks import (
     PromptImageGenerationTask,
     CodeExecutionTask
 )
-from griptape.drivers import OpenAiDalleImageGenerationDriver
+from griptape.drivers import OpenAiImageGenerationDriver
 from griptape.engines import PromptImageGenerationEngine
 from griptape.artifacts import TextArtifact
 
@@ -298,7 +298,7 @@ from griptape.tasks import (
     CodeExecutionTask,
 )
 from griptape.artifacts import TextArtifact
-from griptape.drivers import OpenAiDalleImageGenerationDriver
+from griptape.drivers import OpenAiImageGenerationDriver
 from griptape.engines import PromptImageGenerationEngine
 
 load_dotenv()  # Load your environment
@@ -307,7 +307,7 @@ load_dotenv()  # Load your environment
 output_dir = "./images"
 
 # Create the driver
-image_driver = OpenAiDalleImageGenerationDriver(
+image_driver = OpenAiImageGenerationDriver(
     model="dall-e-3", api_type="open_ai", image_size="1024x1024"
 )
 
