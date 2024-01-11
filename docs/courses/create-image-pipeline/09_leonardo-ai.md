@@ -35,7 +35,7 @@ import os
 
 ## Create the Driver
 
-When creating the driver, you can specify the `LeonardoImageGenerationDriver` instead of `OpenAiDalleImageGenerationDriver`. It has some similar attributes to the OpenAi driver, but there are a few notable differences.
+When creating the driver, you can specify the `LeonardoImageGenerationDriver` instead of `OpenAiImageGenerationDriver`. It has some similar attributes to the OpenAi driver, but there are a few notable differences.
 
 At a minimum, you must specify the `model` and the `api_key`. This example uses the [Leonardo Vision XL model](https://app.leonardo.ai/models/5c232a9e-9061-4777-980a-ddc8e65647c6) - a versatile model that excels at realism and photography.
 

@@ -57,7 +57,7 @@ mkdir griptape-starter
 cd griptape-starter
 ```
 
-This creates a new folder called "griptape_intro" and moves into it.
+This creates a new folder called "griptape-starter" and moves into it.
 
 Alternatively, feel free to open up **Visual Studio Code** and create a new folder:
 
@@ -74,7 +74,7 @@ Alternatively, feel free to open up **Visual Studio Code** and create a new fold
 The [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python){target="_blank"} for Visual Studio Code provides rich support for the Python language, including features like IntelliSense, linting, debugging, code formatting, and more. It really makes life easier for Python developers.
 
 1. With VS Code open, go to the Extensions tab, or choose **View --> Extensions**
-2. Search for `Python`, or go to [Python]((https://marketplace.visualstudio.com/items?itemName=ms-python.python){target="_blank"} in your web browser.
+2. Search for `Python`, or go to [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python){target="_blank"} in your web browser.
 3. Choose `Install`.
 4. Open the command Palette (`Ctrl`+`Shift`+`P` on Windows/Linux, `Cmd`+`Shift`+`P` on macOS), or choose **View --> Command Palette..**
 5. Type `Python` and you should see a list of specific commands for Python. This will confirm that the install was successful.

@@ -104,26 +104,26 @@ with:
     {{ parent_outputs }}
 ```
 
-The `compare_task` section should now look like:
+The `end_task` section should now look like:
 
 ```python hl_lines="3"
-compare_task = PromptTask("""
+end_task = PromptTask("""
     How are these movies the same:
     {{ parent_outputs }}
     """,
-    id="compare")
+    id="END")
 ```
 
 ### Test
 Let's run the code and see what we get.
 
 ```shell
-[08/13/23 10:08:28] INFO     Task compare                                                                                                                     
+[08/13/23 10:08:28] INFO     Task END                                                                                                                     
                              Input:                                                               
                                  How are these movies the same:{'74bd46cfd17a4ccaa92308029b508751': 'E.T. the                  
                              Extra-Terrestrial', '90ed4594b9af4ad9ac2fe45cd53c7889': 'Jaws'}                                                             
 
-[08/13/23 10:08:31] INFO     Task compare                                                                                                                     
+[08/13/23 10:08:31] INFO     Task END                                                                                                                     
                              Output: Both 'E.T. the Extra-Terrestrial' and 'Jaws' are iconic movies directed by Steven Spielberg. They are known for their    
                              memorable storylines and have had a significant impact on popular culture.                                                       
 

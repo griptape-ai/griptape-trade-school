@@ -61,9 +61,10 @@ Before we dive in and start setting up our own Pipeline, it's important to revie
 | **Extraction Tasks** | Various tasks associated with extracting information from text. | See examples in the [documentation](https://griptape.readthedocs.io/griptape-framework/structures/tasks/#extraction-task){target="_blank"}. 
 | **TextSummaryTask** | Summarizes text very efficiently | `TextSummaryTask("Imagine this is a massive amount of text.")` |
 | **TextQueryTask** | Can be used to query large bodies of text, for example a vector database. | See examples in the [documentation](https://griptape.readthedocs.io/griptape-framework/structures/tasks/#text-query-task){target="_blank"} |
-| **ImageGenerationTask** | Can be used to generate images. | `ImageGenerationTask("watercolor butterfly"), image_generation_engine=image_engine`|
+| **PromptImageGenerationTask** | Can be used to generate images based off a text prompt. | `PromptImageGenerationTask("watercolor butterfly"), image_generation_engine=image_engine`|
+| **CodeExecutionTask** | Can be used to execute code. | `CodeExecutionTask(run_fn=reverse_string)`|
 
-In this course, we will be focusing mostly on **Prompt Tasks**, **Toolkit Tasks**, and **Image Generation Tasks**. 
+In this course, we will be focusing mostly on **Prompt Tasks**, **Image Generation Tasks**, and **Code Execution Tasks**. 
 
 
 ```python
@@ -79,10 +80,10 @@ image_prompt_task = PromptTask(
 
 # This Image Generation task works with the output of the parent task.
 #
-image_generation_task = ImageGenerationTask(
+image_generation_task = PromptImageGenerationTask(
     "{{ parent_output }}", # The output of the parent task
-    image_generation_engine=ImageGenerationEngine(
-        image_generation_driver=OpenAiDalleImageGenerationDriver(
+    image_generation_engine=PromptImageGenerationEngine(
+        image_generation_driver=OpenAiImageGenerationDriver(
             model="dall-e-3", api_type="open_ai", image_size="1024x1024"
         ),
     ),

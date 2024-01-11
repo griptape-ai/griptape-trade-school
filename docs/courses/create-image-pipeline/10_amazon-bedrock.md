@@ -6,7 +6,7 @@
 
 Amazon Bedrock offers a couple of different image generation models, and thus the method of using them is slightly different than DALL·E 3 and Leonardo.Ai.
 
-Instead of just importing one driver, you import `AmazonBedrockImageGenerationDriver` and then the model driver: `AmazonBedrockStableDiffusionImageGenerationModelDriver` or `AmazonBedrockTitanImageGenerationModelDriver`.
+Instead of just importing one driver, you import `AmazonBedrockImageGenerationDriver` and then the model driver: `BedrockStableDiffusionImageGenerationModelDriver` or `BedrockTitanImageGenerationModelDriver`.
 
 When specifying which model driver, you _also_ will need to specify the `model` in the `AmazonBedrockImageGenerationDriver`.
 
@@ -15,7 +15,7 @@ It looks something like:
 ```python
 image_driver = AmazonBedrockImageGenerationDriver(
     model="stability.stable-diffusion-xl-v0", # Model Definition
-    image_generation_model_driver=AmazonBedrockStableDiffusionImageGenerationModelDriver(), # Driver
+    image_generation_model_driver=BedrockStableDiffusionImageGenerationModelDriver(), # Driver
     # ...
 )
 ```
@@ -62,8 +62,8 @@ import os
 
 from griptape.drivers import (
     AmazonBedrockImageGenerationDriver,
-    AmazonBedrockStableDiffusionImageGenerationModelDriver,
-    AmazonBedrockTitanImageGenerationModelDriver
+    BedrockStableDiffusionImageGenerationModelDriver,
+    BedrockTitanImageGenerationModelDriver
 )
 
 # ...
@@ -133,11 +133,11 @@ Here's an example of a simple driver using Stable Diffusion. Notice the `model` 
 image_driver = AmazonBedrockImageGenerationDriver(
     session=session,
     model="stability.stable-diffusion-xl-v0",
-    image_generation_model_driver=AmazonBedrockStableDiffusionImageGenerationModelDriver(),
+    image_generation_model_driver=BedrockStableDiffusionImageGenerationModelDriver(),
 )
 ```
 
-There are a number of attributes available for Stable Diffusion. We'll cover details of a few key ones.
+There are a number of attributes available for Stable Diffusion. We'll cover a few key ones.
 
 ```yaml
 cfg_scale: How strictly the diffusion process adheres to the prompt text (higher values keep your image closer to your prompt). The default is 7. 
@@ -164,7 +164,7 @@ In order they're: `line-art`, `neon-punk`, `photographic`.
 image_driver = AmazonBedrockImageGenerationDriver(
     session=session,
     model="stability.stable-diffusion-xl-v0",
-    image_generation_model_driver=AmazonBedrockStableDiffusionImageGenerationModelDriver(
+    image_generation_model_driver=BedrockStableDiffusionImageGenerationModelDriver(
         style_preset="neon-punk",
     ),
 )
@@ -181,7 +181,7 @@ Which sampler to use for the diffusion process. The default is `K_DPMPP_2M`. Thi
 image_driver = AmazonBedrockImageGenerationDriver(
     session=session,
     model="stability.stable-diffusion-xl-v0",
-    image_generation_model_driver=AmazonBedrockStableDiffusionImageGenerationModelDriver(
+    image_generation_model_driver=BedrockStableDiffusionImageGenerationModelDriver(
         sampler="K_DPM_2",
     ),
 )
@@ -199,7 +199,7 @@ CLIP guidance only works when using an ANCESTRAL sampler.
 image_driver = AmazonBedrockImageGenerationDriver(
     session=session,
     model="stability.stable-diffusion-xl-v0",
-    image_generation_model_driver=AmazonBedrockStableDiffusionImageGenerationModelDriver(
+    image_generation_model_driver=BedrockStableDiffusionImageGenerationModelDriver(
         clip_guidance_preset="SLOWEST",
     ),
 )
@@ -218,7 +218,7 @@ Try out different options to see what works best for your use case. Here are thr
 
 ## Bedrock Titan
 
-The `AmazonBedrockTitanImageGenerationModelDriver` utilizes [Amazon Titan](https://aws.amazon.com/bedrock/titan/){target="_blank"} for image generation. 
+The `BedrockTitanImageGenerationModelDriver` utilizes [Amazon Titan](https://aws.amazon.com/bedrock/titan/){target="_blank"} for image generation. 
 
 It currently has a few options, with more being added soon. The current list is:
 
@@ -234,7 +234,7 @@ Here's an example, of using it while setting `quality` and image height/width.
 image_driver = AmazonBedrockImageGenerationDriver(
     session=session,
     model="amazon.titan-image-generator-v1",
-    image_generation_model_driver=AmazonBedrockTitanImageGenerationModelDriver(
+    image_generation_model_driver=BedrockTitanImageGenerationModelDriver(
         quality='premium'
     ),
     image_height=1024,
