@@ -280,16 +280,16 @@ class ShotGridTool(BaseTool):
 
         try:
             if self.login_method == "api_key":
+                print ('Logging in with API Key')
                 sg = shotgun_api3.Shotgun(
-                    print ('Logging in with API Key')
                     self.base_url,  # ShotGrid url
                     script_name=self.script_name,  # Name of the ShotGrid script
                     api_key=self.api_key,  # ShotGrid API key
                 )
 
             else:
+                print ('Logging in as a User')
                 sg = shotgun_api3.Shotgun(
-                    print ('Logging in as a User')
                     self.base_url,  # ShotGrid url
                     login=self.user_login,  # User login
                     password=self.user_password,  # User password
