@@ -4,7 +4,7 @@ Here's a list of resources to help you gain momentum and build your knowledge:
 
 ## Griptape
 
-- **Griptape Documentation**: Learn everything you need to know about Griptape from its official documentation. You'll find detailed explanations, ../assets/examples, and tips here. Visit the [Griptape Documentation](https://docs.griptape.ai/en/latest/){target="_blank"}.
+- **Griptape Documentation**: Learn everything you need to know about Griptape from its official documentation. You'll find detailed explanations, ../assets/examples, and tips here. Visit the [Griptape Documentation](https://docs.griptape.ai/stable/){target="_blank"}.
 
 - **Griptape GitHub**: Check out the official Griptape repository on GitHub. You can look at the source code, report issues, and even contribute. Here's the [Griptape GitHub](https://github.com/griptape-ai/griptape){target="_blank"} link.
 

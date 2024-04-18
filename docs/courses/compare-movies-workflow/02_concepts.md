@@ -5,7 +5,7 @@
 Frequently when creating applications you will want to execute a series of steps in a very specific order. Workflows and Pipelines are both structures that allow us to do that. They have many of the same features as Agents, but are more directable. Whereas Agents can be given behaviors and tools and will use them when prompted appropriately, Pipelines and Workflows utilize hierarchies of tasks in very specific ways.
 
 ### Pipelines
-[Pipelines](https://docs.griptape.ai/en/latest/griptape-framework/structures/pipelines/){target="_blank"} are always a sequential series of steps - one task after another until it is finished. 
+[Pipelines](https://docs.griptape.ai/stable/griptape-framework/structures/pipelines/){target="_blank"} are always a sequential series of steps - one task after another until it is finished. 
 
 In this course we're going to be taking some rough descriptions of movies and getting their actual names, then getting the summaries from the web and comparing them. Doing this as a **Pipeline** might look something like:
 
@@ -37,7 +37,7 @@ As you can tell, this could get quite unwieldy. In addition, it doesn't make muc
 Workflows are perfect for this sort of situation. They allow you to parallelize tasks that aren't dependent. Let's see how something like this might look.
 
 ### Workflows
-[Workflows](https://docs.griptape.ai/en/latest/griptape-framework/structures/workflows/){target="_blank"} allow for complex interactions, resembling tree branches.
+[Workflows](https://docs.griptape.ai/stable/griptape-framework/structures/workflows/){target="_blank"} allow for complex interactions, resembling tree branches.
 
 Workflows are **non-sequential** and individual tasks can depend on **multiple input tasks**. This allows you to create a single task that waits for all other tasks to complete before it can begin.
 
@@ -72,7 +72,7 @@ Before we dive in and start setting up our own workflow, it's important to revie
 | **TextQueryTask** | Can be used to query large bodies of text, for example a vector database. | See examples in the [documentation](https://griptape.readthedocs.io/griptape-framework/structures/tasks/#text-query-task){target="_blank"} |
 
 In this course we will be focusing mostly on **Prompt Tasks** and **Toolkit Tasks**. Both of these task types are used to work with the LLM. They both take an input as a prompt, can take arguments, use specific drivers, and have parent/child relationships.
-The main difference between them is that **ToolkitTasks** can also use **tools** like Calculator(), FileBrowser(), and more. View all the tools available with Griptape [here](https://docs.griptape.ai/en/latest/griptape-tools/){target="_blank"}.
+The main difference between them is that **ToolkitTasks** can also use **tools** like Calculator(), FileBrowser(), and more. View all the tools available with Griptape [here](https://docs.griptape.ai/stable/griptape-tools/){target="_blank"}.
 
 ```python
 # Example PromptTask to get a movie name

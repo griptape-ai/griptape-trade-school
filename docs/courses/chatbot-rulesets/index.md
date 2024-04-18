@@ -8,7 +8,7 @@
     `pip install griptape`
 
 ## Course Description
-In this course, we will take a deep dive into creating a command-line interface (CLI) based conversational chatbot with an [Agent](https://docs.griptape.ai/en/latest/griptape-framework/structures/agents/){target="_blank"} using Griptape's [Rulesets](https://docs.griptape.ai/en/latest/griptape-framework/structures/rulesets/){target="_blank"}. Not only will our chatbot be able to engage in conversation, but it will also have the unique ability to embody different personalities, making the interaction more dynamic and interesting. 
+In this course, we will take a deep dive into creating a command-line interface (CLI) based conversational chatbot with an [Agent](https://docs.griptape.ai/stable/griptape-framework/structures/agents/){target="_blank"} using Griptape's [Rulesets](https://docs.griptape.ai/stable/griptape-framework/structures/rulesets/){target="_blank"}. Not only will our chatbot be able to engage in conversation, but it will also have the unique ability to embody different personalities, making the interaction more dynamic and interesting. 
 
 You will get hands-on experience working with Griptape, understanding and implementing Rulesets, and using Agents to bring your chatbot to life. This course serves as an excellent introduction to these concepts and technologies.
 
