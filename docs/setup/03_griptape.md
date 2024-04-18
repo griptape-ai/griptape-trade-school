@@ -11,7 +11,7 @@ We are going to build a very simple application. It's going to simply take in a 
 ## Griptape
 ### Agents
 
-There are multiple ways communicate with LLMs via Griptape, but the one we'll use in this example is an **Agent**. You can learn more about Agents in [documentation](https://docs.griptape.ai/en/latest/griptape-framework/structures/agents/){target="_blank"}, but here's a simple way to understand them:
+There are multiple ways communicate with LLMs via Griptape, but the one we'll use in this example is an **Agent**. You can learn more about Agents in [documentation](https://docs.griptape.ai/stable/griptape-framework/structures/agents/){target="_blank"}, but here's a simple way to understand them:
 
 !!! Abstract
     Agents can do **one task**.

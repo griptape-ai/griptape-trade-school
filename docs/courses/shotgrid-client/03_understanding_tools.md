@@ -123,10 +123,10 @@ Adding a Tool is a straightforward process. You `import` it, configure it if nec
     ```
 
     !!!tip "What is "off_prompt"?"
-        **Important Note**: Griptape directs outputs from Tool activities into short-term [TaskMemory](https://docs.griptape.ai/en/latest/griptape-framework/tools/task-memory/){target="_blank"}, keeping them 'off_prompt' and separate from the LLM. This makes it easy to work with big data securely and with low latency. To change this default for more direct interaction with the LLM, set the `off_prompt` parameter to `False`. This allows the LLM to access and respond to Tool outputs directly.
+        **Important Note**: Griptape directs outputs from Tool activities into short-term [TaskMemory](https://docs.griptape.ai/stable/griptape-framework/tools/task-memory/){target="_blank"}, keeping them 'off_prompt' and separate from the LLM. This makes it easy to work with big data securely and with low latency. To change this default for more direct interaction with the LLM, set the `off_prompt` parameter to `False`. This allows the LLM to access and respond to Tool outputs directly.
 
     !!!abstract "DateTime"
-        For more information on the DateTime Tool, you can visit the [DateTime Tool Documentation](https://docs.griptape.ai/en/latest/griptape-tools/official-tools/date-time/){target="_blank"}. 
+        For more information on the DateTime Tool, you can visit the [DateTime Tool Documentation](https://docs.griptape.ai/stable/griptape-tools/official-tools/date-time/){target="_blank"}. 
 
 ### Try it again
 
@@ -330,7 +330,7 @@ def get_current_datetime(self, _: dict) -> BaseArtifact:
     !!! tip
         Neither of these are used in this particular method, but they're there because it's good practice to include them.
 
-* `-> BaseArtifact`: This indicates that the method will *return* an object of type `BaseArtifact`. Griptape provides various artifacts, including Text, List, Blob, etc. You can learn more about them in the [documentation](https://docs.griptape.ai/en/latest/griptape-framework/data/artifacts/){target="_blank"}. 
+* `-> BaseArtifact`: This indicates that the method will *return* an object of type `BaseArtifact`. Griptape provides various artifacts, including Text, List, Blob, etc. You can learn more about them in the [documentation](https://docs.griptape.ai/stable/griptape-framework/data/artifacts/){target="_blank"}. 
 
 Since we're not using `self`, or `_` in this method, and Python is a dynamically typed language, we don't need to specify what a function will return. We could probably write this method as:
 
@@ -365,7 +365,7 @@ def get_current_datetime(self, _: dict) -> BaseArtifact:
 ```
 
 * `try` Block:
-    * The `try` keyword starts a block of code Python will attempt to execute. In this case, it's trying to get the current date and return it as a `TextArtifact` (more on text artifacts in the [documentation](https://docs.griptape.ai/en/latest/griptape-framework/data/artifacts/#textartifact){target="_blank"}). 
+    * The `try` keyword starts a block of code Python will attempt to execute. In this case, it's trying to get the current date and return it as a `TextArtifact` (more on text artifacts in the [documentation](https://docs.griptape.ai/stable/griptape-framework/data/artifacts/#textartifact){target="_blank"}). 
     * Think of it as saying "Hey - give this a shot and see if it works?"
 * `except` Block:
     * Code doesn't always work as expected, and the `except` block is what happens if `try` encounters an error.

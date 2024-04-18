@@ -1,1674 +1,1440 @@
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" class="no-js">
   <head>
-    
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width,initial-scale=1">
-      
-      
-      
-      
-        <link rel="prev" href="../05_understanding_tools/">
-      
-      
-        <link rel="next" href="../07_display_image_tool/">
-      
-      <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.1, mkdocs-material-9.1.21">
-    
-    
-      
-        <title>Your First Tool - Griptape Trade School</title>
-      
-    
-    
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.eebd395e.min.css">
-      
-        
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ecc896b0.min.css">
-      
-      
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-    
-    
-    
-      
-        
-        
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
-      
-    
-    
-      <link rel="stylesheet" href="../../../assets/css/extra.css">
-    
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-    
-      
-  
+    <link rel="prev" href="../05_understanding_tools/" />
 
+    <link rel="next" href="../07_display_image_tool/" />
 
-  
-  
+    <link rel="icon" href="../../../assets/images/favicon.png" />
+    <meta name="generator" content="mkdocs-1.5.1, mkdocs-material-9.1.21" />
 
+    <title>Your First Tool - Griptape Trade School</title>
 
-  <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-68THEKV8C8"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-68THEKV8C8",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-68THEKV8C8",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+    <link
+      rel="stylesheet"
+      href="../../../assets/stylesheets/main.eebd395e.min.css"
+    />
 
-  
-    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
-  
+    <link
+      rel="stylesheet"
+      href="../../../assets/stylesheets/palette.ecc896b0.min.css"
+    />
 
-    
-    
-    
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback"
+    />
+    <style>
+      :root {
+        --md-text-font: "Roboto";
+        --md-code-font: "Roboto Mono";
+      }
+    </style>
+
+    <link rel="stylesheet" href="../../../assets/css/extra.css" />
+
+    <script>
+      (__md_scope = new URL("../../..", location)),
+        (__md_hash = (e) =>
+          [...e].reduce((e, _) => (e << 5) - e + _.charCodeAt(0), 0)),
+        (__md_get = (e, _ = localStorage, t = __md_scope) =>
+          JSON.parse(_.getItem(t.pathname + "." + e))),
+        (__md_set = (e, _, t = localStorage, a = __md_scope) => {
+          try {
+            t.setItem(a.pathname + "." + e, JSON.stringify(_));
+          } catch (e) {}
+        });
+    </script>
+
+    <script id="__analytics">
+      function __md_analytics() {
+        function n() {
+          dataLayer.push(arguments);
+        }
+        (window.dataLayer = window.dataLayer || []),
+          n("js", new Date()),
+          n("config", "G-68THEKV8C8"),
+          document.addEventListener("DOMContentLoaded", function () {
+            document.forms.search &&
+              document.forms.search.query.addEventListener("blur", function () {
+                this.value && n("event", "search", { search_term: this.value });
+              }),
+              document$.subscribe(function () {
+                var a = document.forms.feedback;
+                if (void 0 !== a)
+                  for (var e of a.querySelectorAll("[type=submit]"))
+                    e.addEventListener("click", function (e) {
+                      e.preventDefault();
+                      var t = document.location.pathname,
+                        e = this.getAttribute("data-md-value");
+                      n("event", "feedback", { page: t, data: e }),
+                        (a.firstElementChild.disabled = !0);
+                      e = a.querySelector(
+                        ".md-feedback__note [data-md-value='" + e + "']"
+                      );
+                      e && (e.hidden = !1);
+                    }),
+                      (a.hidden = !1);
+              }),
+              location$.subscribe(function (e) {
+                n("config", "G-68THEKV8C8", { page_path: e.pathname });
+              });
+          });
+        var e = document.createElement("script");
+        (e.async = !0),
+          (e.src = "https://www.googletagmanager.com/gtag/js?id=G-68THEKV8C8"),
+          document
+            .getElementById("__analytics")
+            .insertAdjacentElement("afterEnd", e);
+      }
+    </script>
+
+    <script>
+      "undefined" != typeof __md_analytics && __md_analytics();
+    </script>
   </head>
-  
-  
-    
-    
-    
-    
-    
-    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="deep-orange">
-  
-    
-    
-    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
-    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+
+  <body
+    dir="ltr"
+    data-md-color-scheme="slate"
+    data-md-color-primary="black"
+    data-md-color-accent="deep-orange"
+  >
+    <input
+      class="md-toggle"
+      data-md-toggle="drawer"
+      type="checkbox"
+      id="__drawer"
+      autocomplete="off"
+    />
+    <input
+      class="md-toggle"
+      data-md-toggle="search"
+      type="checkbox"
+      id="__search"
+      autocomplete="off"
+    />
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
-      
-        
-        <a href="#your-first-tool" class="md-skip">
-          Skip to content
+      <a href="#your-first-tool" class="md-skip"> Skip to content </a>
+    </div>
+    <div data-md-component="announce"></div>
+
+    <header
+      class="md-header md-header--shadow md-header--lifted"
+      data-md-component="header"
+    >
+      <nav class="md-header__inner md-grid" aria-label="Header">
+        <a
+          href="../../.."
+          title="Griptape Trade School"
+          class="md-header__button md-logo"
+          aria-label="Griptape Trade School"
+          data-md-component="logo"
+        >
+          <img src="../../../assets/img/griptape-logo-light.png" alt="logo" />
         </a>
-      
-    </div>
-    <div data-md-component="announce">
-      
-    </div>
-    
-    
-      
-
-  
-
-<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="Griptape Trade School" class="md-header__button md-logo" aria-label="Griptape Trade School" data-md-component="logo">
-      
-  <img src="../../../assets/img/griptape-logo-light.png" alt="logo">
-
-    </a>
-    <label class="md-header__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
-    </label>
-    <div class="md-header__title" data-md-component="header-title">
-      <div class="md-header__ellipsis">
-        <div class="md-header__topic">
-          <span class="md-ellipsis">
-            Griptape Trade School
-          </span>
-        </div>
-        <div class="md-header__topic" data-md-component="header-topic">
-          <span class="md-ellipsis">
-            
-              Your First Tool
-            
-          </span>
-        </div>
-      </div>
-    </div>
-    
-      
-    
-    
-    
-      <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
-      </label>
-      <div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
-      <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-      </label>
-      <nav class="md-search__options" aria-label="Search">
-        
-        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
-        </button>
-      </nav>
-      
-        <div class="md-search__suggest" data-md-component="search-suggest"></div>
-      
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Initializing search
+        <label class="md-header__button md-icon" for="__drawer">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z" />
+          </svg>
+        </label>
+        <div class="md-header__title" data-md-component="header-title">
+          <div class="md-header__ellipsis">
+            <div class="md-header__topic">
+              <span class="md-ellipsis"> Griptape Trade School </span>
+            </div>
+            <div class="md-header__topic" data-md-component="header-topic">
+              <span class="md-ellipsis"> Your First Tool </span>
+            </div>
           </div>
-          <ol class="md-search-result__list" role="presentation"></ol>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
-    
-    
-  </nav>
-  
-    
-      
-<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
-  <div class="md-grid">
-    <ul class="md-tabs__list">
-      
-        
-  
-  
 
+        <label class="md-header__button md-icon" for="__search">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path
+              d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"
+            />
+          </svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+          <label class="md-search__overlay" for="__search"></label>
+          <div class="md-search__inner" role="search">
+            <form class="md-search__form" name="search">
+              <input
+                type="text"
+                class="md-search__input"
+                name="query"
+                aria-label="Search"
+                placeholder="Search"
+                autocapitalize="off"
+                autocorrect="off"
+                autocomplete="off"
+                spellcheck="false"
+                data-md-component="search-query"
+                required
+              />
+              <label class="md-search__icon md-icon" for="__search">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <path
+                    d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"
+                  />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <path
+                    d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"
+                  />
+                </svg>
+              </label>
+              <nav class="md-search__options" aria-label="Search">
+                <button
+                  type="reset"
+                  class="md-search__icon md-icon"
+                  title="Clear"
+                  aria-label="Clear"
+                  tabindex="-1"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path
+                      d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"
+                    />
+                  </svg>
+                </button>
+              </nav>
 
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../.." class="md-tabs__link">
-        Home
-      </a>
-    </li>
-  
+              <div
+                class="md-search__suggest"
+                data-md-component="search-suggest"
+              ></div>
+            </form>
+            <div class="md-search__output">
+              <div class="md-search__scrollwrap" data-md-scrollfix>
+                <div class="md-search-result" data-md-component="search-result">
+                  <div class="md-search-result__meta">Initializing search</div>
+                  <ol class="md-search-result__list" role="presentation"></ol>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
 
-      
-        
-  
-  
+      <nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+        <div class="md-grid">
+          <ul class="md-tabs__list">
+            <li class="md-tabs__item">
+              <a href="../../.." class="md-tabs__link"> Home </a>
+            </li>
 
+            <li class="md-tabs__item">
+              <a href="../../../setup/" class="md-tabs__link"> Setup </a>
+            </li>
 
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../../setup/" class="md-tabs__link">
-        Setup
-      </a>
-    </li>
-  
+            <li class="md-tabs__item">
+              <a href="../../" class="md-tabs__link md-tabs__link--active">
+                Courses
+              </a>
+            </li>
 
-      
-        
-  
-  
-    
-  
+            <li class="md-tabs__item">
+              <a href="../../../faq/" class="md-tabs__link"> Help </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
 
-
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../" class="md-tabs__link md-tabs__link--active">
-        Courses
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-
-
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../../faq/" class="md-tabs__link">
-        Help
-      </a>
-    </li>
-  
-
-      
-    </ul>
-  </div>
-</nav>
-    
-  
-</header>
-    
     <div class="md-container" data-md-component="container">
-      
-      
-        
-      
       <main class="md-main" data-md-component="main">
         <div class="md-main__inner md-grid">
-          
-            
-              
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-
-  
-
-
-<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
-  <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Griptape Trade School" class="md-nav__button md-logo" aria-label="Griptape Trade School" data-md-component="logo">
-      
-  <img src="../../../assets/img/griptape-logo-light.png" alt="logo">
-
-    </a>
-    Griptape Trade School
-  </label>
-  
-  <ul class="md-nav__list" data-md-scrollfix>
-    
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-      
-      
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
-      
-      
-      
-        <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
-          Home
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1">
-          <span class="md-nav__icon md-icon"></span>
-          Home
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
-        Griptape Trade School
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-      
-      
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
-      
-      
-      
-        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
-          Setup
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_2">
-          <span class="md-nav__icon md-icon"></span>
-          Setup
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../setup/" class="md-nav__link">
-        Setting up for Griptape
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../setup/01_setting_up_environment/" class="md-nav__link">
-        Software
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../setup/02_openai/" class="md-nav__link">
-        OpenAI
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../setup/03_griptape/" class="md-nav__link">
-        Griptape
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../setup/04_helpful_resources/" class="md-nav__link">
-        Resources
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-    
-  
-  
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-      
-      
-      
-      
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
-      
-      
-      
-        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
-          Courses
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
-        <label class="md-nav__title" for="__nav_3">
-          <span class="md-nav__icon md-icon"></span>
-          Courses
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../" class="md-nav__link">
-        All Courses
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-      
-      
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
-      
-      
-      
-        <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
-          Chatbot - Rulesets
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_3_2">
-          <span class="md-nav__icon md-icon"></span>
-          Chatbot - Rulesets
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../chatbot-rulesets/" class="md-nav__link">
-        Introduction
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../chatbot-rulesets/01_setting_up_environment/" class="md-nav__link">
-        Setup
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../chatbot-rulesets/03_the_chat_utility/" class="md-nav__link">
-        The Chat utility
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../chatbot-rulesets/04_hide_the_logs/" class="md-nav__link">
-        Hiding the logs
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../chatbot-rulesets/05_personality_with_rulesets/" class="md-nav__link">
-        Personality
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../chatbot-rulesets/06_adding_manual_chat/" class="md-nav__link">
-        Custom chat
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../chatbot-rulesets/07_manners_maketh_the_bot/" class="md-nav__link">
-        Manners maketh the bot
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../chatbot-rulesets/08_adding_another_ruleset_for_output/" class="md-nav__link">
-        Rulesets for output
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../chatbot-rulesets/09_formatting_chat_output/" class="md-nav__link">
-        Formatting Output
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../chatbot-rulesets/10_markdown_madness/" class="md-nav__link">
-        Markdown Madness
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../chatbot-rulesets/11_gleaming_the_chat/" class="md-nav__link">
-        Improving the Prompt
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../chatbot-rulesets/12_multiple_personas/" class="md-nav__link">
-        Multiple Personas
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../chatbot-rulesets/13_adding_personality_colors/" class="md-nav__link">
-        Colorful Personality
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../chatbot-rulesets/14_making_it_quick/" class="md-nav__link">
-        Quick Feedback
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-      
-      
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
-      
-      
-      
-        <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
-          Compare Movies - Workflows
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_3_3">
-          <span class="md-nav__icon md-icon"></span>
-          Compare Movies - Workflows
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../compare-movies-workflow/" class="md-nav__link">
-        Introduction
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../compare-movies-workflow/01_setup/" class="md-nav__link">
-        Setup
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../compare-movies-workflow/02_concepts/" class="md-nav__link">
-        Concepts
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../compare-movies-workflow/03_first_workflow/" class="md-nav__link">
-        First Workflow
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../compare-movies-workflow/04_adding_flexibility/" class="md-nav__link">
-        Adding Flexibility
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../compare-movies-workflow/05_using_tools/" class="md-nav__link">
-        Using Tools
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../compare-movies-workflow/06_workflow_outputs/" class="md-nav__link">
-        Workflow Outputs
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../compare-movies-workflow/07_workflow_display_graph/" class="md-nav__link">
-        Workflow Displaying Graph
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-    
-  
-  
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-      
-      
-      
-      
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" checked>
-      
-      
-      
-        <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
-          Image Generation - Pipelines
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="true">
-        <label class="md-nav__title" for="__nav_3_4">
-          <span class="md-nav__icon md-icon"></span>
-          Image Generation - Pipelines
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
-        Introduction
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../01_setup/" class="md-nav__link">
-        Setup
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../02_concepts/" class="md-nav__link">
-        Concepts
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../03_first_pipeline/" class="md-nav__link">
-        First Pipeline
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../04_creating_images/" class="md-nav__link">
-        Creating Images
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../05_understanding_tools/" class="md-nav__link">
-        Understanding Tools
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-    
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Your First Tool
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        Your First Tool
-      </a>
-      
-        
-
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
-    Overview
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#getting-the-template" class="md-nav__link">
-    Getting the template
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#use-reverse-string" class="md-nav__link">
-    Use Reverse String
-  </a>
-  
-    <nav class="md-nav" aria-label="Use Reverse String">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#add-it-to-test_toolpy" class="md-nav__link">
-    Add it to test_tool.py
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#give-it-to-the-task" class="md-nav__link">
-    Give it to the task
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#test-it-out" class="md-nav__link">
-    Test it out
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#combine-requests" class="md-nav__link">
-    Combine requests
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#adding-a-method" class="md-nav__link">
-    Adding a method
-  </a>
-  
-    <nav class="md-nav" aria-label="Adding a method">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#open-toolpy" class="md-nav__link">
-    Open tool.py
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#add-reverse_sentence" class="md-nav__link">
-    Add reverse_sentence
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#update-the-logic" class="md-nav__link">
-    Update the logic
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#try-it-out" class="md-nav__link">
-    Try it out
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#code-review" class="md-nav__link">
-    Code Review
-  </a>
-  
-    <nav class="md-nav" aria-label="Code Review">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#test_toolpy" class="md-nav__link">
-    test_tool.py
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#reverse_string_tooltoolpy" class="md-nav__link">
-    reverse_string_tool/tool.py
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
-    Next Steps
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../07_display_image_tool/" class="md-nav__link">
-        Displaying Images
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../08_dalle-3/" class="md-nav__link">
-        DALL·E 3
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../09_leonardo-ai/" class="md-nav__link">
-        Leonardo.AI
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../10_amazon-bedrock/" class="md-nav__link">
-        Amazon Bedrock
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-      
-      
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
-      
-      
-      
-        <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
-          Griptape and Shotgrid - Tools
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_3_5">
-          <span class="md-nav__icon md-icon"></span>
-          Griptape and Shotgrid - Tools
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../shotgrid-client/" class="md-nav__link">
-        Introduction
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../shotgrid-client/01_setup/" class="md-nav__link">
-        Setup
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../shotgrid-client/03_understanding_tools/" class="md-nav__link">
-        Understanding Tools
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../shotgrid-client/04_first_tool/" class="md-nav__link">
-        Your First Tool
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../shotgrid-client/02_shotgrid/" class="md-nav__link">
-        ShotGrid Signup
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../shotgrid-client/05_shotgrid_tool/" class="md-nav__link">
-        ShotGrid Tool
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../shotgrid-client/06_shotgrid_user/" class="md-nav__link">
-        User Authentication
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../shotgrid-client/07_method/" class="md-nav__link">
-        ShotGrid Methods
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../shotgrid-client/08_vectorized_docs/" class="md-nav__link">
-        Vectorized Docs
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../shotgrid-client/09_rules/" class="md-nav__link">
-        Rules and Rulesets
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-      
-      
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
-      
-      
-      
-        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
-          Help
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_4">
-          <span class="md-nav__icon md-icon"></span>
-          Help
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../faq/" class="md-nav__link">
-        FAQ
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../contributing/" class="md-nav__link">
-        Contributing
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../troubleshooting/" class="md-nav__link">
-        Troubleshooting
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-  </ul>
-</nav>
-                  </div>
-                </div>
+          <div
+            class="md-sidebar md-sidebar--primary"
+            data-md-component="sidebar"
+            data-md-type="navigation"
+          >
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                <nav
+                  class="md-nav md-nav--primary md-nav--lifted"
+                  aria-label="Navigation"
+                  data-md-level="0"
+                >
+                  <label class="md-nav__title" for="__drawer">
+                    <a
+                      href="../../.."
+                      title="Griptape Trade School"
+                      class="md-nav__button md-logo"
+                      aria-label="Griptape Trade School"
+                      data-md-component="logo"
+                    >
+                      <img
+                        src="../../../assets/img/griptape-logo-light.png"
+                        alt="logo"
+                      />
+                    </a>
+                    Griptape Trade School
+                  </label>
+
+                  <ul class="md-nav__list" data-md-scrollfix>
+                    <li class="md-nav__item md-nav__item--nested">
+                      <input
+                        class="md-nav__toggle md-toggle"
+                        type="checkbox"
+                        id="__nav_1"
+                      />
+
+                      <label
+                        class="md-nav__link"
+                        for="__nav_1"
+                        id="__nav_1_label"
+                        tabindex="0"
+                      >
+                        Home
+                        <span class="md-nav__icon md-icon"></span>
+                      </label>
+
+                      <nav
+                        class="md-nav"
+                        data-md-level="1"
+                        aria-labelledby="__nav_1_label"
+                        aria-expanded="false"
+                      >
+                        <label class="md-nav__title" for="__nav_1">
+                          <span class="md-nav__icon md-icon"></span>
+                          Home
+                        </label>
+                        <ul class="md-nav__list" data-md-scrollfix>
+                          <li class="md-nav__item">
+                            <a href="../../.." class="md-nav__link">
+                              Griptape Trade School
+                            </a>
+                          </li>
+                        </ul>
+                      </nav>
+                    </li>
+
+                    <li class="md-nav__item md-nav__item--nested">
+                      <input
+                        class="md-nav__toggle md-toggle"
+                        type="checkbox"
+                        id="__nav_2"
+                      />
+
+                      <label
+                        class="md-nav__link"
+                        for="__nav_2"
+                        id="__nav_2_label"
+                        tabindex="0"
+                      >
+                        Setup
+                        <span class="md-nav__icon md-icon"></span>
+                      </label>
+
+                      <nav
+                        class="md-nav"
+                        data-md-level="1"
+                        aria-labelledby="__nav_2_label"
+                        aria-expanded="false"
+                      >
+                        <label class="md-nav__title" for="__nav_2">
+                          <span class="md-nav__icon md-icon"></span>
+                          Setup
+                        </label>
+                        <ul class="md-nav__list" data-md-scrollfix>
+                          <li class="md-nav__item">
+                            <a href="../../../setup/" class="md-nav__link">
+                              Setting up for Griptape
+                            </a>
+                          </li>
+
+                          <li class="md-nav__item">
+                            <a
+                              href="../../../setup/01_setting_up_environment/"
+                              class="md-nav__link"
+                            >
+                              Software
+                            </a>
+                          </li>
+
+                          <li class="md-nav__item">
+                            <a
+                              href="../../../setup/02_openai/"
+                              class="md-nav__link"
+                            >
+                              OpenAI
+                            </a>
+                          </li>
+
+                          <li class="md-nav__item">
+                            <a
+                              href="../../../setup/03_griptape/"
+                              class="md-nav__link"
+                            >
+                              Griptape
+                            </a>
+                          </li>
+
+                          <li class="md-nav__item">
+                            <a
+                              href="../../../setup/04_helpful_resources/"
+                              class="md-nav__link"
+                            >
+                              Resources
+                            </a>
+                          </li>
+                        </ul>
+                      </nav>
+                    </li>
+
+                    <li
+                      class="md-nav__item md-nav__item--active md-nav__item--nested"
+                    >
+                      <input
+                        class="md-nav__toggle md-toggle"
+                        type="checkbox"
+                        id="__nav_3"
+                        checked
+                      />
+
+                      <label
+                        class="md-nav__link"
+                        for="__nav_3"
+                        id="__nav_3_label"
+                        tabindex="0"
+                      >
+                        Courses
+                        <span class="md-nav__icon md-icon"></span>
+                      </label>
+
+                      <nav
+                        class="md-nav"
+                        data-md-level="1"
+                        aria-labelledby="__nav_3_label"
+                        aria-expanded="true"
+                      >
+                        <label class="md-nav__title" for="__nav_3">
+                          <span class="md-nav__icon md-icon"></span>
+                          Courses
+                        </label>
+                        <ul class="md-nav__list" data-md-scrollfix>
+                          <li class="md-nav__item">
+                            <a href="../../" class="md-nav__link">
+                              All Courses
+                            </a>
+                          </li>
+
+                          <li class="md-nav__item md-nav__item--nested">
+                            <input
+                              class="md-nav__toggle md-toggle"
+                              type="checkbox"
+                              id="__nav_3_2"
+                            />
+
+                            <label
+                              class="md-nav__link"
+                              for="__nav_3_2"
+                              id="__nav_3_2_label"
+                              tabindex="0"
+                            >
+                              Chatbot - Rulesets
+                              <span class="md-nav__icon md-icon"></span>
+                            </label>
+
+                            <nav
+                              class="md-nav"
+                              data-md-level="2"
+                              aria-labelledby="__nav_3_2_label"
+                              aria-expanded="false"
+                            >
+                              <label class="md-nav__title" for="__nav_3_2">
+                                <span class="md-nav__icon md-icon"></span>
+                                Chatbot - Rulesets
+                              </label>
+                              <ul class="md-nav__list" data-md-scrollfix>
+                                <li class="md-nav__item">
+                                  <a
+                                    href="../../chatbot-rulesets/"
+                                    class="md-nav__link"
+                                  >
+                                    Introduction
+                                  </a>
+                                </li>
+
+                                <li class="md-nav__item">
+                                  <a
+                                    href="../../chatbot-rulesets/01_setting_up_environment/"
+                                    class="md-nav__link"
+                                  >
+                                    Setup
+                                  </a>
+                                </li>
+
+                                <li class="md-nav__item">
+                                  <a
+                                    href="../../chatbot-rulesets/03_the_chat_utility/"
+                                    class="md-nav__link"
+                                  >
+                                    The Chat utility
+                                  </a>
+                                </li>
+
+                                <li class="md-nav__item">
+                                  <a
+                                    href="../../chatbot-rulesets/04_hide_the_logs/"
+                                    class="md-nav__link"
+                                  >
+                                    Hiding the logs
+                                  </a>
+                                </li>
+
+                                <li class="md-nav__item">
+                                  <a
+                                    href="../../chatbot-rulesets/05_personality_with_rulesets/"
+                                    class="md-nav__link"
+                                  >
+                                    Personality
+                                  </a>
+                                </li>
+
+                                <li class="md-nav__item">
+                                  <a
+                                    href="../../chatbot-rulesets/06_adding_manual_chat/"
+                                    class="md-nav__link"
+                                  >
+                                    Custom chat
+                                  </a>
+                                </li>
+
+                                <li class="md-nav__item">
+                                  <a
+                                    href="../../chatbot-rulesets/07_manners_maketh_the_bot/"
+                                    class="md-nav__link"
+                                  >
+                                    Manners maketh the bot
+                                  </a>
+                                </li>
+
+                                <li class="md-nav__item">
+                                  <a
+                                    href="../../chatbot-rulesets/08_adding_another_ruleset_for_output/"
+                                    class="md-nav__link"
+                                  >
+                                    Rulesets for output
+                                  </a>
+                                </li>
+
+                                <li class="md-nav__item">
+                                  <a
+                                    href="../../chatbot-rulesets/09_formatting_chat_output/"
+                                    class="md-nav__link"
+                                  >
+                                    Formatting Output
+                                  </a>
+                                </li>
+
+                                <li class="md-nav__item">
+                                  <a
+                                    href="../../chatbot-rulesets/10_markdown_madness/"
+                                    class="md-nav__link"
+                                  >
+                                    Markdown Madness
+                                  </a>
+                                </li>
+
+                                <li class="md-nav__item">
+                                  <a
+                                    href="../../chatbot-rulesets/11_gleaming_the_chat/"
+                                    class="md-nav__link"
+                                  >
+                                    Improving the Prompt
+                                  </a>
+                                </li>
+
+                                <li class="md-nav__item">
+                                  <a
+                                    href="../../chatbot-rulesets/12_multiple_personas/"
+                                    class="md-nav__link"
+                                  >
+                                    Multiple Personas
+                                  </a>
+                                </li>
+
+                                <li class="md-nav__item">
+                                  <a
+                                    href="../../chatbot-rulesets/13_adding_personality_colors/"
+                                    class="md-nav__link"
+                                  >
+                                    Colorful Personality
+                                  </a>
+                                </li>
+
+                                <li class="md-nav__item">
+                                  <a
+                                    href="../../chatbot-rulesets/14_making_it_quick/"
+                                    class="md-nav__link"
+                                  >
+                                    Quick Feedback
+                                  </a>
+                                </li>
+                              </ul>
+                            </nav>
+                          </li>
+
+                          <li class="md-nav__item md-nav__item--nested">
+                            <input
+                              class="md-nav__toggle md-toggle"
+                              type="checkbox"
+                              id="__nav_3_3"
+                            />
+
+                            <label
+                              class="md-nav__link"
+                              for="__nav_3_3"
+                              id="__nav_3_3_label"
+                              tabindex="0"
+                            >
+                              Compare Movies - Workflows
+                              <span class="md-nav__icon md-icon"></span>
+                            </label>
+
+                            <nav
+                              class="md-nav"
+                              data-md-level="2"
+                              aria-labelledby="__nav_3_3_label"
+                              aria-expanded="false"
+                            >
+                              <label class="md-nav__title" for="__nav_3_3">
+                                <span class="md-nav__icon md-icon"></span>
+                                Compare Movies - Workflows
+                              </label>
+                              <ul class="md-nav__list" data-md-scrollfix>
+                                <li class="md-nav__item">
+                                  <a
+                                    href="../../compare-movies-workflow/"
+                                    class="md-nav__link"
+                                  >
+                                    Introduction
+                                  </a>
+                                </li>
+
+                                <li class="md-nav__item">
+                                  <a
+                                    href="../../compare-movies-workflow/01_setup/"
+                                    class="md-nav__link"
+                                  >
+                                    Setup
+                                  </a>
+                                </li>
+
+                                <li class="md-nav__item">
+                                  <a
+                                    href="../../compare-movies-workflow/02_concepts/"
+                                    class="md-nav__link"
+                                  >
+                                    Concepts
+                                  </a>
+                                </li>
+
+                                <li class="md-nav__item">
+                                  <a
+                                    href="../../compare-movies-workflow/03_first_workflow/"
+                                    class="md-nav__link"
+                                  >
+                                    First Workflow
+                                  </a>
+                                </li>
+
+                                <li class="md-nav__item">
+                                  <a
+                                    href="../../compare-movies-workflow/04_adding_flexibility/"
+                                    class="md-nav__link"
+                                  >
+                                    Adding Flexibility
+                                  </a>
+                                </li>
+
+                                <li class="md-nav__item">
+                                  <a
+                                    href="../../compare-movies-workflow/05_using_tools/"
+                                    class="md-nav__link"
+                                  >
+                                    Using Tools
+                                  </a>
+                                </li>
+
+                                <li class="md-nav__item">
+                                  <a
+                                    href="../../compare-movies-workflow/06_workflow_outputs/"
+                                    class="md-nav__link"
+                                  >
+                                    Workflow Outputs
+                                  </a>
+                                </li>
+
+                                <li class="md-nav__item">
+                                  <a
+                                    href="../../compare-movies-workflow/07_workflow_display_graph/"
+                                    class="md-nav__link"
+                                  >
+                                    Workflow Displaying Graph
+                                  </a>
+                                </li>
+                              </ul>
+                            </nav>
+                          </li>
+
+                          <li
+                            class="md-nav__item md-nav__item--active md-nav__item--nested"
+                          >
+                            <input
+                              class="md-nav__toggle md-toggle"
+                              type="checkbox"
+                              id="__nav_3_4"
+                              checked
+                            />
+
+                            <label
+                              class="md-nav__link"
+                              for="__nav_3_4"
+                              id="__nav_3_4_label"
+                              tabindex="0"
+                            >
+                              Image Generation - Pipelines
+                              <span class="md-nav__icon md-icon"></span>
+                            </label>
+
+                            <nav
+                              class="md-nav"
+                              data-md-level="2"
+                              aria-labelledby="__nav_3_4_label"
+                              aria-expanded="true"
+                            >
+                              <label class="md-nav__title" for="__nav_3_4">
+                                <span class="md-nav__icon md-icon"></span>
+                                Image Generation - Pipelines
+                              </label>
+                              <ul class="md-nav__list" data-md-scrollfix>
+                                <li class="md-nav__item">
+                                  <a href="../" class="md-nav__link">
+                                    Introduction
+                                  </a>
+                                </li>
+
+                                <li class="md-nav__item">
+                                  <a href="../01_setup/" class="md-nav__link">
+                                    Setup
+                                  </a>
+                                </li>
+
+                                <li class="md-nav__item">
+                                  <a
+                                    href="../02_concepts/"
+                                    class="md-nav__link"
+                                  >
+                                    Concepts
+                                  </a>
+                                </li>
+
+                                <li class="md-nav__item">
+                                  <a
+                                    href="../03_first_pipeline/"
+                                    class="md-nav__link"
+                                  >
+                                    First Pipeline
+                                  </a>
+                                </li>
+
+                                <li class="md-nav__item">
+                                  <a
+                                    href="../04_creating_images/"
+                                    class="md-nav__link"
+                                  >
+                                    Creating Images
+                                  </a>
+                                </li>
+
+                                <li class="md-nav__item">
+                                  <a
+                                    href="../05_understanding_tools/"
+                                    class="md-nav__link"
+                                  >
+                                    Understanding Tools
+                                  </a>
+                                </li>
+
+                                <li class="md-nav__item md-nav__item--active">
+                                  <input
+                                    class="md-nav__toggle md-toggle"
+                                    type="checkbox"
+                                    id="__toc"
+                                  />
+
+                                  <label
+                                    class="md-nav__link md-nav__link--active"
+                                    for="__toc"
+                                  >
+                                    Your First Tool
+                                    <span class="md-nav__icon md-icon"></span>
+                                  </label>
+
+                                  <a
+                                    href="./"
+                                    class="md-nav__link md-nav__link--active"
+                                  >
+                                    Your First Tool
+                                  </a>
+
+                                  <nav
+                                    class="md-nav md-nav--secondary"
+                                    aria-label="On this page"
+                                  >
+                                    <label class="md-nav__title" for="__toc">
+                                      <span class="md-nav__icon md-icon"></span>
+                                      On this page
+                                    </label>
+                                    <ul
+                                      class="md-nav__list"
+                                      data-md-component="toc"
+                                      data-md-scrollfix
+                                    >
+                                      <li class="md-nav__item">
+                                        <a
+                                          href="#overview"
+                                          class="md-nav__link"
+                                        >
+                                          Overview
+                                        </a>
+                                      </li>
+
+                                      <li class="md-nav__item">
+                                        <a
+                                          href="#getting-the-template"
+                                          class="md-nav__link"
+                                        >
+                                          Getting the template
+                                        </a>
+                                      </li>
+
+                                      <li class="md-nav__item">
+                                        <a
+                                          href="#use-reverse-string"
+                                          class="md-nav__link"
+                                        >
+                                          Use Reverse String
+                                        </a>
+
+                                        <nav
+                                          class="md-nav"
+                                          aria-label="Use Reverse String"
+                                        >
+                                          <ul class="md-nav__list">
+                                            <li class="md-nav__item">
+                                              <a
+                                                href="#add-it-to-test_toolpy"
+                                                class="md-nav__link"
+                                              >
+                                                Add it to test_tool.py
+                                              </a>
+                                            </li>
+
+                                            <li class="md-nav__item">
+                                              <a
+                                                href="#give-it-to-the-task"
+                                                class="md-nav__link"
+                                              >
+                                                Give it to the task
+                                              </a>
+                                            </li>
+
+                                            <li class="md-nav__item">
+                                              <a
+                                                href="#test-it-out"
+                                                class="md-nav__link"
+                                              >
+                                                Test it out
+                                              </a>
+                                            </li>
+
+                                            <li class="md-nav__item">
+                                              <a
+                                                href="#combine-requests"
+                                                class="md-nav__link"
+                                              >
+                                                Combine requests
+                                              </a>
+                                            </li>
+                                          </ul>
+                                        </nav>
+                                      </li>
+
+                                      <li class="md-nav__item">
+                                        <a
+                                          href="#adding-a-method"
+                                          class="md-nav__link"
+                                        >
+                                          Adding a method
+                                        </a>
+
+                                        <nav
+                                          class="md-nav"
+                                          aria-label="Adding a method"
+                                        >
+                                          <ul class="md-nav__list">
+                                            <li class="md-nav__item">
+                                              <a
+                                                href="#open-toolpy"
+                                                class="md-nav__link"
+                                              >
+                                                Open tool.py
+                                              </a>
+                                            </li>
+
+                                            <li class="md-nav__item">
+                                              <a
+                                                href="#add-reverse_sentence"
+                                                class="md-nav__link"
+                                              >
+                                                Add reverse_sentence
+                                              </a>
+                                            </li>
+
+                                            <li class="md-nav__item">
+                                              <a
+                                                href="#update-the-logic"
+                                                class="md-nav__link"
+                                              >
+                                                Update the logic
+                                              </a>
+                                            </li>
+
+                                            <li class="md-nav__item">
+                                              <a
+                                                href="#try-it-out"
+                                                class="md-nav__link"
+                                              >
+                                                Try it out
+                                              </a>
+                                            </li>
+                                          </ul>
+                                        </nav>
+                                      </li>
+
+                                      <li class="md-nav__item">
+                                        <a
+                                          href="#code-review"
+                                          class="md-nav__link"
+                                        >
+                                          Code Review
+                                        </a>
+
+                                        <nav
+                                          class="md-nav"
+                                          aria-label="Code Review"
+                                        >
+                                          <ul class="md-nav__list">
+                                            <li class="md-nav__item">
+                                              <a
+                                                href="#test_toolpy"
+                                                class="md-nav__link"
+                                              >
+                                                test_tool.py
+                                              </a>
+                                            </li>
+
+                                            <li class="md-nav__item">
+                                              <a
+                                                href="#reverse_string_tooltoolpy"
+                                                class="md-nav__link"
+                                              >
+                                                reverse_string_tool/tool.py
+                                              </a>
+                                            </li>
+                                          </ul>
+                                        </nav>
+                                      </li>
+
+                                      <li class="md-nav__item">
+                                        <a
+                                          href="#next-steps"
+                                          class="md-nav__link"
+                                        >
+                                          Next Steps
+                                        </a>
+                                      </li>
+                                    </ul>
+                                  </nav>
+                                </li>
+
+                                <li class="md-nav__item">
+                                  <a
+                                    href="../07_display_image_tool/"
+                                    class="md-nav__link"
+                                  >
+                                    Displaying Images
+                                  </a>
+                                </li>
+
+                                <li class="md-nav__item">
+                                  <a href="../08_dalle-3/" class="md-nav__link">
+                                    DALL·E 3
+                                  </a>
+                                </li>
+
+                                <li class="md-nav__item">
+                                  <a
+                                    href="../09_leonardo-ai/"
+                                    class="md-nav__link"
+                                  >
+                                    Leonardo.AI
+                                  </a>
+                                </li>
+
+                                <li class="md-nav__item">
+                                  <a
+                                    href="../10_amazon-bedrock/"
+                                    class="md-nav__link"
+                                  >
+                                    Amazon Bedrock
+                                  </a>
+                                </li>
+                              </ul>
+                            </nav>
+                          </li>
+
+                          <li class="md-nav__item md-nav__item--nested">
+                            <input
+                              class="md-nav__toggle md-toggle"
+                              type="checkbox"
+                              id="__nav_3_5"
+                            />
+
+                            <label
+                              class="md-nav__link"
+                              for="__nav_3_5"
+                              id="__nav_3_5_label"
+                              tabindex="0"
+                            >
+                              Griptape and Shotgrid - Tools
+                              <span class="md-nav__icon md-icon"></span>
+                            </label>
+
+                            <nav
+                              class="md-nav"
+                              data-md-level="2"
+                              aria-labelledby="__nav_3_5_label"
+                              aria-expanded="false"
+                            >
+                              <label class="md-nav__title" for="__nav_3_5">
+                                <span class="md-nav__icon md-icon"></span>
+                                Griptape and Shotgrid - Tools
+                              </label>
+                              <ul class="md-nav__list" data-md-scrollfix>
+                                <li class="md-nav__item">
+                                  <a
+                                    href="../../shotgrid-client/"
+                                    class="md-nav__link"
+                                  >
+                                    Introduction
+                                  </a>
+                                </li>
+
+                                <li class="md-nav__item">
+                                  <a
+                                    href="../../shotgrid-client/01_setup/"
+                                    class="md-nav__link"
+                                  >
+                                    Setup
+                                  </a>
+                                </li>
+
+                                <li class="md-nav__item">
+                                  <a
+                                    href="../../shotgrid-client/03_understanding_tools/"
+                                    class="md-nav__link"
+                                  >
+                                    Understanding Tools
+                                  </a>
+                                </li>
+
+                                <li class="md-nav__item">
+                                  <a
+                                    href="../../shotgrid-client/04_first_tool/"
+                                    class="md-nav__link"
+                                  >
+                                    Your First Tool
+                                  </a>
+                                </li>
+
+                                <li class="md-nav__item">
+                                  <a
+                                    href="../../shotgrid-client/02_shotgrid/"
+                                    class="md-nav__link"
+                                  >
+                                    ShotGrid Signup
+                                  </a>
+                                </li>
+
+                                <li class="md-nav__item">
+                                  <a
+                                    href="../../shotgrid-client/05_shotgrid_tool/"
+                                    class="md-nav__link"
+                                  >
+                                    ShotGrid Tool
+                                  </a>
+                                </li>
+
+                                <li class="md-nav__item">
+                                  <a
+                                    href="../../shotgrid-client/06_shotgrid_user/"
+                                    class="md-nav__link"
+                                  >
+                                    User Authentication
+                                  </a>
+                                </li>
+
+                                <li class="md-nav__item">
+                                  <a
+                                    href="../../shotgrid-client/07_method/"
+                                    class="md-nav__link"
+                                  >
+                                    ShotGrid Methods
+                                  </a>
+                                </li>
+
+                                <li class="md-nav__item">
+                                  <a
+                                    href="../../shotgrid-client/08_vectorized_docs/"
+                                    class="md-nav__link"
+                                  >
+                                    Vectorized Docs
+                                  </a>
+                                </li>
+
+                                <li class="md-nav__item">
+                                  <a
+                                    href="../../shotgrid-client/09_rules/"
+                                    class="md-nav__link"
+                                  >
+                                    Rules and Rulesets
+                                  </a>
+                                </li>
+                              </ul>
+                            </nav>
+                          </li>
+                        </ul>
+                      </nav>
+                    </li>
+
+                    <li class="md-nav__item md-nav__item--nested">
+                      <input
+                        class="md-nav__toggle md-toggle"
+                        type="checkbox"
+                        id="__nav_4"
+                      />
+
+                      <label
+                        class="md-nav__link"
+                        for="__nav_4"
+                        id="__nav_4_label"
+                        tabindex="0"
+                      >
+                        Help
+                        <span class="md-nav__icon md-icon"></span>
+                      </label>
+
+                      <nav
+                        class="md-nav"
+                        data-md-level="1"
+                        aria-labelledby="__nav_4_label"
+                        aria-expanded="false"
+                      >
+                        <label class="md-nav__title" for="__nav_4">
+                          <span class="md-nav__icon md-icon"></span>
+                          Help
+                        </label>
+                        <ul class="md-nav__list" data-md-scrollfix>
+                          <li class="md-nav__item">
+                            <a href="../../../faq/" class="md-nav__link">
+                              FAQ
+                            </a>
+                          </li>
+
+                          <li class="md-nav__item">
+                            <a
+                              href="../../../contributing/"
+                              class="md-nav__link"
+                            >
+                              Contributing
+                            </a>
+                          </li>
+
+                          <li class="md-nav__item">
+                            <a
+                              href="../../../troubleshooting/"
+                              class="md-nav__link"
+                            >
+                              Troubleshooting
+                            </a>
+                          </li>
+                        </ul>
+                      </nav>
+                    </li>
+                  </ul>
+                </nav>
               </div>
-            
-            
-              
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
+            </div>
+          </div>
 
-  
+          <div
+            class="md-sidebar md-sidebar--secondary"
+            data-md-component="sidebar"
+            data-md-type="toc"
+          >
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                <nav class="md-nav md-nav--secondary" aria-label="On this page">
+                  <label class="md-nav__title" for="__toc">
+                    <span class="md-nav__icon md-icon"></span>
+                    On this page
+                  </label>
+                  <ul
+                    class="md-nav__list"
+                    data-md-component="toc"
+                    data-md-scrollfix
+                  >
+                    <li class="md-nav__item">
+                      <a href="#overview" class="md-nav__link"> Overview </a>
+                    </li>
 
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
-    Overview
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#getting-the-template" class="md-nav__link">
-    Getting the template
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#use-reverse-string" class="md-nav__link">
-    Use Reverse String
-  </a>
-  
-    <nav class="md-nav" aria-label="Use Reverse String">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#add-it-to-test_toolpy" class="md-nav__link">
-    Add it to test_tool.py
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#give-it-to-the-task" class="md-nav__link">
-    Give it to the task
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#test-it-out" class="md-nav__link">
-    Test it out
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#combine-requests" class="md-nav__link">
-    Combine requests
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#adding-a-method" class="md-nav__link">
-    Adding a method
-  </a>
-  
-    <nav class="md-nav" aria-label="Adding a method">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#open-toolpy" class="md-nav__link">
-    Open tool.py
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#add-reverse_sentence" class="md-nav__link">
-    Add reverse_sentence
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#update-the-logic" class="md-nav__link">
-    Update the logic
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#try-it-out" class="md-nav__link">
-    Try it out
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#code-review" class="md-nav__link">
-    Code Review
-  </a>
-  
-    <nav class="md-nav" aria-label="Code Review">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#test_toolpy" class="md-nav__link">
-    test_tool.py
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#reverse_string_tooltoolpy" class="md-nav__link">
-    reverse_string_tool/tool.py
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
-    Next Steps
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-                  </div>
-                </div>
+                    <li class="md-nav__item">
+                      <a href="#getting-the-template" class="md-nav__link">
+                        Getting the template
+                      </a>
+                    </li>
+
+                    <li class="md-nav__item">
+                      <a href="#use-reverse-string" class="md-nav__link">
+                        Use Reverse String
+                      </a>
+
+                      <nav class="md-nav" aria-label="Use Reverse String">
+                        <ul class="md-nav__list">
+                          <li class="md-nav__item">
+                            <a
+                              href="#add-it-to-test_toolpy"
+                              class="md-nav__link"
+                            >
+                              Add it to test_tool.py
+                            </a>
+                          </li>
+
+                          <li class="md-nav__item">
+                            <a href="#give-it-to-the-task" class="md-nav__link">
+                              Give it to the task
+                            </a>
+                          </li>
+
+                          <li class="md-nav__item">
+                            <a href="#test-it-out" class="md-nav__link">
+                              Test it out
+                            </a>
+                          </li>
+
+                          <li class="md-nav__item">
+                            <a href="#combine-requests" class="md-nav__link">
+                              Combine requests
+                            </a>
+                          </li>
+                        </ul>
+                      </nav>
+                    </li>
+
+                    <li class="md-nav__item">
+                      <a href="#adding-a-method" class="md-nav__link">
+                        Adding a method
+                      </a>
+
+                      <nav class="md-nav" aria-label="Adding a method">
+                        <ul class="md-nav__list">
+                          <li class="md-nav__item">
+                            <a href="#open-toolpy" class="md-nav__link">
+                              Open tool.py
+                            </a>
+                          </li>
+
+                          <li class="md-nav__item">
+                            <a
+                              href="#add-reverse_sentence"
+                              class="md-nav__link"
+                            >
+                              Add reverse_sentence
+                            </a>
+                          </li>
+
+                          <li class="md-nav__item">
+                            <a href="#update-the-logic" class="md-nav__link">
+                              Update the logic
+                            </a>
+                          </li>
+
+                          <li class="md-nav__item">
+                            <a href="#try-it-out" class="md-nav__link">
+                              Try it out
+                            </a>
+                          </li>
+                        </ul>
+                      </nav>
+                    </li>
+
+                    <li class="md-nav__item">
+                      <a href="#code-review" class="md-nav__link">
+                        Code Review
+                      </a>
+
+                      <nav class="md-nav" aria-label="Code Review">
+                        <ul class="md-nav__list">
+                          <li class="md-nav__item">
+                            <a href="#test_toolpy" class="md-nav__link">
+                              test_tool.py
+                            </a>
+                          </li>
+
+                          <li class="md-nav__item">
+                            <a
+                              href="#reverse_string_tooltoolpy"
+                              class="md-nav__link"
+                            >
+                              reverse_string_tool/tool.py
+                            </a>
+                          </li>
+                        </ul>
+                      </nav>
+                    </li>
+
+                    <li class="md-nav__item">
+                      <a href="#next-steps" class="md-nav__link">
+                        Next Steps
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
               </div>
-            
-          
-          
-            <div class="md-content" data-md-component="content">
-              <article class="md-content__inner md-typeset">
-                
-                  
+            </div>
+          </div>
 
-
-<h1 id="your-first-tool">Your First Tool</h1>
-<p><img alt="create tool" src="../assets/img/create_tool.png" /></p>
-<h2 id="overview">Overview</h2>
-<p>We'll use a Griptape Tool Template that's available on GitHub to create our first Tool, and then modify it slightly to demonstrate multiple activities.</p>
-<h2 id="getting-the-template">Getting the template</h2>
-<p>The Tool template provided creates a <code>reverse_string</code> Tool. It will take any text and reverse it. It's a nice simple example of how to use a Tool with your LLM.</p>
-<p>The template contains examples of how to use the Tool, testing, and more. The idea is that you can take this template and publish your own Tool on GitHub to share with the world. </p>
-<p>For the purposes of <em>this course</em>, we'll keep things simple and just focus on the Tool itself, using the code to create our own as part of our current project.</p>
-<ol>
-<li>Navigate to the <a href="https://github.com/griptape-ai/tool-template" target="_blank">Gritptape tool-template repository</a> on GitHub.</li>
-<li>Find the <strong>Code</strong> button and click on it.</li>
-<li>
-<p>Choose <strong>Download zip</strong> to download a zip file of the project.</p>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>If you have a GitHub account and have experience with GitHub repos, you are more than welcome to choose <strong>Use this template</strong> and work the way you are comfortable. </p>
-</div>
-</li>
-<li>
-<p>Extract the contents of the .zip file by double-clicking on it.</p>
-<p><img alt="Extracted contents of the zip file" src="../assets/img/tool-template-main.png" /></p>
-<p>The <strong>reverse_string_tool</strong> folder is the one we are interested in, it contains the required files for the Tool. You can read more about them in the <a href="https://docs.griptape.ai/en/latest/griptape-tools/custom-tools/" target="_blank">Griptape Custom Tool documentation</a>.</p>
-</li>
-<li>
-<p>Copy the <strong>reverse_string_tool</strong> folder into the folder where your <code>app.py</code> and <code>test_tool.py</code> files sit. </p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>You can just drag the folder from your Finder or Windows Explorer and drop it directly into Visual Studio Code to copy it.</p>
-</div>
-<p>You should now see the folder in Visual Studio Code next to <code>app.py</code>, <code>test_tool.py</code>, and <code>.env</code>.</p>
-</li>
-</ol>
-<h2 id="use-reverse-string">Use Reverse String</h2>
-<p>Here's the code for the Reverse String Tool (as of December 2023). I've highlighted some important lines from the code.</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              <h1 id="your-first-tool">Your First Tool</h1>
+              <p>
+                <img alt="create tool" src="../assets/img/create_tool.png" />
+              </p>
+              <h2 id="overview">Overview</h2>
+              <p>
+                We'll use a Griptape Tool Template that's available on GitHub to
+                create our first Tool, and then modify it slightly to
+                demonstrate multiple activities.
+              </p>
+              <h2 id="getting-the-template">Getting the template</h2>
+              <p>
+                The Tool template provided creates a
+                <code>reverse_string</code> Tool. It will take any text and
+                reverse it. It's a nice simple example of how to use a Tool with
+                your LLM.
+              </p>
+              <p>
+                The template contains examples of how to use the Tool, testing,
+                and more. The idea is that you can take this template and
+                publish your own Tool on GitHub to share with the world.
+              </p>
+              <p>
+                For the purposes of <em>this course</em>, we'll keep things
+                simple and just focus on the Tool itself, using the code to
+                create our own as part of our current project.
+              </p>
+              <ol>
+                <li>
+                  Navigate to the
+                  <a
+                    href="https://github.com/griptape-ai/tool-template"
+                    target="_blank"
+                    >Gritptape tool-template repository</a
+                  >
+                  on GitHub.
+                </li>
+                <li>Find the <strong>Code</strong> button and click on it.</li>
+                <li>
+                  <p>
+                    Choose <strong>Download zip</strong> to download a zip file
+                    of the project.
+                  </p>
+                  <div class="admonition info">
+                    <p class="admonition-title">Info</p>
+                    <p>
+                      If you have a GitHub account and have experience with
+                      GitHub repos, you are more than welcome to choose
+                      <strong>Use this template</strong> and work the way you
+                      are comfortable.
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <p>
+                    Extract the contents of the .zip file by double-clicking on
+                    it.
+                  </p>
+                  <p>
+                    <img
+                      alt="Extracted contents of the zip file"
+                      src="../assets/img/tool-template-main.png"
+                    />
+                  </p>
+                  <p>
+                    The <strong>reverse_string_tool</strong> folder is the one
+                    we are interested in, it contains the required files for the
+                    Tool. You can read more about them in the
+                    <a
+                      href="https://docs.griptape.ai/stable/griptape-tools/custom-tools/"
+                      target="_blank"
+                      >Griptape Custom Tool documentation</a
+                    >.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Copy the <strong>reverse_string_tool</strong> folder into
+                    the folder where your <code>app.py</code> and
+                    <code>test_tool.py</code> files sit.
+                  </p>
+                  <div class="admonition tip">
+                    <p class="admonition-title">Tip</p>
+                    <p>
+                      You can just drag the folder from your Finder or Windows
+                      Explorer and drop it directly into Visual Studio Code to
+                      copy it.
+                    </p>
+                  </div>
+                  <p>
+                    You should now see the folder in Visual Studio Code next to
+                    <code>app.py</code>, <code>test_tool.py</code>, and
+                    <code>.env</code>.
+                  </p>
+                </li>
+              </ol>
+              <h2 id="use-reverse-string">Use Reverse String</h2>
+              <p>
+                Here's the code for the Reverse String Tool (as of December
+                2023). I've highlighted some important lines from the code.
+              </p>
+              <div class="highlight">
+                <table class="highlighttable">
+                  <tr>
+                    <td class="linenos">
+                      <div class="linenodiv">
+                        <pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
 <span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
@@ -1691,7 +1457,12 @@
 <span class="normal"><a href="#__codelineno-0-21">21</a></span>
 <span class="normal"><a href="#__codelineno-0-22">22</a></span>
 <span class="normal"><a href="#__codelineno-0-23">23</a></span>
-<span class="normal"><a href="#__codelineno-0-24">24</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="normal"><a href="#__codelineno-0-24">24</a></span></pre>
+                      </div>
+                    </td>
+                    <td class="code">
+                      <div>
+                        <pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="kn">from</span> <span class="nn">griptape.artifacts</span> <span class="kn">import</span> <span class="n">TextArtifact</span><span class="p">,</span> <span class="n">ErrorArtifact</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="kn">from</span> <span class="nn">griptape.tools</span> <span class="kn">import</span> <span class="n">BaseTool</span>
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="kn">from</span> <span class="nn">griptape.utils.decorators</span> <span class="kn">import</span> <span class="n">activity</span>
@@ -1715,24 +1486,65 @@
 </span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22"></a>
 </span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23"></a>        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
 </span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24"></a>            <span class="k">return</span> <span class="n">ErrorArtifact</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
-</span></code></pre></div></td></tr></table></div>
-<p>The highlighted lines illustrate that the Tool (Class) is called <code>ReverseString</code>. It has one module, <code>reverse_string</code>. It has an <code>activity</code> that says it "Can be used to reverse a string", and it appears to take one parameter named <code>input</code> which is described as "The string to be reversed".</p>
-<h3 id="add-it-to-test_toolpy">Add it to test_tool.py</h3>
-<p>Just like any other Griptape Tool, you need to <code>import</code> it. However, because this Tool isn't part of the default Griptape repository, the import line will look slightly different. Add the following line to <code>test_tool.py</code>:</p>
-<div class="highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># ...</span>
+</span></code></pre>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <p>
+                The highlighted lines illustrate that the Tool (Class) is called
+                <code>ReverseString</code>. It has one module,
+                <code>reverse_string</code>. It has an
+                <code>activity</code> that says it "Can be used to reverse a
+                string", and it appears to take one parameter named
+                <code>input</code> which is described as "The string to be
+                reversed".
+              </p>
+              <h3 id="add-it-to-test_toolpy">Add it to test_tool.py</h3>
+              <p>
+                Just like any other Griptape Tool, you need to
+                <code>import</code> it. However, because this Tool isn't part of
+                the default Griptape repository, the import line will look
+                slightly different. Add the following line to
+                <code>test_tool.py</code>:
+              </p>
+              <div class="highlight">
+                <pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># ...</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">from</span> <span class="nn">reverse_string_tool</span> <span class="kn">import</span> <span class="n">ReverseStringTool</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1"># ...</span>
-</span></code></pre></div>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>How do you know to choose <code>reverse_string_tool</code> and <code>ReverseStringTool</code> in the <code>import</code> statement?</p>
-<p>The <code>__init__.py</code> file is a hint. You can think of that file as a sort of index or table of contents for the items in the folder. Its presence tells Python that the directory is a special kind of directory - a package from which you can import <code>modules</code>.</p>
-<p>Because I saw that <code>__init__.py</code> file, I knew I could import modules <em>from</em> that folder. </p>
-</div>
-<h3 id="give-it-to-the-task">Give it to the task</h3>
-<p>Remember, the <code>ToolkitTask</code> takes a list of Tools. We can add this Tool to the task by simply adding it to the list.</p>
-<p>Find the line where you create the task and add the <code>ReverseStringTool</code>:</p>
-<div class="highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># ...</span>
+</span></code></pre>
+              </div>
+              <div class="admonition tip">
+                <p class="admonition-title">Tip</p>
+                <p>
+                  How do you know to choose <code>reverse_string_tool</code> and
+                  <code>ReverseStringTool</code> in the
+                  <code>import</code> statement?
+                </p>
+                <p>
+                  The <code>__init__.py</code> file is a hint. You can think of
+                  that file as a sort of index or table of contents for the
+                  items in the folder. Its presence tells Python that the
+                  directory is a special kind of directory - a package from
+                  which you can import <code>modules</code>.
+                </p>
+                <p>
+                  Because I saw that <code>__init__.py</code> file, I knew I
+                  could import modules <em>from</em> that folder.
+                </p>
+              </div>
+              <h3 id="give-it-to-the-task">Give it to the task</h3>
+              <p>
+                Remember, the <code>ToolkitTask</code> takes a list of Tools. We
+                can add this Tool to the task by simply adding it to the list.
+              </p>
+              <p>
+                Find the line where you create the task and add the
+                <code>ReverseStringTool</code>:
+              </p>
+              <div class="highlight">
+                <pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># ...</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1"># Create task</span>
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">task</span> <span class="o">=</span> <span class="n">ToolkitTask</span><span class="p">(</span>
@@ -1742,13 +1554,23 @@
 </span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">)</span>
 </span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
 </span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="c1"># ...</span>
-</span></code></pre></div>
-<p>Notice the task now has access to <em>two</em> Tools, <code>DateTime</code> and <code>ReverseStringTool</code>. </p>
-<h3 id="test-it-out">Test it out</h3>
-<p>Now test the Tool by running modifying the prompt to say something in reverse.</p>
-<div class="highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">pipeline</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;Can you say this line in reverse: &#39;I&#39;m a lumberjack and I&#39;m okay&#39;&quot;</span><span class="p">)</span>
-</span></code></pre></div>
-<div class="highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>[12/18/23 05:43:55] INFO    ToolkitTask Task
+</span></code></pre>
+              </div>
+              <p>
+                Notice the task now has access to <em>two</em> Tools,
+                <code>DateTime</code> and <code>ReverseStringTool</code>.
+              </p>
+              <h3 id="test-it-out">Test it out</h3>
+              <p>
+                Now test the Tool by running modifying the prompt to say
+                something in reverse.
+              </p>
+              <div class="highlight">
+                <pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">pipeline</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;Can you say this line in reverse: &#39;I&#39;m a lumberjack and I&#39;m okay&#39;&quot;</span><span class="p">)</span>
+</span></code></pre>
+              </div>
+              <div class="highlight">
+                <pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>[12/18/23 05:43:55] INFO    ToolkitTask Task
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>                            Input: Can you say this line in reverse: &#39;I&#39;m a lumberjack and I&#39;m okay&#39;
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="hll">[12/18/23 05:43:59] INFO    Subtask 09bbf86167214c0f994bbbba94445e0c
 </span></span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="hll">                            Thought: I need to use the ReverseStringTool action to reverse the given string.
@@ -1767,42 +1589,82 @@
 </span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>                            Response: yako m&#39;I dna kcajrebmul a m&#39;I
 </span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>[12/18/23 05:44:01] INFO    ToolkitTask Task
 </span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>                            Output: The reversed string is &#39;yako m&#39;I dna kcajrebmul a m&#39;I&#39;.   
-</span></code></pre></div>
-<p>As you can see in the highlighted section above, the <code>Subtask</code> shows that the ToolkitTask has decided to use the ReverseStringTool action.</p>
-<h3 id="combine-requests">Combine requests</h3>
-<p>You can absolutely use multiple Tools at the same time. Try a few examples where you might use both the <code>DateTime</code> Tool and the <code>ReverseStringTool</code>.</p>
-<div class="highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>pipeline.run(&quot;Can you reverse the month?&quot;)
+</span></code></pre>
+              </div>
+              <p>
+                As you can see in the highlighted section above, the
+                <code>Subtask</code> shows that the ToolkitTask has decided to
+                use the ReverseStringTool action.
+              </p>
+              <h3 id="combine-requests">Combine requests</h3>
+              <p>
+                You can absolutely use multiple Tools at the same time. Try a
+                few examples where you might use both the
+                <code>DateTime</code> Tool and the
+                <code>ReverseStringTool</code>.
+              </p>
+              <div class="highlight">
+                <pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>pipeline.run(&quot;Can you reverse the month?&quot;)
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Output: The reversed month is &quot;rebmeceD&quot;.
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
 </span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>pipeline.run(&quot;Tell me how many days there are until December 25th, and then reverse the entire response&quot;)
 </span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>Output: The reversed response is &quot;syad 32 era ereht&quot;.
-</span></code></pre></div>
-<h2 id="adding-a-method">Adding a method</h2>
-<p>Let's add another method to the <code>ReverseStringTool</code>. This will take a sentence and reverse the words instead of the letters.</p>
-<p>It will:</p>
-<ul>
-<li>Split the sentence into words</li>
-<li>Reverse the list of words</li>
-<li>Join the reverse words back into a sentence</li>
-</ul>
-<h3 id="open-toolpy">Open tool.py</h3>
-<ol>
-<li>In Visual Studio Code, open the <code>reverse_string_tool</code> folder and select <code>tool.py</code>.</li>
-</ol>
-<h3 id="add-reverse_sentence">Add <code>reverse_sentence</code></h3>
-<ol>
-<li>
-<p>Duplicate the code from the first <code>@activity</code> line through the end of the <code>def reverse_string</code> method.</p>
-</li>
-<li>
-<p>Rename the <em>second</em> method to <code>reverse_sentence</code>.</p>
-</li>
-<li>
-<p>Change the <em>description</em> of the second activity to <code>Can be used to reverse a sentence</code> and the <em>schema description</em> to <code>The sentence to be reversed</code>.</p>
-</li>
-</ol>
-<p>Here's the resulting code, with much of it commented out for brevity. I've highlighted the specific sections where we replaced <code>string</code> with <code>sentence</code>. This new method won't reverse sentences yet, we will add that later.</p>
-<div class="highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># ...</span>
+</span></code></pre>
+              </div>
+              <h2 id="adding-a-method">Adding a method</h2>
+              <p>
+                Let's add another method to the <code>ReverseStringTool</code>.
+                This will take a sentence and reverse the words instead of the
+                letters.
+              </p>
+              <p>It will:</p>
+              <ul>
+                <li>Split the sentence into words</li>
+                <li>Reverse the list of words</li>
+                <li>Join the reverse words back into a sentence</li>
+              </ul>
+              <h3 id="open-toolpy">Open tool.py</h3>
+              <ol>
+                <li>
+                  In Visual Studio Code, open the
+                  <code>reverse_string_tool</code> folder and select
+                  <code>tool.py</code>.
+                </li>
+              </ol>
+              <h3 id="add-reverse_sentence">
+                Add <code>reverse_sentence</code>
+              </h3>
+              <ol>
+                <li>
+                  <p>
+                    Duplicate the code from the first
+                    <code>@activity</code> line through the end of the
+                    <code>def reverse_string</code> method.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Rename the <em>second</em> method to
+                    <code>reverse_sentence</code>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Change the <em>description</em> of the second activity to
+                    <code>Can be used to reverse a sentence</code> and the
+                    <em>schema description</em> to
+                    <code>The sentence to be reversed</code>.
+                  </p>
+                </li>
+              </ol>
+              <p>
+                Here's the resulting code, with much of it commented out for
+                brevity. I've highlighted the specific sections where we
+                replaced <code>string</code> with <code>sentence</code>. This
+                new method won't reverse sentences yet, we will add that later.
+              </p>
+              <div class="highlight">
+                <pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># ...</span>
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
 </span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="nd">@define</span>
 </span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="k">class</span> <span class="nc">ReverseStringTool</span><span class="p">(</span><span class="n">BaseTool</span><span class="p">):</span>
@@ -1828,10 +1690,16 @@
 </span></span><span id="__span-6-24"><a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a>        <span class="n">input_value</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;values&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">)</span>
 </span><span id="__span-6-25"><a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a>
 </span><span id="__span-6-26"><a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a>        <span class="c1"># ...</span>
-</span></code></pre></div>
-<h3 id="update-the-logic">Update the logic</h3>
-<p>Within the <code>reverse_sentence</code> method, find the section of code after <code>try:</code> and before the <code>except</code>, and replace it with the following code:</p>
-<div class="highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># ...</span>
+</span></code></pre>
+              </div>
+              <h3 id="update-the-logic">Update the logic</h3>
+              <p>
+                Within the <code>reverse_sentence</code> method, find the
+                section of code after <code>try:</code> and before the
+                <code>except</code>, and replace it with the following code:
+              </p>
+              <div class="highlight">
+                <pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># ...</span>
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    <span class="k">def</span> <span class="nf">reverse_sentence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TextArtifact</span> <span class="o">|</span> <span class="n">ErrorArtifact</span><span class="p">:</span>
 </span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>        <span class="n">input_value</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;values&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;input&quot;</span><span class="p">)</span>
@@ -1850,17 +1718,34 @@
 </span></span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>
 </span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
 </span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>            <span class="k">return</span> <span class="n">ErrorArtifact</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
-</span></code></pre></div>
-<h3 id="try-it-out">Try it out</h3>
-<p>Now that you've added this new method, let's give it a try!</p>
-<div class="highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>pipeline.run(&quot;Can you reverse the words in this sentence? \&quot;I must eat, therefore, I am hungry\&quot;.&quot;)
+</span></code></pre>
+              </div>
+              <h3 id="try-it-out">Try it out</h3>
+              <p>Now that you've added this new method, let's give it a try!</p>
+              <div class="highlight">
+                <pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>pipeline.run(&quot;Can you reverse the words in this sentence? \&quot;I must eat, therefore, I am hungry\&quot;.&quot;)
 </span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>Output: The reversed sentence is &quot;hungry am I therefore, eat, must I&quot;.
-</span></code></pre></div>
-<p>Well done! Now go grab a snack and we'll continue.</p>
-<h2 id="code-review">Code Review</h2>
-<p>You have added a Griptape Tool <em>and</em> modified it to add a new activity! Well done! Let's take a look at all the code to review it before moving on.</p>
-<h3 id="test_toolpy"><code>test_tool.py</code></h3>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">test_tool.py</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
+</span></code></pre>
+              </div>
+              <p>Well done! Now go grab a snack and we'll continue.</p>
+              <h2 id="code-review">Code Review</h2>
+              <p>
+                You have added a Griptape Tool <em>and</em> modified it to add a
+                new activity! Well done! Let's take a look at all the code to
+                review it before moving on.
+              </p>
+              <h3 id="test_toolpy"><code>test_tool.py</code></h3>
+              <div class="highlight">
+                <table class="highlighttable">
+                  <tr>
+                    <th colspan="2" class="filename">
+                      <span class="filename">test_tool.py</span>
+                    </th>
+                  </tr>
+                  <tr>
+                    <td class="linenos">
+                      <div class="linenodiv">
+                        <pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-9-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-9-3"> 3</a></span>
 <span class="normal"><a href="#__codelineno-9-4"> 4</a></span>
@@ -1884,7 +1769,12 @@
 <span class="normal"><a href="#__codelineno-9-22">22</a></span>
 <span class="normal"><a href="#__codelineno-9-23">23</a></span>
 <span class="normal"><a href="#__codelineno-9-24">24</a></span>
-<span class="normal"><a href="#__codelineno-9-25">25</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="normal"><a href="#__codelineno-9-25">25</a></span></pre>
+                      </div>
+                    </td>
+                    <td class="code">
+                      <div>
+                        <pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
 </span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="kn">from</span> <span class="nn">griptape.structures</span> <span class="kn">import</span> <span class="n">Pipeline</span>
 </span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="kn">from</span> <span class="nn">griptape.tasks</span> <span class="kn">import</span> <span class="n">PromptTask</span><span class="p">,</span> <span class="n">ToolkitTask</span>
 </span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="kn">from</span> <span class="nn">griptape.tools</span> <span class="kn">import</span> <span class="n">DateTime</span>
@@ -1909,9 +1799,26 @@
 </span><span id="__span-9-23"><a id="__codelineno-9-23" name="__codelineno-9-23"></a><span class="n">pipeline</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
 </span><span id="__span-9-24"><a id="__codelineno-9-24" name="__codelineno-9-24"></a>    <span class="s1">&#39;Can you reverse the words in this sentence? &quot;I must eat, therefore, I am hungry&quot;.&#39;</span>
 </span><span id="__span-9-25"><a id="__codelineno-9-25" name="__codelineno-9-25"></a><span class="p">)</span>
-</span></code></pre></div></td></tr></table></div>
-<h3 id="reverse_string_tooltoolpy"><code>reverse_string_tool/tool.py</code></h3>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">reverse_string_tool/tool.py</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
+</span></code></pre>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <h3 id="reverse_string_tooltoolpy">
+                <code>reverse_string_tool/tool.py</code>
+              </h3>
+              <div class="highlight">
+                <table class="highlighttable">
+                  <tr>
+                    <th colspan="2" class="filename">
+                      <span class="filename">reverse_string_tool/tool.py</span>
+                    </th>
+                  </tr>
+                  <tr>
+                    <td class="linenos">
+                      <div class="linenodiv">
+                        <pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-10-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-10-3"> 3</a></span>
 <span class="normal"><a href="#__codelineno-10-4"> 4</a></span>
@@ -1962,7 +1869,12 @@
 <span class="normal"><a href="#__codelineno-10-49">49</a></span>
 <span class="normal"><a href="#__codelineno-10-50">50</a></span>
 <span class="normal"><a href="#__codelineno-10-51">51</a></span>
-<span class="normal"><a href="#__codelineno-10-52">52</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="normal"><a href="#__codelineno-10-52">52</a></span></pre>
+                      </div>
+                    </td>
+                    <td class="code">
+                      <div>
+                        <pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 </span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="kn">from</span> <span class="nn">griptape.artifacts</span> <span class="kn">import</span> <span class="n">TextArtifact</span><span class="p">,</span> <span class="n">ErrorArtifact</span>
 </span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="kn">from</span> <span class="nn">griptape.tools</span> <span class="kn">import</span> <span class="n">BaseTool</span>
 </span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="kn">from</span> <span class="nn">griptape.utils.decorators</span> <span class="kn">import</span> <span class="n">activity</span>
@@ -2014,210 +1926,276 @@
 </span></span><span id="__span-10-50"><a id="__codelineno-10-50" name="__codelineno-10-50"></a><span class="hll">
 </span></span><span id="__span-10-51"><a id="__codelineno-10-51" name="__codelineno-10-51"></a><span class="hll">        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
 </span></span><span id="__span-10-52"><a id="__codelineno-10-52" name="__codelineno-10-52"></a><span class="hll">            <span class="k">return</span> <span class="n">ErrorArtifact</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
-</span></span></code></pre></div></td></tr></table></div>
-<hr />
-<h2 id="next-steps">Next Steps</h2>
-<p>In the <a href="../07_display_image_tool/">next section</a>, we'll take what we learned from these exercises, and create a tool that will display an image when passed the file path.</p>
+</span></span></code></pre>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <hr />
+              <h2 id="next-steps">Next Steps</h2>
+              <p>
+                In the <a href="../07_display_image_tool/">next section</a>,
+                we'll take what we learned from these exercises, and create a
+                tool that will display an image when passed the file path.
+              </p>
+            </article>
+          </div>
 
-
-  
-
-
-
-
-                
-              </article>
-            </div>
-          
-          
-  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
-
+          <script>
+            var tabs = __md_get("__tabs");
+            if (Array.isArray(tabs))
+              e: for (var set of document.querySelectorAll(".tabbed-set")) {
+                var tab,
+                  labels = set.querySelector(".tabbed-labels");
+                for (tab of tabs)
+                  for (var label of labels.getElementsByTagName("label"))
+                    if (label.innerText.trim() === tab) {
+                      var input = document.getElementById(label.htmlFor);
+                      input.checked = !0;
+                      continue e;
+                    }
+              }
+          </script>
         </div>
-        
-          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
-            Back to top
-          </button>
-        
+
+        <button
+          type="button"
+          class="md-top md-icon"
+          data-md-component="top"
+          hidden
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path
+              d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"
+            />
+          </svg>
+          Back to top
+        </button>
       </main>
-      
-        <footer class="md-footer">
-  
-    
-      
-      <nav class="md-footer__inner md-grid" aria-label="Footer" >
-        
-          
-          <a href="../05_understanding_tools/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Understanding Tools" rel="prev">
+
+      <footer class="md-footer">
+        <nav class="md-footer__inner md-grid" aria-label="Footer">
+          <a
+            href="../05_understanding_tools/"
+            class="md-footer__link md-footer__link--prev"
+            aria-label="Previous: Understanding Tools"
+            rel="prev"
+          >
             <div class="md-footer__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path
+                  d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"
+                />
+              </svg>
             </div>
             <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              <div class="md-ellipsis">
-                Understanding Tools
-              </div>
+              <span class="md-footer__direction"> Previous </span>
+              <div class="md-ellipsis">Understanding Tools</div>
             </div>
           </a>
-        
-        
-          
-          <a href="../07_display_image_tool/" class="md-footer__link md-footer__link--next" aria-label="Next: Displaying Images" rel="next">
+
+          <a
+            href="../07_display_image_tool/"
+            class="md-footer__link md-footer__link--next"
+            aria-label="Next: Displaying Images"
+            rel="next"
+          >
             <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              <div class="md-ellipsis">
-                Displaying Images
-              </div>
+              <span class="md-footer__direction"> Next </span>
+              <div class="md-ellipsis">Displaying Images</div>
             </div>
             <div class="md-footer__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path
+                  d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"
+                />
+              </svg>
             </div>
           </a>
-        
-      </nav>
-    
-  
-  <div class="md-footer-meta md-typeset">
-    <div class="md-footer-meta__inner md-grid">
-      <div class="md-copyright">
-  
-    <div class="md-copyright__highlight">
-      &copy; Griptape, Inc.
-    </div>
-  
-  
-    Made with
-    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-      Material for MkDocs
-    </a>
-  
-</div>
-      
-        <div class="md-social">
-  
-    
-    
-    
-    
-      
-      
-    
-    <a href="https://www.griptape.ai" target="_blank" rel="noopener" title="www.griptape.ai" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40h-16c-1.1 0-2.2 0-3.3-.1-1.4.1-2.8.1-4.2.1H392c-22.1 0-40-17.9-40-40v-88c0-17.7-14.3-32-32-32h-64c-17.7 0-32 14.3-32 32v88c0 22.1-17.9 40-40 40h-55.9c-1.5 0-3-.1-4.5-.2-1.2.1-2.4.2-3.6.2h-16c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9.1-2.8v-69.6H32c-18 0-32-14-32-32.1 0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7l255.4 224.5c8 7 12 15 11 24z"/></svg>
-    </a>
-  
-    
-    
-    
-    
-      
-      
-    
-    <a href="https://discord.gg/gnWRz88eym" target="_blank" rel="noopener" title="discord.gg" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M524.531 69.836a1.5 1.5 0 0 0-.764-.7A485.065 485.065 0 0 0 404.081 32.03a1.816 1.816 0 0 0-1.923.91 337.461 337.461 0 0 0-14.9 30.6 447.848 447.848 0 0 0-134.426 0 309.541 309.541 0 0 0-15.135-30.6 1.89 1.89 0 0 0-1.924-.91 483.689 483.689 0 0 0-119.688 37.107 1.712 1.712 0 0 0-.788.676C39.068 183.651 18.186 294.69 28.43 404.354a2.016 2.016 0 0 0 .765 1.375 487.666 487.666 0 0 0 146.825 74.189 1.9 1.9 0 0 0 2.063-.676A348.2 348.2 0 0 0 208.12 430.4a1.86 1.86 0 0 0-1.019-2.588 321.173 321.173 0 0 1-45.868-21.853 1.885 1.885 0 0 1-.185-3.126 251.047 251.047 0 0 0 9.109-7.137 1.819 1.819 0 0 1 1.9-.256c96.229 43.917 200.41 43.917 295.5 0a1.812 1.812 0 0 1 1.924.233 234.533 234.533 0 0 0 9.132 7.16 1.884 1.884 0 0 1-.162 3.126 301.407 301.407 0 0 1-45.89 21.83 1.875 1.875 0 0 0-1 2.611 391.055 391.055 0 0 0 30.014 48.815 1.864 1.864 0 0 0 2.063.7A486.048 486.048 0 0 0 610.7 405.729a1.882 1.882 0 0 0 .765-1.352c12.264-126.783-20.532-236.912-86.934-334.541ZM222.491 337.58c-28.972 0-52.844-26.587-52.844-59.239s23.409-59.241 52.844-59.241c29.665 0 53.306 26.82 52.843 59.239 0 32.654-23.41 59.241-52.843 59.241Zm195.38 0c-28.971 0-52.843-26.587-52.843-59.239s23.409-59.241 52.843-59.241c29.667 0 53.307 26.82 52.844 59.239 0 32.654-23.177 59.241-52.844 59.241Z"/></svg>
-    </a>
-  
-    
-    
-    
-    
-      
-      
-    
-    <a href="https://github.com/griptape-ai/griptape/" target="_blank" rel="noopener" title="github.com" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
-    </a>
-  
-    
-    
-    
-    
-      
-      
-    
-    <a href="https://www.youtube.com/@griptape-ai" target="_blank" rel="noopener" title="www.youtube.com" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
-    </a>
-  
-    
-    
-    
-    
-      
-      
-    
-    <a href="https://pypi.org/project/griptape/" target="_blank" rel="noopener" title="pypi.org" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6zM286.2 404c11.1 0 20.1 9.1 20.1 20.3 0 11.3-9 20.4-20.1 20.4-11 0-20.1-9.2-20.1-20.4.1-11.3 9.1-20.3 20.1-20.3zM167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4zm-6.7-142.6c-11.1 0-20.1-9.1-20.1-20.3.1-11.3 9-20.4 20.1-20.4 11 0 20.1 9.2 20.1 20.4s-9 20.3-20.1 20.3z"/></svg>
-    </a>
-  
-</div>
-      
-    </div>
-  </div>
-</footer>
-      
+        </nav>
+
+        <div class="md-footer-meta md-typeset">
+          <div class="md-footer-meta__inner md-grid">
+            <div class="md-copyright">
+              <div class="md-copyright__highlight">&copy; Griptape, Inc.</div>
+
+              Made with
+              <a
+                href="https://squidfunk.github.io/mkdocs-material/"
+                target="_blank"
+                rel="noopener"
+              >
+                Material for MkDocs
+              </a>
+            </div>
+
+            <div class="md-social">
+              <a
+                href="https://www.griptape.ai"
+                target="_blank"
+                rel="noopener"
+                title="www.griptape.ai"
+                class="md-social__link"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                  <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.-->
+                  <path
+                    d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40h-16c-1.1 0-2.2 0-3.3-.1-1.4.1-2.8.1-4.2.1H392c-22.1 0-40-17.9-40-40v-88c0-17.7-14.3-32-32-32h-64c-17.7 0-32 14.3-32 32v88c0 22.1-17.9 40-40 40h-55.9c-1.5 0-3-.1-4.5-.2-1.2.1-2.4.2-3.6.2h-16c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9.1-2.8v-69.6H32c-18 0-32-14-32-32.1 0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7l255.4 224.5c8 7 12 15 11 24z"
+                  />
+                </svg>
+              </a>
+
+              <a
+                href="https://discord.gg/gnWRz88eym"
+                target="_blank"
+                rel="noopener"
+                title="discord.gg"
+                class="md-social__link"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+                  <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.-->
+                  <path
+                    d="M524.531 69.836a1.5 1.5 0 0 0-.764-.7A485.065 485.065 0 0 0 404.081 32.03a1.816 1.816 0 0 0-1.923.91 337.461 337.461 0 0 0-14.9 30.6 447.848 447.848 0 0 0-134.426 0 309.541 309.541 0 0 0-15.135-30.6 1.89 1.89 0 0 0-1.924-.91 483.689 483.689 0 0 0-119.688 37.107 1.712 1.712 0 0 0-.788.676C39.068 183.651 18.186 294.69 28.43 404.354a2.016 2.016 0 0 0 .765 1.375 487.666 487.666 0 0 0 146.825 74.189 1.9 1.9 0 0 0 2.063-.676A348.2 348.2 0 0 0 208.12 430.4a1.86 1.86 0 0 0-1.019-2.588 321.173 321.173 0 0 1-45.868-21.853 1.885 1.885 0 0 1-.185-3.126 251.047 251.047 0 0 0 9.109-7.137 1.819 1.819 0 0 1 1.9-.256c96.229 43.917 200.41 43.917 295.5 0a1.812 1.812 0 0 1 1.924.233 234.533 234.533 0 0 0 9.132 7.16 1.884 1.884 0 0 1-.162 3.126 301.407 301.407 0 0 1-45.89 21.83 1.875 1.875 0 0 0-1 2.611 391.055 391.055 0 0 0 30.014 48.815 1.864 1.864 0 0 0 2.063.7A486.048 486.048 0 0 0 610.7 405.729a1.882 1.882 0 0 0 .765-1.352c12.264-126.783-20.532-236.912-86.934-334.541ZM222.491 337.58c-28.972 0-52.844-26.587-52.844-59.239s23.409-59.241 52.844-59.241c29.665 0 53.306 26.82 52.843 59.239 0 32.654-23.41 59.241-52.843 59.241Zm195.38 0c-28.971 0-52.843-26.587-52.843-59.239s23.409-59.241 52.843-59.241c29.667 0 53.307 26.82 52.844 59.239 0 32.654-23.177 59.241-52.844 59.241Z"
+                  />
+                </svg>
+              </a>
+
+              <a
+                href="https://github.com/griptape-ai/griptape/"
+                target="_blank"
+                rel="noopener"
+                title="github.com"
+                class="md-social__link"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
+                  <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.-->
+                  <path
+                    d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"
+                  />
+                </svg>
+              </a>
+
+              <a
+                href="https://www.youtube.com/@griptape-ai"
+                target="_blank"
+                rel="noopener"
+                title="www.youtube.com"
+                class="md-social__link"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                  <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.-->
+                  <path
+                    d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"
+                  />
+                </svg>
+              </a>
+
+              <a
+                href="https://pypi.org/project/griptape/"
+                target="_blank"
+                rel="noopener"
+                title="pypi.org"
+                class="md-social__link"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                  <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.-->
+                  <path
+                    d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6zM286.2 404c11.1 0 20.1 9.1 20.1 20.3 0 11.3-9 20.4-20.1 20.4-11 0-20.1-9.2-20.1-20.4.1-11.3 9.1-20.3 20.1-20.3zM167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4zm-6.7-142.6c-11.1 0-20.1-9.1-20.1-20.3.1-11.3 9-20.4 20.1-20.4 11 0 20.1 9.2 20.1 20.4s-9 20.3-20.1 20.3z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.instant", "navigation.path", "navigation.footer", "navigation.prune", "navigation.tracking", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.annotate", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
-    
-     
-      <script src="../../../assets/javascripts/bundle.220ee61c.min.js"></script>
-      
-        
-          <script src="../../../js/adjust-button.js"></script>
-        
-      
-    
-<script>
-  window.intercomSettings = {
-    api_base: "https://api-iam.intercom.io",
-    app_id: "t8pfeo91",
-  };
-</script>
 
-<script>
-  // We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/t8pfeo91'
-  (function () {
-    var w = window;
-    var ic = w.Intercom;
-    if (typeof ic === "function") {
-      ic("reattach_activator");
-      ic("update", w.intercomSettings);
-    } else {
-      var d = document;
-      var i = function () {
-        i.c(arguments);
-      };
-      i.q = [];
-      i.c = function (args) {
-        i.q.push(args);
-      };
-      w.Intercom = i;
-      var l = function () {
-        var s = d.createElement("script");
-        s.type = "text/javascript";
-        s.async = true;
-        s.src = "https://widget.intercom.io/widget/t8pfeo91";
-        var x = d.getElementsByTagName("script")[0];
-        x.parentNode.insertBefore(s, x);
-      };
-      if (document.readyState === "complete") {
-        l();
-      } else if (w.attachEvent) {
-        w.attachEvent("onload", l);
-      } else {
-        w.addEventListener("load", l, false);
+    <script id="__config" type="application/json">
+      {
+        "base": "../../..",
+        "features": [
+          "navigation.tabs",
+          "navigation.tabs.sticky",
+          "navigation.top",
+          "navigation.instant",
+          "navigation.path",
+          "navigation.footer",
+          "navigation.prune",
+          "navigation.tracking",
+          "search.suggest",
+          "search.highlight",
+          "content.tabs.link",
+          "content.code.annotation",
+          "content.code.annotate",
+          "content.code.copy",
+          "content.code.annotate"
+        ],
+        "search": "../../../assets/javascripts/workers/search.74e28a9f.min.js",
+        "translations": {
+          "clipboard.copied": "Copied to clipboard",
+          "clipboard.copy": "Copy to clipboard",
+          "search.result.more.one": "1 more on this page",
+          "search.result.more.other": "# more on this page",
+          "search.result.none": "No matching documents",
+          "search.result.one": "1 matching document",
+          "search.result.other": "# matching documents",
+          "search.result.placeholder": "Type to start searching",
+          "search.result.term.missing": "Missing",
+          "select.version": "Select version"
+        }
       }
-    }
-  })();
-</script>
+    </script>
 
+    <script src="../../../assets/javascripts/bundle.220ee61c.min.js"></script>
+
+    <script src="../../../js/adjust-button.js"></script>
+
+    <script>
+      window.intercomSettings = {
+        api_base: "https://api-iam.intercom.io",
+        app_id: "t8pfeo91",
+      };
+    </script>
+
+    <script>
+      // We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/t8pfeo91'
+      (function () {
+        var w = window;
+        var ic = w.Intercom;
+        if (typeof ic === "function") {
+          ic("reattach_activator");
+          ic("update", w.intercomSettings);
+        } else {
+          var d = document;
+          var i = function () {
+            i.c(arguments);
+          };
+          i.q = [];
+          i.c = function (args) {
+            i.q.push(args);
+          };
+          w.Intercom = i;
+          var l = function () {
+            var s = d.createElement("script");
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = "https://widget.intercom.io/widget/t8pfeo91";
+            var x = d.getElementsByTagName("script")[0];
+            x.parentNode.insertBefore(s, x);
+          };
+          if (document.readyState === "complete") {
+            l();
+          } else if (w.attachEvent) {
+            w.attachEvent("onload", l);
+          } else {
+            w.addEventListener("load", l, false);
+          }
+        }
+      })();
+    </script>
   </body>
 </html>

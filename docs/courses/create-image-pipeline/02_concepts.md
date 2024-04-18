@@ -7,7 +7,7 @@
 Pipelines and Workflows are both Griptape Structures that execute a series of tasks. 
 
 ### Pipelines
-[Pipelines](https://docs.griptape.ai/en/latest/griptape-framework/structures/pipelines/){target="_blank"} are always a **sequential** series of steps - one task after another until it is finished. 
+[Pipelines](https://docs.griptape.ai/stable/griptape-framework/structures/pipelines/){target="_blank"} are always a **sequential** series of steps - one task after another until it is finished. 
 
 In this course, we're going to be taking a topic to draw, and then execute a consistent series of tasks until we have the image. Every time the Pipeline is run, it will _always_:
 
@@ -27,7 +27,7 @@ graph LR
 ```
 
 ### Workflows
-[Workflows](https://docs.griptape.ai/en/latest/griptape-framework/structures/workflows/){target="_blank"} allow for complex interactions, resembling tree branches.
+[Workflows](https://docs.griptape.ai/stable/griptape-framework/structures/workflows/){target="_blank"} allow for complex interactions, resembling tree branches.
 
 Workflows are **non-sequential**, and individual tasks can depend on **multiple input tasks**. This allows you to create a single task that waits for all other tasks to complete before it can begin.
 

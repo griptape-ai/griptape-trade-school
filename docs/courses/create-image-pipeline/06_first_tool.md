@@ -24,7 +24,7 @@ For the purposes of *this course*, we'll keep things simple and just focus on th
 
     ![Extracted contents of the zip file](assets/img/tool-template-main.png)
 
-    The **reverse_string_tool** folder is the one we are interested in, it contains the required files for the Tool. You can read more about them in the [Griptape Custom Tool documentation](https://docs.griptape.ai/en/latest/griptape-tools/custom-tools/){target="_blank"}.
+    The **reverse_string_tool** folder is the one we are interested in, it contains the required files for the Tool. You can read more about them in the [Griptape Custom Tool documentation](https://docs.griptape.ai/stable/griptape-tools/custom-tools/){target="_blank"}.
 
 5. Copy the **reverse_string_tool** folder into the folder where your `app.py` and `test_tool.py` files sit. 
 
