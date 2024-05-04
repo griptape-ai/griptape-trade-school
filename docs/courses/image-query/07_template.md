@@ -19,11 +19,18 @@ image:
   keywords: ["{keyword 1}", "{keyword 2}"]
   caption: { A short caption to display under the image. }
   example_html: |
-    <div class="col card shadow p-0 m-3">
-      <img src="{image_path}" class="card-img-top h-50" style="object-fit: cover" alt="{alt_text}">
-      <div class="card-body">
-        <h5 class="card-title">{name}</h5>
-        <p class="card-text fw-lighter opacity-50">{caption}</p>
+    <div class="col">
+      <div class="card shadow">
+        <img src="{image_path}" class="card-img-top h-50" style="object-fit: cover" alt="{alt_text}">
+        <div class="card-body">
+          <h5 class="card-title fw-light fs-5">{name}</h5>
+          <p class="card-subtitle fw-light text-body-secondary opacity-75">{caption}</p>
+        </div>
+        <footer class="card-footer text-size-sm">
+          <a href="#{keyword_1}" class="btn btn-outline btn-sm text-secondary">{keyword_1}</a>
+          <a href="#{keyword_2}" class="btn btn-outline btn-sm text-secondary">{keyword_2}</a>
+          <a href="#{keyword_3}" class="btn btn-outline btn-sm text-secondary">{keyword_3}</a>
+        </footer>
       </div>
     </div>
 
@@ -31,7 +38,7 @@ image:
 
 !!! info
     The html snippet included in the template uses the [Bootstrap Card](https://getbootstrap.com/docs/5.3/components/card/){ target="_none" } component. You can use whatever format you like, but I'm rather fond of this one. Here's an example of how it looks in a layout:
-    ![Cards](assets/cards.png)
+    ![Cards](assets/example_img.png)
 
 ## Modify the ToolkitTask
 
@@ -68,20 +75,27 @@ Note, in the `context` parameter we're passing both the `image` and the `image_p
 Give it a run. You should end up with a series of YAML files that match the template.
 
 ```yaml title="beach.yml"
-mage:
-  title: Vintage Beach Scene
+image:
+  title: Nostalgic Beach Scene
   image_path: ./images/beach.png
   description: |
-    This image depicts a vintage-looking beach scene.
-  alt_text: Vintage beach scene with people and activities
-  keywords: ["beach", "vintage", "sandcastle", "beach umbrella", "picnic"]
-  caption: A vintage beach scene depicting various activities
+    A nostalgic beach scene with a vintage filter, featuring a large beach umbrella, a detailed sandcastle, and beachgoers engaged in typical seaside activities.
+  alt_text: Vintage beach scene with beach umbrella and sandcastle
+  keywords: ["beach", "vintage", "sandcastle"]
+  caption: A nostalgic day at the beach
   example_html: |
-    <div class="col card shadow p-0 m-3">
-      <img src="./images/beach.png" class="card-img-top h-50" style="object-fit: cover" alt="Vintage beach scene with people and activities">
-      <div class="card-body">
-        <h5 class="card-title">Vintage Beach Scene</h5>
-        <p class="card-text">A vintage beach scene depicting various activities</p>
+    <div class="col">
+      <div class="card shadow">
+        <img src="./images/beach.png" class="card-img-top h-50" style="object-fit: cover" alt="Vintage beach scene with beach umbrella and sandcastle">
+        <div class="card-body">
+          <h5 class="card-title fw-light fs-5">Nostalgic Beach Scene</h5>
+          <p class="card-subtitle fw-light text-body-secondary opacity-75">A nostalgic day at the beach</p>
+        </div>
+        <footer class="card-footer text-size-sm">
+          <a href="#beach" class="btn btn-outline btn-sm text-secondary">beach</a>
+          <a href="#vintage" class="btn btn-outline btn-sm text-secondary">vintage</a>
+          <a href="#sandcastle" class="btn btn-outline btn-sm text-secondary">sandcastle</a>
+        </footer>
       </div>
     </div>
 ```
@@ -100,8 +114,8 @@ If you'd like to use the Bootstrap layout, here's the HTML - just plop the card 
   </head>
   <body>
     <div class="container p-4">
-      <div class="row row-cols-1 row-cols-md-4 row-cols-sm-2">
-        <!-- INSERT CARD SNIPPETS HERE -->
+      <div class="row row-cols-1 row-cols-md-3 gap-0 row-cols-sm-2">
+       <!-- INSERT CARD SNIPPETS HERE -->
       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" ></script>
