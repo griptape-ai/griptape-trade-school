@@ -155,4 +155,4 @@ Chat(
 ## Next Steps
 You’re doing amazing so far. We’re so close to reaching the end. 
 
-In the [next section](06_multi_image_workflow.md), we'll scale up our ability to handle multiple images using Griptape Workflows.
+In the [next section](06_querying_multiple_images.md), we'll scale up our ability to handle multiple images using Griptape Workflows.
