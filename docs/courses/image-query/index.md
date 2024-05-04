@@ -1,4 +1,6 @@
-# Describing images for SEO using Griptape's ImageQuery Tool
+# An ImageQuery SEO Bonanza!
+
+Describing mounds of images for SEO using Griptape and the `ImageQuery` functionality!
 
 ![A Vintage Beach Scene](assets/beach.png)
 A vintage beach scene depicting various activities.
