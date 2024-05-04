@@ -133,8 +133,6 @@ Notice it describes it really well!
 !!! quote
     ![](assets/shoe.png){ align=right width=256 } The image shows a classic high-top sneaker presented in a sepia-tone or vintage color palette, giving it an aged look. The sneaker is placed atop an old-fashioned photo frame, accentuating the retro aesthetic. The wooden background creates a warm, rustic vibe. The sneaker has white laces, and the design suggests it might be a type of athletic or casual footwear often associated with youth culture. The lighting and editing of the photo lend an artistic quality to the presentation, evoking nostalgia.
 
-By following these detailed steps, you've not only equipped your Griptape Agent with the ability to query and describe images, but you’ve also possibly created the most culturally savvy bot on the block.
-
 ## Code Review
 
 Here's the final code with the updates from this section.
@@ -189,4 +187,7 @@ Chat(
 
 ---
 ## Next Steps
-Now that you have a fancy little chatbot, it's time to move to the next section where we'll give the Agent the ability to understand and describe images. Head to the [Image Query Tool](03_image_query_tool.md) section.
+
+By following these detailed steps, you've not only equipped your Griptape Agent with the ability to query and describe images, but you’ve also possibly created the most culturally savvy bot on the block.
+
+In the [next section](04_seo_friendly.md), we'll tell the agent to give us output that is more SEO-friendly.

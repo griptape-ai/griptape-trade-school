@@ -156,6 +156,7 @@ nav:
           - Setup: courses/image-query/01_setup.md
           - Chatbot: courses/image-query/02_chatbot.md
           - ImageQuery: courses/image-query/03_image_query_tool.md
+          - SEO Friendly: courses/image-query/04_seo_friendly.md
   - Help:
       - FAQ: faq.md
       - Contributing: contributing.md
