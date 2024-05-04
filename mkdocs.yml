@@ -158,6 +158,8 @@ nav:
           - ImageQuery: courses/image-query/03_image_query_tool.md
           - SEO Friendly: courses/image-query/04_seo_friendly.md
           - Saving to Disk: courses/image-query/05_save_to_disk.md
+          - Multiple Images: courses/image-query/06_querying_multiple_images.md
+          - Template: courses/image-query/07_template.md
   - Help:
       - FAQ: faq.md
       - Contributing: contributing.md

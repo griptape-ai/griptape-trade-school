@@ -1,6 +1,7 @@
-# What is it? Describing images for SEO using Griptape's ImageQuery Tool
+# Describing images for SEO using Griptape's ImageQuery Tool
 
-NEED IMAGE HERE
+![A Vintage Beach Scene](assets/beach.png)
+A vintage beach scene depicting various activities.
 
 ## Course Description
 Today, we’re going to create something useful for anyone juggling digital content: a Griptape workflow that processes a directory full of images, and outputs a text file for each. These aren't just any text files—they're packed with things like SEO descriptions, keywords, alt-text, captions, and even a HTML snippet. If you don’t know what any of that means – that’s totally fine, I might’ve had to research some terms myself…
@@ -17,7 +18,7 @@ So, stick around as we dive into how this Griptape workflow can transform your d
 
 * **Intermediate-Level Python Developers**: If you have a solid grounding in Python and are looking to broaden your skill set, this course will introduce you to the exciting world of Griptape Tools. It's perfect for those who want to learn how to develop and implement these tools in various contexts, adding a valuable dimension to their programming expertise.
 
-* **Web Developers**: People interested in speeding up their web development process or something like that. MAKE BETTER
+* **Web Developers**: People interested in speeding up their web development process and would like to automate some really repetitive and somewhat complicated tasks.
 
 ## Prerequisites
 Before beginning this course, you will need:
