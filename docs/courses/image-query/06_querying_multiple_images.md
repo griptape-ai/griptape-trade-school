@@ -65,67 +65,102 @@ Here's a quick description of what each of these are for.
 
 The task that will use FileManager to save the files to disk. This uses Chain of Thought to take the output from the Image Query and generate the proper formatting, then uses the tool to save to disk.
 
-## Comment out the Agent Code
+## Remove Agent Flow
 
-We’re going to be creating a workflow, so we can comment out the Agent code for now. Don’t delete it, because you may want to reference it later.
+We’re going to be creating a workflow, so we don't really need to use the Agent code anymore. We could delete it, but we might find it useful to reference while adjusting to our Workflow. To keep it around, we could comment it out - this would keep it in our code, but it wouldn't have any influence.
 
-!!! tip
-    A fast way to do this in VSCode is to select the full text block and use the keyboard combination ++cmd++ + / on Mac, or ++ctrl++ + / on Windows.
+Another option, however, is to put the agent code in a conditional statement. We can say to the app "Hey, if TRUE then run the workflow code, but if FALSE run the agent code. It would look something like this:
+
+```py title="example_flow.py" linenums="1"
+if True:
+  print ("This would be where the WORKFLOW code goes.")
+else:
+  print ("This is where the AGENT code would go.")
+```
+
+If you were to run this script right now, the output would be:
+
+```
+This is where the WORKFLOW code goes.
+```
+
+Conversely, if we set it to False..
+
+```py title="example_flow.py" linenums="1"
+if False:
+  print ("This would be where the WORKFLOW code goes.")
+else:
+  print ("This is where the AGENT code would go.")
+```
+
+We would get:
+
+```
+This is where the AGENT code would go.
+```
+
+This is a great way to control the flow of execution in our program & make sure we can run via the agent if we need to.
+
+Modify the code as follows:
 
 ```py title="app.py" hl_lines="5-25"
 # ...
 # Configure the ImageQueryClient
 image_query_client = ImageQueryClient(image_query_engine=engine, off_prompt=False)
 
-# # Create the Agent
-# agent = Agent(logger_level=0, tools=[image_query_client, FileManager(off_prompt=False)])
+if True:
+  # Create a workflow 
+else:
+  # Create the Agent
+  agent = Agent(logger_level=0, tools=[image_query_client, FileManager(off_prompt=False)])
 
-# # Configure the agent to stream it's responses.
-# agent.config.global_drivers.prompt_driver.stream = True
-
-
-# # Modify the Agent's response to have some color.
-# def formatted_response(response: str) -> str:
-#     print(f"[dark_cyan]{response}", end="", flush=True)
+  # Configure the agent to stream it's responses.
+  agent.config.global_drivers.prompt_driver.stream = True
 
 
-# # Begin Chatting
-# Chat(
-#     agent,
-#     intro_text="\nWelcome to Griptape Chat!\n",
-#     prompt_prefix="\nYou: ",
-#     processing_text="\nThinking...",
-#     response_prefix="\nAgent: ",
-#     output_fn=formatted_response,  # Uses the formatted_response function
-# ).start()
+  # Modify the Agent's response to have some color.
+  def formatted_response(response: str) -> str:
+      print(f"[dark_cyan]{response}", end="", flush=True)
+
+
+  # Begin Chatting
+  Chat(
+      agent,
+      intro_text="\nWelcome to Griptape Chat!\n",
+      prompt_prefix="\nYou: ",
+      processing_text="\nThinking...",
+      response_prefix="\nAgent: ",
+      output_fn=formatted_response,  # Uses the formatted_response function
+  ).start()
 ```
 
 ## Set Up the Workflow
 
 I lost the orchestra analogy here, but imagine setting up dominoes; each task in a Workflow is a domino. Before I show you how to line them up, you should know that Workflows must always have a start and end task – which is what we’re going to do here; create those around the Workflow.
 
-Insert this code after creating the image_query_client:
+Insert this code inside the workflow section of your conditional statement.
 
-```py title="app.py"  hl_lines="3-17"
+```py title="app.py"  hl_lines="5-18"
 # ...
 
-# Create a Workflow
-workflow = Workflow()
+if True:
+  # Create a Workflow
+  workflow = Workflow()
 
-# Create the Start and End tasks.
-startTask = TextSummaryTask("We are going to start a new workflow.", id="START")
-endTask = TextSummaryTask(
-    "We have completed the workflow. Summarize what we did {{ parent_outputs }}",
-    id="END",
-)
+  # Create the Start and End tasks.
+  startTask = TextSummaryTask("We are going to start a new workflow.", id="START")
+  endTask = TextSummaryTask(
+      "We have completed the workflow. Summarize what we did {{ parent_outputs }}",
+      id="END",
+  )
 
-# Add the tasks to the workflow
-workflow.add_tasks(startTask, endTask)
+  # Add the tasks to the workflow
+  workflow.add_tasks(startTask, endTask)
 
-# Run the workflow
-workflow.run()
-
-# ...
+  # Run the workflow
+  workflow.run()
+else:
+  # ...
 ```
 
 Give it a try, and you'll see the START and END tasks running.
@@ -138,30 +173,32 @@ Now, let’s get the data ready for the show. Yes, I’m back to the orchestra e
 
 Add the following code after the creation of the start/end tasks, and _before_ you run the workflow:
 
-```py title="app.py" linenums="1" hl_lines="6-18"
+```py title="app.py" linenums="1" hl_lines="8-20"
 # ...
 
-# Add the tasks to the workflow
-workflow.add_tasks(startTask, endTask)
+if True:
+  # ...
+  # Add the tasks to the workflow
+  workflow.add_tasks(startTask, endTask)
 
-# For each image in the directory
-image_dir = "./images"
-for image in os.listdir(image_dir):
-    image_path = os.path.join(image_dir, image)
-    filename = os.path.splitext(image)[0]
+  # For each image in the directory
+  image_dir = "./images"
+  for image in os.listdir(image_dir):
+      image_path = os.path.join(image_dir, image)
+      filename = os.path.splitext(image)[0]
 
-    # Create a temporary summary task
-    image_summary_task = TextSummaryTask(
-        f"What image is this: {image_path}", id=f"summary_{image}"
-    )
+      # Create a temporary summary task
+      image_summary_task = TextSummaryTask(
+          f"What image is this: {image_path}", id=f"summary_{image}"
+      )
 
-    # Insert it to the workflow
-    workflow.insert_tasks(startTask, [image_summary_task], endTask)
+      # Insert it to the workflow
+      workflow.insert_tasks(startTask, [image_summary_task], endTask)
 
-# Run the workflow
-workflow.run()
-
-# ...
+  # Run the workflow
+  workflow.run()
+else:
+  # ...
 ```
 
 Notice that we've added a fake task - the image_summary_task that's just another `TextSummaryTask`. This is just to demonstrate that the task is inserted and working as expected.
@@ -179,27 +216,31 @@ Now we'll swap out this fake task, for a real one.
 
 For each VIP (Very Important Picture), create a task that details their best angles. This task uses the `ImageQueryClient` to generate an SEO-friendly description, keywords, alt-description, caption, and HTML element for each image.
 
-```py title="app.py" hl_lines="9-15"
+```py title="app.py" hl_lines="11-17"
 # ...
 
-# For each image in the directory
-image_dir = "./images"
-for image in os.listdir(image_dir):
-    image_path = os.path.join(image_dir, image)
-    filename = os.path.splitext(image)[0]
+if True:
+  # ...
+  # For each image in the directory
+  image_dir = "./images"
+  for image in os.listdir(image_dir):
+      image_path = os.path.join(image_dir, image)
+      filename = os.path.splitext(image)[0]
 
-    # Create an Image Summary Task
-    image_summary_task = ToolTask(
-        "Describe this image in detail: {{image_path}}",
-        context={"image_path": image_path},
-        tool=image_query_client,
-        id=f"{image}",
-    )
+      # Create an Image Summary Task
+      image_summary_task = ToolTask(
+          "Describe this image in detail: {{image_path}}",
+          context={"image_path": image_path},
+          tool=image_query_client,
+          id=f"{image}",
+      )
 
-    # Insert it to the workflow
-    workflow.insert_tasks(startTask, [image_summary_task], endTask)
+      # Insert it to the workflow
+      workflow.insert_tasks(startTask, [image_summary_task], endTask)
 
-# ...
+  # ...
+else:
+  # ...
 ```
 
 If you execute the script now, you'll see that it provides descriptions for each of the images.
@@ -218,37 +259,39 @@ So, this task takes the output from the ToolTask and uses the FileManager to sav
 
 Create the Image SEO Task right after the image summary task, and insert it into the workflow.
 
-```py title="app.py" hl_lines="12-21 25"
+```py title="app.py" hl_lines="14-23 27"
 # ...
 
-for image in os.listdir(image_dir):
+if True:
+  # ...
+  for image in os.listdir(image_dir):
 
-    # ...
-
-    # Create an Image Summary Task
-    image_summary_task = ToolTask(
       # ...
-    )
 
-    # Create an Image SEO Task
-    image_seo_task = ToolkitTask(
-        "Based on this image description, create the following:\n"
-        + "SEO description, Caption, Alt-text, 5 keywords, an HTML snippet to "
-        + "display the image. Save this to image_descriptions/{{ filename }}.yml\n"
-        + "in YAML format.\n\n{{ parent_outputs }}",
-        tools=[FileManager(off_prompt=False)],
-        context={"image": image},
-        id=f"seo_{image}",
-    )
+      # Create an Image Summary Task
+      image_summary_task = ToolTask(
+        # ...
+      )
 
-    # Insert it to the workflow
-    workflow.insert_tasks(startTask, [image_summary_task], endTask)
-    workflow.insert_tasks(image_summary_task, [image_seo_task], endTask)
+      # Create an Image SEO Task
+      image_seo_task = ToolkitTask(
+          "Based on this image description, create the following:\n"
+          + "SEO description, Caption, Alt-text, 5 keywords, an HTML snippet to "
+          + "display the image. Save this to image_descriptions/{{ filename }}.yml\n"
+          + "in YAML format.\n\n{{ parent_outputs }}",
+          tools=[FileManager(off_prompt=False)],
+          context={"image": image},
+          id=f"seo_{image}",
+      )
 
-# Run the workflow
-workflow.run()
+      # Insert it to the workflow
+      workflow.insert_tasks(startTask, [image_summary_task], endTask)
+      workflow.insert_tasks(image_summary_task, [image_seo_task], endTask)
 
-# ...
+  # Run the workflow
+  workflow.run()
+else: 
+  # ...
 
 ```
 
@@ -285,13 +328,9 @@ toy_car.png:
 ```
 
 
-## Remove Agent Code
-
-Now that your workflow is ... flowing ... as smooth as can be, let's remove all the agent-specific code. You don't need it there anymore, you've got your workflow doing its job.
-
 ## Code Review
 
-```py title="app.py" linenums="1" hl_lines="2 5-6 28-29 31-36 38-39 41-45 47-53 55-64 66-68 70-71"
+```py title="app.py" linenums="1" hl_lines="2 5-6 28-73"
 from dotenv import load_dotenv
 import os
 
@@ -319,51 +358,73 @@ engine = ImageQueryEngine(
 # Configure the ImageQueryClient
 image_query_client = ImageQueryClient(image_query_engine=engine, off_prompt=False)
 
-# Create a Workflow
-workflow = Workflow()
+if True:
+    # Create a Workflow
+    workflow = Workflow()
 
-# Create the Start and End tasks.
-startTask = TextSummaryTask("We are going to start a new workflow.", id="START")
-endTask = TextSummaryTask(
-    "We have completed the workflow. Summarize what we did {{ parent_outputs }}",
-    id="END",
-)
-
-# Add the tasks to the workflow
-workflow.add_tasks(startTask, endTask)
-
-# For each image in the directory
-image_dir = "./images"
-for image in os.listdir(image_dir):
-    image_path = os.path.join(image_dir, image)
-    filename = os.path.splitext(image)[0]
-
-    # Create an Image Summary Task
-    image_summary_task = ToolTask(
-        "Describe this image in detail: {{ image_path }}",
-        context={"image_path": image_path},
-        tool=image_query_client,
-        id=f"{image}",
+    # Create the Start and End tasks.
+    startTask = TextSummaryTask("We are going to start a new workflow.", id="START")
+    endTask = TextSummaryTask(
+        "We have completed the workflow. Summarize what we did {{ parent_outputs }}",
+        id="END",
     )
 
-    # Create an Image SEO Task
-    image_seo_task = ToolkitTask(
-        "Based on this image description, create the following:\n"
-        + "SEO description, Caption, Alt-text, 5 keywords, an HTML snippet to "
-        + "display the image. Save this to image_descriptions/{{ filename }}.yml\n"
-        + "in YAML format.\n\n{{ parent_outputs }}",
-        tools=[FileManager(off_prompt=False)],
-        context={"image": image},
-        id=f"seo_{image}",
+    # Add the tasks to the workflow
+    workflow.add_tasks(startTask, endTask)
+
+    # For each image in the directory
+    image_dir = "./images"
+    for image in os.listdir(image_dir):
+        image_path = os.path.join(image_dir, image)
+        filename = os.path.splitext(image)[0]
+
+        # Create an Image Summary Task
+        image_summary_task = ToolTask(
+            "Describe this image in detail: {{ image_path }}",
+            context={"image_path": image_path},
+            tool=image_query_client,
+            id=f"{image}",
+        )
+
+        # Create an Image SEO Task
+        image_seo_task = ToolkitTask(
+            "Based on this image description, create the following:\n"
+            + "SEO description, Caption, Alt-text, 5 keywords, an HTML snippet to "
+            + "display the image. Save this to image_descriptions/{{ filename }}.yml\n"
+            + "in YAML format.\n\n{{ parent_outputs }}",
+            tools=[FileManager(off_prompt=False)],
+            context={"image": image},
+            id=f"seo_{image}",
+        )
+
+        # Insert it to the workflow
+        workflow.insert_tasks(startTask, [image_summary_task], endTask)
+        workflow.insert_tasks(image_summary_task, [image_seo_task], endTask)
+
+    # Run the workflow
+    workflow.run()
+else:
+    # Create the Agent
+    agent = Agent(
+        logger_level=0, tools=[image_query_client, FileManager(off_prompt=False)]
     )
 
-    # Insert it to the workflow
-    workflow.insert_tasks(startTask, [image_summary_task], endTask)
-    workflow.insert_tasks(image_summary_task, [image_seo_task], endTask)
+    # Configure the agent to stream it's responses.
+    agent.config.global_drivers.prompt_driver.stream = True
 
-# Run the workflow
-workflow.run()
+    # Modify the Agent's response to have some color.
+    def formatted_response(response: str) -> str:
+        print(f"[dark_cyan]{response}", end="", flush=True)
 
+    # Begin Chatting
+    Chat(
+        agent,
+        intro_text="\nWelcome to Griptape Chat!\n",
+        prompt_prefix="\nYou: ",
+        processing_text="\nThinking...",
+        response_prefix="\nAgent: ",
+        output_fn=formatted_response,  # Uses the formatted_response function
+    ).start()
 ```
 
 

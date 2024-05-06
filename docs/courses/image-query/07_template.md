@@ -140,12 +140,12 @@ from dotenv import load_dotenv
 import os
 
 # Griptape Items
-from griptape.structures import Workflow
+from griptape.structures import Workflow, Agent
 from griptape.tasks import TextSummaryTask, ToolTask, ToolkitTask
 from griptape.tools import ImageQueryClient, FileManager
 from griptape.engines import ImageQueryEngine
 from griptape.drivers import OpenAiVisionImageQueryDriver
-
+from griptape.utils import Chat
 
 from rich import print as print  # Modifies print to use the Rich library
 
@@ -162,57 +162,80 @@ engine = ImageQueryEngine(
 # Configure the ImageQueryClient
 image_query_client = ImageQueryClient(image_query_engine=engine, off_prompt=False)
 
-# Create a Workflow
-workflow = Workflow()
+if True:
+    # Create a Workflow
+    workflow = Workflow()
 
-# Create the Start and End tasks.
-startTask = TextSummaryTask("We are going to start a new workflow.", id="START")
-endTask = TextSummaryTask(
-    "We have completed the workflow. Summarize what we did {{ parent_outputs }}",
-    id="END",
-)
-
-# Add the tasks to the workflow
-workflow.add_tasks(startTask, endTask)
-
-# For each image in the directory
-image_dir = "./images"
-for image in os.listdir(image_dir):
-    image_path = os.path.join(image_dir, image)
-    filename = os.path.splitext(image)[0]
-
-    # Create an Image Summary Task
-    image_summary_task = ToolTask(
-        "Describe this image in detail: {{ image_path }}",
-        context={"image_path": image_path},
-        tool=image_query_client,
-        id=f"{image}",
+    # Create the Start and End tasks.
+    startTask = TextSummaryTask("We are going to start a new workflow.", id="START")
+    endTask = TextSummaryTask(
+        "We have completed the workflow. Summarize what we did {{ parent_outputs }}",
+        id="END",
     )
 
-    # Create an Image SEO Task
-    image_seo_task = ToolkitTask(
-        "Based on this image description, create the following:\n"
-        + "A nice title based on the image name, \n"
-        + "The path to the image: {{ image_path }}, \n"
-        + "Brief SEO description, "
-        + "alt-text, 5 keywords, caption, "
-        + "and an HTML snippet to display the image.\n"
-        + "To format the data, use the example in the "
-        + "template file: 'template.yml',\n"
-        + "and save the result to image_descriptions/{{ filename }}.yml\n"
-        + "in YAML format.\n\n{{ parent_outputs }}",
-        tools=[FileManager(off_prompt=False)],
-        context={"image": image, "image_path": image_path},
-        id=f"seo_{image}",
+    # Add the tasks to the workflow
+    workflow.add_tasks(startTask, endTask)
+
+    # For each image in the directory
+    image_dir = "./images"
+    for image in os.listdir(image_dir):
+        image_path = os.path.join(image_dir, image)
+        filename = os.path.splitext(image)[0]
+
+        # Create an Image Summary Task
+        image_summary_task = ToolTask(
+            "Describe this image in detail: {{ image_path }}",
+            context={"image_path": image_path},
+            tool=image_query_client,
+            id=f"{image}",
+        )
+
+        # Create an Image SEO Task
+        image_seo_task = ToolkitTask(
+            "Based on this image description, create the following:\n"
+            + "A nice title based on the image name, \n"
+            + "The path to the image: {{ image_path }}, \n"
+            + "Brief SEO description, "
+            + "alt-text, 3 keywords, caption, "
+            + "and an HTML snippet to display the image.\n"
+            + "To format the data, use the example in the "
+            + "template file: 'template.yml',\n"
+            + "and save the result to image_descriptions/{{ filename }}.yml\n"
+            + "in YAML format.\n\n{{ parent_outputs }}",
+            tools=[FileManager(off_prompt=False)],
+            context={"image": image, "image_path": image_path},
+            id=f"seo_{image}",
+        )
+
+        # Insert it to the workflow
+        workflow.insert_tasks(startTask, [image_summary_task], endTask)
+        workflow.insert_tasks(image_summary_task, [image_seo_task], endTask)
+
+    # Run the workflow
+    workflow.run()
+
+else:
+    # Create the Agent
+    agent = Agent(
+        logger_level=0, tools=[image_query_client, FileManager(off_prompt=False)]
     )
 
-    # Insert it to the workflow
-    workflow.insert_tasks(startTask, [image_summary_task], endTask)
-    workflow.insert_tasks(image_summary_task, [image_seo_task], endTask)
+    # Configure the agent to stream it's responses.
+    agent.config.global_drivers.prompt_driver.stream = True
 
-# Run the workflow
-workflow.run()
+    # Modify the Agent's response to have some color.
+    def formatted_response(response: str) -> str:
+        print(f"[dark_cyan]{response}", end="", flush=True)
 
+    # Begin Chatting
+    Chat(
+        agent,
+        intro_text="\nWelcome to Griptape Chat!\n",
+        prompt_prefix="\nYou: ",
+        processing_text="\nThinking...",
+        response_prefix="\nAgent: ",
+        output_fn=formatted_response,  # Uses the formatted_response function
+    ).start()
 ```
 
 ---
