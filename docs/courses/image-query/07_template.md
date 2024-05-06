@@ -127,9 +127,9 @@ If you'd like to use the Bootstrap layout, here's the HTML - just plop the card 
 
 ## Clean Up
 
-* Remove Unnecessary Code: Once you confirm the workflow functions as expected, remove any redundant code related to old agent configurations or unused imports.
+* Remove Unnecessary Code: Once you confirm the workflow functions as expected, remove any redundant code, old imports, print statements, or bad jokes. 
 
-* Finalize Setup: Ensure all changes are saved, and the workflow is properly documented to maintain clarity. This structured approach ensures that every image processed by the Griptape workflow adheres to a standardized format, enhancing both the consistency and the usability of the generated data for SEO and web presentation purposes.
+* Finalize Setup: Ensure all changes are saved, and the workflow is properly documented to maintain clarity. This structured approach ensures that every image processed by the Griptape workflow adheres to a standardized format, enhancing both the consistency and usability of the generated data for SEO and web presentation purposes.
 
 * Now most importantly, feel free to do a victory dance – because you just did that. You’re done!  
 
