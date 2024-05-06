@@ -33,4 +33,12 @@
     
     [:octicons-arrow-right-24: Take the course](courses/shotgrid-client/index.md)
 
+-   # ImageQuery SEO Bonanza!
+
+    ![img](courses/image-query/assets/image-query-title.webp)
+    
+    Buried under a metric ton of images you need to label and classify to make your SEO-hungry marketing pals happy? This course demonstrates how to automate image classification using the Griptape ImageQuery functionality.
+    
+    [:octicons-arrow-right-24: Take the course](courses/image-query/index.md)
+
 </div>
