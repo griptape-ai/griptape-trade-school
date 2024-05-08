@@ -1,6 +1,6 @@
 # Image Pipeline
 
-In this section we’ll take the image pipeline from this course: [Image Generation - Pipelines](../create-image-pipeline/), turn it into a function, and save it as a separate file we can bring into our existing `app.py`. This is a good practice to keep these useful structures in separate files, so your code can be more modular. Also, if you get paid by the number of files you create, it’ll really impress your employer.
+In this part of the course we’ll take the image pipeline from this course: [Image Generation - Pipelines](../create-image-pipeline/), turn it into a function, and save it as a separate file we can bring into our existing `app.py`. It is good practice to keep these useful structures in separate files, this way your code can be more modular. Also, if you get paid by the number of files you create, it’ll really impress your employer.
 
 ## Create `image_pipeline.py`
 
@@ -12,7 +12,7 @@ In this section we’ll take the image pipeline from this course: [Image Generat
 
 ## Wrap the code in a function
 
-You can keep all the same code you have, but wrap it into a function. After your import statements are finished, create the image_pipeline function like this:
+You can keep your code the same, but wrap it into a function. After your import statements are finished, create the image_pipeline function like this:
 
 ```py title="image_pipeline.py"
 # ...
@@ -28,7 +28,7 @@ This says you’re creating the function, and returning a Pipeline structure.
 
 ## Remove the Run statement
 
-In your existing code, you’re still running the pipeline. We no longer need to do that - the Agent will run it when it gets called. 
+In your existing code you’re still running the pipeline, but we no longer need to do that - the Agent will run it when it gets called. 
 
 Delete the following lines from the bottom :
 
@@ -39,7 +39,7 @@ Delete the following lines from the bottom :
 
 ## Add a return
 
-Finally, we need to return the pipeline structure. So in the place where you had the Run the Pipeline code, replace it with a return statement.
+Finally, we need to return the pipeline structure. In the place where you had the Run the Pipeline code, replace it with a return statement.
 
 ```py title="image_pipeline.py"
 	# ...
