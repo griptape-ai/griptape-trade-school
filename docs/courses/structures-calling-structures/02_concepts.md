@@ -18,6 +18,7 @@ A Run Driver is responsible for executing these Structures. It determines where 
 The `LocalStructureRunDriver` is used for executing Structures within the same local environment as the one executing code. This is particularly useful during development and testing phases where you might need quick feedback without the complexities of networked environments.
 
 **Example Use Case:**
+
 * A local testing pipeline that processes data and performs some functions without needing external resources.
 * An image generation pipeline that creates images in a certain style, and does something useful with them.
 * An agent with a specific ruleset and tools it has access to.
@@ -27,6 +28,7 @@ The `LocalStructureRunDriver` is used for executing Structures within the same l
 The `GriptapeCloudStructureRunDriver` enables Structures to run in the Griptape Cloud. This is ideal for production environments or when you need to scale operations beyond a single local system.
 
 **Example Use Case:**
+
 * A deployment scenario where data processing needs to be handled in a scalable, managed cloud environment, benefiting from the robustness and distributed nature of cloud resources.
 
 ### How It Works:
@@ -199,7 +201,6 @@ This is merely a quick example - check out the log here:
                                  "tag": "grammar_check_1"                                                                   
                                }                                                                                            
                              ]                                                                                              
-[
 ```
 
 As you can see, the Agent decides to use the `Grammar Agent`, passing the argument "Well, today it's a grate day, hahHAH!". It gets the response back from the structure, and explains to the user the correct feedback:
