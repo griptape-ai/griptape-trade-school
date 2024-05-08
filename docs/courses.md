@@ -47,6 +47,6 @@
     
     Griptape Structures aren’t just standalone players—they’re team collaborators. Learn how to make Agents and Pipelines pass the baton in a relay of tasks, setting them up to trigger their specialized colleagues. It’s less like herding cats, and more like herding intelligent capybaras.
     
-    [:octicons-arrow-right-24: Take the course](courses/image-query/index.md)
+    [:octicons-arrow-right-24: Take the course](courses/structures-calling-structures/index.md)
 
 </div>
