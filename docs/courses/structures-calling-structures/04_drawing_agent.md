@@ -64,7 +64,7 @@ image_pipeline_driver = LocalStructureRunDriver(
 
 ## Create the Client
 
-Now we’ll create the Client or Tool (Griptape uses both - but they mean the same thing). This will take the driver, and we’ll pass it to the Agent.
+Time to create the Client. This will take the driver, and we’ll pass it to the Agent.
 
 Two very important properties to call out are the `name` and the `description`. You _must_ define these, as they will help the Agent figure out when it’s appropriate to use this tool. If you named it “clam shucker” and gave it a description of “loves to eat clams on a Wednesday”, the agent would have no idea that this pipeline could create images.
 
@@ -105,7 +105,7 @@ And the resulting image:
 
 ![beach chair](assets/beach_chair.png)
 
-You can continue to ask the agent to create several images - and each time it will repeat the same process, creating an image in the same style.
+If you've set it up correctly, you should now see an image in the style of a 1970s polaroid! You can ask it to create a bunch of images, and it will do so, keeping the same style in that pipeline.
 
 ![binoculars](assets/binoculars.png){align=left, width=200}
 ![computer](assets/computer.png){align=left, width=200}
@@ -113,6 +113,7 @@ You can continue to ask the agent to create several images - and each time it wi
 ![sofa](assets/sofa.png){align=left, width=200}
 ![coffee](assets/coffee.png){align=left, width=200}
 ![airplane](assets/airplane.png){align=left, width=200}
+
 
 ## Code Review
 

@@ -21,9 +21,9 @@ load_dotenv() # Load your environment
 
 ### Create a Chatbot
 
-In a typical setup for a TradeSchool course we’d leave the setup at this step - however in this case we’ll take it a step further and create a Chatbot. We’re going to use code from another course and just copy that over. 
+In a typical setup for a TradeSchool course we’d leave the setup at this step - however, in this case we’ll take it a step further and create a Chatbot. To simplify this, we're going to use code from another course and just copy that over. 
 
-The [Image Query SEO Bonanza](../image-query/01_setup.md) course has a great agent we can use. Simply copy the code from the Chatbot section in the [Code Review](../image-query/02_chatbot.md#code-review) area and save that as your app.py.
+The [Image Query SEO Bonanza](../image-query/01_setup.md) course has a great agent we can utilize. Simply copy the code from the Chatbot section in the [Code Review](../image-query/02_chatbot.md#code-review) area and save that as your app.py.
 
 ```py title="app.py" linenums="1"
 from dotenv import load_dotenv
@@ -59,4 +59,4 @@ Chat(
 
 ---
 ## Next Steps
-And there you go, your environment is all set up! In the [next section](02_concepts.md), learn more about how StructureRunDrivers work.
+And there you go, your environment is all set up and you've got a chatbot all ready. In the [next section](02_concepts.md), learn more about how StructureRunDrivers work.
