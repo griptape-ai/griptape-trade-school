@@ -14,7 +14,7 @@ In this section we’ll take the image pipeline from this course: [Image Generat
 
 You can keep all the same code you have, but wrap it into a function. After your import statements are finished, create the image_pipeline function like this:
 
-```py title="image_pipeline.py`
+```py title="image_pipeline.py"
 # ...
 
 def image_pipeline() -> Pipeline:
