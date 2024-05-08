@@ -1,4 +1,4 @@
-# An ImageQuery SEO Bonanza!
+# Structures Calling Structures
 
 ## Course Description
 The goal of this course is to teach people how to use Griptape’s ability to give Structures (Agents, Pipelines, and Workflows) to other Structures so they can be run as tools or tasks via a StructureRunDriver. This means you can build a really cool pipeline to do something like generate an image based off a prompt  and upload it to s3, provide that pipeline to the StructureRunDriver, and then give that to an Agent. Then, anytime you tell the agent to generate an image, it’ll always execute the proper series of tasks.
