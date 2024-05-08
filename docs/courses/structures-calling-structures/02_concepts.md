@@ -1,5 +1,7 @@
 # Understanding Structure Run Drivers
 
+![Capybara understanding](assets/capybara_understanding.webp)
+
 Before moving too quickly into the course, let’s quickly go over how Structure Run Drivers work in Griptape.
 
 ## Key Concepts:

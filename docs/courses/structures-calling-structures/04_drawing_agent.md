@@ -1,5 +1,7 @@
 # Drawing Agent
 
+![alt text](assets/capybara_cam.webp)
+
 Now it’s time to take our agent and give it the ability to create beautiful images worthy of sharing with friends and family.
 
 ## Import Driver and Client
@@ -99,20 +101,20 @@ agent = Agent(logger_level=0, tools=[image_pipeline_client])
 
 Let’s go ahead and run the script and see what kind of magic happens! Ask it to create an image based on the topic of your choosing.
 
-![prompt agent for beach chair](assets/prompt_for_beach_chair.png)
+![prompt agent for beach chair](assets/prompt_for_beach_chair.webp)
 
 And the resulting image:
 
-![beach chair](assets/beach_chair.png)
+![beach chair](assets/beach_chair.webp)
 
 If you've set it up correctly, you should now see an image in the style of a 1970s polaroid! You can ask it to create a bunch of images, and it will do so, keeping the same style in that pipeline.
 
-![binoculars](assets/binoculars.png){align=left, width=200}
-![computer](assets/computer.png){align=left, width=200}
-![kiwi](assets/kiwi.png){align=left, width=200}
-![sofa](assets/sofa.png){align=left, width=200}
-![coffee](assets/coffee.png){align=left, width=200}
-![airplane](assets/airplane.png){align=left, width=200}
+![binoculars](assets/binoculars.webp){align=left, width=200}
+![computer](assets/computer.webp){align=left, width=200}
+![kiwi](assets/kiwi.webp){align=left, width=200}
+![sofa](assets/sofa.webp){align=left, width=200}
+![coffee](assets/coffee.webp){align=left, width=200}
+![airplane](assets/airplane.webp){align=left, width=200}
 
 
 ## Code Review
