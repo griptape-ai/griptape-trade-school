@@ -160,6 +160,12 @@ nav:
           - Saving to Disk: courses/image-query/05_save_to_disk.md
           - Multiple Images: courses/image-query/06_querying_multiple_images.md
           - Template: courses/image-query/07_template.md
+      - Structures calling Structures:
+          - Introduction: courses/structures-calling-structures/index.md
+          - Setup: courses/structures-calling-structures/01_setup.md
+          - Concepts: courses/structures-calling-structures/02_concepts.md
+          - Image Pipeline: courses/structures-calling-structures/03_image_pipeline.md
+          - Drawing Agent: courses/structures-calling-structures/04_drawing_agent.md
   - Help:
       - FAQ: faq.md
       - Contributing: contributing.md
