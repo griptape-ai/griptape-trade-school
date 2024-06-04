@@ -133,7 +133,7 @@ json_ruleset = Ruleset(
     rules=[
         Rule("Respond in plain text only with JSON objects that have the following keys: response, continue_chatting."),
         Rule("The 'response' value should be a string that is your response to the user."),
-        Rule("If it sounds like the person is done chatting, set 'continue_chatting' to False, otherwise it is True"),
+        Rule("If it sounds like the person is done chatting, set 'continue_chatting' to false, otherwise it is true"),
     ]
 )
 
