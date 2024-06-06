@@ -23,9 +23,10 @@ This course is specifically designed for a diverse group of learners.
 
 ## Prerequisites
 Before beginning this course, you will need:
-
+!!! disclaimer warning 
+     Notice: Autodesk ShotGrid currently supports Python versions up to 3.10. Using newer, unsupported versions may cause compatibility issues. This platform's materials are based on Python3.9 or earlier. Refer to [Autodesk's documentation](https://developers.shotgridsoftware.com/python-api/index.html){target="_blank"} for the latest supported [Python versions](https://www.python.org/downloads/){target="_blank}.
 - An OpenAI API Key (available from [OpenAI's website](https://beta.openai.com/account/api-keys){target="_blank"})
-- Python3.9+ installed on your machine
+- Python3.9 installed on your machine
 - An IDE (such as Visual Studio Code or PyCharm) to write and manage your code
 
 If you don't have those items available, it's highly recommended you go through the [Griptape Setup - Visual Studio Code](../../setup/index.md) course to set up your environment.
