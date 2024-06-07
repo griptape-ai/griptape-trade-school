@@ -27,7 +27,7 @@ Add the following to your `import` section:
 
 from griptape.tools import ImageQueryClient
 from griptape.engines import ImageQueryEngine
-from griptape.drivers import OpenAiVisionImageQueryDriver
+from griptape.drivers import OpenAiImageQueryDriver
 
 # ...
 ```
