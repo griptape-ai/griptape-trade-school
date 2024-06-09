@@ -42,7 +42,7 @@ load_dotenv()  # Load your environment
 agent = Agent(logger_level=0)
 
 # Configure the agent to stream it's responses.
-agent.config.global_drivers.prompt_driver.stream = True
+agent.config.prompt_driver.stream = True
 
 # Modify the Agent's response to have some color.
 def formatted_response(response: str) -> str:

@@ -151,7 +151,7 @@ image_pipeline_client = StructureRunClient(
 agent = Agent(logger_level=0, tools=[image_pipeline_client])
 
 # Configure the agent to stream it's responses.
-agent.config.global_drivers.prompt_driver.stream = True
+agent.config.prompt_driver.stream = True
 
 
 # Modify the Agent's response to have some color.
