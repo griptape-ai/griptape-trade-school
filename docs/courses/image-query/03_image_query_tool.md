@@ -38,7 +38,7 @@ This component acts as the intermediary that will manage your interactions with 
 ### ImageQueryEngine
 This is where the magic happens. The engine processes the image data, analyzes it, and interprets what's in the image based on the capabilities of the underlying model.
 
-### OpenAiVisionImageQueryDriver
+### OpenAiImageQueryDriver
 This driver leverages OpenAI's advanced vision capabilities to understand and analyze images. It's a powerful tool that enables your agent to not just see images but truly understand their content, like I said before.
 
 An example of another ImageQueryDriver is Anthropic. Check out other available drivers in the [Griptape docs](https://docs.griptape.ai/stable/griptape-framework/drivers/image-query-drivers/)
@@ -48,7 +48,7 @@ By importing these components, you lay the foundation for a robust image process
 ## Giving the Agent Abilities
 
 ### Create the Image Query Driver
-The next task is to instantiate the Image Query Driver. This driver is crucial as it utilizes a specific model to analyze images. In our example, we’ll use the `gpt-4-vision-preview` model from OpenAI, which is designed to handle a wide range of image processing tasks with high efficiency and accuracy. 
+The next task is to instantiate the Image Query Driver. This driver is crucial as it utilizes a specific model to analyze images. In our example, we’ll use the `gpt-4o` model from OpenAI, which is designed to handle a wide range of image processing tasks with high efficiency and accuracy. 
 
 Add the following line after running `load_dotenv()` in your script:
 
@@ -57,8 +57,8 @@ Add the following line after running `load_dotenv()` in your script:
 load_dotenv()
 
 # Create an Image Query Driver
-driver = OpenAiVisionImageQueryDriver(
-    model="gpt-4-vision-preview"
+driver = OpenAiImageQueryDriver(
+    model="gpt-4o"
 )
 
 # ...
@@ -145,14 +145,14 @@ from griptape.structures import Agent
 from griptape.utils import Chat
 from griptape.tools import ImageQueryClient
 from griptape.engines import ImageQueryEngine
-from griptape.drivers import OpenAiVisionImageQueryDriver
+from griptape.drivers import OpenAiImageQueryDriver
 
 from rich import print as print  # Modifies print to use the Rich library
 
 load_dotenv()  # Load your environment
 
 # Create an Image Query Driver
-driver = OpenAiVisionImageQueryDriver(model="gpt-4-vision-preview")
+driver = OpenAiImageQueryDriver(model="gpt-4o")
 
 # Create an Image Query Engine
 engine = ImageQueryEngine(
@@ -166,7 +166,7 @@ image_query_client = ImageQueryClient(image_query_engine=engine, off_prompt=Fals
 agent = Agent(logger_level=0, tools=[image_query_client])
 
 # Configure the agent to stream it's responses.
-agent.config.global_drivers.prompt_driver.stream = True
+agent.config.prompt_driver.stream = True
 
 
 # Modify the Agent's response to have some color.
