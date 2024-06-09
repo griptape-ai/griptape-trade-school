@@ -115,7 +115,7 @@ else:
   agent = Agent(logger_level=0, tools=[image_query_client, FileManager(off_prompt=False)])
 
   # Configure the agent to stream it's responses.
-  agent.config.global_drivers.prompt_driver.stream = True
+  agent.config.prompt_driver.stream = True
 
 
   # Modify the Agent's response to have some color.
@@ -340,7 +340,7 @@ from griptape.tasks import TextSummaryTask, ToolTask, ToolkitTask
 from griptape.utils import Chat
 from griptape.tools import ImageQueryClient, FileManager
 from griptape.engines import ImageQueryEngine
-from griptape.drivers import OpenAiVisionImageQueryDriver
+from griptape.drivers import OpenAiImageQueryDriver
 
 
 from rich import print as print  # Modifies print to use the Rich library
@@ -348,7 +348,7 @@ from rich import print as print  # Modifies print to use the Rich library
 load_dotenv()  # Load your environment
 
 # Create an Image Query Driver
-driver = OpenAiVisionImageQueryDriver(model="gpt-4-vision-preview")
+driver = OpenAiImageQueryDriver(model="gpt-4o")
 
 # Create an Image Query Engine
 engine = ImageQueryEngine(
@@ -410,7 +410,7 @@ else:
     )
 
     # Configure the agent to stream it's responses.
-    agent.config.global_drivers.prompt_driver.stream = True
+    agent.config.prompt_driver.stream = True
 
     # Modify the Agent's response to have some color.
     def formatted_response(response: str) -> str:
