@@ -2,7 +2,7 @@
 
 ![Capybara Packaged ](assets/capybara_packaged.webp)
 
-In this part of the course we’ll take the image pipeline from this course: [Image Generation - Pipelines](../create-image-pipeline/), turn it into a function, and save it as a separate file we can bring into our existing `app.py`. It is good practice to keep these useful structures in separate files, this way your code can be more modular. Also, if you get paid by the number of files you create, it’ll really impress your employer.
+In this part of the course we’ll take the image pipeline from this course: [Image Generation - Pipelines](../create-image-pipeline/index.md), turn it into a function, and save it as a separate file we can bring into our existing `app.py`. It is good practice to keep these useful structures in separate files, this way your code can be more modular. Also, if you get paid by the number of files you create, it’ll really impress your employer.
 
 ## Create `image_pipeline.py`
 

@@ -25,8 +25,8 @@ This means I can ask for "ways to filter asset creation" "asset creation, filter
 
 The process for providing the docs to the LLM looks like this:
 
-1. Create a Vector Database where we can store the documents. In this example, we'll use a simple [Local Vector Store Driver](https://docs.griptape.ai/stable/griptape-framework/data/vector-store-drivers/#local-vector-store-driver){target="_blank"}.
-2. Create a [Vector Query Engine](https://docs.griptape.ai/stable/griptape-framework/data/query-engines/#vectorqueryengine){target="_blank"} - an engine that's really good at searching Vector Databases
+1. Create a Vector Database where we can store the documents. In this example, we'll use a simple [Local Vector Store Driver](https://docs.griptape.ai/stable/griptape-framework/drivers/vector-store-drivers/#local-vector-store-driver){target="_blank"}.
+2. Create a [Vector Query Engine](https://docs.griptape.ai/stable/griptape-framework/engines/query-engines/#vectorqueryengine){target="_blank"} - an engine that's really good at searching Vector Databases
 3. Create a list of URLs to vectorize.
 For each URL, load the data using a [WebLoader](https://docs.griptape.ai/stable/griptape-framework/data/loaders/#web-loader){target="_blank"}.
 5. For each bit of website data, upsert (update/insert) it into the Vector Store.
@@ -59,12 +59,12 @@ graph TB
 
 ### Vector Database
 
-Let's start by creating the Vector Database. We're going to use Griptape's [LocalVectorStoreDriver](https://docs.griptape.ai/stable/griptape-framework/data/vector-store-drivers/#local-vector-store-driver){target="_blank"}. 
+Let's start by creating the Vector Database. We're going to use Griptape's [LocalVectorStoreDriver](https://docs.griptape.ai/stable/griptape-framework/drivers/vector-store-drivers/#local-vector-store-driver){target="_blank"}. 
 
 !!! tip
-    You could also use [Pinecone](https://www.pinecone.io/){target="_blank"}, [Marqo](https://www.marqo.ai/){target="_blank"}, [MongoDB](https://www.mongodb.com/atlas/database){target="_blank"}, [Redis](https://redis.io/), [OpenSearch](https://opensearch.org/){target="_blank"}, or [PGVector](https://github.com/pgvector/pgvector){target="_blank"} - all are available as drivers for Griptape as described [in the documentation](https://docs.griptape.ai/stable/griptape-framework/data/vector-store-drivers/){target="_blank"}.
+    You could also use [Pinecone](https://www.pinecone.io/){target="_blank"}, [Marqo](https://www.marqo.ai/){target="_blank"}, [MongoDB](https://www.mongodb.com/atlas/database){target="_blank"}, [Redis](https://redis.io/), [OpenSearch](https://opensearch.org/){target="_blank"}, or [PGVector](https://github.com/pgvector/pgvector){target="_blank"} - all are available as drivers for Griptape as described [in the documentation](https://docs.griptape.ai/stable/griptape-framework/drivers/vector-store-drivers/){target="_blank"}.
 
-Modify `app.py` to import the required drivers. In the case of the Local Vector Store Driver, we also need an Embedding Driver. We'll use the one from OpenAI, but you could also use one of the [other drivers](https://docs.griptape.ai/stable/griptape-framework/data/embedding-drivers/){target="_blank"} available for Griptape.
+Modify `app.py` to import the required drivers. In the case of the Local Vector Store Driver, we also need an Embedding Driver. We'll use the one from OpenAI, but you could also use one of the [other drivers](https://docs.griptape.ai/stable/griptape-framework/drivers/embedding-drivers/){target="_blank"} available for Griptape.
 
 ```python title="app.py" hl_lines="5"
 # ...
@@ -91,7 +91,7 @@ vector_store_driver = LocalVectorStoreDriver(embedding_driver=OpenAiEmbeddingDri
 
 ### Vector Query Engine
 
-Now that we have a database, we need a way to query it. This will be done using Griptape's [VectorQueryEngine](https://docs.griptape.ai/stable/griptape-framework/data/query-engines/#vectorqueryengine){target="_blank"} which takes a `vector_store_driver`. Luckily we just created one!
+Now that we have a database, we need a way to query it. This will be done using Griptape's [VectorQueryEngine](https://docs.griptape.ai/stable/griptape-framework/engines/query-engines/#vectorqueryengine){target="_blank"} which takes a `vector_store_driver`. Luckily we just created one!
 
 First, import the engine into Griptape by adding it to the imports section of your app.
 
