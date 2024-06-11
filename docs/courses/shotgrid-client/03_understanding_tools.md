@@ -123,7 +123,7 @@ Adding a Tool is a straightforward process. You `import` it, configure it if nec
     ```
 
     !!!tip "What is "off_prompt"?"
-        **Important Note**: Griptape directs outputs from Tool activities into short-term [TaskMemory](https://docs.griptape.ai/stable/griptape-framework/tools/task-memory/){target="_blank"}, keeping them 'off_prompt' and separate from the LLM. This makes it easy to work with big data securely and with low latency. To change this default for more direct interaction with the LLM, set the `off_prompt` parameter to `False`. This allows the LLM to access and respond to Tool outputs directly.
+        **Important Note**: Griptape directs outputs from Tool activities into short-term [TaskMemory](https://docs.griptape.ai/stable/griptape-framework/structures/task-memory/){target="_blank"}, keeping them 'off_prompt' and separate from the LLM. This makes it easy to work with big data securely and with low latency. To change this default for more direct interaction with the LLM, set the `off_prompt` parameter to `False`. This allows the LLM to access and respond to Tool outputs directly.
 
     !!!abstract "DateTime"
         For more information on the DateTime Tool, you can visit the [DateTime Tool Documentation](https://docs.griptape.ai/stable/griptape-tools/official-tools/date-time/){target="_blank"}. 
