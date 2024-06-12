@@ -130,6 +130,7 @@ nav:
           - Using Tools: courses/compare-movies-workflow/05_using_tools.md
           - Workflow Outputs: courses/compare-movies-workflow/06_workflow_outputs.md
           - Workflow Displaying Graph: courses/compare-movies-workflow/07_workflow_display_graph.md
+          - Updates To Workflows: courses/compare-movies-workflow/08_updates_imperative_vs_desclarative.md
       - Image Generation - Pipelines:
           - Introduction: courses/create-image-pipeline/index.md
           - Setup: courses/create-image-pipeline/01_setup.md
