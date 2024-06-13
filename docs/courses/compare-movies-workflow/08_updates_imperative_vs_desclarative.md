@@ -30,24 +30,19 @@ workflow.add_tasks(start_task, end_task)
 # List of movies
 movies = ["The Matrix", "Toy Story"]
 
-# Empty Tasks list
-tasks = []
 # For loop that creates a Task for every movie in the movies list.
 for movie in movies:
 
-#  Creates a Task for every movie
+   # Creates a Task for every movie
    task = PromptTask(
        f"Create a prompt for the movie {movie}",
        context={"movie": movie},
        # Dynamically set id based on movie name.
        id=f"{movie}_task"
    )
-
-   # Append the Tasks to the list
-   tasks.append(task)
-
-   # Insert the Tasks into the Workflow
-workflow.insert_tasks(start_task, [*tasks], end_task)
+   
+ # Insert the Tasks into the Workflow
+   workflow.insert_tasks(start_task, [task], end_task)
 
 workflow.run()
 ```
@@ -55,100 +50,24 @@ While the above code gets you the output desired, there are better ways to creat
 
 
 ## A better way to build Workflows
-Instead of inserting Tasks, we are going to specifically declare Parent relationships.
-```python hl_lines="22-24 29-30" title="app.py" linenums="1"
-# Load env variables
-load_dotenv()
-
-start_task = PromptTask("This is the start", id="START")
-
-end_task = PromptTask("What did we do? {{ parent_outputs }}", id="END")
-
-movies = ["StarWars Episode V: The Empire Strikes Back", "Dune 2"]
-
-# list to place Tasks into
-tasks = []
-
-# For loop that loops through the movies list
-for movie in movies:
-#  Creates the Task for every movie
-   task = PromptTask(
-       f"Create a prompt for the movie {movie}",
-       context={"movie": movie},
-       id=f"TASK_{movie}"
-   )
-
-#  Adding parent relationships
-   task.add_parent(start_task)
-   end_task.add_parent(task)
-
-#  Add the Task to the Tasks array for every movie.
-   tasks.append(task)
-
-# Create the Workflow
-workflow = Workflow(tasks=[start_task, *tasks, end_task])
-
-
-# Run the Workflow
-workflow.run()
-```
-!!!note
-     These two Workflows create the same output, the only thing that differs is what syntax we use to define Parent-Child relationships.
-Notice how we utilized the .add_parent command to add a parent to the Task? This feature, known as the imperative syntax for specifying Parent-Child relationships, is new in Griptape v0.27.0. You may also notice on line 30, that we add the Tasks into a list within the Workflow Structure. This capability, allowing you to create the Workflow and add the Tasks all at once, is also new to v0.27.0. 
-!!!tip
-    The asterisk in front of the Tasks list unpacks each element and inserts them into the new list as separate items.
-
-
-In this example we are going to create the parent-child relationships while also building the Tasks:
-```python hl_lines="20-21" linenums="1" title="app.py"
-# Load env variables
-load_dotenv()
-
-start_task = PromptTask("This is the start", id="START")
-
-end_task = PromptTask("What did we do? {{ parent_outputs }}", id="END")
-
-movies = ["StarWars Episode V: The Empire Strikes Back", "Dune 2"]
-
-# list to place Tasks into
-tasks = []
-
-# For loop that loops through the movies list
-for movie in movies:
-   # Creates the Task for every movie
-   task = PromptTask(
-       f"Create a prompt for the movie {movie}",
-       context={"movie": movie},
-       id=f"TASK_{movie}",
-       parent_ids=['START'],
-       child_ids=['END']
-   )
-
-
-#  Add the Task to the Tasks array for every movie.
-   tasks.append(task)
-
-# Create the Workflow
-workflow = Workflow(tasks=[start_task, *tasks, end_task])
-
-# Run the Workflow
-workflow.run()
-```
-Notice above that within the PromptTask Structure, we are setting the parent and child IDs. This is another new part of Griptape v0.27.0, and it’s known as Declarative syntax for specifying Parent-Child relationships
-## Summary
-In Griptape v0.26.0 this is what your code might have looked like:
+There are now two ways to manage the hierarchy of the workflow.
+One way is to use the `add_parent` and `add_child` commands to quickly add a hierarchy relationship to a task.
+For example:
 ```python
-workflow = Workflow()
-
-workflow.add_tasks(start_task, end_task)
-workflow.insert_tasks(start_task, [*tasks], end_task)
+my_task.add_parent(start_task)
 ```
-   
-After Griptape v0.27.0 the syntax for creating Workflows is much lighter, leading to a better dev experience.
+This will add the `start_task` as a parent to `my_task`.
+The second way is to declare the relationship while creating the Task. For example:
 ```python
-workflow = Workflow(tasks=[start_task, *tasks, end_task])
+my_task = PromptTask("Do a fun thing", parent_ids=["start_task"])
 ```
-Let's move on and look at the updates to declaring parent-child relationships!
+Here, we've used the `parent_ids` parameter to tell the task the `id` of the task that will be it's parent. Notice it's a list - you can have multiple parents for any task. The same is true of children.
+Finally, once you've defined the relationships, you will need to add the tasks to the Workflow using the tasks parameter.
+For example: 
+```python
+workflow = Workflow(tasks=[start_task, my_task, my_other_task, end_task])
+```
+We'll get into greater detail on all these updates in the following sections. Read along to learn more.
 
 ## Updates to Parent-Child relationships
 Previously in Griptape v0.26.0, declaring parent-child relationships wasn't always very intuitive. First, you would’ve had to add the start and end Tasks, and then insert all children Tasks between the parent and the last child. With Griptape v0.27.0, this process is not only easier to visualize, but also easier to use. Let's take a look at imperatively declaring parent-children relationships.
@@ -226,7 +145,14 @@ workflow = Workflow(tasks=[start_task, *tasks, end_task])
 # Run the Workflow
 workflow.run()
 ```
-As seen above, we declared the children of the start Task, then added the end Task as a child.
+!!!tip
+    The `*` in front of the Tasks list unpacks each element and inserts them into the new list as separate items. For example, if you had a list of tasks like this:
+    `my_tasks = [task_1, task_2, task_3]`
+    and then did something like:
+    `tasks=[start_task, *my_tasks, end_task]`
+    It would resolve to:
+    `tasks=[start_task, task_1, task_2, task_3, end_task]`
+As seen above, we declared the children of the `start_task`, then added the `end_task` as a child.
 These both output the following graph:
 ``` mermaid
 graph TB
@@ -292,7 +218,7 @@ workflow.run()
 ```
 !!!note
     Always remember to set ID's for your Tasks, if you don't, your Workflow can become discombobulated.
-As you can see above, on line 8, we are now able to create Tasks within the Tasks list within the Workflow Structure! Awesome right? Similarly to above, we set the parent_ids of child Tasks as we create them. This allows for quick additions to your prompting of the LLM, with significantly less code.
+As you can see above, on line 8, we are now able to create Tasks within the Tasks list within the Workflow Structure! Awesome right? Similarly to above, we set the `parent_ids` of child Tasks as we create them. This allows for quick additions to your prompting of the LLM, with significantly less code.
 
 
 Likewise, we can also specify children relationships within the Workflow:
@@ -452,8 +378,8 @@ workflow = Workflow(
 workflow.run()
 ```
 !!!note
-    With the add_parents() command, you can specify multiple parents. Remember to put brackets within the parentheses. For example:
-    add_parents([parent_task1, parent_task2]).
+    With the `add_parents()` command, you can specify multiple parents. Remember to put brackets within the parentheses. For example:
+    `add_parents([parent_task1, parent_task2]).`
 
 After having set the Parent-Child relationships, run the Workflow and see what you get. The responses are very interesting.
 ## Code Checkpoint
