@@ -41,7 +41,7 @@ for movie in movies:
        id=f"{movie}_task"
    )
    
- # Insert the Tasks into the Workflow
+   # Insert the Tasks into the Workflow
    workflow.insert_tasks(start_task, [task], end_task)
 
 workflow.run()
@@ -96,11 +96,11 @@ for movie in movies:
        id=f"TASK_{movie}"
    )
 
-# Specifically add the start_task as a parent to the current Task.
+   # Specifically add the start_task as a parent to the current Task.
    task.add_parent(start_task)
    end_task.add_parent(task)
 
-# Add the Task to the Tasks array for every movie.
+   # Add the Task to the Tasks array for every movie.
    tasks.append(task)
 
 # Create the Workflow and add the Tasks
@@ -132,11 +132,11 @@ for movie in movies:
        id=f"TASK_{movie}"
    )
 
-# Specifically add the task as a child to the start_task
+   # Specifically add the task as a child to the start_task
    start_task.add_child(task)
    task.add_child(end_task)
 
-# Add the Task to the Tasks array for every movie.
+   # Add the Task to the Tasks array for every movie.
    tasks.append(task)
 
 # Create the movie
