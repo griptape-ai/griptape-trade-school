@@ -73,7 +73,7 @@ We'll get into greater detail on all these updates in the following sections. Re
 Previously in Griptape v0.26.0, declaring parent-child relationships wasn't always very intuitive. First, you would’ve had to add the start and end Tasks, and then insert all children Tasks between the parent and the last child. With Griptape v0.27.0, this process is not only easier to visualize, but also easier to use. Let's take a look at imperatively declaring parent-children relationships.
 
 
-### Imperatively specifying Parent-Child relationships(same as above):
+### Imperatively specifying Parent-Child relationships:
 ```python hl_lines="23-24" linenums="1" title="app.py"
 # Load env variables
 load_dotenv()
