@@ -108,7 +108,7 @@ json_ruleset = Ruleset(
     rules=[
         Rule("Respond in plain text only with valid JSON objects that have the following keys: response, continue_chatting."),
         Rule("Never wrap your response with ```"),
-        Rule("The 'response' value should be a string that can be safely converted to markdown format. Include line returns when necessary."),
+        Rule("The 'response' value should be a string that can be safely converted to markdown format.  Use '\\n' for new lines."),
         Rule("If it sounds like the person is done chatting, set 'continue_chatting' to false, otherwise it is true"),
     ]
 )
