@@ -106,7 +106,7 @@ Modify `json_ruleset` to look like the following:
 json_ruleset = Ruleset(
     name='json_ruleset',
     rules=[
-        Rule("Respond in plain text only with JSON objects that have the following keys: response, continue_chatting."),
+        Rule("Respond in plain text only with valid JSON objects that have the following keys: response, continue_chatting."),
         Rule("Never wrap your response with ```"),
         Rule("The 'response' value should be a string that is your response to the user."),
         Rule("If it sounds like the person is done chatting, set 'continue_chatting' to false, otherwise it is true"),
@@ -114,6 +114,9 @@ json_ruleset = Ruleset(
 )
 
 ```
+
+!!! tip
+    It's important to tell the agent to use `valid JSON objects` to ensure the responses aren't going to break the chat.
 
 The **first** rule tells the chatbot to respond in JSON and specifies the keys. 
 
@@ -259,7 +262,7 @@ json_ruleset = Ruleset(
     name="json_ruleset",
     rules=[
         Rule(
-            "Respond in plain text only with JSON objects that have the following keys: response, continue_chatting."
+            "Respond in plain text only with valid JSON objects that have the following keys: response, continue_chatting."
         ),
         Rule("Never wrap your response with ```"),
         Rule(
