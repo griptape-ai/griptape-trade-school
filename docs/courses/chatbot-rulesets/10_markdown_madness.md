@@ -8,31 +8,7 @@ In this stage, we'll enhance our chatbot's code display by harnessing the power 
 
 First, let's see why our current output doesn't work. Ask the chatbot to do something useful - like create a bash script that will create an alias to launch VS Code.
 
-```
-Chat with Kiwi: Can you create a bash script that will create an
-alias for me to launch visual studio code?
-
-╭──────────────────────────────────────────────────────────────────────────────╮
-│ Kiwi: Kia ora! G'day mate! I can definitely help you with that. Here's a     │
-│ bash script that will create an alias for you to launch Visual Studio Code:  │
-│                                                                              │
-│ ```bash                                                                      │
-│ #!/bin/bash                                                                  │
-│                                                                              │
-│ echo "alias code='open -a Visual\ Studio\ Code'" >> ~/.bash_profile          │
-│ source ~/.bash_profile                                                       │
-│                                                                              │
-│ echo "Alias created! You can now launch Visual Studio Code by typing 'code'  │
-│ in your terminal. Let me know if you need any further assistance!"           │
-│ ```                                                                          │
-│                                                                              │
-│ Just copy and paste this script into a new file, save it with a `.sh`        │
-│ extension (e.g., `create_alias.sh`), and then run it in your terminal using  │
-│ `bash create_alias.sh`. Let me know if you have any questions or need        │
-│ further help!                                                                │
-╰──────────────────────────────────────────────────────────────────────────────╯
-
-```
+![doesn't look like script](assets/img/10_not_looking_like_script.png)
 
 As you can see, the script is fine, but it doesn't _look_ like a script. It looks like something you'd enter in a Markdown file that you'd expect to eventually be rendered as a script. We're going to make this look much nicer.
 
@@ -114,7 +90,7 @@ To see the enhanced code display in action, run your chatbot and observe the bea
 
 Before moving forward, make sure your code works as expected.
 
-```python linenums="1" title="app.py" hl_lines="29 43 46"
+```python linenums="1" title="app.py" hl_lines="8 31 45 48"
 from dotenv import load_dotenv
 import logging
 import json
@@ -144,6 +120,7 @@ json_ruleset = Ruleset(
     name="json_ruleset",
     rules=[
         Rule("Respond in plain text only with JSON objects that have the following keys: response, continue_chatting."),
+        Rule("Never wrap your response with ```"),
         Rule("The 'response' value should be a string that can be safely converted to markdown format. Include line returns when necessary."),
         Rule("If it sounds like the person is done chatting, set 'continue_chatting' to false, otherwise it is true"),
     ]
