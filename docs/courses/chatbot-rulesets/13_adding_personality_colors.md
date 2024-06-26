@@ -46,7 +46,7 @@ We also need to make changes to the `json_ruleset` to include the Favorite Color
 json_ruleset = Ruleset(
     name="json_ruleset",
     rules=[
-        Rule("Respond in plain text only with JSON objects that have the following keys: response, favorite_color, continue_chatting."),
+        Rule("Respond in plain text only with valid JSON objects that have the following keys: response, favorite_color, continue_chatting."),
         # ... 
     ]
 )
@@ -105,7 +105,7 @@ json_ruleset = Ruleset(
     name="json_ruleset",
     rules=[
         # ...
-        Rule("Respond in plain text only with JSON objects that have the following keys: name, response, favorite_color, continue_chatting."),
+        Rule("Respond in plain text only with valid JSON objects that have the following keys: name, response, favorite_color, continue_chatting."),
         # ...
     ]
 )
@@ -214,8 +214,9 @@ switcher_ruleset = Ruleset(
 json_ruleset = Ruleset(
     name="json_ruleset",
     rules=[
-        Rule("Respond in plain text only with JSON objects that have the following keys: name, response, favorite_color, continue_chatting."),
-        Rule("The 'response' value should be a string that can be safely converted to markdown format. Include line returns when necessary."),
+        Rule("Respond in plain text only with valid JSON objects that have the following keys: name, response, favorite_color, continue_chatting."),
+        Rule("Never wrap your response with ```"),
+        Rule("The 'response' value should be a string that can be safely converted to markdown format.  Use '\\n' for new lines."),
         Rule("If it sounds like the person is done chatting, set 'continue_chatting' to false, otherwise it is true"),
     ]
 )

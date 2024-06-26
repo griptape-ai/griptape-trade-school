@@ -99,7 +99,7 @@ Notice in the above image we've got two personas talking, but it's difficult to 
 ## Code Review
 We're making great progress. Review the code.
 
-```python linenums="1" title="app.py" hl_lines="27-50 85-86"
+```python linenums="1" title="app.py" hl_lines="27-50 86-87"
 from dotenv import load_dotenv
 import logging
 import json
@@ -154,8 +154,9 @@ switcher_ruleset = Ruleset(
 json_ruleset = Ruleset(
     name="json_ruleset",
     rules=[
-        Rule("Respond in plain text only with JSON objects that have the following keys: response, continue_chatting."),
-        Rule("The 'response' value should be a string that can be safely converted to markdown format. Include line returns when necessary."),
+        Rule("Respond in plain text only with valid JSON objects that have the following keys: response, continue_chatting."),
+        Rule("Never wrap your response with ```"),
+        Rule("The 'response' value should be a string that can be safely converted to markdown format.  Use '\\n' for new lines."),
         Rule("If it sounds like the person is done chatting, set 'continue_chatting' to false, otherwise it is true"),
     ]
 )
