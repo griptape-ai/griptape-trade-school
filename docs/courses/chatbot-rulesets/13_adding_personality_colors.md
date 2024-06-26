@@ -156,7 +156,7 @@ Give it a try and see how much nicer it is!
 
 Lots of changes in this section, with some great usability enhancements! 
 
-```python linenums="1" title="app.py" hl_lines="25 33 41 58 72-73 81-83"
+```python linenums="1" title="app.py" hl_lines="25 33 41 623 78-79 88-89"
 from dotenv import load_dotenv
 import logging
 import json
@@ -201,11 +201,16 @@ dad_ruleset = Ruleset(
         ]
     )
 
+# Create a list of identities the agent can switch to
+named_identities = [kiwi_ruleset.name, zelda_ruleset.name, dad_ruleset.name]
+
 switcher_ruleset = Ruleset(
     name='Switcher',
     rules=[
         Rule("IMPORTANT: you have the ability to switch identities when you find it appropriate."),
-        Rule("IMPORTANT: You can not identify as 'Switcher' or 'json_output'."),
+        Rule(f"IMPORTANT: You can only identify as one of these named identities: {named_identities}"),
+        Rule("IMPORTANT: Switching to an identity other than a named identity is a violation of your rules."),
+        Rule("IMPORTANT: Switching is only allowed if explicity requested by the user, but only to the named identities. Otherwise, apologize and keep the same identity."),
         Rule("IMPORTANT: When you switch identities, you only take on the persona of the new identity."),
         Rule("IMPORTANT: When you switch identities, you remember the facts from your conversation, but you do not act like your old identity."),
     ]
