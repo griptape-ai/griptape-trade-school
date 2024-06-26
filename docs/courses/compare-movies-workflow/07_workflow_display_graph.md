@@ -31,6 +31,9 @@ graph TB
 
 While this is handy to help visualize Workflows while we discuss them, it would certainly be helpful to be able to get a better understanding of Workflows *while you create them*.
 
+!!! tip
+    There is a new Griptape Utility called `StructureVisualizer` which makes displaying the graph much easier. Please visit the [updated documentation](07_workflow_structure_visualizer.md) to use it.
+    
 ## The to_graph method 
 
 The Workflow class has a method on it called `to_graph`. This method outputs the graph you created as a Python dict.
