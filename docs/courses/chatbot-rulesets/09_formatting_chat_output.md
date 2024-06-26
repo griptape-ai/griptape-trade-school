@@ -86,16 +86,9 @@ rprint(Panel.fit(f"Kiwi: {response}", width=80))
 
 Now the panel will be at most 80 characters wide.
 
-```
-Chat with Kiwi: What's the best thing about the Wairarapa?
+![80 characters wide](./assets/img/09_80CharsWide.png)
 
-╭──────────────────────────────────────────────────────────────────────────────╮
-│ Kiwi: Oh, the Wairarapa, mate! It's a stunner. The best thing about it has   │
-│ to be the beautiful landscapes, from the rugged coastlines to the lush       │
-│ vineyards. It's a real treat for the eyes, I tell ya!                        │
-╰──────────────────────────────────────────────────────────────────────────────╯
 
-```
 
 ---
 
@@ -132,6 +125,7 @@ json_ruleset = Ruleset(
     name="json_ruleset",
     rules=[
         Rule("Respond in plain text only with JSON objects that have the following keys: response, continue_chatting."),
+        Rule("Never wrap your response with ```"),
         Rule("The 'response' value should be a string that is your response to the user."),
         Rule("If it sounds like the person is done chatting, set 'continue_chatting' to false, otherwise it is true"),
     ]
