@@ -134,4 +134,4 @@ But wait.. don't stop yet!
 
 There's new bonus material we've recently added that helps you understand the structure of your workflow!
 
-Head over to the next section: [Workflow Display Graphs](07_workflow_display_graph.md) to learn how to understand the structure of your graph while you create it.
+Head over to the next section: [Workflow Structure Visualizer](07_workflow_structure_visualizer.md) to learn how to understand the structure of your graph while you create it.
