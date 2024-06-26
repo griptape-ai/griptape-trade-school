@@ -64,14 +64,18 @@ Let's start by creating the Vector Database. We're going to use Griptape's [Loca
 !!! tip
     You could also use [Pinecone](https://www.pinecone.io/){target="_blank"}, [Marqo](https://www.marqo.ai/){target="_blank"}, [MongoDB](https://www.mongodb.com/atlas/database){target="_blank"}, [Redis](https://redis.io/), [OpenSearch](https://opensearch.org/){target="_blank"}, or [PGVector](https://github.com/pgvector/pgvector){target="_blank"} - all are available as drivers for Griptape as described [in the documentation](https://docs.griptape.ai/stable/griptape-framework/drivers/vector-store-drivers/){target="_blank"}.
 
-Modify `app.py` to import the required drivers. In the case of the Local Vector Store Driver, we also need an Embedding Driver. We'll use the one from OpenAI, but you could also use one of the [other drivers](https://docs.griptape.ai/stable/griptape-framework/drivers/embedding-drivers/){target="_blank"} available for Griptape.
+Modify `app.py` to import the required drivers. In the case of the Local Vector Store Driver, we also need an Embedding Driver and a ChatPrompt Driver. We'll use the ones from OpenAI, but you could also use one of the [other drivers](https://docs.griptape.ai/stable/griptape-framework/drivers/embedding-drivers/){target="_blank"} available for Griptape.
 
-```python title="app.py" hl_lines="5"
+```python title="app.py" hl_lines="5-9"
 # ...
 from griptape.structures import Agent
 from griptape.utils import Chat
 from griptape.tools import DateTime
-from griptape.drivers import LocalVectorStoreDriver, OpenAiEmbeddingDriver
+from griptape.drivers import (
+    LocalVectorStoreDriver, 
+    OpenAiEmbeddingDriver, 
+    OpenAIChatPromptDriver
+)
 # ...
 
 ```
@@ -91,13 +95,13 @@ vector_store_driver = LocalVectorStoreDriver(embedding_driver=OpenAiEmbeddingDri
 
 ### Vector Query Engine
 
-Now that we have a database, we need a way to query it. This will be done using Griptape's [VectorQueryEngine](https://docs.griptape.ai/stable/griptape-framework/engines/query-engines/#vectorqueryengine){target="_blank"} which takes a `vector_store_driver`. Luckily we just created one!
+Now that we have a database, we need a way to query it. This will be done using Griptape's [VectorQueryEngine](https://docs.griptape.ai/stable/griptape-framework/engines/query-engines/#vectorqueryengine){target="_blank"} which takes a `vector_store_driver` and a `chat_prompt_driver`. Luckily we just created a vector store driver, and the OpenAiChatPromptDriver is quite powerful!
 
 First, import the engine into Griptape by adding it to the imports section of your app.
 
 ```python title="app.py" hl_lines="3"
 # ...
-from griptape.drivers import LocalVectorStoreDriver, OpenAiEmbeddingDriver
+from griptape.drivers import LocalVectorStoreDriver, OpenAiEmbeddingDriver, OpenAIChatPromptDriver
 from griptape.engines import VectorQueryEngine
 # ...
 
@@ -105,14 +109,17 @@ from griptape.engines import VectorQueryEngine
 
 Next, create the engine. Add the following lines after the creation of the `vector_store_driver`.
 
-```python title="app.py" hl_lines="6-7"
+```python title="app.py" hl_lines="6-10"
 # ...
 
 # Create the vector database
 vector_store_driver = LocalVectorStoreDriver(embedding_driver=OpenAiEmbeddingDriver())
 
 # Create the query engine
-query_engine = VectorQueryEngine(vector_store_driver=vector_store_driver)
+query_engine = VectorQueryEngine(
+    prompt_driver=OpenAiChatPromptDriver(model="gpt-3.5-turbo"),
+    vector_store_driver=vector_store_driver
+)
 
 # ...
 ```
@@ -123,11 +130,14 @@ The relevant ShotGrid API documentation is available split over six web pages. T
 
 Add the following lines after creating the query engine.
 
-```python title="app.py" hl_lines="6-14"
+```python title="app.py" hl_lines="9-17"
 # ...
 
 # Create the query engine
-query_engine = VectorQueryEngine(vector_store_driver=vector_store_driver)
+query_engine = VectorQueryEngine(
+    prompt_driver=OpenAiChatPromptDriver(model="gpt-3.5-turbo"),
+    vector_store_driver=vector_store_driver
+)
 
 # API Documentation
 shotgrid_api_urls = [
@@ -255,8 +265,8 @@ agent = Agent(
         vector_store_tool
         # ReverseStringTool(off_prompt=False),
     ],
-    stream=True
 )
+agent.config.prompt_driver.stream=True
 
 # ...
 ```
@@ -315,14 +325,18 @@ Response: 'Shotgun' object has no attribute 'get_task_date_update_rules'
 
 We have certainly improved our Agent in this example - providing it with greater context and knowledge about how to interact with the ShotGridTool. Let's review `app.py` and see all the changes that were made.
 
-```python linenums="1" title="app.py" hl_lines="6-9 16-17 19-20 22-30 32-35 37-38 40-41 43-49 74"
+```python linenums="1" title="app.py" hl_lines="6-13 20-56 81"
 from dotenv import load_dotenv
 import os
 
 from griptape.structures import Agent
 from griptape.utils import Chat
 from griptape.tools import DateTime, VectorStoreClient
-from griptape.drivers import LocalVectorStoreDriver, OpenAiEmbeddingDriver
+from griptape.drivers import (
+    LocalVectorStoreDriver,
+    OpenAiChatPromptDriver,
+    OpenAiEmbeddingDriver,
+)
 from griptape.engines import VectorQueryEngine
 from griptape.loaders import WebLoader
 
@@ -335,7 +349,10 @@ load_dotenv()
 vector_store_driver = LocalVectorStoreDriver(embedding_driver=OpenAiEmbeddingDriver())
 
 # Create the query engine
-query_engine = VectorQueryEngine(vector_store_driver=vector_store_driver)
+query_engine = VectorQueryEngine(
+    prompt_driver=OpenAiChatPromptDriver(model="gpt-3.5-turbo"),
+    vector_store_driver=vector_store_driver,
+)
 
 # API Documentation
 shotgrid_api_urls = [
@@ -391,9 +408,10 @@ agent = Agent(
         shotgrid_tool,
         vector_store_tool
         # ReverseStringTool(off_prompt=False),
-    ],
-    stream=True
+    ]
 )
+
+agent.config.prompt_driver.stream=True
 
 # Start chatting
 Chat(agent).start()
