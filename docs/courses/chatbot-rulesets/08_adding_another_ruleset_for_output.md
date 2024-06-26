@@ -44,6 +44,25 @@ agent = MyAgent(
 
 Here, we modify the `MyAgent` instantiation to include both `kiwi_ruleset` and `json_ruleset` in the `rulesets=[]` argument. This ensures that our chatbot possesses the kiwi personality traits while _also_ adhering to the desired response format specified by `json_ruleset`.
 
+### Test - and adjust
+
+Let's take a look at the output to see what this ruleset gives us. You may find that with some LLMs, the result is actually wrapping the code with tripple backtick marks like this:
+
+![bad backticks](./assets/img/08_backticks.png)
+
+This is because it thinks that the JSON output needs to displayed in a certain way. We can adjust our JSON ruleset to not include these ticks.
+
+```python hl_lines="5"
+json_ruleset = Ruleset(
+    name="json_ruleset",
+    rules=[
+        Rule("Use JSON when formulating your response."),
+        Rule("Never wrap your response with ```")
+    ]
+)
+```
+Now you should get a much nicer response. Test it again!
+
 ### Test
 
 Prepare for an exciting conversation as we engage our chatbot in a quest for knowledge about Wellington's top tourist destinations. Let's dive in:
@@ -87,13 +106,17 @@ Modify `json_ruleset` to look like the following:
 json_ruleset = Ruleset(
     name='json_ruleset',
     rules=[
-        Rule("Respond in plain text only with JSON objects that have the following keys: response, continue_chatting."),
+        Rule("Respond in plain text only with valid JSON objects that have the following keys: response, continue_chatting."),
+        Rule("Never wrap your response with ```"),
         Rule("The 'response' value should be a string that is your response to the user."),
         Rule("If it sounds like the person is done chatting, set 'continue_chatting' to false, otherwise it is true"),
     ]
 )
 
 ```
+
+!!! tip
+    It's important to tell the agent to use `valid JSON objects` to ensure the responses aren't going to break the chat.
 
 The **first** rule tells the chatbot to respond in JSON and specifies the keys. 
 
@@ -214,39 +237,47 @@ Kiwi: No worries, mate! Have a good one. Don't hesitate to reach out if you need
 By leveraging the power of output rulesets, we've demonstrated how you can guide your chatbot to deliver responses in any desired format. Take a moment to check your code.
 
 ```python title="app.py" linenums="1"
-from dotenv import load_dotenv
-import logging
 import json
+import logging
+
+from dotenv import load_dotenv
+from griptape.rules import Rule, Ruleset
 
 # Griptape Items
 from griptape.structures import Agent
-from griptape.rules import Rule, Ruleset
 
 # Load environment variables
 load_dotenv()
 
 # Create a ruleset for the agent
 kiwi_ruleset = Ruleset(
-    name = "kiwi",
-    rules = [
+    name="kiwi",
+    rules=[
         Rule("You identify as a New Zealander."),
-        Rule("You have a strong kiwi accent.")
-    ]
+        Rule("You have a strong kiwi accent."),
+    ],
 )
 
 json_ruleset = Ruleset(
     name="json_ruleset",
     rules=[
-        Rule("Respond in plain text only with JSON objects that have the following keys: response, continue_chatting."),
-        Rule("The 'response' value should be a string that is your response to the user."),
-        Rule("If it sounds like the person is done chatting, set 'continue_chatting' to false, otherwise it is true"),
-    ]
+        Rule(
+            "Respond in plain text only with valid JSON objects that have the following keys: response, continue_chatting."
+        ),
+        Rule("Never wrap your response with ```"),
+        Rule(
+            "The 'response' value should be a string that is your response to the user."
+        ),
+        Rule(
+            "If it sounds like the person is done chatting, set 'continue_chatting' to false, otherwise it is true"
+        ),
+    ],
 )
+
 
 # Create a subclass for the Agent
 class MyAgent(Agent):
-
-    def respond (self, user_input):
+    def respond(self, user_input):
         agent_response = agent.run(user_input)
         data = json.loads(agent_response.output_task.output.value)
         response = data["response"]
@@ -258,11 +289,13 @@ class MyAgent(Agent):
 
         return continue_chatting
 
+
 # Create the agent
 agent = MyAgent(
     rulesets=[kiwi_ruleset, json_ruleset],
-    logger_level=logging.ERROR
+    logger_level=logging.ERROR,
 )
+
 
 # Chat function
 def chat(agent):
@@ -270,6 +303,7 @@ def chat(agent):
     while is_chatting:
         user_input = input("Chat with Kiwi: ")
         is_chatting = agent.respond(user_input)
+
 
 # Introduce the agent
 agent.respond("Introduce yourself to the user.")
