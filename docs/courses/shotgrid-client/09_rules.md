@@ -248,8 +248,8 @@ agent = Agent(
         # ReverseStringTool(off_prompt=False),
     ],
     rulesets=[shotgrid_agent_ruleset],
-    stream=True
 )
+agent.config.prompt_driver.stream=True
 
 # ...
 ```
@@ -266,7 +266,7 @@ Before moving on to the next section, let's remove some unused code from our app
 
 Nice work in this section - we've added rules to ensure the agent behaves as expected, using the Tools we've given it. Let's take a look at the current state of the app.
 
-```python linenums="1" title="app.py" hl_lines="2 11 70-107 112"
+```python linenums="1" title="app.py" hl_lines="2 15 77-114 119"
 from dotenv import load_dotenv
 from textwrap import dedent
 import os
@@ -274,7 +274,11 @@ import os
 from griptape.structures import Agent
 from griptape.utils import Chat
 from griptape.tools import DateTime, VectorStoreClient
-from griptape.drivers import LocalVectorStoreDriver, OpenAiEmbeddingDriver
+from griptape.drivers import (
+    LocalVectorStoreDriver,
+    OpenAiChatPromptDriver,
+    OpenAiEmbeddingDriver,
+)
 from griptape.engines import VectorQueryEngine
 from griptape.loaders import WebLoader
 from griptape.rules import Rule, Ruleset
@@ -287,7 +291,10 @@ load_dotenv()
 vector_store_driver = LocalVectorStoreDriver(embedding_driver=OpenAiEmbeddingDriver())
 
 # Create the query engine
-query_engine = VectorQueryEngine(vector_store_driver=vector_store_driver)
+query_engine = VectorQueryEngine(
+    prompt_driver=OpenAiChatPromptDriver(model="gpt-3.5-turbo"),
+    vector_store_driver=vector_store_driver,
+)
 
 # API Documentation
 shotgrid_api_urls = [
@@ -379,8 +386,8 @@ shotgrid_agent_ruleset = Ruleset(
 agent = Agent(
     tools=[DateTime(off_prompt=False), shotgrid_tool, vector_store_tool],
     rulesets=[shotgrid_agent_ruleset],
-    stream=True
 )
+agent.config.prompt_driver.stream=True
 
 # Start chatting
 Chat(agent).start()
