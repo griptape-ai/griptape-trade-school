@@ -25,7 +25,7 @@ engine = PromptImageGenerationEngine( image_generation_driver=driver )
 task = PromptImageGenerationTask(
     "Create a drawing of a pineapple",
     image_generation_engine=engine,
-    output_dir="./images"
+    output_dir="images"
 )
 ```
 
@@ -37,7 +37,7 @@ You can also use the `PromptImageGenerationClient` tool and assign it to an Agen
 agent = Agent(
     tools=[PromptImageGenerationClient(
         image_generation_engine=engine,
-        output_dir="./images",
+        output_dir="images",
         off_prompt=False,
     )]
 )
@@ -116,14 +116,14 @@ Next, we'll replace our fake image generation task with a _real_ image generatio
 generate_image_task = PromptImageGenerationTask(
     "{{ parent_output }}",
     image_generation_engine=image_engine,
-    output_dir="./images",
+    output_dir="images",
     id="Generate Image Task",
 )
 
 # ...
 ```
 
-Notice we're giving it the `image_generation_engine` we defined earlier as `image_engine`. We're also specifying an `output_dir` of `./images`. This will ensure the image is generated in that directory. 
+Notice we're giving it the `image_generation_engine` we defined earlier as `image_engine`. We're also specifying an `output_dir` of `images`. This will ensure the image is generated in that directory. 
 
 !!! tip
     With the `PromptImageGenerationTask`, if you want to save the file to disk you must specify _either_ the output file name (`output_file`) or the directory you want the images to appear in (`output_dir`). If you don't, the image generated will only exist in the `ImageArtifact`. 
@@ -148,7 +148,7 @@ Give your application a test run. In the results you will see a `PromptImageGene
                              Output: Image, dimensions: 1024x1024, type: image/png, size: 3147861 bytes                               
 ```
 
-As you can see, the image has been written to the `./images` directory. Let's take a look at it!
+As you can see, the image has been written to the `images` directory. Let's take a look at it!
 
 ![Cow](assets/img/image_artifact_231216175841_iuy3.png)
 
@@ -343,7 +343,7 @@ In `app.py`, right after `load_dotenv()`, let's create a section for any variabl
 load_dotenv() # Load your environment
 
 # Variables
-output_dir = "./images"
+output_dir = "images"
 
 # Create the driver
 # ...
@@ -415,7 +415,7 @@ from griptape.engines import PromptImageGenerationEngine
 load_dotenv()  # Load your environment
 
 # Variables
-output_dir = "./images"
+output_dir = "images"
 
 # Create the driver
 image_driver = OpenAiImageGenerationDriver(
