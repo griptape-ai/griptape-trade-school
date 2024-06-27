@@ -21,7 +21,7 @@ You can keep your code the same, but wrap it into a function. After your import 
 
 def image_pipeline() -> Pipeline:
     # Variables
-    output_dir = "./images"
+    output_dir = "images"
 
     # ... rest of your code
 ```
@@ -71,7 +71,7 @@ from griptape.engines import PromptImageGenerationEngine
 
 def create_image_pipeline() -> Pipeline:
     # Variables
-    output_dir = "./images"
+    output_dir = "images"
 
     # Create the driver
     image_driver = OpenAiImageGenerationDriver(
@@ -92,7 +92,7 @@ def create_image_pipeline() -> Pipeline:
         output_dir = task.context["output_dir"]
 
         # Get the path of the image
-        image_path = f"{output_dir}/{filename}"
+        image_path = os.path.join(output_dir, filename)
 
         # Open the image
         if sys.platform == "win32":

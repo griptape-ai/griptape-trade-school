@@ -192,7 +192,7 @@ def display_image(task: CodeExecutionTask) --> TextArtifact:
     output_dir = task.context["output_dir"]
 
     # Get the path of the image
-    image_path = f"{output_dir}/{filename}"
+    image_path = os.path.join(output_dir, filename)
 
     return TextArtifact(image_path)
 
@@ -260,7 +260,7 @@ def display_image(task: CodeExecutionTask) -> TextArtifact:
     output_dir = task.context["output_dir"]
 
     # Get the path of the image
-    image_path = f"{output_dir}/{filename}"
+    image_path = os.path.join(output_dir, filename)
 
     # Open the image
     if sys.platform == "win32":
@@ -304,7 +304,7 @@ from griptape.engines import PromptImageGenerationEngine
 load_dotenv()  # Load your environment
 
 # Variables
-output_dir = "./images"
+output_dir = "images"
 
 # Create the driver
 image_driver = OpenAiImageGenerationDriver(
@@ -326,7 +326,7 @@ def display_image(task: CodeExecutionTask) -> TextArtifact:
     output_dir = task.context["output_dir"]
 
     # Get the path of the image
-    image_path = f"{output_dir}/{filename}"
+    image_path = os.path.join(output_dir, filename)
 
     # Open the image
     if sys.platform == "win32":
