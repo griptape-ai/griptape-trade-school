@@ -384,7 +384,7 @@ workflow.run()
 After having set the Parent-Child relationships, run the Workflow and see what you get. The responses are very interesting.
 ## Code Checkpoint
 This is what your code should look like:
-```python linenums="1" title="app.py"
+```python PYTEST_CHECK linenums="1" title="app.py"
 from dotenv import load_dotenv
 # Griptape
 from griptape.tasks import PromptTask

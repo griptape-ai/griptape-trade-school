@@ -236,7 +236,7 @@ Kiwi: No worries, mate! Have a good one. Don't hesitate to reach out if you need
 
 By leveraging the power of output rulesets, we've demonstrated how you can guide your chatbot to deliver responses in any desired format. Take a moment to check your code.
 
-```python title="app.py" linenums="1"
+```python PYTEST_CHECK title="app.py" linenums="1"
 import json
 import logging
 

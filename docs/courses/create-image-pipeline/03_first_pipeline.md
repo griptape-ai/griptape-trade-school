@@ -484,7 +484,7 @@ Notice now we have three distinct tasks, one that generates a prompt, one that c
 
 We created the scaffolding for our application. Let's review the code and make sure it's working as expected.
 
-```python linenums="1" title="app.py"
+```python PYTEST_CHECK linenums="1" title="app.py"
 from dotenv import load_dotenv
 
 # Griptape

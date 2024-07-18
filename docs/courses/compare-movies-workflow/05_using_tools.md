@@ -289,7 +289,7 @@ We added some of helpful functionality in this section, mainly getting wonderful
 
 Review your code.
 
-```python linenums="1" title="app.py" hl_lines="5-6 45"
+```python PYTEST_CHECK linenums="1" title="app.py" hl_lines="5-6 45"
 from dotenv import load_dotenv
 
 # Griptape

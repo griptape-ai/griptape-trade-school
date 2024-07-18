@@ -10,7 +10,7 @@ Welcome to the getting started course for Griptape. We'll be using Visual Studio
 
 By the end of the course you will have the ability to use Griptape to work with Large Language Models. You will be setting up your Python environment, install a code editor, install Griptape, and be ready to go.
 
-```py title="griptape_developer.py"
+```python title="griptape_developer.py"
 
 from dotenv import load_dotenv
 from griptape.structures import Agent

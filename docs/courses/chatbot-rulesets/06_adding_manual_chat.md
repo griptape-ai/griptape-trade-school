@@ -115,7 +115,7 @@ Engage in stimulating conversations, explore various topics, and enjoy the inter
 
 We made a lot of important changes in this stage. Before we move forward, let's compare code. Changed lines are highlighted.
 
-```python linenums="1" hl_lines="28-38 41" title="app.py"
+```python PYTEST_CHECK linenums="1" hl_lines="28-38 41" title="app.py"
 from dotenv import load_dotenv
 import logging
 

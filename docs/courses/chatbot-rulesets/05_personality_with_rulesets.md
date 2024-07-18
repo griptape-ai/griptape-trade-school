@@ -102,7 +102,7 @@ Assistant: Yeah, nah, that's a classic kiwi phrase! It's a way of expressing hes
 
 We've delved into a key concept in this stage, and it's time to validate your understanding. Compare your code with the latest version.
 
-```python linenums="1" title="app.py"
+```python PYTEST_CHECK linenums="1" title="app.py"
 from dotenv import load_dotenv
 import logging
 

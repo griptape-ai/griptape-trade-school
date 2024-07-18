@@ -266,7 +266,7 @@ Before moving on to the next section, let's remove some unused code from our app
 
 Nice work in this section - we've added rules to ensure the agent behaves as expected, using the Tools we've given it. Let's take a look at the current state of the app.
 
-```python linenums="1" title="app.py" hl_lines="2 15 77-114 119"
+```python PYTEST_CHECK linenums="1" title="app.py" hl_lines="2 15 77-114 119"
 from dotenv import load_dotenv
 from textwrap import dedent
 import os

@@ -46,7 +46,7 @@ Next, let's configure the ToolkitTask to turn our template into a reality. The t
 
 Note, in the `context` parameter we're passing both the `image` and the `image_path`.
 
-```py title="app.py" linenums="1" hl_lines="6-16"
+```python title="app.py" linenums="1" hl_lines="6-16"
     # ...
 
     # Create an Image SEO Task
@@ -135,7 +135,7 @@ If you'd like to use the Bootstrap layout, here's the HTML - just plop the card 
 
 ## Code Review
 
-```py title="app.py" linenums="1"
+```python PYTEST_CHECK title="app.py" linenums="1"
 from dotenv import load_dotenv
 import os
 

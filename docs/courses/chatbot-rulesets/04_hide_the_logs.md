@@ -76,7 +76,7 @@ User:
 
 We've made valuable progress in this stage. Before proceeding, let's verify your code.
 
-```python linenums="1" title="app.py"
+```python PYTEST_CHECK linenums="1" title="app.py"
 from dotenv import load_dotenv
 import logging                     
 

@@ -156,7 +156,7 @@ Give it a try and see how much nicer it is!
 
 Lots of changes in this section, with some great usability enhancements! 
 
-```python linenums="1" title="app.py" hl_lines="25 33 41 623 78-79 88-89"
+```python PYTEST_CHECK linenums="1" title="app.py" hl_lines="25 33 41 623 78-79 88-89"
 from dotenv import load_dotenv
 import logging
 import json

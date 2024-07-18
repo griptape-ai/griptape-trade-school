@@ -20,7 +20,7 @@ template: hero.html
 
     How can you learn coding without helpful snippets? We use actual code, with actual line numbers, highlighting changes as you work your way through the class.
 
-    ```py linenums="1"
+    ```python linenums="1"
     # Run an agent
     agent.run("Teach me Griptape!")
     ```

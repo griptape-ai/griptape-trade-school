@@ -540,7 +540,7 @@ Congratulations, there was a lot of work in this section, but in the end, we now
 
 ### `app.py`
 
-```python linenums="1" title="app.py"
+```python PYTEST_CHECK linenums="1" title="app.py"
 from dotenv import load_dotenv
 import os
 
@@ -615,7 +615,7 @@ git+https://github.com/shotgunsoftware/python-api.git
 
 ### `shotgrid_tool/tool.py`
 
-```python linenums="1" title="shotgrid_tool/tool.py"
+```python PYTEST_CHECK linenums="1" title="shotgrid_tool/tool.py"
 from __future__ import annotations
 from griptape.artifacts import TextArtifact, ErrorArtifact
 from griptape.tools import BaseTool

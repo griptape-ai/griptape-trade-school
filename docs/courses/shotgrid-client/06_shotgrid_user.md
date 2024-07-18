@@ -183,7 +183,7 @@ You completed an incredible amount of work in this section - updating your Tool 
 
 ### `app.py`
 
-```python linenums="1" title="app.py" hl_lines="16-17 25-27"
+```python PYTEST_CHECK linenums="1" title="app.py" hl_lines="16-17 25-27"
 from dotenv import load_dotenv
 import os
 
@@ -241,7 +241,7 @@ SHOTGRID_PASSWORD=supersecretpassword123
 
 ### `shotgrid_tool/tool.py`
 
-```python linenums="1" title="shotgrid_tool/tool.py" hl_lines="16-18 25-27 38-52"
+```python PYTEST_CHECK linenums="1" title="shotgrid_tool/tool.py" hl_lines="16-18 25-27 38-52"
 from __future__ import annotations
 from griptape.artifacts import TextArtifact, ErrorArtifact
 from griptape.tools import BaseTool

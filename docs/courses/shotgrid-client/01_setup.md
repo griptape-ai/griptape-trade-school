@@ -13,7 +13,7 @@ Following the instructions in [Griptape Setup - Visual Studio Code ](../../setup
 4. Create a `.env` file with your `OPENAI_API_KEY`
 5. Create your `app.py` file with the following code:
 
-```py title="app.py" linenums="1"
+```python title="app.py" linenums="1"
 from dotenv import load_dotenv
 
 load_dotenv() # Load your environment

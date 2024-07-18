@@ -69,7 +69,7 @@ In this final section we learned out to get the `output` from the `workflow` in 
 
 Review your code.
 
-```python linenums="1" title="app.py" hl_lines="54-55"
+```python PYTEST_CHECK linenums="1" title="app.py" hl_lines="54-55"
 from dotenv import load_dotenv
 
 # Griptape

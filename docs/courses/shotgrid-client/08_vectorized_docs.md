@@ -325,7 +325,7 @@ Response: 'Shotgun' object has no attribute 'get_task_date_update_rules'
 
 We have certainly improved our Agent in this example - providing it with greater context and knowledge about how to interact with the ShotGridTool. Let's review `app.py` and see all the changes that were made.
 
-```python linenums="1" title="app.py" hl_lines="6-13 20-56 81"
+```python PYTEST_CHECK linenums="1" title="app.py" hl_lines="6-13 20-56 81"
 from dotenv import load_dotenv
 import os
 

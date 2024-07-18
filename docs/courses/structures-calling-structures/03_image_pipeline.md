@@ -16,7 +16,7 @@ In this part of the course we’ll take the image pipeline from this course: [Im
 
 You can keep your code the same, but wrap it into a function. After your import statements are finished, create the image_pipeline function like this:
 
-```py title="image_pipeline.py"
+```python title="image_pipeline.py"
 # ...
 
 def image_pipeline() -> Pipeline:
@@ -43,7 +43,7 @@ Delete the following lines from the bottom :
 
 Finally, we need to return the pipeline structure. In the place where you had the Run the Pipeline code, replace it with a return statement.
 
-```py title="image_pipeline.py"
+```python title="image_pipeline.py"
 	# ...
 
     # Return the pipeline
@@ -54,7 +54,7 @@ Finally, we need to return the pipeline structure. In the place where you had th
 
 That’s it for setting up your image pipeline script! Let’s review the code
 
-```py title="image_pipeline.py" linenums="1"
+```python PYTEST_CHECK title="image_pipeline.py" linenums="1"
 from dotenv import load_dotenv
 
 # Griptape

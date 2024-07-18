@@ -170,7 +170,7 @@ Next time you run the script, it should automatically open a web browser with th
 
 ## Code Review
 
-```python linenums="1" title="app.py" hl_lines="1 9 61-69"
+```python PYTEST_CHECK linenums="1" title="app.py" hl_lines="1 9 61-69"
 import webbrowser
 
 from dotenv import load_dotenv

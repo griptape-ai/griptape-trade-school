@@ -244,7 +244,7 @@ You have added a Griptape Tool *and* modified it to add a new activity! Well don
 
 
 ### `app.py`
-```python title="app.py" linenums="1" hl_lines="6 11"
+```python PYTEST_CHECK title="app.py" linenums="1" hl_lines="6 11"
 from dotenv import load_dotenv
 from griptape.structures import Agent
 from griptape.utils import Chat
@@ -264,7 +264,7 @@ Chat(agent).start()
 ```
 
 ### `reverse_string_tool/tool.py`
-``` python title="reverse_string_tool/tool.py" linenums="1" hl_lines="28-52"
+```python PYTEST_CHECK title="reverse_string_tool/tool.py" linenums="1" hl_lines="28-52"
 from __future__ import annotations
 from griptape.artifacts import TextArtifact, ErrorArtifact
 from griptape.tools import BaseTool

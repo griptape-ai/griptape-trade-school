@@ -8,7 +8,7 @@ First things first, we need to update our agent with the necessary tools for bot
 
 Add the `FileManager` tool to the import section of your code:
 
-```py title="app.py" hl_lines="2"
+```python title="app.py" hl_lines="2"
 # ...
 from griptape.tools import ImageQueryClient, FileManager
 # ...
@@ -20,7 +20,7 @@ Now, let's make sure our agent knows how to use its new tools. This is where we 
 
 Modify the part of the code where you instantiate the Agent by adding the `FileManager` tool to the list of tools.
 
-```py title="app.py" hl_lines="5"
+```python title="app.py" hl_lines="5"
 # ...
 
 # Create the Agent
@@ -100,7 +100,7 @@ This approach streamlines the workflow by automatically storing output in an org
 
 ## Code Review
 
-```py title="app.py" linenums="1" hl_lines="6 26"
+```python PYTEST_CHECK title="app.py" linenums="1" hl_lines="6 26"
 from dotenv import load_dotenv
 
 # Griptape Items

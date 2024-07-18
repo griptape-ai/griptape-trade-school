@@ -487,7 +487,7 @@ Throughout this section, we've explored quite a bit about Griptape Tools. We lea
 Before continuing, let's look at `test_tool.py` in its current state where you can send a prompt to the Pipeline and ask important questions, like how much time you have before my birthday (April 3rd).
 
 
-```python title="test_tool.py" linenums="1"
+```python PYTEST_CHECK title="test_tool.py" linenums="1"
 from dotenv import load_dotenv
 from griptape.structures import Pipeline
 from griptape.tasks import PromptTask, ToolkitTask

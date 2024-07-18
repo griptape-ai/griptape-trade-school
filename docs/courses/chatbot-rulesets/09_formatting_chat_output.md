@@ -96,7 +96,7 @@ Now the panel will be at most 80 characters wide.
 
 As you can see, this has already helped our readability a ton. Compare your code.
 
-```python title="app.py" linenums="1" hl_lines="5-7 44"
+```python PYTEST_CHECK title="app.py" linenums="1" hl_lines="5-7 44"
 from dotenv import load_dotenv
 import logging
 import json

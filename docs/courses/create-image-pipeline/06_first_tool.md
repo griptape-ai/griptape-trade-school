@@ -247,7 +247,7 @@ You have added a Griptape Tool *and* modified it to add a new activity! Well don
 
 
 ### `test_tool.py`
-```python title="test_tool.py" linenums="1" 
+```python PYTEST_CHECK title="test_tool.py" linenums="1" 
 from dotenv import load_dotenv
 from griptape.structures import Pipeline
 from griptape.tasks import PromptTask, ToolkitTask
@@ -277,7 +277,7 @@ pipeline.run(
 ```
 
 ### `reverse_string_tool/tool.py`
-``` python title="reverse_string_tool/tool.py" linenums="1" hl_lines="28-52"
+``` python PYTEST_CHECK title="reverse_string_tool/tool.py" linenums="1" hl_lines="28-52"
 from __future__ import annotations
 from griptape.artifacts import TextArtifact, ErrorArtifact
 from griptape.tools import BaseTool

@@ -39,7 +39,7 @@ You set up a structure as a function in python that returns the structure. Then,
 
 Here’s a simple example of an Agent that has a ruleset to analyze a sentence to see if its got proper grammar. We’ll create a `LocalStructureRunDriver` for it, give that to the `StructureRunClient`, and pass that as a tool to another agent. Don’t worry about copying this example directly, just read through it and see if it makes sense.
 
-```py
+```python PYTEST_CHECK
 from dotenv import load_dotenv
 
 # Griptape Items

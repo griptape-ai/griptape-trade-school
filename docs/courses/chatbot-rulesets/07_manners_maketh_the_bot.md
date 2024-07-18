@@ -242,7 +242,7 @@ class MyAgent(Agent):
 
 We made some major updates to the code in this section. Take a look:
 
-``` python linenums="1" title="app.py"
+```python PYTEST_CHECK linenums="1" title="app.py"
 from dotenv import load_dotenv
 import logging
 
