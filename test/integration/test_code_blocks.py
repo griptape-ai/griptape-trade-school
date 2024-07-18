@@ -1,11 +1,5 @@
 import io
-import os
 import pytest
-import pathlib
-import textwrap
-import logging
-
-from mktestdocs import check_md_file
 
 from check_code_blocks import get_all_code_blocks, check_py_string
 

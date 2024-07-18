@@ -231,6 +231,10 @@ end_task = PromptTask("""
     """,
     id="END")
 
+# Add tasks to workflow
+workflow.add_task(start_task)
+workflow.add_task(end_task)
+
 # Iterate through the movie descriptions
 for description in movie_descriptions:
     movie_task = PromptTask(
