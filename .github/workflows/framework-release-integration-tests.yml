@@ -48,14 +48,14 @@ jobs:
         run: poetry install --no-interaction --no-root --with test
         shell: bash
 
+      - name: Install Griptape version
+        run: poetry add "griptape==${{ github.event.inputs.griptape-version }}"
+        shell: bash
+
       - name: Activate venv 
         run: |
           source $VENV
           echo PATH=$PATH >> $GITHUB_ENV
-        shell: bash
-
-      - name: Install Griptape version
-        run: pip install "griptape[all]==${{ github.event.inputs.griptape-version }}"
         shell: bash
 
       - name: Run integration tests

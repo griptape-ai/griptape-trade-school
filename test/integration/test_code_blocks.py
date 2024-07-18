@@ -3,10 +3,6 @@ import pytest
 
 from check_code_blocks import get_all_code_blocks, check_py_string
 
-# @pytest.mark.parametrize('fpath', pathlib.Path("docs").glob("**/*.md"), ids=str)
-# def test_files_good(fpath):
-#     check_md_file(fpath=fpath)
-
 all_code_blocks = get_all_code_blocks("docs/**/*.md")
 
 print(f"CODE BLOCKS COUNT: {len(all_code_blocks)}")
