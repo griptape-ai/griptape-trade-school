@@ -11,6 +11,11 @@ Tutorials and Courses for [Griptape](https://github.com/griptape-ai/griptape).
     ````
     *Note:* Make sure the path is relative to the `base_dir` so in this case `docs`
 
+## Some fun things we should look into for Snippets
+- [Sections](https://github.com/squidfunk/mkdocs-material/discussions/4373)
+- [Line Numbers](https://facelessuser.github.io/pymdown-extensions/extensions/snippets/#snippet-lines)
+
+
 # Run Tests Locally
 
 This package explicitly does not include Griptape so that it can be specified when running tests in the workflow
