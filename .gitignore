@@ -55,3 +55,6 @@ dist/**
 # tests
 images
 image_descriptions
+
+# mkdocs
+site/
