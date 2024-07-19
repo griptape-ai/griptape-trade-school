@@ -49,7 +49,7 @@ jobs:
         shell: bash
 
       - name: Install Griptape version
-        run: poetry add "griptape==${{ github.event.inputs.griptape-version }}"
+        run: poetry add "griptape[all]==${{ github.event.inputs.griptape-version }}"
         shell: bash
 
       - name: Activate venv 
@@ -59,4 +59,4 @@ jobs:
         shell: bash
 
       - name: Run integration tests
-        run: poetry run pytest test/integration/test_code_reviews.py -s
+        run: poetry run pytest test/integration/test_code_reviews.py

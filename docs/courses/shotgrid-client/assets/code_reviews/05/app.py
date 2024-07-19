@@ -5,7 +5,7 @@ from griptape.structures import Agent
 from griptape.utils import Chat
 from griptape.tools import DateTime
 
-from reverse_string_tool import ReverseStringTool
+# from reverse_string_tool import ReverseStringTool
 from shotgrid_tool import ShotGridTool
 
 load_dotenv()

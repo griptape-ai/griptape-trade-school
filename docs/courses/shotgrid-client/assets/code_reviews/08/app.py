@@ -12,7 +12,7 @@ from griptape.drivers import (
 from griptape.engines import VectorQueryEngine
 from griptape.loaders import WebLoader
 
-from reverse_string_tool import ReverseStringTool
+# from reverse_string_tool import ReverseStringTool
 from shotgrid_tool import ShotGridTool
 
 load_dotenv()
