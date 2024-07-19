@@ -22,7 +22,7 @@ Once you've ensured that the Griptape library is updated with the `loaders-image
 
 Add the following to your `import` section:
 
-```py title="app.py" hl_lines="3-5"
+```python title="app.py" hl_lines="3-5"
 # ...
 
 from griptape.tools import ImageQueryClient
@@ -52,7 +52,7 @@ The next task is to instantiate the Image Query Driver. This driver is crucial a
 
 Add the following line after running `load_dotenv()` in your script:
 
-```py title="app.py" hl_lines="4-7"
+```python title="app.py" hl_lines="4-7"
 # ...
 load_dotenv()
 
@@ -68,7 +68,7 @@ driver = OpenAiImageQueryDriver(
 
 This section effectively connects our previously created driver to the engine. Think of the engine as the middle manager in your corporate structure—it doesn’t do the grunt work itself (that’s the driver’s job), but it makes sure the instructions and data flow properly to get the job done.
 
-```py title="app.py" hl_lines="3-6"
+```python title="app.py" hl_lines="3-6"
 # ...
 
 # Create an Image Query Engine
@@ -87,7 +87,7 @@ Next, we'll tie all these components together and create a client that can handl
 
 First up, let’s create and configure the `ImageQueryClient`. This component uses the engine we set up earlier to process image queries. The `off_prompt` parameter is set to `False` to ensure that the image descriptions are not just processed but also sent back to the large language model for some insightful summarization. Here's how to do it:
 
-```py title="app.py" hl_lines="3-6"
+```python title="app.py" hl_lines="3-6"
 # ...
 
 image_query_client = ImageQueryClient(
@@ -103,7 +103,7 @@ Next, we integrate this `ImageQueryClient` into our agent’s toolbox. This allo
 
 Modify the part of the code where you instantiate the agent to include a list of tools. In this case, we're only providing one tool - but it still must be a list.
 
-```py title="app.py" hl_lines="4"
+```python title="app.py" hl_lines="4"
 # ...
 
 # Create the Agent
@@ -137,52 +137,8 @@ Notice it describes it really well!
 
 Here's the final code with the updates from this section.
 
-```py title="app.py" linenums="1" hl_lines="6-8 14-15 17-20 22-23 26"
-from dotenv import load_dotenv
-
-# Griptape Items
-from griptape.structures import Agent
-from griptape.utils import Chat
-from griptape.tools import ImageQueryClient
-from griptape.engines import ImageQueryEngine
-from griptape.drivers import OpenAiImageQueryDriver
-
-from rich import print as print  # Modifies print to use the Rich library
-
-load_dotenv()  # Load your environment
-
-# Create an Image Query Driver
-driver = OpenAiImageQueryDriver(model="gpt-4o")
-
-# Create an Image Query Engine
-engine = ImageQueryEngine(
-    image_query_driver=driver,
-)
-
-# Configure the ImageQueryClient
-image_query_client = ImageQueryClient(image_query_engine=engine, off_prompt=False)
-
-# Create the Agent
-agent = Agent(logger_level=0, tools=[image_query_client])
-
-# Configure the agent to stream it's responses.
-agent.config.prompt_driver.stream = True
-
-
-# Modify the Agent's response to have some color.
-def formatted_response(response: str) -> str:
-    print(f"[dark_cyan]{response}", end="", flush=True)
-
-
-# Begin Chatting
-Chat(
-    agent,
-    intro_text="\nWelcome to Griptape Chat!\n",
-    prompt_prefix="\nYou: ",
-    processing_text="\nThinking...",
-    response_prefix="\nAgent: ",
-    output_fn=formatted_response,  # Uses the formatted_response function
-).start()
+```python title="app.py" linenums="1" hl_lines="6-8 14-15 17-20 22-23 26"
+--8<-- "docs/courses/image-query/assets/code_reviews/03/app.py"
 ```
 
 ---

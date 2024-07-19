@@ -1,0 +1,5 @@
+version: "v1"
+name: Reverse String Tool
+description: Tool for reversing strings.
+contact_email: contact@example.com
+legal_info_url: https://www.example.com/legal

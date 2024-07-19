@@ -488,27 +488,8 @@ Before continuing, let's look at `test_tool.py` in its current state where you c
 
 
 ```python title="test_tool.py" linenums="1"
-from dotenv import load_dotenv
-from griptape.structures import Pipeline
-from griptape.tasks import PromptTask, ToolkitTask
-from griptape.tools import DateTime
-
-load_dotenv()
-
-# Create the pipeline
-pipeline = Pipeline()
-
-# Create task
-task = ToolkitTask("{{ args[0] }}", tools=[DateTime(off_prompt=False)], id="Task")
-
-# Add task to the pipeline
-pipeline.add_task(task)
-
-# Run the pipeline
-pipeline.run("How much time is there before April 3?")
-
+--8<-- "docs/courses/create-image-pipeline/assets/code_reviews/05/test_tool.py"
 ```
-
 
 ---
 ## Next Steps

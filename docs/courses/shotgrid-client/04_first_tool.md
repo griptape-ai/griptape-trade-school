@@ -244,83 +244,15 @@ You have added a Griptape Tool *and* modified it to add a new activity! Well don
 
 
 ### `app.py`
+
 ```python title="app.py" linenums="1" hl_lines="6 11"
-from dotenv import load_dotenv
-from griptape.structures import Agent
-from griptape.utils import Chat
-from griptape.tools import DateTime
-
-from reverse_string_tool import ReverseStringTool
-
-load_dotenv()
-
-# Instantiate the agent
-agent = Agent(tools=[DateTime(off_prompt=False), ReverseStringTool(off_prompt=False)])
-agent.config.prompt_driver.stream=True
-
-# Start chatting
-Chat(agent).start()
-
+--8<-- "docs/courses/shotgrid-client/assets/code_reviews/04/app.py"
 ```
 
 ### `reverse_string_tool/tool.py`
-``` python title="reverse_string_tool/tool.py" linenums="1" hl_lines="28-52"
-from __future__ import annotations
-from griptape.artifacts import TextArtifact, ErrorArtifact
-from griptape.tools import BaseTool
-from griptape.utils.decorators import activity
-from schema import Schema, Literal
-from attr import define
-
-
-@define
-class ReverseStringTool(BaseTool):
-    @activity(
-        config={
-            "description": "Can be used to reverse a string",
-            "schema": Schema(
-                {Literal("input", description="The string to be reversed"): str}
-            ),
-        }
-    )
-    def reverse_string(self, params: dict) -> TextArtifact | ErrorArtifact:
-        input_value = params["values"].get("input")
-
-        try:
-            return TextArtifact(input_value[::-1])
-
-        except Exception as e:
-            return ErrorArtifact(str(e))
-
-    @activity(
-        config={
-            "description": "Can be used to reverse a sentence",
-            "schema": Schema(
-                {Literal("input", description="The sentence to be reversed"): str}
-            ),
-        }
-    )
-    def reverse_sentence(self, params: dict) -> TextArtifact | ErrorArtifact:
-        input_value = params["values"].get("input")
-
-        try:
-            # Splitting the sentence into words
-            words = input_value.split()
-
-            # Reversing the list of words
-            reversed_words = words[::-1]
-
-            # Joining the reversed words back into a sentence
-            reversed_sentence = " ".join(reversed_words)
-
-            return TextArtifact(reversed_sentence)
-
-        except Exception as e:
-            return ErrorArtifact(str(e))
-
-
+```python title="reverse_string_tool/tool.py" linenums="1" hl_lines="28-52"
+--8<-- "docs/courses/shotgrid-client/assets/code_reviews/04/reverse_string_tool/tool.py"
 ```
-
 
 ---
 ## Next Steps

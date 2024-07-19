@@ -26,17 +26,7 @@ Following the instructions in [Griptape Setup - Visual Studio Code ](../../setup
 5. Create your `app.py` file with the following code:
 
 ```python
-from dotenv import load_dotenv
-
-from griptape.structures import Agent
-
-load_dotenv() # Load your environment
-
-# Create an agent
-agent = Agent()
-
-# Run the agent
-agent.run("I'm ready to chat.")
+--8<-- "docs/courses/chatbot-rulesets/assets/code_reviews/01/app.py"
 ```
 
 ---

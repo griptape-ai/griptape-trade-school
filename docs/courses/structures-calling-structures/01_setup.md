@@ -15,7 +15,7 @@ Following the instructions in [Griptape Setup - Visual Studio Code ](../../setup
 4. Create a `.env` file with your `OPENAI_API_KEY`
 5. Create your `app.py` file with the following code:
 
-```py title="app.py" linenums="1"
+```python title="app.py" linenums="1"
 from dotenv import load_dotenv
 
 load_dotenv() # Load your environment
@@ -27,36 +27,8 @@ In a typical setup for a TradeSchool course we’d leave the setup at this step 
 
 The [Image Query SEO Bonanza](../image-query/01_setup.md) course has a great agent we can utilize. Simply copy the code from the Chatbot section in the [Code Review](../image-query/02_chatbot.md#code-review) area and save that as your app.py.
 
-```py title="app.py" linenums="1"
-from dotenv import load_dotenv
-
-# Griptape Items
-from griptape.structures import Agent
-from griptape.utils import Chat
-
-from rich import print as print  # Modifies print to use the Rich library
-
-load_dotenv()  # Load your environment
-
-# Create the Agent
-agent = Agent(logger_level=0)
-
-# Configure the agent to stream it's responses.
-agent.config.prompt_driver.stream = True
-
-# Modify the Agent's response to have some color.
-def formatted_response(response: str) -> str:
-    print(f"[dark_cyan]{response}", end="", flush=True)
-
-# Begin Chatting
-Chat(
-    agent,
-    intro_text="\nWelcome to Griptape Chat!\n",
-    prompt_prefix="\nYou: ",
-    processing_text="\nThinking...",
-    response_prefix="\nAgent: ",
-    output_fn=formatted_response,  # Uses the formatted_response function
-).start()
+```python title="app.py" linenums="1"
+--8<-- "docs/courses/structures-calling-structures/assets/code_reviews/01/app.py"
 ```
 
 ---

@@ -13,7 +13,7 @@ Then finally we'll use the Chat utility to start chatting.
 
 Here is how you set this up in your Python script:
 
-```py title="app.py" hl_lines="3-5 9-13"
+```python title="app.py" hl_lines="3-5 9-13"
 # ... previous content
 
 # Griptape Items
@@ -43,7 +43,7 @@ By configuring our agent to stream its responses, we mimic the feel of a real-ti
 
 After you instantiate the agent, add the following line:
 
-```py title="app.py" hl_lines="5"
+```python title="app.py" hl_lines="5"
 # ...
 
 # Create the Agent
@@ -61,7 +61,7 @@ Here’s how to set up a function to format and print responses in dark cyan.
 
 First, import the `rich` library.
 
-```py title="app.py" hl_lines="2"
+```python title="app.py" hl_lines="2"
 # ...
 from rich import print as print # Modifies print to use the Rich library
 # ...
@@ -69,7 +69,7 @@ from rich import print as print # Modifies print to use the Rich library
 
 Then, create a function to format and print responses from the agent in dark cyan. Add this code before you start the Chat function, passing it the function with the `output_fn` parameter.
 
-```py title="app.py" hl_lines="3-5 9"
+```python title="app.py" hl_lines="3-5 9"
 
 # ...
 
@@ -107,7 +107,7 @@ Here’s how we can make it welcoming and structured:
 
 Here's how to put all those pieces together when calling the Chat
 
-```py title="app.py" hl_lines="6-9"
+```python title="app.py" hl_lines="6-9"
 # ...
 
 # Begin Chatting
@@ -132,36 +132,8 @@ Give it a go! You'll notice a much more enjoyable chat experience.
 
 Here's the final code with the updates from this section.
 
-```py title="app.py" linenums="1" hl_lines="3-5 7 11-12 14-15 17-19 21-29"
-from dotenv import load_dotenv
-
-# Griptape Items
-from griptape.structures import Agent
-from griptape.utils import Chat
-
-from rich import print as print  # Modifies print to use the Rich library
-
-load_dotenv()  # Load your environment
-
-# Create the Agent
-agent = Agent(logger_level=0)
-
-# Configure the agent to stream it's responses.
-agent.config.prompt_driver.stream = True
-
-# Modify the Agent's response to have some color.
-def formatted_response(response: str) -> str:
-    print(f"[dark_cyan]{response}", end="", flush=True)
-
-# Begin Chatting
-Chat(
-    agent,
-    intro_text="\nWelcome to Griptape Chat!\n",
-    prompt_prefix="\nYou: ",
-    processing_text="\nThinking...",
-    response_prefix="\nAgent: ",
-    output_fn=formatted_response,  # Uses the formatted_response function
-).start()
+```python title="app.py" linenums="1" hl_lines="3-5 7 11-12 14-15 17-19 21-29"
+--8<-- "docs/courses/image-query/assets/code_reviews/02/app.py"
 ```
 
 ---
