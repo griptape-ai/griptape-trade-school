@@ -76,26 +76,9 @@ User:
 
 We've made valuable progress in this stage. Before proceeding, let's verify your code.
 
-```python PYTEST_CHECK linenums="1" title="app.py"
-from dotenv import load_dotenv
-import logging                     
-
-# Griptape Items
-from griptape.structures import Agent
-from griptape.utils import Chat
-
-# Load environment variables
-load_dotenv()
-
-# Create the agent
-agent = Agent(
-    logger_level=logging.ERROR      
-)
-
-# Run the agent
-Chat(agent).start()
+```python linenums="1" title="app.py"
+--8<-- "docs/courses/chatbot-rulesets/assets/code_reviews/04/app.py"
 ```
-
 
 ## Next Steps
 

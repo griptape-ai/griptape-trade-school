@@ -382,55 +382,17 @@ workflow.run()
     `add_parents([parent_task1, parent_task2]).`
 
 After having set the Parent-Child relationships, run the Workflow and see what you get. The responses are very interesting.
+
 ## Code Checkpoint
+
 This is what your code should look like:
-```python PYTEST_CHECK linenums="1" title="app.py"
-from dotenv import load_dotenv
-# Griptape
-from griptape.tasks import PromptTask
-from griptape.structures import Workflow
 
-# Load Env Variables
-load_dotenv()
-
-# Start Task, Generates two movies from the 90's
-start_task = PromptTask(
-   "Generate two movies from the 90's",
-   id="START"
-)
-
-# Summary Task, Summarizes the previously generated movies
-summary_task = PromptTask(
-   "Summarize these movies: {{parent_outputs}}",
-   id="SUMMARIZE"
-)
-
-# Compare Tasks, Compare the two movies.
-compare_task = PromptTask(
-   "Compare these movies: {{parent_outputs}}",
-   id="COMPARE"
-)
-
-# Takes in the summary and compare Tasks to rank the movies
-rank_end_task = PromptTask(
-   "Rank the movies 1 or 2: {{parent_outputs}}",
-   id="RANK_END"
-)
-
-# Specify parent-child relationships imperatively
-summary_task.add_parent(start_task)
-compare_task.add_parent(start_task)
-rank_end_task.add_parents([summary_task, compare_task])
-
-# Create the Workflow
-workflow = Workflow(
-   tasks = [ start_task, summary_task, compare_task, rank_end_task ],
-)
-
-# Run the Workflow
-workflow.run()
+```python linenums="1" title="app.py"
+--8<-- "docs/courses/compare-movies-workflow/assets/code_reviews/08/app.py"
 ```
+
 Let's add a couple more Tasks and see the power of Workflows on display.
+
 ```python hl_lines="24-33 38-39" linenums="1" title="app.py"
 # Start task, Generates two movies from the 90's
 start_task = PromptTask(
@@ -488,6 +450,7 @@ rank_end_task.add_parents([themes_task, plot_task])
 )
 workflow.run()
 ```
+
 !!!note
     You can now place Tasks in whatever order you see fit within the Tasks list inside of the Workflow Structure call. This is because we are declaring the Parent-Child relationships Imperatively.
 Your output should be something like this:

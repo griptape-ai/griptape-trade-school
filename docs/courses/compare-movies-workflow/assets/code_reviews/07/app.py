@@ -1,0 +1,69 @@
+import webbrowser
+
+from dotenv import load_dotenv
+
+# Griptape
+from griptape.structures import Workflow
+from griptape.tasks import PromptTask, ToolkitTask
+from griptape.tools import TaskMemoryClient, WebScraper
+from griptape.utils import StructureVisualizer
+
+load_dotenv()
+
+# Create the workflow object
+workflow = Workflow()
+
+
+# Create tasks
+start_task = PromptTask("I will provide you a list of movies to compare.", id="START")
+end_task = PromptTask(
+    """
+    How are these movies the same:
+     {% for value in parent_outputs.values() %} 
+     {{ value }}
+     {% endfor %}
+    """,
+    id="END",
+)
+
+# Create a list of movie descriptions
+movie_descriptions = [
+    "A boy discovers an alien in his back yard",
+    "A shark attacks a beach",
+    "A princess and a man named Wesley",
+]
+
+# Add tasks to workflow
+workflow.add_task(start_task)
+workflow.add_task(end_task)
+
+# Iterate through the movie descriptions
+for description in movie_descriptions:
+    # Create a nice trimmed description for the first 10 characters
+    trimmed_description = description[0:10].strip().replace(" ", "_")
+
+    # Create the tasks and add ids for them
+    movie_task = PromptTask(
+        "What movie title is this? Return only the movie name: {{ description }}",
+        context={"description": description},
+        id=f"MOVIE:{trimmed_description}",
+    )
+    summary_task = ToolkitTask(
+        "Use metacritic to get a summary of this movie: {{ parent_outputs.values() | list |last }}",
+        tools=[WebScraper(), TaskMemoryClient(off_prompt=False)],
+        id=f"SUMMARY:{trimmed_description}",
+    )
+
+    workflow.insert_tasks(start_task, [movie_task], end_task)
+    workflow.insert_tasks(movie_task, [summary_task], end_task)
+
+# Run the workflow
+# workflow.run()
+
+# Visualize the workflow
+url = StructureVisualizer(workflow).to_url()
+theme = "dark"
+bgColor = "2b2b2b"
+full_url = f"{url}?theme={theme}&bgColor={bgColor}"
+
+webbrowser.open(full_url)

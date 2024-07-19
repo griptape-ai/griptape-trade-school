@@ -59,4 +59,4 @@ jobs:
         shell: bash
 
       - name: Run integration tests
-        run: poetry run pytest test/integration/test_code_blocks.py
+        run: poetry run pytest test/integration/test_code_reviews.py -s

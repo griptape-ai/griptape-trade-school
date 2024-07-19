@@ -512,24 +512,9 @@ Throughout this section, we've explored quite a bit about Griptape Tools. We lea
 
 Before continuing, let's look at our app in its current state where you can chat with the agent and ask important questions, like how much time you have before my birthday (April 3rd).
 
-
-```python PYTEST_CHECK title="app.py" linenums="1"
-from dotenv import load_dotenv
-from griptape.structures import Agent
-from griptape.utils import Chat
-from griptape.tools import DateTime
-
-load_dotenv()
-
-# Instantiate the agent
-agent = Agent(tools=[DateTime(off_prompt=False)])
-agent.config.prompt_driver.stream=True
-
-# Start chatting
-Chat(agent).start()
-
+```python title="app.py" linenums="1"
+--8<-- "docs/courses/shotgrid-client/assets/code_reviews/03/app.py"
 ```
-
 
 ---
 ## Next Steps

@@ -94,21 +94,8 @@ exiting...
 ## Code Review 
 Take a minute to check your code against the current version.
 
-```python PYTEST_CHECK title="app.py" linenums="1" 
-from dotenv import load_dotenv
-
-# Griptape Items
-from griptape.structures import Agent
-from griptape.utils import Chat #   <-- Added Chat
-
-# Load environment variables
-load_dotenv()
-
-# Create the agent
-agent = Agent()
-
-# Begin Chatting
-Chat(agent).start()
+```python title="app.py" linenums="1" 
+--8<-- "docs/courses/chatbot-rulesets/assets/code_reviews/03/app.py"
 ```
 
 ## Next Steps

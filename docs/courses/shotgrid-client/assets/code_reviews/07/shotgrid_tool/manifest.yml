@@ -1,0 +1,5 @@
+version: "v1"
+name: Autodesk ShotGrid Tool
+description: Tool for using the Autodesk ShotGrid API
+contact_email: contact@example.com
+legal_info_url: https://www.example.com/legal

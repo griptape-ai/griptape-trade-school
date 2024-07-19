@@ -115,49 +115,10 @@ Engage in stimulating conversations, explore various topics, and enjoy the inter
 
 We made a lot of important changes in this stage. Before we move forward, let's compare code. Changed lines are highlighted.
 
-```python PYTEST_CHECK linenums="1" hl_lines="28-38 41" title="app.py"
-from dotenv import load_dotenv
-import logging
-
-# Griptape Items
-from griptape.structures import Agent
-from griptape.rules import Rule, Ruleset
-
-# Load environment variables
-load_dotenv()
-
-# Create a ruleset for the agent
-kiwi_ruleset = Ruleset(
-    name = "kiwi",
-    rules = [
-        Rule("You identify as a New Zealander."),
-        Rule("You have a strong kiwi accent.")
-    ]
-)
-
-# Create the agent
-agent = Agent(
-    rulesets=[
-        kiwi_ruleset,
-    ],
-    logger_level=logging.ERROR
-)
-
-# Chat function
-def chat(agent):
-    is_chatting = True
-    while is_chatting:
-        user_input = input("Chat with Kiwi: ")
-        if user_input == "exit":
-            is_chatting = False
-        else:
-            # Keep on chatting
-            agent_result = agent.run(user_input)
-            print (f"Kiwi: {agent_result.output_task.output.value}")
-      
-# Run the agent
-chat(agent)
+```python linenums="1" hl_lines="28-38 41" title="app.py"
+--8<-- "docs/courses/chatbot-rulesets/assets/code_reviews/06/app.py"
 ```
+
 ## Next Steps
 
 Congratulations on implementing manual chat functionality and taking control of the conversation! In the next section: [Manners Maketh the Bot](07_manners_maketh_the_bot.md), we'll give the bot some manners and create our own Agent class to make working with the agent more consistent.
