@@ -541,43 +541,7 @@ Congratulations, there was a lot of work in this section, but in the end, we now
 ### `app.py`
 
 ```python linenums="1" title="app.py"
-from dotenv import load_dotenv
-import os
-
-from griptape.structures import Agent
-from griptape.utils import Chat
-from griptape.tools import DateTime
-
-from reverse_string_tool import ReverseStringTool
-from shotgrid_tool import ShotGridTool
-
-load_dotenv()
-
-SHOTGRID_URL = os.getenv("SHOTGRID_URL")
-SHOTGRID_API_KEY = os.getenv("SHOTGRID_API_KEY")
-SHOTGRID_SCRIPT = "Griptape API"
-
-# Instantiate the tool
-shotgrid_tool = ShotGridTool(
-    base_url=SHOTGRID_URL,
-    api_key=SHOTGRID_API_KEY,
-    script_name=SHOTGRID_SCRIPT,
-    off_prompt=False,
-)
-
-# Instantiate the agent
-agent = Agent(
-    tools=[
-        DateTime(off_prompt=False),
-        shotgrid_tool,
-        # ReverseStringTool(off_prompt=False),
-    ],
-)
-agent.config.prompt_driver.stream=True
-
-# Start chatting
-Chat(agent).start()
-
+--8<-- "docs/courses/shotgrid-client/assets/code_reviews/05/app.py"
 ```
 
 ### `.env`
@@ -589,74 +553,27 @@ SHOTGRID_URL=https://your-shotgrid-name.shotgrid.autodesk.com
 ```
 
 ### `shotgrid_tool/__init__.py`
+
 ```python linenums="1" title="shotgrid_tool/__init__.py"
-from .tool import ShotGridTool
-
-__all__ = ["ShotGridTool"]
-
+--8<-- "docs/courses/shotgrid-client/assets/code_reviews/05/shotgrid_tool/__init__.py"
 ```
 
 ### `shotgrid_tool/manifest.yml`
-```python linenums="1" title="shotgrid_tool/manifest.yml"
-version: "v1"
-name: Autodesk ShotGrid Tool
-description: Tool for using the Autodesk ShotGrid API
-contact_email: contact@example.com
-legal_info_url: https://www.example.com/legal
 
+```yaml linenums="1" title="shotgrid_tool/manifest.yml"
+--8<-- "docs/courses/shotgrid-client/assets/code_reviews/05/shotgrid_tool/manifest.yml"
 ```
 
 ### `shotgrid_tool/requirements.txt`
 
 ```text linenums="1" title="shotgrid_tool/requirements.txt"
-git+https://github.com/shotgunsoftware/python-api.git
-
+--8<-- "docs/courses/shotgrid-client/assets/code_reviews/05/shotgrid_tool/requirements.txt"
 ```
 
 ### `shotgrid_tool/tool.py`
 
 ```python linenums="1" title="shotgrid_tool/tool.py"
-from __future__ import annotations
-from griptape.artifacts import TextArtifact, ErrorArtifact
-from griptape.tools import BaseTool
-from griptape.utils.decorators import activity
-from schema import Schema, Literal
-from attr import define, field
-
-
-@define
-class ShotGridTool(BaseTool):
-    """
-    Parameters:
-        base_url: Base URL for your your ShotGrid site
-        script_name: The name for your script
-        api_key: The script API key, given to you by ShotGrid
-    """
-
-    base_url: str = field(default=str, kw_only=True)
-    script_name: str = field(default=str, kw_only=True)
-    api_key: str = field(default=str, kw_only=True)
-
-    @activity(
-        config={
-            "description": "Can be used to get the active session token from ShotGrid",
-        }
-    )
-    def get_session_token(self, _: dict) -> TextArtifact | ErrorArtifact:
-        import shotgun_api3
-
-        try:
-            sg = shotgun_api3.Shotgun(
-                self.base_url,  # ShotGrid url
-                script_name=self.script_name,  # Name of the ShotGrid script
-                api_key=self.api_key,  # ShotGrid API key
-            )
-            return TextArtifact(
-                sg.get_session_token()
-            )  # Return the results of the connection
-
-        except Exception as e:
-            return ErrorArtifact(str(e))
+--8<-- "docs/courses/shotgrid-client/assets/code_reviews/05/shotgrid_tool/tool.py"
 ```
 
 ---

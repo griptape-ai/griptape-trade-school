@@ -1,4 +1,0 @@
-griptape
-griptape-tools
-python-dotenv
-rich

@@ -40,7 +40,7 @@ Now comes the moment you've all been waiting for! Actually, it's the moment _bef
 
 Modify your `app.py` to import the agent
 
-```py title="app.py" hl_lines="3" linenums="1"
+```python title="app.py" hl_lines="3" linenums="1"
 from dotenv import load_dotenv
 
 from griptape.structures import Agent
@@ -55,7 +55,7 @@ As you can see, we're importing the Agent from `griptape.structures`. There are 
 
 To create the Agent, we'll instantiate the class. 
 
-```py title="app.py" hl_lines="7 8" linenums="1"
+```python title="app.py" hl_lines="7 8" linenums="1"
 from dotenv import load_dotenv
 
 from griptape.structures import Agent
@@ -69,7 +69,7 @@ agent = Agent()
 ### Run the Agent
 _Now_ you get to tell the Agent what to do. Use the Agent's `run` method to execute a prompt.
 
-```py title="app.py" hl_lines="10 11" linenums="1"
+```python title="app.py" hl_lines="10 11" linenums="1"
 from dotenv import load_dotenv
 
 from griptape.structures import Agent

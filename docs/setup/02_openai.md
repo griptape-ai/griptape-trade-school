@@ -72,7 +72,7 @@ Next, we're going to import the `load_dotenv` function from the `dotenv` library
 
 Enter the following code in app.py.
 
-```py title="app.py" linenums="1"
+```python title="app.py" linenums="1"
 from dotenv import load_dotenv
 
 ```
@@ -80,7 +80,7 @@ from dotenv import load_dotenv
 ### Loading the variables
 
 Now we'll use the `load_dotenv` function. Update your `app.py` with the highlighted line:
-```py title="app.py" linenums="1" hl_lines="3"
+```python title="app.py" linenums="1" hl_lines="3"
 from dotenv import load_dotenv
 
 load_dotenv() # Load the environment variables

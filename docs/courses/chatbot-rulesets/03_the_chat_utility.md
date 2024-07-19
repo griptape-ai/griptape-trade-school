@@ -15,7 +15,7 @@ After completing this section, you'll be able to have lively and interactive con
 
    To get started, we need to import the magical `Chat` utility from Griptape. This utility will be our ticket to engaging conversations with our chatbot. In your code, add the following import statement:
    
-   ```py title="app.py" hl_lines="3"
+   ```python title="app.py" hl_lines="3"
    # ... previous code
    from griptape.structures import Agent
    from griptape.utils import Chat
@@ -95,20 +95,7 @@ exiting...
 Take a minute to check your code against the current version.
 
 ```python title="app.py" linenums="1" 
-from dotenv import load_dotenv
-
-# Griptape Items
-from griptape.structures import Agent
-from griptape.utils import Chat #   <-- Added Chat
-
-# Load environment variables
-load_dotenv()
-
-# Create the agent
-agent = Agent()
-
-# Begin Chatting
-Chat(agent).start()
+--8<-- "docs/courses/chatbot-rulesets/assets/code_reviews/03/app.py"
 ```
 
 ## Next Steps

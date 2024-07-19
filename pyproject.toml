@@ -11,6 +11,12 @@ mkdocs = "^1.6.0"
 mkdocs-material = "^9.5.26"
 mkdocs-glightbox = "^0.4.0"
 
+[tool.poetry.group.test]
+optional = true
+
+[tool.poetry.group.test.dependencies]
+pytest = "^8.2.2"
+python-dotenv = "^1.0.1"
 
 [build-system]
 requires = ["poetry-core"]

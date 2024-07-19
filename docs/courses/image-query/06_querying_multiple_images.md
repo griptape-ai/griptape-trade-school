@@ -41,7 +41,7 @@ Our workflow will follow these steps:
 
 Update your import statements to include all the necessary items. 
 
-```py title="app.py" hl_lines="2 4-5"
+```python title="app.py" hl_lines="2 4-5"
 # ...
 import os
 # ...
@@ -71,7 +71,7 @@ We’re going to be creating a workflow, so we don't really need to use the Agen
 
 Another option, however, is to put the agent code in a conditional statement. We can say to the app "Hey, if TRUE then run the workflow code, but if FALSE run the agent code. It would look something like this:
 
-```py title="example_flow.py" linenums="1"
+```python title="example_flow.py" linenums="1"
 if True:
   print ("This would be where the WORKFLOW code goes.")
 else:
@@ -86,7 +86,7 @@ This is where the WORKFLOW code goes.
 
 Conversely, if we set it to False..
 
-```py title="example_flow.py" linenums="1"
+```python title="example_flow.py" linenums="1"
 if False:
   print ("This would be where the WORKFLOW code goes.")
 else:
@@ -103,7 +103,7 @@ This is a great way to control the flow of execution in our program & make sure 
 
 Modify the code as follows:
 
-```py title="app.py" hl_lines="5-25"
+```python title="app.py" hl_lines="5-25"
 # ...
 # Configure the ImageQueryClient
 image_query_client = ImageQueryClient(image_query_engine=engine, off_prompt=False)
@@ -140,7 +140,7 @@ I lost the orchestra analogy here, but imagine setting up dominoes; each task in
 
 Insert this code inside the workflow section of your conditional statement.
 
-```py title="app.py"  hl_lines="5-18"
+```python title="app.py"  hl_lines="5-18"
 # ...
 
 if True:
@@ -173,7 +173,7 @@ Now, let’s get the data ready for the show. Yes, I’m back to the orchestra e
 
 Add the following code after the creation of the start/end tasks, and _before_ you run the workflow:
 
-```py title="app.py" linenums="1" hl_lines="8-20"
+```python title="app.py" linenums="1" hl_lines="8-20"
 # ...
 
 if True:
@@ -216,7 +216,7 @@ Now we'll swap out this fake task, for a real one.
 
 For each VIP (Very Important Picture), create a task that details their best angles. This task uses the `ImageQueryClient` to generate an SEO-friendly description, keywords, alt-description, caption, and HTML element for each image.
 
-```py title="app.py" hl_lines="11-17"
+```python title="app.py" hl_lines="11-17"
 # ...
 
 if True:
@@ -259,7 +259,7 @@ So, this task takes the output from the ToolTask and uses the FileManager to sav
 
 Create the Image SEO Task right after the image summary task, and insert it into the workflow.
 
-```py title="app.py" hl_lines="14-23 27"
+```python title="app.py" hl_lines="14-23 27"
 # ...
 
 if True:
@@ -330,103 +330,9 @@ toy_car.png:
 
 ## Code Review
 
-```py title="app.py" linenums="1" hl_lines="2 5-6 28-73"
-from dotenv import load_dotenv
-import os
-
-# Griptape Items
-from griptape.structures import Agent, Workflow
-from griptape.tasks import TextSummaryTask, ToolTask, ToolkitTask
-from griptape.utils import Chat
-from griptape.tools import ImageQueryClient, FileManager
-from griptape.engines import ImageQueryEngine
-from griptape.drivers import OpenAiImageQueryDriver
-
-
-from rich import print as print  # Modifies print to use the Rich library
-
-load_dotenv()  # Load your environment
-
-# Create an Image Query Driver
-driver = OpenAiImageQueryDriver(model="gpt-4o")
-
-# Create an Image Query Engine
-engine = ImageQueryEngine(
-    image_query_driver=driver,
-)
-
-# Configure the ImageQueryClient
-image_query_client = ImageQueryClient(image_query_engine=engine, off_prompt=False)
-
-if True:
-    # Create a Workflow
-    workflow = Workflow()
-
-    # Create the Start and End tasks.
-    startTask = TextSummaryTask("We are going to start a new workflow.", id="START")
-    endTask = TextSummaryTask(
-        "We have completed the workflow. Summarize what we did {{ parent_outputs }}",
-        id="END",
-    )
-
-    # Add the tasks to the workflow
-    workflow.add_tasks(startTask, endTask)
-
-    # For each image in the directory
-    image_dir = "./images"
-    for image in os.listdir(image_dir):
-        image_path = os.path.join(image_dir, image)
-        filename = os.path.splitext(image)[0]
-
-        # Create an Image Summary Task
-        image_summary_task = ToolTask(
-            "Describe this image in detail: {{ image_path }}",
-            context={"image_path": image_path},
-            tool=image_query_client,
-            id=f"{image}",
-        )
-
-        # Create an Image SEO Task
-        image_seo_task = ToolkitTask(
-            "Based on this image description, create the following:\n"
-            + "SEO description, Caption, Alt-text, 5 keywords, an HTML snippet to "
-            + "display the image. Save this to image_descriptions/{{ filename }}.yml\n"
-            + "in YAML format.\n\n{{ parent_outputs }}",
-            tools=[FileManager(off_prompt=False)],
-            context={"image": image},
-            id=f"seo_{image}",
-        )
-
-        # Insert it to the workflow
-        workflow.insert_tasks(startTask, [image_summary_task], endTask)
-        workflow.insert_tasks(image_summary_task, [image_seo_task], endTask)
-
-    # Run the workflow
-    workflow.run()
-else:
-    # Create the Agent
-    agent = Agent(
-        logger_level=0, tools=[image_query_client, FileManager(off_prompt=False)]
-    )
-
-    # Configure the agent to stream it's responses.
-    agent.config.prompt_driver.stream = True
-
-    # Modify the Agent's response to have some color.
-    def formatted_response(response: str) -> str:
-        print(f"[dark_cyan]{response}", end="", flush=True)
-
-    # Begin Chatting
-    Chat(
-        agent,
-        intro_text="\nWelcome to Griptape Chat!\n",
-        prompt_prefix="\nYou: ",
-        processing_text="\nThinking...",
-        response_prefix="\nAgent: ",
-        output_fn=formatted_response,  # Uses the formatted_response function
-    ).start()
+```python title="app.py" linenums="1" hl_lines="2 5-6 28-73"
+--8<-- "docs/courses/image-query/assets/code_reviews/06/app.py"
 ```
-
 
 ---
 ## Next Steps
