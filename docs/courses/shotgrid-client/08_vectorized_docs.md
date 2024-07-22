@@ -26,7 +26,7 @@ This means I can ask for "ways to filter asset creation" "asset creation, filter
 The process for providing the docs to the LLM looks like this:
 
 1. Create a Vector Database where we can store the documents. In this example, we'll use a simple [Local Vector Store Driver](https://docs.griptape.ai/stable/griptape-framework/drivers/vector-store-drivers/#local-vector-store-driver){target="_blank"}.
-2. Create a [Vector Query Engine](https://docs.griptape.ai/stable/griptape-framework/engines/query-engines/#vectorqueryengine){target="_blank"} - an engine that's really good at searching Vector Databases
+2. Create a [Vector Query Engine](https://docs.griptape.ai/stable/griptape-framework/engines/rag-engines/){target="_blank"} - an engine that's really good at searching Vector Databases
 3. Create a list of URLs to vectorize.
 For each URL, load the data using a [WebLoader](https://docs.griptape.ai/stable/griptape-framework/data/loaders/#web-loader){target="_blank"}.
 5. For each bit of website data, upsert (update/insert) it into the Vector Store.
@@ -93,16 +93,18 @@ vector_store_driver = LocalVectorStoreDriver(embedding_driver=OpenAiEmbeddingDri
 # ...
 ```
 
-### Vector Query Engine
+### Rag Engine
 
-Now that we have a database, we need a way to query it. This will be done using Griptape's [VectorQueryEngine](https://docs.griptape.ai/stable/griptape-framework/engines/query-engines/#vectorqueryengine){target="_blank"} which takes a `vector_store_driver` and a `chat_prompt_driver`. Luckily we just created a vector store driver, and the OpenAiChatPromptDriver is quite powerful!
+Now that we have a database, we need a way to query it. This will be done using Griptape's [RagEngine](https://docs.griptape.ai/stable/griptape-framework/engines/rag-engines/){target="_blank"}.
 
 First, import the engine into Griptape by adding it to the imports section of your app.
 
 ```python title="app.py" hl_lines="3"
 # ...
 from griptape.drivers import LocalVectorStoreDriver, OpenAiEmbeddingDriver, OpenAIChatPromptDriver
-from griptape.engines import VectorQueryEngine
+from griptape.engines.rag import RagEngine
+from griptape.engines.rag.modules import PromptResponseRagModule
+from griptape.engines.rag.stages import ResponseRagStage
 # ...
 
 ```
@@ -116,9 +118,12 @@ Next, create the engine. Add the following lines after the creation of the `vect
 vector_store_driver = LocalVectorStoreDriver(embedding_driver=OpenAiEmbeddingDriver())
 
 # Create the query engine
-query_engine = VectorQueryEngine(
-    prompt_driver=OpenAiChatPromptDriver(model="gpt-3.5-turbo"),
-    vector_store_driver=vector_store_driver
+rag_engine = RagEngine(
+    response_stage=ResponseRagStage(
+        response_module=PromptResponseRagModule(
+            prompt_driver=OpenAiChatPromptDriver(model="gpt-4o-mini")
+        )
+    ),
 )
 
 # ...
@@ -134,7 +139,7 @@ Add the following lines after creating the query engine.
 # ...
 
 # Create the query engine
-query_engine = VectorQueryEngine(
+rag_engine = RagEngine(
     prompt_driver=OpenAiChatPromptDriver(model="gpt-3.5-turbo"),
     vector_store_driver=vector_store_driver
 )
@@ -161,7 +166,9 @@ First import the WebLoader from `griptape.loaders` by adding the `import` statem
 
 ```python title="app.py" hl_lines="3"
 # ...
-from griptape.engines import VectorQueryEngine
+from griptape.engines.rag import RagEngine
+from griptape.engines.rag.modules import PromptResponseRagModule
+from griptape.engines.rag.stages import ResponseRagStage
 from griptape.loaders import WebLoader
 # ...
 
@@ -208,7 +215,7 @@ for url in shotgrid_api_urls:
 namespace = "shotgrid_api"
 
 for artifact in artifacts:
-    query_engine.vector_store_driver.upsert_text_artifacts({namespace: artifact})
+    vector_store_driver.upsert_text_artifacts({namespace: artifact})
 
 # ...
 ```
@@ -228,7 +235,7 @@ from griptape.tools import DateTime, VectorStoreClient
 # ...
 ```
 
-We can instantiate the Tool in `app.py` after upserting the data. We'll provide a `description` so the LLM knows when to use it, and also access to the `query_engine` and `namespace`. 
+We can instantiate the Tool in `app.py` after upserting the data. We'll provide a `description` so the LLM knows when to use it, and also access to the `rag_engine` and `namespace`. 
 
 ```python title="app.py" hl_lines="9-15"
 # ...
@@ -237,13 +244,13 @@ We can instantiate the Tool in `app.py` after upserting the data. We'll provide 
 namespace = "shotgrid_api"
 
 for artifact in artifacts:
-    query_engine.vector_store_driver.upsert_text_artifacts({namespace: artifact})
+    vector_store_driver.upsert_text_artifacts({namespace: artifact})
 
 # Instantiate the Vector Store Client
 vector_store_tool = VectorStoreClient(
     description="Contains information about ShotGrid api. Use it to help with ShotGrid client requests.",
-    query_engine=query_engine,
-    namespace=namespace,
+    vector_store_driver=vector_store_driver,
+    query_params={"namespace": namespace},
     off_prompt=False,
 )
 
