@@ -22,8 +22,6 @@ This package explicitly does not include Griptape so that it can be specified wh
 
 ```
 poetry install --with test --no-root
-source .venv/bin/activate
-pip install "griptape[all]==<version>" -U
 ```
 
 ```

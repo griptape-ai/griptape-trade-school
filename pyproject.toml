@@ -17,6 +17,12 @@ optional = true
 [tool.poetry.group.test.dependencies]
 pytest = "^8.2.2"
 python-dotenv = "^1.0.1"
+pytest-xdist = "^3.3.1"
+griptape = {version="^0.28.2", extras=["all"]}
+
+
+[tool.poetry.group.dev.dependencies]
+pyright = "^1.1.372"
 
 [build-system]
 requires = ["poetry-core"]

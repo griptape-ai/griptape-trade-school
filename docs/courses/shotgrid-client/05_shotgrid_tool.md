@@ -368,8 +368,8 @@ Now, after we use the function `load_dotenv()`, we can pull the two parameters f
 # ...
 load_dotenv()
 
-SHOTGRID_URL = os.getenv("SHOTGRID_URL")
-SHOTGRID_API_KEY = os.getenv("SHOTGRID_API_KEY")
+SHOTGRID_URL = os.environ["SHOTGRID_URL"]
+SHOTGRID_API_KEY = os.environ["SHOTGRID_API_KEY"]
 SHOTGRID_SCRIPT = "Griptape API" # The name of your script when you created your key
 
 # ...
@@ -382,8 +382,8 @@ Now we'll instantiate the Tool, passing it the required fields. Add the highlite
 ```python title="app.py" hl_lines="7-13"
 # ...
 
-SHOTGRID_URL = os.getenv("SHOTGRID_URL")
-SHOTGRID_API_KEY = os.getenv("SHOTGRID_API_KEY")
+SHOTGRID_URL = os.environ["SHOTGRID_URL"]
+SHOTGRID_API_KEY = os.environ["SHOTGRID_API_KEY"]
 SHOTGRID_SCRIPT = "Griptape API"
 
 # Instantiate the tool
@@ -436,8 +436,8 @@ from shotgrid_tool import ShotGridTool
 
 load_dotenv()
 
-SHOTGRID_URL = os.getenv("SHOTGRID_URL")
-SHOTGRID_API_KEY = os.getenv("SHOTGRID_API_KEY")
+SHOTGRID_URL = os.environ["SHOTGRID_URL"]
+SHOTGRID_API_KEY = os.environ["SHOTGRID_API_KEY"]
 SHOTGRID_SCRIPT = "Griptape API"
 
 # Instantiate the tool

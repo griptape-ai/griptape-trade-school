@@ -42,7 +42,7 @@ At a minimum, you must specify the `model` and the `api_key`. This example uses 
 ```python
 # Create the driver
 image_driver = LeonardoImageGenerationDriver(
-    api_key=os.getenv("LEONARDO_API_KEY"),
+    api_key=os.environ["LEONARDO_API_KEY"],
     model="5c232a9e-9061-4777-980a-ddc8e65647c6", 
 )
 ```
@@ -69,7 +69,7 @@ If you have set the `LEONARDO_API_KEY` in your `.env` file, and imported the `os
 ```python
 # Create the driver
 image_driver = LeonardoImageGenerationDriver(
-    api_key=os.getenv("LEONARDO_API_KEY"),
+    api_key=os.environ["LEONARDO_API_KEY"],
     # ...
 )
 

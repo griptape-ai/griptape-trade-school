@@ -141,11 +141,11 @@ First, we'll make sure to grab the username and password environment variables. 
 ```python title="app.py" hl_lines="6-7"
 # ...
 
-SHOTGRID_URL = os.getenv("SHOTGRID_URL")
-SHOTGRID_API_KEY = os.getenv("SHOTGRID_API_KEY")
+SHOTGRID_URL = os.environ["SHOTGRID_URL"]
+SHOTGRID_API_KEY = os.environ["SHOTGRID_API_KEY"]
 SHOTGRID_SCRIPT = "Griptape API"
-SHOTGRID_USER = os.getenv("SHOTGRID_USER")
-SHOTGRID_PASSWORD = os.getenv("SHOTGRID_PASSWORD")
+SHOTGRID_USER = os.environ["SHOTGRID_USER"]
+SHOTGRID_PASSWORD = os.environ["SHOTGRID_PASSWORD"]
 
 # ...
 ```
