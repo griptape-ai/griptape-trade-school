@@ -1,11 +1,7 @@
 name: Framework Release Integration Tests
 
 on: 
-  workflow_dispatch:
-    inputs:
-      griptape-version:
-        description: 'Version of Griptape to test against'
-        required: true
+  workflow_dispatch
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -45,11 +41,7 @@ jobs:
 
       - name: Install dependencies
         if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-        run: poetry install --no-interaction --no-root --with test
-        shell: bash
-
-      - name: Install Griptape version
-        run: poetry add "griptape[all]==${{ github.event.inputs.griptape-version }}"
+        run: make install
         shell: bash
 
       - name: Activate venv 
@@ -58,5 +50,8 @@ jobs:
           echo PATH=$PATH >> $GITHUB_ENV
         shell: bash
 
-      - name: Run integration tests
-        run: poetry run pytest test/integration/test_code_reviews.py
+      - name: Run tests
+        run: make test
+
+      - name: Run code checks
+        run: make check
