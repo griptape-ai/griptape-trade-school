@@ -74,7 +74,7 @@ Then, create a function to format and print responses from the agent in dark cya
 # ...
 
 # Modify the Agent's response to have some color.
-def formatted_response(response: str) -> str:
+def formatted_response(response: str) -> None:
     print(f"[dark_cyan]{response}", end="", flush=True)
 
 # Begin Chatting

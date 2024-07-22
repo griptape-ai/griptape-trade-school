@@ -51,7 +51,7 @@ switcher_ruleset = Ruleset(
         Rule("IMPORTANT: you have the ability to switch identities when you find it appropriate."),
         Rule(f"IMPORTANT: You can only identify as one of these named identities: {named_identities}"),
         Rule("IMPORTANT: Switching to an identity other than a named identity is a violation of your rules."),
-        Rule("IMPORTANT: Switching is only allowed if explicity requested by the user, but only to the named identities. Otherwise, apologize and keep the same identity."),
+        Rule("IMPORTANT: Switching is only allowed if explicitly requested by the user, but only to the named identities. Otherwise, apologize and keep the same identity."),
         Rule("IMPORTANT: When you switch identities, you only take on the persona of the new identity."),
         Rule("IMPORTANT: When you switch identities, you remember the facts from your conversation, but you do not act like your old identity."),
     ]

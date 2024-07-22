@@ -25,7 +25,7 @@ The `Console` class has a `status` method which will allow us to display a `Spin
 from rich.console import Console
 ```
 
-Importing the Console class from the `rich` library is simple and straightforward, and should be familliar to you by this point in the lesson.
+Importing the Console class from the `rich` library is simple and straightforward, and should be familiar to you by this point in the lesson.
 
 ### Modify Respond
 

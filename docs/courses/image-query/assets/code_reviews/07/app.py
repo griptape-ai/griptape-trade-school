@@ -23,8 +23,8 @@ engine = ImageQueryEngine(
 
 # Configure the ImageQueryClient
 image_query_client = ImageQueryClient(image_query_engine=engine, off_prompt=False)
-
-if True:
+flow = "WORKFLOW"
+if flow == "WORKFLOW":
     # Create a Workflow
     workflow = Workflow()
 
@@ -86,7 +86,7 @@ else:
     agent.config.prompt_driver.stream = True
 
     # Modify the Agent's response to have some color.
-    def formatted_response(response: str) -> str:
+    def formatted_response(response: str) -> None:
         print(f"[dark_cyan]{response}", end="", flush=True)
 
     # Begin Chatting

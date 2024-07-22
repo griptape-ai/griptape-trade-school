@@ -21,13 +21,11 @@ Tutorials and Courses for [Griptape](https://github.com/griptape-ai/griptape).
 This package explicitly does not include Griptape so that it can be specified when running tests in the workflow
 
 ```
-poetry install --with test --no-root
-source .venv/bin/activate
-pip install "griptape[all]==<version>" -U
+make install
 ```
 
 ```
-poetry run pytest test/integration/test_code_reviews.py
+make test
 ```
 
 # Run GitHub Action locally

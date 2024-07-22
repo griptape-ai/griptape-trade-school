@@ -10,8 +10,8 @@ from shotgrid_tool import ShotGridTool
 
 load_dotenv()
 
-SHOTGRID_URL = os.getenv("SHOTGRID_URL")
-SHOTGRID_API_KEY = os.getenv("SHOTGRID_API_KEY")
+SHOTGRID_URL = os.environ["SHOTGRID_URL"]
+SHOTGRID_API_KEY = os.environ["SHOTGRID_API_KEY"]
 SHOTGRID_SCRIPT = "Griptape API"
 
 # Instantiate the tool
