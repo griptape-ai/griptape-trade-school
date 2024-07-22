@@ -47,7 +47,7 @@ grammar_agent_driver = LocalStructureRunDriver(
 
 # Create a client using the driver
 # It's important to define the name and the description, this is how
-# the agent we're chatting with will know to use the grammer agent.
+# the agent we're chatting with will know to use the grammar agent.
 #
 # In this example we're setting off_prompt to True. This demonstrates
 # how the agent's response could be kept private from the original LLM.

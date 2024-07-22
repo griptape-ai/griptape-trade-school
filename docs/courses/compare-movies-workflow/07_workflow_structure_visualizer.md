@@ -50,7 +50,7 @@ from griptape.utils import StructureVisualizer
 
 To display the graph, you'll use the `StructureVisualizer`'s method `to_url`. This will output a url you can click on that will display the graph.
 
-At the end of your script, comment out `worfklow.run()` and instead get the url using the `StructureVisualizer` class, then print it.
+At the end of your script, comment out `workflow.run()` and instead get the url using the `StructureVisualizer` class, then print it.
 
 ```python
 # Run the workflow
