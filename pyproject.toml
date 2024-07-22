@@ -24,6 +24,18 @@ griptape = {version="^0.28.2", extras=["all"]}
 [tool.poetry.group.dev.dependencies]
 pyright = "^1.1.372"
 
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+include = ["griptape"]
+exclude = [
+    "**/__pycache__",
+]
+pythonVersion = "3.9"
+reportOptionalMemberAccess = "none"
+reportIncompatibleVariableOverride = "none" # see thread: https://github.com/microsoft/pyright/issues/5933 
+enableExperimentalFeatures = true # https://github.com/microsoft/pyright/issues/7713
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

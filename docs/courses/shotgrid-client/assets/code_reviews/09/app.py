@@ -10,7 +10,9 @@ from griptape.drivers import (
     OpenAiChatPromptDriver,
     OpenAiEmbeddingDriver,
 )
-from griptape.engines import VectorQueryEngine
+from griptape.engines.rag import RagEngine
+from griptape.engines.rag.modules import PromptResponseRagModule
+from griptape.engines.rag.stages import ResponseRagStage
 from griptape.loaders import WebLoader
 from griptape.rules import Rule, Ruleset
 
@@ -22,9 +24,12 @@ load_dotenv()
 vector_store_driver = LocalVectorStoreDriver(embedding_driver=OpenAiEmbeddingDriver())
 
 # Create the query engine
-query_engine = VectorQueryEngine(
-    prompt_driver=OpenAiChatPromptDriver(model="gpt-3.5-turbo"),
-    vector_store_driver=vector_store_driver,
+rag_engine = RagEngine(
+    response_stage=ResponseRagStage(
+        response_module=PromptResponseRagModule(
+            prompt_driver=OpenAiChatPromptDriver(model="gpt-4o-mini")
+        )
+    ),
 )
 
 # API Documentation
@@ -46,13 +51,13 @@ for url in shotgrid_api_urls:
 namespace = "shotgrid_api"
 
 for artifact in artifacts:
-    query_engine.vector_store_driver.upsert_text_artifacts({namespace: artifact})
+    vector_store_driver.upsert_text_artifacts({namespace: artifact})
 
 # Instantiate the Vector Store Client
 vector_store_tool = VectorStoreClient(
     description="Contains information about ShotGrid api. Use it to help with ShotGrid client requests.",
-    query_engine=query_engine,
-    namespace=namespace,
+    vector_store_driver=vector_store_driver,
+    query_params={"namespace": namespace},
     off_prompt=False,
 )
 

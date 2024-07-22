@@ -30,7 +30,7 @@ agent.config.prompt_driver.stream = True
 
 
 # Modify the Agent's response to have some color.
-def formatted_response(response: str) -> str:
+def formatted_response(response: str) -> None:
     print(f"[dark_cyan]{response}", end="", flush=True)
 
 

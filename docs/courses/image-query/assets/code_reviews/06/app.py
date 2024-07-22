@@ -2,9 +2,8 @@ from dotenv import load_dotenv
 import os
 
 # Griptape Items
-from griptape.structures import Agent, Workflow
+from griptape.structures import Workflow
 from griptape.tasks import TextSummaryTask, ToolTask, ToolkitTask
-from griptape.utils import Chat
 from griptape.tools import ImageQueryClient, FileManager
 from griptape.engines import ImageQueryEngine
 from griptape.drivers import OpenAiImageQueryDriver
@@ -69,3 +68,4 @@ for image in os.listdir(image_dir):
 
 # Run the workflow
 workflow.run()
+
