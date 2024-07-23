@@ -1,6 +1,6 @@
 .PHONY: install
 install: ## Install all dependencies.
-	@poetry install --with test --all-extras --no-root
+	@poetry install --with test --no-root
 
 .PHONY: test  ## Run all tests.
 test: test/integration
