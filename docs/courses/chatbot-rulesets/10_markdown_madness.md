@@ -90,7 +90,7 @@ To see the enhanced code display in action, run your chatbot and observe the bea
 
 Before moving forward, make sure your code works as expected.
 
-```python linenums="1" title="app.py" hl_lines="8 31 45 48"
+```python linenums="1" title="app.py"
 --8<-- "docs/courses/chatbot-rulesets/assets/code_reviews/10/app.py"
 ```
 

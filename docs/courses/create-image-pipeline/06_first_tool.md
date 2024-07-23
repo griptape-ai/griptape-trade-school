@@ -254,7 +254,7 @@ You have added a Griptape Tool *and* modified it to add a new activity! Well don
 
 ### `reverse_string_tool/tool.py`
 
-```python title="reverse_string_tool/tool.py" linenums="1" hl_lines="28-52"
+```python title="reverse_string_tool/tool.py" linenums="1"
 --8<-- "docs/courses/create-image-pipeline/assets/code_reviews/06/reverse_string_tool/tool.py"
 ```
 

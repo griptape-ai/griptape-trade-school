@@ -49,7 +49,7 @@ print("foo2")
 
 ```
 
-### Code with line hilighted
+### Code with line highlighted
 ``` py linenums="1" hl_lines="3 4"
 
 is_chatting = True

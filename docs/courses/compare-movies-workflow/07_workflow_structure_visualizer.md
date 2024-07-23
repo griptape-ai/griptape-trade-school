@@ -50,7 +50,7 @@ from griptape.utils import StructureVisualizer
 
 To display the graph, you'll use the `StructureVisualizer`'s method `to_url`. This will output a url you can click on that will display the graph.
 
-At the end of your script, comment out `worfklow.run()` and instead get the url using the `StructureVisualizer` class, then print it.
+At the end of your script, comment out `workflow.run()` and instead get the url using the `StructureVisualizer` class, then print it.
 
 ```python
 # Run the workflow
@@ -170,7 +170,7 @@ Next time you run the script, it should automatically open a web browser with th
 
 ## Code Review
 
-```python linenums="1" title="app.py" hl_lines="1 9 61-69"
+```python linenums="1" title="app.py"
 --8<-- "docs/courses/compare-movies-workflow/assets/code_reviews/07/app.py"
 ```
 

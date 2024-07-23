@@ -25,7 +25,7 @@ The `Console` class has a `status` method which will allow us to display a `Spin
 from rich.console import Console
 ```
 
-Importing the Console class from the `rich` library is simple and straightforward, and should be familliar to you by this point in the lesson.
+Importing the Console class from the `rich` library is simple and straightforward, and should be familiar to you by this point in the lesson.
 
 ### Modify Respond
 
@@ -58,7 +58,7 @@ Now when you run the chat, you'll notice the animated spinner right after you as
 
 Double-check your code to make sure the spinner is working as expected.
 
-```python linenums="1" title="app.py" hl_lines="11 74-77"
+```python linenums="1" title="app.py"
 --8<-- "docs/courses/chatbot-rulesets/assets/code_reviews/14/app.py"
 ```
 

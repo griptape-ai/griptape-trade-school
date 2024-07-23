@@ -75,7 +75,7 @@ Engage in a conversation with Kiwi and enjoy the interactive and intuitive natur
 
 ## Code Review
 
-```python linenums="1" title="app.py" hl_lines="9-10 53 69"
+```python linenums="1" title="app.py"
 --8<-- "docs/courses/chatbot-rulesets/assets/code_reviews/11/app.py"
 ```
 

@@ -57,5 +57,4 @@ for description in movie_descriptions:
 workflow.run()
 
 # View the output
-for task in workflow.output_tasks():
-    print(task.output.value)    
+print(workflow.output.value)    

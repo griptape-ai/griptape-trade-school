@@ -137,7 +137,7 @@ Notice it describes it really well!
 
 Here's the final code with the updates from this section.
 
-```python title="app.py" linenums="1" hl_lines="6-8 14-15 17-20 22-23 26"
+```python title="app.py" linenums="1"
 --8<-- "docs/courses/image-query/assets/code_reviews/03/app.py"
 ```
 

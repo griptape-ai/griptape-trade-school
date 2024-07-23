@@ -1,7 +1,7 @@
 # Frequently Asked Questions
 
 !!! question "What is griptape-tools?"
-    Sometimes the videos will mention or demonstrate the instalation of `griptape-tools`. 
+    Sometimes the videos will mention or demonstrate the installation of `griptape-tools`. 
     
     For example:
 

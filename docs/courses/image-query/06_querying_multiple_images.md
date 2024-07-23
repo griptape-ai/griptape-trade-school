@@ -69,10 +69,12 @@ The task that will use FileManager to save the files to disk. This uses Chain of
 
 We’re going to be creating a workflow, so we don't really need to use the Agent code anymore. We could delete it, but we might find it useful to reference while adjusting to our Workflow. To keep it around, we could comment it out - this would keep it in our code, but it wouldn't have any influence.
 
-Another option, however, is to put the agent code in a conditional statement. We can say to the app "Hey, if TRUE then run the workflow code, but if FALSE run the agent code. It would look something like this:
+Another option, however, is to put the agent code in a conditional statement.
+We can say to the app "Hey, if `flow == "WORKFLOW"` then run the workflow code, but if `flow != "WORKFLOW"` run the agent code. It would look something like this:
 
 ```python title="example_flow.py" linenums="1"
-if True:
+flow = "WORKFLOW"
+if flow == "WORKFLOW":
   print ("This would be where the WORKFLOW code goes.")
 else:
   print ("This is where the AGENT code would go.")
@@ -84,10 +86,11 @@ If you were to run this script right now, the output would be:
 This is where the WORKFLOW code goes.
 ```
 
-Conversely, if we set it to False..
+Conversely, if we set it to `"AGENT"`..
 
 ```python title="example_flow.py" linenums="1"
-if False:
+flow = "AGENT"
+if flow == "WORKFLOW":
   print ("This would be where the WORKFLOW code goes.")
 else:
   print ("This is where the AGENT code would go.")
@@ -108,7 +111,8 @@ Modify the code as follows:
 # Configure the ImageQueryClient
 image_query_client = ImageQueryClient(image_query_engine=engine, off_prompt=False)
 
-if True:
+flow = "AGENT"
+if flow == "WORKFLOW":
   # Create a workflow 
 else:
   # Create the Agent
@@ -119,7 +123,7 @@ else:
 
 
   # Modify the Agent's response to have some color.
-  def formatted_response(response: str) -> str:
+  def formatted_response(response: str) -> None:
       print(f"[dark_cyan]{response}", end="", flush=True)
 
 
@@ -143,7 +147,8 @@ Insert this code inside the workflow section of your conditional statement.
 ```python title="app.py"  hl_lines="5-18"
 # ...
 
-if True:
+flow = "WORKFLOW"
+if flow == "WORKFLOW":
   # Create a Workflow
   workflow = Workflow()
 
@@ -176,7 +181,8 @@ Add the following code after the creation of the start/end tasks, and _before_ y
 ```python title="app.py" linenums="1" hl_lines="8-20"
 # ...
 
-if True:
+flow = "WORKFLOW"
+if flow == "WORKFLOW":
   # ...
   # Add the tasks to the workflow
   workflow.add_tasks(startTask, endTask)
@@ -219,7 +225,8 @@ For each VIP (Very Important Picture), create a task that details their best ang
 ```python title="app.py" hl_lines="11-17"
 # ...
 
-if True:
+flow = "WORKFLOW"
+if flow == "WORKFLOW":
   # ...
   # For each image in the directory
   image_dir = "./images"
@@ -262,7 +269,8 @@ Create the Image SEO Task right after the image summary task, and insert it into
 ```python title="app.py" hl_lines="14-23 27"
 # ...
 
-if True:
+flow = "WORKFLOW"
+if flow == "WORKFLOW":
   # ...
   for image in os.listdir(image_dir):
 
@@ -330,7 +338,7 @@ toy_car.png:
 
 ## Code Review
 
-```python title="app.py" linenums="1" hl_lines="2 5-6 28-73"
+```python title="app.py" linenums="1"
 --8<-- "docs/courses/image-query/assets/code_reviews/06/app.py"
 ```
 

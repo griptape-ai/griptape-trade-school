@@ -1,15 +1,7 @@
 name: Framework Release Integration Tests
 
 on: 
-  workflow_dispatch:
-    inputs:
-      griptape-version:
-        description: 'Version of Griptape to test against'
-        required: true
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
+  workflow_dispatch
 
 jobs:
   test:
@@ -19,7 +11,15 @@ jobs:
       matrix:
         python-version: ["3.11"]
     env:
-      OPENAI_API_KEY: ${{ secrets.INTEG_OPENAI_API_KEY}}
+      OPENAI_API_KEY: ${{ secrets.INTEG_OPENAI_API_KEY }}
+      SHOTGRID_API_KEY: ${{ secrets.INTEG_SHOTGRID_API_KEY }}
+      SHOTGRID_URL: ${{ secrets.INTEG_SHOTGRID_URL }}
+      SHOTGRID_USER: ${{ secrets.INTEG_SHOTGRID_USER }}
+      SHOTGRID_PASSWORD: ${{ secrets.INTEG_SHOTGRID_PASSWORD }}
+      LEONARDO_API_KEY: ${{ secrets.INTEG_LEONARDO_API_KEY }}
+      AWS_REGION_NAME: ${{ secrets.INTEG_AWS_REGION_NAME }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.INTEG_AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.INTEG_AWS_SECRET_ACCESS_KEY }}
     steps:
       - name: Checkout actions
         uses: actions/checkout@v3
@@ -45,11 +45,7 @@ jobs:
 
       - name: Install dependencies
         if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-        run: poetry install --no-interaction --no-root --with test
-        shell: bash
-
-      - name: Install Griptape version
-        run: poetry add "griptape[all]==${{ github.event.inputs.griptape-version }}"
+        run: make install
         shell: bash
 
       - name: Activate venv 
@@ -58,5 +54,8 @@ jobs:
           echo PATH=$PATH >> $GITHUB_ENV
         shell: bash
 
-      - name: Run integration tests
-        run: poetry run pytest test/integration/test_code_reviews.py
+      - name: Run tests
+        run: make test
+
+      - name: Run code checks
+        run: make check

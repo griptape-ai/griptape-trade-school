@@ -46,7 +46,7 @@ Here, we modify the `MyAgent` instantiation to include both `kiwi_ruleset` and `
 
 ### Test - and adjust
 
-Let's take a look at the output to see what this ruleset gives us. You may find that with some LLMs, the result is actually wrapping the code with tripple backtick marks like this:
+Let's take a look at the output to see what this ruleset gives us. You may find that with some LLMs, the result is actually wrapping the code with triple backtick marks like this:
 
 ![bad backticks](./assets/img/08_backticks.png)
 

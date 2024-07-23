@@ -14,7 +14,7 @@ ShotGrid comes with a number of methods to create, find, update, delete, and muc
 |`Shotgun.find`   | Finds entities matching the given filters |
 |`Shotgun.update` | Update the specified entity with the supplied data |
 |`Shotgun.delete` | Retire (delete) a specified entity. |
-|`Shotgun.upload_thumbnail` | Upload a file from a local path and assign it as a thumbnal for the entity |
+|`Shotgun.upload_thumbnail` | Upload a file from a local path and assign it as a thumbnail for the entity |
 |`Shotgun.summarize` | Summarize field data returned by a query. |
 
 As you can see, there are a number of various methods we can use, and we _could_ create an activity/method for each one of these. However, our Tool would get large, and end up being somewhat difficult to maintain. There would also be quite a lot of repetitive code, with each method importing the ShotGrid library and connecting.
@@ -115,7 +115,7 @@ Now we'll add the `params` parameter to `meta_method`. Replace `_: dict` with `p
 
 ### Add method logic
 
-We can now add the logic to the method that defines how we use the parameters we've just passed. Using a parameter within a Griptape Tool is pretty straightforward, you just access it with `params["values"][PARAMATER]`. For example, if I want the name of the method we passed, I can do `params["values"]["method"]`. Or if I want the parameters, I can query `params["values"]["params"]`.
+We can now add the logic to the method that defines how we use the parameters we've just passed. Using a parameter within a Griptape Tool is pretty straightforward, you just access it with `params["values"][PARAMETER]`. For example, if I want the name of the method we passed, I can do `params["values"]["method"]`. Or if I want the parameters, I can query `params["values"]["params"]`.
 
 So in this method, we're going to do the following:
 
@@ -327,7 +327,7 @@ Of course, it also returned valuable information we could then use to perform mo
 
 This was a short, but powerful step. We've modified our ShotGridTool to be able to use the ShotGrid API to execute any method available to it! Let's review the changes in `shotgrid_tool/tool.py`.
 
-```python linenums="1" title="shotgrid_tool/tool.py" hl_lines="31-43 46 64-73"
+```python linenums="1" title="shotgrid_tool/tool.py"
 --8<-- "docs/courses/shotgrid-client/assets/code_reviews/07/shotgrid_tool/tool.py"
 ```
 
