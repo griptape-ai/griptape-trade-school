@@ -289,7 +289,7 @@ We added some of helpful functionality in this section, mainly getting wonderful
 
 Review your code.
 
-```python linenums="1" title="app.py" hl_lines="5-6 45"
+```python linenums="1" title="app.py"
 --8<-- "docs/courses/compare-movies-workflow/assets/code_reviews/05/app.py"
 ```
 

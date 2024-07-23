@@ -58,7 +58,7 @@ Now when you run the chat, you'll notice the animated spinner right after you as
 
 Double-check your code to make sure the spinner is working as expected.
 
-```python linenums="1" title="app.py" hl_lines="11 74-77"
+```python linenums="1" title="app.py"
 --8<-- "docs/courses/chatbot-rulesets/assets/code_reviews/14/app.py"
 ```
 

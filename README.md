@@ -44,5 +44,5 @@ make test
     ```
 - Run the following command
     ```
-    act --input griptape-version=<version> -P ubuntu-latest=catthehacker/ubuntu:act-latest --secret-file .env
+    act -P ubuntu-latest=catthehacker/ubuntu:act-latest --secret-file .env
     ```

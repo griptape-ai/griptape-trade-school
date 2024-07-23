@@ -287,7 +287,7 @@ Go ahead and run the code. If everything works as expected, after the Pipeline f
 
 You can now generate an image and display it using a Pipeline. Excellent work! Let's review the current state of our application.
 
-```python title="app.py" linenums="1" hl_lines="8 10 28-50 73 74 76"
+```python title="app.py" linenums="1"
 --8<-- "docs/courses/create-image-pipeline/assets/code_reviews/07/app.py"
 ```
 

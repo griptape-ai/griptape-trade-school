@@ -338,7 +338,7 @@ toy_car.png:
 
 ## Code Review
 
-```python title="app.py" linenums="1" hl_lines="2 5-6 28-73"
+```python title="app.py" linenums="1"
 --8<-- "docs/courses/image-query/assets/code_reviews/06/app.py"
 ```
 

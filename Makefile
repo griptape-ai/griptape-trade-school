@@ -7,7 +7,7 @@ test: test/integration
 
 .PHONY: test/integration
 test/integration:
-	@poetry run pytest -n auto tests/integration/test_code_reviews.py
+	@poetry run pytest test/integration/test_code_reviews.py
 
 .PHONY: check
 check: check/types check/spell ## Run all checks.

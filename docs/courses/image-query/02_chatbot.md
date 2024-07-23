@@ -132,7 +132,7 @@ Give it a go! You'll notice a much more enjoyable chat experience.
 
 Here's the final code with the updates from this section.
 
-```python title="app.py" linenums="1" hl_lines="3-5 7 11-12 14-15 17-19 21-29"
+```python title="app.py" linenums="1"
 --8<-- "docs/courses/image-query/assets/code_reviews/02/app.py"
 ```
 

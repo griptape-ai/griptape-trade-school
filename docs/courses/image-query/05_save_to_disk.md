@@ -100,7 +100,7 @@ This approach streamlines the workflow by automatically storing output in an org
 
 ## Code Review
 
-```python title="app.py" linenums="1" hl_lines="6 26"
+```python title="app.py" linenums="1"
 --8<-- "docs/courses/image-query/assets/code_reviews/05/app.py"
 ```
 

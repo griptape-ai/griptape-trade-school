@@ -112,7 +112,7 @@ Notice in the above image we've got two personas talking, but it's difficult to 
 ## Code Review
 We're making great progress. Review the code.
 
-```python linenums="1" title="app.py" hl_lines="27-65 91-92"
+```python linenums="1" title="app.py"
 --8<-- "docs/courses/chatbot-rulesets/assets/code_reviews/12/app.py"
 ```
 

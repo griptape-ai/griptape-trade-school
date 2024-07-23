@@ -170,7 +170,7 @@ Next time you run the script, it should automatically open a web browser with th
 
 ## Code Review
 
-```python linenums="1" title="app.py" hl_lines="1 9 61-69"
+```python linenums="1" title="app.py"
 --8<-- "docs/courses/compare-movies-workflow/assets/code_reviews/07/app.py"
 ```
 

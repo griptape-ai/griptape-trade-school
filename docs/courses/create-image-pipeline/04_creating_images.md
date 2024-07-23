@@ -403,7 +403,7 @@ Perfect! That's exactly what we need to be able to give to the _real_ display im
 
 You can now generate an image using the prompt. Excellent work! Let's review the current state of our application:
 
-```python linenums="1" title="app.py" hl_lines="5-7 11-12 14-17 19-20 36-41 46 48"
+```python linenums="1" title="app.py"
 --8<-- "docs/courses/create-image-pipeline/assets/code_reviews/04/app.py"
 ```
 

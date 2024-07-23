@@ -200,7 +200,7 @@ There was not as much work in this section, but we did cover some important conc
 
 Review your code with the current state to make sure everything is working as expected.
 
-```python linenums="1" title="app.py" hl_lines="13-18 22-24 28-33"
+```python linenums="1" title="app.py"
 --8<-- "docs/courses/compare-movies-workflow/assets/code_reviews/04/app.py"
 ```
 

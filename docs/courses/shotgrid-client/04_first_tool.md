@@ -245,12 +245,12 @@ You have added a Griptape Tool *and* modified it to add a new activity! Well don
 
 ### `app.py`
 
-```python title="app.py" linenums="1" hl_lines="6 11"
+```python title="app.py" linenums="1"
 --8<-- "docs/courses/shotgrid-client/assets/code_reviews/04/app.py"
 ```
 
 ### `reverse_string_tool/tool.py`
-```python title="reverse_string_tool/tool.py" linenums="1" hl_lines="28-52"
+```python title="reverse_string_tool/tool.py" linenums="1"
 --8<-- "docs/courses/shotgrid-client/assets/code_reviews/04/reverse_string_tool/tool.py"
 ```
 

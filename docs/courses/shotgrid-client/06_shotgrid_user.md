@@ -183,13 +183,13 @@ You completed an incredible amount of work in this section - updating your Tool 
 
 ### `app.py`
 
-```python linenums="1" title="app.py" hl_lines="16-17 25-27"
+```python linenums="1" title="app.py"
 --8<-- "docs/courses/shotgrid-client/assets/code_reviews/06/app.py"
 ```
 
 ### `.env`
 
-```bash title=".env" hl_lines="4 5"
+```bash title=".env"
 OPENAI_API_KEY=OP3NAI4PI-K3Y-1234567890ABCDEFG
 SHOTGRID_API_KEY=SGAPI-K3Y-0987654321ZYXWVUTS
 SHOTGRID_URL=https://your-shotgrid-name.shotgrid.autodesk.com
@@ -199,7 +199,7 @@ SHOTGRID_PASSWORD=supersecretpassword123
 
 ### `shotgrid_tool/tool.py`
 
-```python linenums="1" title="shotgrid_tool/tool.py" hl_lines="16-18 25-27 38-52"
+```python linenums="1" title="shotgrid_tool/tool.py"
 --8<-- "docs/courses/shotgrid-client/assets/code_reviews/06/shotgrid_tool/tool.py"
 ```
 
