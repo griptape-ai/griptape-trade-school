@@ -53,6 +53,8 @@ dist/**
 *.i18n.json
 
 # tests
+images/*
+image_descriptions/*
 
 # mkdocs
 site/
