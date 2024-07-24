@@ -24,6 +24,12 @@ jobs:
       - name: Checkout actions
         uses: actions/checkout@v3
 
+      - name: Set up WSL
+        run: |
+          sudo add-apt-repository ppa:wslutilities/wslu
+          sudo apt update
+          sudo apt install wslu
+
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
         with:
@@ -32,7 +38,7 @@ jobs:
       - name: Install and configure Poetry
         uses: snok/install-poetry@v1
         with:
-          virtualenvs-create: true
+          virtualenvs-create: trueß
           virtualenvs-in-project: true
           installer-parallel: true
 
