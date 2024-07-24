@@ -27,7 +27,8 @@ image_engine = PromptImageGenerationEngine(image_generation_driver=image_driver)
 
 # Create a function to display an image
 def display_image(task: CodeExecutionTask) -> TextArtifact:
-    import os, subprocess, sys
+    import os
+    from PIL import Image
 
     # Get the filename
     filename = task.input.value
@@ -39,12 +40,8 @@ def display_image(task: CodeExecutionTask) -> TextArtifact:
     image_path = os.path.join(output_dir, filename)
 
     # Open the image
-    if sys.platform == "win32":
-        os.startfile(image_path)
-    elif sys.platform == "darwin":  # macOS
-        subprocess.run(["open", image_path])
-    else:  # linux variants
-        subprocess.run(["xdg-open", image_path])
+    image = Image.open(image_path)
+    image.show()
 
     return TextArtifact(image_path)
 

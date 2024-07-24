@@ -3,7 +3,7 @@
 ![gallery](assets/img/gallery.png)
 
 ## Overview
-In this section, we'll create a function to display an image, and then call it using the `CodeExecutionTask`. It will take the file path for the image generated, and use whatever the default image viewer is for the operating system to display it.
+In this section, we'll create a function to display an image, and then call it using the `CodeExecutionTask`. It will take the file path for the image generated, and use the [Python Image Library](https://pillow.readthedocs.io/en/stable/) to display it.
 
 ## What is the CodeExecutionTask
 
@@ -152,7 +152,7 @@ The function requires an Artifact to be returned. Since this will be our last st
 
 Add a section to your imports where you import a `TextArtifact` from `griptape.artifacts`.
 
-```python title="app.py" hl_lines="3"
+```python title="app.py" hl_lines="2"
 # ...
 from griptape.artifacts import TextArtifact
 # ...
@@ -218,40 +218,40 @@ Notice how the `Output` has the full path to the image. Success! We have the pat
 
 ## Display Image
 
-Now we'll update the function to display the image. To do this, we'll need to create some code that will work on Mac, Windows, and Linux. We will open the image in whatever image viewer the user has as their default.
+Now we'll update the function to display the image. To do this, we'll need to use the [Python Image Library (Pillow)](https://pillow.readthedocs.io/en/stable/) so that our images will display properly on all operating systems.
 
 ### Import Libraries
 
-The `sys` module has a variable called `platform` that can get the operating system. Then, depending on the operating system we'll need one of two different methods to call. Windows uses `os.startfile`, and both Mac and Linux use the `subprocess` library.
+The `PIL` module allows us to do basic image processing in python. We will use the `os` module for getting our image path.
 
-Let's start by importing the three libraries required, then we'll create the function.
+Let's start by importing the two libraries required, then we'll create the function.
 
 Instead of adding the imports to the main `imports` section of your application, we can import them directly into the function that's using them.
 
 In the `display_image` function, add the following:
 
-In the `imports` section of `tool.py`, add the following:
-
-```python hl_lines="5"
+```python hl_lines="5-6"
 # ...
 
 # Create a function to display an image
 def display_image(task: CodeExecutionTask) -> TextArtifact:
-    import os, subprocess, sys
+    import os
+    from PIL import Image
 
     # ...
 ```
 
 ### Open the Image
 
-Now we'll add the code to open the image. Inside the `display_image` function, before the `return` statement, add the code for each operating system:
+Now we'll add the code to open the image. Inside the `display_image` function, before the `return` statement, add the code for loading and displaying the image:
 
-```python title="app.py" hl_lines="16-22"
+```python title="app.py" hl_lines="17-19"
 # ...
 
 # Create a function to display an image
 def display_image(task: CodeExecutionTask) -> TextArtifact:
-    import os, subprocess, sys
+    import os
+    from PIL import Image
 
     # Get the filename
     filename = task.input.value
@@ -263,12 +263,8 @@ def display_image(task: CodeExecutionTask) -> TextArtifact:
     image_path = os.path.join(output_dir, filename)
 
     # Open the image
-    if sys.platform == "win32":
-        os.startfile(image_path)
-    elif sys.platform == "darwin":  # macOS
-        subprocess.run(["open", image_path])
-    else:  # linux variants
-        subprocess.run(["xdg-open", image_path])
+    image = Image.open(image_path)
+    image.show()
 
     return TextArtifact(image_path)
 
