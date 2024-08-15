@@ -46,4 +46,3 @@ Chat(
     response_prefix="\nAgent: ",
     output_fn=formatted_response,  # Uses the formatted_response function
 ).start()
-

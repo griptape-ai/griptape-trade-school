@@ -11,7 +11,6 @@ load_dotenv()
 # Create the agent
 agent = Agent(
     logger_level=logging.ERROR,
-    
 )
 
 # Run the agent

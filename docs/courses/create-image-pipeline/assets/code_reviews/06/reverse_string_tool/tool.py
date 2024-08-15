@@ -50,4 +50,3 @@ class ReverseStringTool(BaseTool):
 
         except Exception as e:
             return ErrorArtifact(str(e))
-

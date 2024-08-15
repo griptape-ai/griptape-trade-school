@@ -15,7 +15,7 @@ load_dotenv()  # Load your environment
 def grammar_agent():
     # Create the agent with appropriate rules
     agent = Agent(
-     logger_level=0, # Keep this agent's logs hidden.
+        logger_level=0,  # Keep this agent's logs hidden.
         rulesets=[
             Ruleset(
                 name="Grammar Checker",
@@ -32,7 +32,7 @@ def grammar_agent():
                     ),
                 ],
             )
-        ]
+        ],
     )
 
     # Return the agent from the function
@@ -41,9 +41,7 @@ def grammar_agent():
 
 # Create a LocalStructureRunDriver
 # We pass the grammar_agent function to the structure_factory_fn
-grammar_agent_driver = LocalStructureRunDriver(
-    structure_factory_fn=grammar_agent
-)
+grammar_agent_driver = LocalStructureRunDriver(structure_factory_fn=grammar_agent)
 
 # Create a client using the driver
 # It's important to define the name and the description, this is how
@@ -64,7 +62,7 @@ grammar_agent_client = StructureRunClient(
 chat_agent = Agent(
     tools=[
         grammar_agent_client,  # Add the Grammar Agent
-        TaskMemoryClient( off_prompt=False ),  
+        TaskMemoryClient(off_prompt=False),
     ],
 )
 
