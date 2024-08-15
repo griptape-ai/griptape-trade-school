@@ -25,9 +25,11 @@ vector_store_driver = LocalVectorStoreDriver(embedding_driver=OpenAiEmbeddingDri
 # Create the query engine
 rag_engine = RagEngine(
     response_stage=ResponseRagStage(
-        response_module=PromptResponseRagModule(
-            prompt_driver=OpenAiChatPromptDriver(model="gpt-4o-mini")
-        )
+        response_modules=[
+            PromptResponseRagModule(
+                prompt_driver=OpenAiChatPromptDriver(model="gpt-4o-mini")
+            )
+        ]
     ),
 )
 
@@ -86,7 +88,7 @@ agent = Agent(
         vector_store_tool,
         # ReverseStringTool(off_prompt=False),
     ],
-    stream=True
+    stream=True,
 )
 
 

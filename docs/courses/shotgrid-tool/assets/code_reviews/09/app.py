@@ -26,9 +26,11 @@ vector_store_driver = LocalVectorStoreDriver(embedding_driver=OpenAiEmbeddingDri
 # Create the query engine
 rag_engine = RagEngine(
     response_stage=ResponseRagStage(
-        response_module=PromptResponseRagModule(
-            prompt_driver=OpenAiChatPromptDriver(model="gpt-4o-mini")
-        )
+        response_modules=[
+            PromptResponseRagModule(
+                prompt_driver=OpenAiChatPromptDriver(model="gpt-4o-mini")
+            )
+        ]
     ),
 )
 
@@ -122,7 +124,7 @@ shotgrid_agent_ruleset = Ruleset(
 agent = Agent(
     tools=[DateTimeTool(off_prompt=False), shotgrid_tool, vector_store_tool],
     rulesets=[shotgrid_agent_ruleset],
-    stream=True
+    stream=True,
 )
 
 # Start chatting
