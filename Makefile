@@ -14,7 +14,7 @@ check: check/types check/spell ## Run all checks.
 
 .PHONY: check/types
 check/types:
-	@poetry run pyright docs/courses/**/code_reviews/*.py
+	@poetry run pyright $(shell find docs -type f -path "docs/courses/**/code_reviews/*.py")
 	
 .PHONY: check/spell
 check/spell:
