@@ -106,6 +106,7 @@ agent = MyAgent(
         zelda_ruleset,
         dad_ruleset,
     ],
+    logger_level=logging.ERROR,
 )
 
 
