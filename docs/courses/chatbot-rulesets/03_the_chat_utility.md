@@ -64,17 +64,9 @@ Here's a quick example of a not-very-funny joke with the chatbot:
 ```
 User: Hello!
 processing...
-[07/20/23 06:37:45] INFO     Task 167f55dda2be46a7bc9002a48214dbf4                                                                                                                   
-                             Input: Hello!                                                                                                                                           
-[07/20/23 06:37:46] INFO     Task 167f55dda2be46a7bc9002a48214dbf4                                                                                                                   
-                             Output: Hello! How can I assist you today?                                                                                                              
 Assistant: Hello! How can I assist you today?
 User: Tell me a joke about python
 processing...
-[07/20/23 06:37:58] INFO     Task 167f55dda2be46a7bc9002a48214dbf4                                                                                                                   
-                             Input: Tell me a joke about python                                                                                                                      
-[07/20/23 06:38:00] INFO     Task 167f55dda2be46a7bc9002a48214dbf4                                                                                                                   
-                             Output: Why did the python programmer get bitten by a snake? Because they forgot to use a python exception handler!                                     
 Assistant: Why did the python programmer get bitten by a snake? Because they forgot to use a python exception handler!
 ```
 
@@ -100,4 +92,4 @@ Take a minute to check your code against the current version.
 
 ## Next Steps
 
-In the next section: [Hide The Logs](04_hide_the_logs.md), we'll hide those pesky but oh-so-helpful logs by using the `logging` library. This will make our chatbot much easier to understand and work with.
+In the next section: [Showing The Logs](04_show_the_logs.md), we'll see how we can enable additional agent output by using the `logging` library.

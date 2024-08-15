@@ -110,7 +110,7 @@ nav:
           - Introduction: courses/chatbot-rulesets/index.md
           - Setup: courses/chatbot-rulesets/01_setting_up_environment.md
           - The Chat utility: courses/chatbot-rulesets/03_the_chat_utility.md
-          - Hiding the logs: courses/chatbot-rulesets/04_hide_the_logs.md
+          - Showing the logs: courses/chatbot-rulesets/04_show_the_logs.md
           - Personality: courses/chatbot-rulesets/05_personality_with_rulesets.md
           - Custom chat: courses/chatbot-rulesets/06_adding_manual_chat.md
           - Manners maketh the bot: courses/chatbot-rulesets/07_manners_maketh_the_bot.md
