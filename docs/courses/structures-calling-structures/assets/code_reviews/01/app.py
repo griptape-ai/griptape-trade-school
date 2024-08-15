@@ -9,7 +9,7 @@ from rich import print as print  # Modifies print to use the Rich library
 load_dotenv()  # Load your environment
 
 # Create the Agent
-agent = Agent(logger_level=0, stream=True)
+agent = Agent(stream=True)
 
 
 # Modify the Agent's response to have some color.

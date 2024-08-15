@@ -24,7 +24,7 @@ image_pipeline_tool = StructureRunTool(
 )
 
 # Create the Agent
-agent = Agent(logger_level=0, tools=[image_pipeline_tool], stream=True)
+agent = Agent(tools=[image_pipeline_tool], stream=True)
 
 
 # Modify the Agent's response to have some color.

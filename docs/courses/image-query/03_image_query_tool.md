@@ -107,7 +107,7 @@ Modify the part of the code where you instantiate the agent to include a list of
 # ...
 
 # Create the Agent
-agent = Agent(logger_level=0, tools=[image_query_tool])
+agent = Agent(tools=[image_query_tool])
 
 # ...
 ```

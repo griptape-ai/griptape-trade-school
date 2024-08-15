@@ -1,5 +1,4 @@
 from dotenv import load_dotenv
-import logging
 import json
 
 # Rich
@@ -48,7 +47,7 @@ class MyAgent(Agent):
 
 
 # Create the agent
-agent = MyAgent(rulesets=[kiwi_ruleset, json_ruleset], logger_level=logging.ERROR)
+agent = MyAgent(rulesets=[kiwi_ruleset, json_ruleset])
 
 
 # Chat function

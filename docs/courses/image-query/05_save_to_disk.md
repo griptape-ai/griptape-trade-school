@@ -25,7 +25,7 @@ Modify the part of the code where you instantiate the Agent by adding the `FileM
 
 # Create the Agent
 agent = Agent(
-  logger_level=0, tools=[image_query_tool, FileManagerTool(off_prompt=False)]
+  tools=[image_query_tool, FileManagerTool(off_prompt=False)]
 )
 # ...
 

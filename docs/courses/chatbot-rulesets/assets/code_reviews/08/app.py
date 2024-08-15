@@ -1,5 +1,4 @@
 import json
-import logging
 
 from dotenv import load_dotenv
 from griptape.rules import Rule, Ruleset
@@ -50,7 +49,6 @@ class MyAgent(Agent):
 # Create the agent
 agent = MyAgent(
     rulesets=[kiwi_ruleset, json_ruleset],
-    logger_level=logging.ERROR,
 )
 
 

@@ -1,5 +1,4 @@
 from dotenv import load_dotenv
-import logging
 
 # Griptape Items
 from griptape.structures import Agent
@@ -32,7 +31,6 @@ agent = MyAgent(
     rulesets=[
         kiwi_ruleset,
     ],
-    logger_level=logging.ERROR,
 )
 
 

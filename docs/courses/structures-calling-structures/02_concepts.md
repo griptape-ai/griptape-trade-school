@@ -45,7 +45,7 @@ Here’s a simple example of an Agent that has a ruleset to analyze a sentence t
 
 Here is the output from the logs from chatting with the agent. Notice how it will use the grammar_agent only when we ask it to. Pay close attention to the section of the log where it shows `Actions:`. This is where the first agent calls the second one as a tool:
 
-```bash
+```
 User: Good morning, my friend!
 
 Thinking...

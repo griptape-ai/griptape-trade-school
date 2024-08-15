@@ -116,7 +116,7 @@ if flow == "WORKFLOW":
   # Create a workflow 
 else:
   # Create the Agent
-  agent = Agent(logger_level=0, tools=[image_query_tool, FileManagerTool(off_prompt=False)], stream=True)
+  agent = Agent(tools=[image_query_tool, FileManagerTool(off_prompt=False)], stream=True)
 
 
   # Modify the Agent's response to have some color.

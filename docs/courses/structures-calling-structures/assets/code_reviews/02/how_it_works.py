@@ -15,7 +15,6 @@ load_dotenv()  # Load your environment
 def grammar_agent():
     # Create the agent with appropriate rules
     agent = Agent(
-        logger_level=0,  # Keep this agent's logs hidden.
         rulesets=[
             Ruleset(
                 name="Grammar Checker",

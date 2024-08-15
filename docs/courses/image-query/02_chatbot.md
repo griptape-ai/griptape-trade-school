@@ -7,8 +7,6 @@ This is where we will make our script as smooth as a well-executed skateboard tr
 
 First up, we’ll set up our `Agent` and `Chat` from the `griptape` libraries. Think of it like the griptape on a skateboard – it helps you keep your balance in the world of chat agents. Let’s start by importing `Agent` from `griptape.structures` and `Chat` form `griptape.utils`. 
 
-Setting up this agent with `logger_level=0` ensures that all logging output is suppressed. This keeps our chat interface super clean, with no unwanted logs cluttering it up. 
-
 Then finally we'll use the Chat utility to start chatting.
 
 Here is how you set this up in your Python script:
@@ -23,7 +21,7 @@ from griptape.utils import Chat
 load_dotenv() # Load your environment
 
 # Create the Agent
-agent = Agent(logger_level=0)
+agent = Agent()
 
 # Begin Chatting
 Chat(agent).start()
@@ -47,7 +45,7 @@ After you instantiate the agent, add the following line:
 # ...
 
 # Create the Agent
-agent = Agent(logger_level=0, stream=True)
+agent = Agent(stream=True)
 
 # ...
 ```

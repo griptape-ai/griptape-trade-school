@@ -8,30 +8,14 @@ In the previous section, we had a blast engaging with our chatbot, but there was
 ### Goal
 After completing this section, you'll be able to enjoy clean and clutter-free conversations with your chatbot by disabling the logs.
 
-## Logging Utility
-### Import
-
-We'll begin by importing the logging library, which will give us the power to control the verbosity of our chatbot's output. Add the following import statement to your code:
-
-```python
-import logging
-```
-
-Now we're ready to silence those logs and enjoy the tranquility of clean output.
-
 ### Add to Agent
 
 It's time to modify our agent to quiet those logs and allow our chatbot's brilliance to shine through. Adjust the code where the agent is created, like so:
 
 ```python hl_lines="3"
 # Create the agent
-agent = Agent(
-   logger_level=logging.ERROR
-   )
+agent = Agent()
 ```
-
-By specifying `logger_level=logging.ERROR`, we indicate that we only want to receive logs of the highest priority, suppressing the informational logs and leaving us with a cleaner output.
-
 
 Here is the code with the new lines highlighted:
 
@@ -47,9 +31,7 @@ from griptape.utils import Chat
 load_dotenv()
 
 # Create the agent
-agent = Agent(
-    logger_level=logging.ERROR      
-)
+agent = Agent()
 
 # Run the agent
 Chat(agent).start()

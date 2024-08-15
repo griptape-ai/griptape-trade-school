@@ -92,7 +92,7 @@ Now the exciting part, let’s give the client to the agent as a tool. Modify yo
 # ...
 
 # Create the Agent
-agent = Agent(logger_level=0, tools=[image_pipeline_tool])
+agent = Agent(tools=[image_pipeline_tool])
 
 # ...
 ```

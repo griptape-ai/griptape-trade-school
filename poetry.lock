@@ -1460,7 +1460,7 @@ loaders-sql = ["sqlalchemy (>=2.0.31,<3.0.0)"]
 type = "git"
 url = "https://github.com/griptape-ai/griptape.git"
 reference = "HEAD"
-resolved_reference = "60037e9ec9c3e332e7d1fd8894fcfa55ce00b60d"
+resolved_reference = "9111570f7e54da04ada0b5916586f8b01a9a24f5"
 
 [[package]]
 name = "grpcio"
@@ -5699,4 +5699,4 @@ test = ["big-O", "importlib-resources", "jaraco.functools", "jaraco.itertools", 
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "b6bac6af988883ed106f9b2013f8f0d5d794e1e38a1391b233644f52e14d4c0d"
+content-hash = "978f30e9e428428f1dd3c76a6f508f7a32d19d61574f986a19af5f9ee7159526"
