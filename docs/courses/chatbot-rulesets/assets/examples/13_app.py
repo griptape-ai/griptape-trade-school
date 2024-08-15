@@ -12,9 +12,13 @@ from rich.prompt import Prompt
 # Griptape 
 from griptape.structures import Agent
 from griptape.rules import Rule, Ruleset
+from griptape.config import config
 
 # Load environment variables
 load_dotenv()
+
+# Disable griptape's info logging
+logging.getLogger(config.logging.logger_name).setLevel(logging.ERROR)
 
 # Create rulesets for each persona
 kiwi_ruleset = Ruleset(
@@ -91,7 +95,6 @@ class MyAgent(Agent):
 # Create the agent
 agent = MyAgent(
     rulesets=[switcher_ruleset, json_ruleset, kiwi_ruleset, zelda_ruleset, dad_ruleset, ],
-    logger_level=logging.ERROR
 )
 
 # Chat function

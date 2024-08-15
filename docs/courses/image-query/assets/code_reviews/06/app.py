@@ -74,9 +74,8 @@ if flow == "WORKFLOW":
 else:
     # Create the Agent
     agent = Agent(
-        logger_level=0, tools=[image_query_tool, FileManagerTool(off_prompt=False)], stream=True
+        tools=[image_query_tool, FileManagerTool(off_prompt=False)], stream=True
     )
-
 
     # Modify the Agent's response to have some color.
     def formatted_response(response: str) -> None:
