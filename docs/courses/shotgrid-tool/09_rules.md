@@ -248,8 +248,8 @@ agent = Agent(
         # ReverseStringTool(off_prompt=False),
     ],
     rulesets=[shotgrid_agent_ruleset],
+    stream=True
 )
-agent.config.prompt_driver.stream=True
 
 # ...
 ```

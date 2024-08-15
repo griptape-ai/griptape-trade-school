@@ -85,10 +85,10 @@ agent = Agent(
         shotgrid_tool,
         vector_store_tool,
         # ReverseStringTool(off_prompt=False),
-    ]
+    ],
+    stream=True
 )
 
-agent.config.prompt_driver.stream = True
 
 # Start chatting
 Chat(agent).start()

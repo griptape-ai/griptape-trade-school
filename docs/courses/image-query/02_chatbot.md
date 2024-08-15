@@ -47,8 +47,7 @@ After you instantiate the agent, add the following line:
 # ...
 
 # Create the Agent
-agent = Agent(logger_level=0)
-agent.config.prompt_driver.stream=True
+agent = Agent(logger_level=0, stream=True)
 
 # ...
 ```

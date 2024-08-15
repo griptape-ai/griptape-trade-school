@@ -122,8 +122,8 @@ shotgrid_agent_ruleset = Ruleset(
 agent = Agent(
     tools=[DateTimeTool(off_prompt=False), shotgrid_tool, vector_store_tool],
     rulesets=[shotgrid_agent_ruleset],
+    stream=True
 )
-agent.config.prompt_driver.stream=True
 
 # Start chatting
 Chat(agent).start()
