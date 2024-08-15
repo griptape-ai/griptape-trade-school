@@ -25,11 +25,7 @@ vector_store_driver = LocalVectorStoreDriver(embedding_driver=OpenAiEmbeddingDri
 # Create the query engine
 rag_engine = RagEngine(
     response_stage=ResponseRagStage(
-        response_modules=[
-            PromptResponseRagModule(
-                prompt_driver=OpenAiChatPromptDriver(model="gpt-4o-mini")
-            )
-        ]
+        response_modules=[PromptResponseRagModule(prompt_driver=OpenAiChatPromptDriver(model="gpt-4o-mini"))]
     ),
 )
 

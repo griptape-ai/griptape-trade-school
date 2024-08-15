@@ -1,7 +1,7 @@
 """
-Compare Movies Workflow 
+Compare Movies Workflow
 
-This script demonstrates how to use Griptape Workflows to create non-sequential 
+This script demonstrates how to use Griptape Workflows to create non-sequential
 dependency tasks.
 
 The script takes a list of rough movie description and for each description figures out:
@@ -23,16 +23,17 @@ Usage:
 Create a list of movie descriptions, then run the script.
 
 Requirements:
-- OpenAI API Key stored in a .env file. 
+- OpenAI API Key stored in a .env file.
   You can get it here: https://beta.openai.com/account/api-keys
 
 Dependencies:
 - griptape
 - python-dotenv
 """
+
 from dotenv import load_dotenv
 
-# Griptape 
+# Griptape
 from griptape.structures import Workflow
 from griptape.tasks import PromptTask, ToolkitTask
 from griptape.tools import WebScraperTool
@@ -43,10 +44,7 @@ from griptape.drivers import OpenAiChatPromptDriver
 load_dotenv()
 
 # Define the OpenAiChatPromptDriver with Max Tokens
-driver = OpenAiChatPromptDriver(
-    model="gpt-4",
-    max_tokens=500
-)
+driver = OpenAiChatPromptDriver(model="gpt-4", max_tokens=500)
 
 # Create a Workflow
 workflow = Workflow()
@@ -55,26 +53,28 @@ workflow = Workflow()
 movie_descriptions = [
     "A boy discovers an alien in his back yard",
     "a shark attacks a beach.",
-    "A princess and a man named Wesley"
+    "A princess and a man named Wesley",
 ]
 
-compare_task = PromptTask("""
+compare_task = PromptTask(
+    """
     How are these movies the same: 
     {% for key, value in parent_outputs.items() %}
     {{ value }}
     {% endfor %}
     """,
     prompt_driver=driver,
-    id="compare")
+    id="compare",
+)
 
 # Iterate through the movie descriptions
 for description in movie_descriptions:
     movie_task = PromptTask(
         "What movie title is this? Return only the movie name: {{ description }} ",
         context={"description": description},
-        prompt_driver=driver
-        )
-    
+        prompt_driver=driver,
+    )
+
     summary_task = ToolkitTask(
         """
         Give me a very short summary of the movie from imdb:
@@ -83,9 +83,9 @@ for description in movie_descriptions:
         {% endfor %}
         """,
         tools=[WebScraperTool()],
-        prompt_driver=driver
-        )
-    
+        prompt_driver=driver,
+    )
+
     workflow.add_task(movie_task)
     movie_task.add_child(summary_task)
     summary_task.add_child(compare_task)
@@ -94,5 +94,4 @@ for description in movie_descriptions:
 workflow.run()
 
 # View the output
-print(workflow.output.value)    
-
+print(workflow.output.value)

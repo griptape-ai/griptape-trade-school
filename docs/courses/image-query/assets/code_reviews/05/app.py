@@ -23,7 +23,11 @@ engine = ImageQueryEngine(
 image_query_tool = ImageQueryTool(image_query_engine=engine, off_prompt=False)
 
 # Create the Agent
-agent = Agent(logger_level=0, tools=[image_query_tool, FileManagerTool(off_prompt=False)], stream=True)
+agent = Agent(
+    logger_level=0,
+    tools=[image_query_tool, FileManagerTool(off_prompt=False)],
+    stream=True,
+)
 
 
 # Modify the Agent's response to have some color.

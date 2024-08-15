@@ -13,9 +13,7 @@ from rich import print as print  # Modifies print to use the Rich library
 load_dotenv()  # Load your environment
 
 # Create the driver
-image_pipeline_driver = LocalStructureRunDriver(
-    structure_factory_fn=create_image_pipeline
-)
+image_pipeline_driver = LocalStructureRunDriver(structure_factory_fn=create_image_pipeline)
 
 # Create the Tool
 image_pipeline_tool = StructureRunTool(
@@ -27,6 +25,7 @@ image_pipeline_tool = StructureRunTool(
 
 # Create the Agent
 agent = Agent(logger_level=0, tools=[image_pipeline_tool], stream=True)
+
 
 # Modify the Agent's response to have some color.
 def formatted_response(response: str) -> None:
@@ -42,4 +41,3 @@ Chat(
     response_prefix="\nAgent: ",
     output_fn=formatted_response,  # Uses the formatted_response function
 ).start()
-

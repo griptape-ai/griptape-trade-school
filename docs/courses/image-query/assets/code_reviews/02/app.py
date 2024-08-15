@@ -11,9 +11,11 @@ load_dotenv()  # Load your environment
 # Create the Agent
 agent = Agent(logger_level=0, stream=True)
 
+
 # Modify the Agent's response to have some color.
 def formatted_response(response: str) -> None:
     print(f"[dark_cyan]{response}", end="", flush=True)
+
 
 # Begin Chatting
 Chat(

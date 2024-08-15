@@ -20,6 +20,4 @@ task = ToolkitTask(
 pipeline.add_task(task)
 
 # Run the pipeline
-pipeline.run(
-    'Can you reverse the words in this sentence? "I must eat, therefore, I am hungry".'
-)
+pipeline.run('Can you reverse the words in this sentence? "I must eat, therefore, I am hungry".')

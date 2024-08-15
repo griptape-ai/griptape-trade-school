@@ -2,7 +2,6 @@ from __future__ import annotations
 from griptape.artifacts import TextArtifact, ErrorArtifact
 from griptape.tools import BaseTool
 from griptape.utils.decorators import activity
-from schema import Schema, Literal
 from attr import define, field
 
 
@@ -36,7 +35,7 @@ class ShotGridTool(BaseTool):
 
         try:
             if self.login_method == "api_key":
-                print ('Logging in with API Key')
+                print("Logging in with API Key")
                 sg = shotgun_api3.Shotgun(
                     self.base_url,  # ShotGrid url
                     script_name=self.script_name,  # Name of the ShotGrid script
@@ -44,16 +43,14 @@ class ShotGridTool(BaseTool):
                 )
 
             else:
-                print ('Logging in as a User')
+                print("Logging in as a User")
                 sg = shotgun_api3.Shotgun(
                     self.base_url,  # ShotGrid url
                     login=self.user_login,  # User login
                     password=self.user_password,  # User password
                 )
 
-            return TextArtifact(
-                sg.get_session_token()
-            )  # Return the results of the connection
+            return TextArtifact(sg.get_session_token())  # Return the results of the connection
 
         except Exception as e:
             return ErrorArtifact(str(e))

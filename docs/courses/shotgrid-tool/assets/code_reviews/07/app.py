@@ -35,7 +35,7 @@ agent = Agent(
         shotgrid_tool,
         # ReverseStringTool(off_prompt=False),
     ],
-    stream=True
+    stream=True,
 )
 
 # Start chatting
