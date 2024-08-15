@@ -16,7 +16,7 @@ Key Features:
 1. Uses Griptape PromptTasks and ToolkitTasks to communicate with LLMs
 2. Uses the OpenAiPromptDriver to control the number of tokens being used at any given time.
 3. Uses Griptape Workflows to control the flow of tasks
-4. Uses the WebScraper tool to get information from the web
+4. Uses the WebScraperTool tool to get information from the web
 5. Uses Rules and Rulesets to help determine how the Workflow behaves
 
 Usage:
@@ -35,7 +35,7 @@ from dotenv import load_dotenv
 # Griptape 
 from griptape.structures import Workflow
 from griptape.tasks import PromptTask, ToolkitTask
-from griptape.tools import WebScraper
+from griptape.tools import WebScraperTool
 from griptape.drivers import OpenAiChatPromptDriver
 
 
@@ -82,7 +82,7 @@ for description in movie_descriptions:
         {{ value }}
         {% endfor %}
         """,
-        tools=[WebScraper()],
+        tools=[WebScraperTool()],
         prompt_driver=driver
         )
     

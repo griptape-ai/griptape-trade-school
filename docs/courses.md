@@ -27,11 +27,11 @@
 
 -   # Griptape and ShotGrid: A Practical Approach to Tool Integration
 
-    ![img](courses/shotgrid-client/assets/img/shotgrid_person.png)
+    ![img](courses/shotgrid-tool/assets/img/shotgrid_person.png)
     
-    Discover the power of Griptape Tools in our dynamic course, where you'll learn to construct your own specialized ShotGrid Client. Through hands-on sessions, you'll transform chatbot commands into automated, practical tasks. Equip yourself with the skill to create and customize tools that enhance Language Learning Models' interaction with real-world data and APIs.
+    Discover the power of Griptape Tools in our dynamic course, where you'll learn to construct your own specialized ShotGrid Tool. Through hands-on sessions, you'll transform chatbot commands into automated, practical tasks. Equip yourself with the skill to create and customize tools that enhance Language Learning Models' interaction with real-world data and APIs.
     
-    [:octicons-arrow-right-24: Take the course](courses/shotgrid-client/index.md)
+    [:octicons-arrow-right-24: Take the course](courses/shotgrid-tool/index.md)
 
 -   # ImageQuery SEO Bonanza!
 

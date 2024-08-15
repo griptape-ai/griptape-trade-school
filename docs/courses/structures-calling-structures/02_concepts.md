@@ -35,9 +35,9 @@ The `GriptapeCloudStructureRunDriver` enables Structures to run in the Griptape 
 
 ### How It Works:
 
-You set up a structure as a function in python that returns the structure. Then, you give the structure to either the `LocalStructureRunDriver` or `GriptapeCloudStructureRunDriver`. Then use the `StructureRunClient` or `StructureRunTask` to execute it.
+You set up a structure as a function in python that returns the structure. Then, you give the structure to either the `LocalStructureRunDriver` or `GriptapeCloudStructureRunDriver`. Then use the `StructureRunTool` or `StructureRunTask` to execute it.
 
-Here’s a simple example of an Agent that has a ruleset to analyze a sentence to see if its got proper grammar. We’ll create a `LocalStructureRunDriver` for it, give that to the `StructureRunClient`, and pass that as a tool to another agent. Don’t worry about copying this example directly, just read through it and see if it makes sense.
+Here’s a simple example of an Agent that has a ruleset to analyze a sentence to see if its got proper grammar. We’ll create a `LocalStructureRunDriver` for it, give that to the `StructureRunTool`, and pass that as a tool to another agent. Don’t worry about copying this example directly, just read through it and see if it makes sense.
 
 ```python
 --8<-- "docs/courses/structures-calling-structures/assets/code_reviews/02/how_it_works.py"
@@ -100,7 +100,7 @@ Thinking...
 [05/08/24 05:52:40] INFO     Subtask aaa30a518e2f4c888c755301fa90872c                                                       
                              Thought: The Grammar Agent has checked the sentence and stored the result in memory. I will now
                              retrieve this information from the memory to provide the user with an answer.                  
-                             Actions: [{"name": "TaskMemoryClient", "path": "query", "input": {"values": {"memory_name":    
+                             Actions: [{"name": "PromptSummaryTool", "path": "query", "input": {"values": {"memory_name":    
                              "TaskMemory", "artifact_namespace": "f9c4dc565bd342bf860a2f6654320e75", "query": "What is the  
                              result of the grammar check?"}}, "tag": "query_grammar_check_1"}]                              
 [05/08/24 05:52:45] INFO     Subtask aaa30a518e2f4c888c755301fa90872c                                                       

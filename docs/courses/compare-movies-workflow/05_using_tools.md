@@ -49,16 +49,16 @@ graph TB
 
 ## Import
 
-The three new classes we'll need to import are `ToolkitTask`, `TaskMemoryClient`, and `WebScraper`.
+The three new classes we'll need to import are `ToolkitTask`, `PromptSummaryTool`, and `WebScraperTool`.
 
 
 **[ToolkitTask](https://docs.griptape.ai/stable/griptape-framework/structures/tasks/#toolkit-task){target="_blank"}** is a task just like **PromptTask**, except it allows you to specify the use of Tools. 
 
-**[TaskMemoryClient](https://docs.griptape.ai/stable/griptape-framework/structures/task-memory/){target="_blank"}** is a way to handle data used in a task. It allows you to control where information is sent, keeping it off-prompt and away from the LLM when required. Note: in this course we'll be setting `off-prompt` to `False`, allowing the LLM to see the task results. In future courses we'll discuss ways to keep the data private.
+**[PromptSummaryTool](https://docs.griptape.ai/stable/griptape-tools/official-tools/prompt-summary-tool/){target="_blank"}** is a way to summarize data used in a task. 
 
-**[WebScraper](https://docs.griptape.ai/stable/griptape-tools/official-tools/web-scraper/){target="_blank"}** is a specific tool that allows the LLM to scrape the web for information. We'll use this to get a better summary of each movie.
+**[WebScraperTool](https://docs.griptape.ai/stable/griptape-tools/official-tools/web-scraper/){target="_blank"}** is a specific tool that allows the LLM to scrape the web for information. We'll use this to get a better summary of each movie.
 
-In the top of your application, modify the import statements to include ToolkitTask, TaskMemoryClient, and WebScraper.
+In the top of your application, modify the import statements to include ToolkitTask, PromptSummaryTool, and WebScraperTool.
 
 ```python hl_lines="5-6"
 from dotenv import load_dotenv
@@ -66,7 +66,7 @@ from dotenv import load_dotenv
 # Griptape 
 from griptape.structures import Workflow
 from griptape.tasks import PromptTask, ToolkitTask
-from griptape.tools import WebScraper, TaskMemoryClient
+from griptape.tools import WebScraperTool, PromptSummaryTool
 
 ```
 
@@ -74,12 +74,12 @@ from griptape.tools import WebScraper, TaskMemoryClient
 
 Now we'll add the `ToolkitTask` to the section of our code where we iterate through each movie description.
 
-We will call it the same way we do PromptTask, except the ToolkitTask takes a **list** of **tools**. In this example, you can see that it's using two tools - **WebScraper** and **TaskMemoryClient**
+We will call it the same way we do PromptTask, except the ToolkitTask takes a **list** of **tools**. In this example, you can see that it's using two tools - **WebScraperTool** and **PromptSummaryTool**
 
 ```python
 summary_task = ToolkitTask(
     "Use metacritic to get a summary of this movie: {{ }}", 
-    tools = [WebScraper(), TaskMemoryClient(off_prompt=False)],
+    tools = [WebScraperTool(), PromptSummaryTool(off_prompt=False)],
     )
 ```
 
@@ -125,7 +125,7 @@ As you can see, there are multiple ways to get the result we're looking for. Rev
     # code
     summary_task = ToolkitTask(
         "Use metacritic to get a summary of this movie: {{ parent_outputs }}",
-        tools=[WebScraper(), TaskMemoryClient(off_prompt=False)],
+        tools=[WebScraperTool(), PromptSummaryTool(off_prompt=False)],
         )
 
     # result
@@ -136,7 +136,7 @@ As you can see, there are multiple ways to get the result we're looking for. Rev
     # code
     summary_task = ToolkitTask(
         "Use metacritic to get a summary of this movie: {{ parent_outputs.values()|list|last }}",
-        tools=[WebScraper(), TaskMemoryClient(off_prompt=False)],
+        tools=[WebScraperTool(), PromptSummaryTool(off_prompt=False)],
         )
 
     # result
@@ -160,7 +160,7 @@ for description in movie_descriptions:
     
     summary_task = ToolkitTask(
         "Use metacritic to get a summary of this movie: {{ parent_outputs.values()|list|last  }}",
-        tools=[WebScraper(), TaskMemoryClient(off_prompt=False)],
+        tools=[WebScraperTool(), PromptSummaryTool(off_prompt=False)],
         )
     
     workflow.insert_tasks(start_task, [movie_task], end_task)
@@ -285,7 +285,7 @@ As you can see, the `END` task has a lot more detail in it now. We're getting gr
 
 ## Code Review
 
-We added some of helpful functionality in this section, mainly getting wonderful descriptions of these films from the web by using the `WebScraper` tool and `ToolkitTasks`.
+We added some of helpful functionality in this section, mainly getting wonderful descriptions of these films from the web by using the `WebScraperTool` tool and `ToolkitTasks`.
 
 Review your code.
 

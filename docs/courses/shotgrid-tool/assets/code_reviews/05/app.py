@@ -3,7 +3,7 @@ import os
 
 from griptape.structures import Agent
 from griptape.utils import Chat
-from griptape.tools import DateTime
+from griptape.tools import DateTimeTool
 
 # from reverse_string_tool import ReverseStringTool
 from shotgrid_tool import ShotGridTool
@@ -25,7 +25,7 @@ shotgrid_tool = ShotGridTool(
 # Instantiate the agent
 agent = Agent(
     tools=[
-        DateTime(off_prompt=False),
+        DateTimeTool(off_prompt=False),
         shotgrid_tool,
         # ReverseStringTool(off_prompt=False),
     ],

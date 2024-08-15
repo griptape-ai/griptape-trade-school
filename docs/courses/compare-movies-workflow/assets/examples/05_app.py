@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 # Griptape 
 from griptape.structures import Workflow
 from griptape.tasks import PromptTask, ToolkitTask
-from griptape.tools import WebScraper
+from griptape.tools import WebScraperTool
 from griptape.drivers import OpenAiChatPromptDriver
 
 
@@ -46,7 +46,7 @@ for description in movie_descriptions:
     summary_task = ToolkitTask(
         "Give me a summary of the movie: {{ (parent_outputs.items()|list|last)[1] }}",
 
-        tools=[WebScraper()],
+        tools=[WebScraperTool()],
         prompt_driver=driver
         )
     

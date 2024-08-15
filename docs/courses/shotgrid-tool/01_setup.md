@@ -21,6 +21,6 @@ load_dotenv() # Load your environment
 
 ---
 ## Next Steps
-And there we have it, your environment is all set up! In the [next section](03_understanding_tools.md),  we'll get started by using one of Griptape's built-in Tools (DateTime) and understand how it works.
+And there we have it, your environment is all set up! In the [next section](03_understanding_tools.md),  we'll get started by using one of Griptape's built-in Tools (DateTimeTool) and understand how it works.
 
 <!-- And there we have it, your environment is all set up! In the next section [ShotGrid](02_shotgrid.md), you'll sign up for an Autodesk ShotGrid trial account if you don't already have one. -->

@@ -95,12 +95,12 @@ Find the line where you instantiate the agent and add the `ReverseStringTool`:
 # ...
 
 # Instantiate the agent
-agent = Agent(tools=[DateTime(off_prompt=False), ReverseStringTool(off_prompt=False)])
+agent = Agent(tools=[DateTimeTool(off_prompt=False), ReverseStringTool(off_prompt=False)])
 
 # ...
 ```
 
-Notice the agent now has access to *two* Tools, `DateTime` and `ReverseStringTool`. 
+Notice the agent now has access to *two* Tools, `DateTimeTool` and `ReverseStringTool`. 
 
 ### Test it out
 
@@ -136,7 +136,7 @@ As you can see in the highlighted section above, the `Subtask` shows that the ag
 
 ### Combine requests
 
-You can absolutely use multiple Tools at the same time. Try a few examples where you might use both the `DateTime` Tool and the `ReverseStringTool`.
+You can absolutely use multiple Tools at the same time. Try a few examples where you might use both the `DateTimeTool` Tool and the `ReverseStringTool`.
 
 ```text
 User: Can you reverse the month?
@@ -246,12 +246,12 @@ You have added a Griptape Tool *and* modified it to add a new activity! Well don
 ### `app.py`
 
 ```python title="app.py" linenums="1"
---8<-- "docs/courses/shotgrid-client/assets/code_reviews/04/app.py"
+--8<-- "docs/courses/shotgrid-tool/assets/code_reviews/04/app.py"
 ```
 
 ### `reverse_string_tool/tool.py`
 ```python title="reverse_string_tool/tool.py" linenums="1"
---8<-- "docs/courses/shotgrid-client/assets/code_reviews/04/reverse_string_tool/tool.py"
+--8<-- "docs/courses/shotgrid-tool/assets/code_reviews/04/reverse_string_tool/tool.py"
 ```
 
 ---

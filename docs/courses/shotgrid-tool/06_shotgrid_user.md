@@ -184,7 +184,7 @@ You completed an incredible amount of work in this section - updating your Tool 
 ### `app.py`
 
 ```python linenums="1" title="app.py"
---8<-- "docs/courses/shotgrid-client/assets/code_reviews/06/app.py"
+--8<-- "docs/courses/shotgrid-tool/assets/code_reviews/06/app.py"
 ```
 
 ### `.env`
@@ -200,7 +200,7 @@ SHOTGRID_PASSWORD=supersecretpassword123
 ### `shotgrid_tool/tool.py`
 
 ```python linenums="1" title="shotgrid_tool/tool.py"
---8<-- "docs/courses/shotgrid-client/assets/code_reviews/06/shotgrid_tool/tool.py"
+--8<-- "docs/courses/shotgrid-tool/assets/code_reviews/06/shotgrid_tool/tool.py"
 ```
 
 ---

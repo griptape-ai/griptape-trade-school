@@ -159,7 +159,7 @@ for description in movie_descriptions:
 
     summary_task = ToolkitTask(
         "Use metacritic to get a summary of this movie: {{ parent_outputs.values() | list |last }}",
-        tools=[WebScraper(), TaskMemoryClient(off_prompt=False)],
+        tools=[WebScraperTool(), PromptSummaryTool(off_prompt=False)],
         id=f"SUMMARY: {description[:10]}..."
     )
 

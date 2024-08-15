@@ -71,4 +71,4 @@ Congratulations! You should now see your ShotGrid desktop and are all set to sta
 ---
 ## Next Steps
 Now that you have your environment set up and access to ShotGrid, you're ready to [build your ShotGrid Tool](05_shotgrid_tool.md) that will allow an agent to connect and authenticate with it. 
-<!-- Now that you have your environment set up and access to ShotGrid, you're ready to get started with Griptape Tools. In the [next section](03_understanding_tools.md), we'll get started by using one of Griptape's built-in tools ([DateTime](https://docs.griptape.ai/stable/griptape-tools/official-tools/date-time/)) and understand how it works. -->
+<!-- Now that you have your environment set up and access to ShotGrid, you're ready to get started with Griptape Tools. In the [next section](03_understanding_tools.md), we'll get started by using one of Griptape's built-in tools ([DateTimeTool](https://docs.griptape.ai/stable/griptape-tools/official-tools/date-time/)) and understand how it works. -->

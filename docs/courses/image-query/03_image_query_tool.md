@@ -25,14 +25,14 @@ Add the following to your `import` section:
 ```python title="app.py" hl_lines="3-5"
 # ...
 
-from griptape.tools import ImageQueryClient
+from griptape.tools import ImageQueryTool
 from griptape.engines import ImageQueryEngine
 from griptape.drivers import OpenAiImageQueryDriver
 
 # ...
 ```
 
-### ImageQueryClient
+### ImageQueryTool
 This component acts as the intermediary that will manage your interactions with images. It's responsible for sending image data to the engine and retrieving results.
 
 ### ImageQueryEngine
@@ -83,23 +83,23 @@ With the driver and engine now set up, your agent is almost ready to start descr
 
 Next, we'll tie all these components together and create a client that can handle all the image querying magic.
 
-### Create the Client
+### Create the Tool
 
-First up, let’s create and configure the `ImageQueryClient`. This component uses the engine we set up earlier to process image queries. The `off_prompt` parameter is set to `False` to ensure that the image descriptions are not just processed but also sent back to the large language model for some insightful summarization. Here's how to do it:
+First up, let’s create and configure the `ImageQueryTool`. This component uses the engine we set up earlier to process image queries. The `off_prompt` parameter is set to `False` to ensure that the image descriptions are not just processed but also sent back to the large language model for some insightful summarization. Here's how to do it:
 
 ```python title="app.py" hl_lines="3-6"
 # ...
 
-image_query_client = ImageQueryClient(
+image_query_tool = ImageQueryTool(
     image_query_engine=engine, 
     off_prompt=False
 )
 
 # ...
 ```
-### Assign the Client to the Agent
+### Assign the Tool to the Agent
 
-Next, we integrate this `ImageQueryClient` into our agent’s toolbox. This allows our agent to effortlessly process image queries, turning it into a Renaissance bot that’s as comfortable discussing Da Vinci as it is creating silly haikus.
+Next, we integrate this `ImageQueryTool` into our agent’s toolbox. This allows our agent to effortlessly process image queries, turning it into a Renaissance bot that’s as comfortable discussing Da Vinci as it is creating silly haikus.
 
 Modify the part of the code where you instantiate the agent to include a list of tools. In this case, we're only providing one tool - but it still must be a list.
 
@@ -107,7 +107,7 @@ Modify the part of the code where you instantiate the agent to include a list of
 # ...
 
 # Create the Agent
-agent = Agent(logger_level=0, tools=[image_query_client])
+agent = Agent(logger_level=0, tools=[image_query_tool])
 
 # ...
 ```

@@ -7,7 +7,7 @@ Image Generation via Griptape is handled via a few components.
 
 * **Image Generation Driver** - Determines the model to be used. For example, [OpenAI DALL·E 3](https://openai.com/dall-e-3){target="_blank"} or [Leonardo.AI](https://leonardo.ai/){target="_blank"}.
 * **Image Generation Engines** - The engine that facilitates the use of the Driver.
-* **Image Generation Task** or **Image Generation Tool**. The Task or Tool is what will be provided to the Griptape Structure. Pipelines and Workflows can use `PromptImageGenerationTask` directly. You can provide an `PromptImageGenerationClient` to an Agent, to a ToolTask, or to a ToolkitTask.
+* **Image Generation Task** or **Image Generation Tool**. The Task or Tool is what will be provided to the Griptape Structure. Pipelines and Workflows can use `PromptImageGenerationTask` directly. You can provide an `PromptImageGenerationTool` to an Agent, to a ToolTask, or to a ToolkitTask.
 
 For example, to create an image with OpenAI DALL·E 3 as a **task** you could do something like:
 
@@ -31,11 +31,11 @@ task = PromptImageGenerationTask(
 
 Once you generate the task, you will add it to the pipeline or workflow.
 
-You can also use the `PromptImageGenerationClient` tool and assign it to an Agent. It takes many of the same arguments. If you had previously created the `driver` and `engine` as specified above, you would do something like:
+You can also use the `PromptImageGenerationTool` tool and assign it to an Agent. It takes many of the same arguments. If you had previously created the `driver` and `engine` as specified above, you would do something like:
 
 ```python
 agent = Agent(
-    tools=[PromptImageGenerationClient(
+    tools=[PromptImageGenerationTool(
         image_generation_engine=engine,
         output_dir="images",
         off_prompt=False,

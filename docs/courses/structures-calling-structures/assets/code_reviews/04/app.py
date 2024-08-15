@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from griptape.structures import Agent
 from griptape.utils import Chat
 from griptape.drivers import LocalStructureRunDriver
-from griptape.tools import StructureRunClient
+from griptape.tools import StructureRunTool
 
 from image_pipeline import create_image_pipeline
 
@@ -17,8 +17,8 @@ image_pipeline_driver = LocalStructureRunDriver(
     structure_factory_fn=create_image_pipeline
 )
 
-# Create the Client
-image_pipeline_client = StructureRunClient(
+# Create the Tool
+image_pipeline_tool = StructureRunTool(
     name="Image Creator",
     description="Create an image based on a prompt.",
     driver=image_pipeline_driver,
@@ -26,7 +26,7 @@ image_pipeline_client = StructureRunClient(
 )
 
 # Create the Agent
-agent = Agent(logger_level=0, tools=[image_pipeline_client])
+agent = Agent(logger_level=0, tools=[image_pipeline_tool])
 
 # Configure the agent to stream it's responses.
 agent.config.prompt_driver.stream = True

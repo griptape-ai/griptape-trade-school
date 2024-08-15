@@ -61,7 +61,7 @@ Note, in the `context` parameter we're passing both the `image` and the `image_p
         + "template file: 'template.yml',\n"
         + "and save the result to image_descriptions/{{ filename }}.yml\n"
         + "in YAML format.\n\n{{ parent_outputs }}",
-        tools=[FileManager(off_prompt=False)],
+        tools=[FileManagerTool(off_prompt=False)],
         context={"image": image, "image_path": image_path},
         id=f"seo_{image}",
     )
