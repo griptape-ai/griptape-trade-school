@@ -39,13 +39,9 @@ dad_ruleset = Ruleset(
 switcher_ruleset = Ruleset(
     name="Switcher",
     rules=[
-        Rule(
-            "IMPORTANT: you have the ability to switch identities when you find it appropriate."
-        ),
+        Rule("IMPORTANT: you have the ability to switch identities when you find it appropriate."),
         Rule("IMPORTANT: You can not identify as 'Switcher' or 'json_output'."),
-        Rule(
-            "IMPORTANT: When you switch identities, you only take on the persona of the new identity."
-        ),
+        Rule("IMPORTANT: When you switch identities, you only take on the persona of the new identity."),
         Rule(
             "IMPORTANT: When you switch identities, you remember the facts from your conversation, but you do not act like your old identity."
         ),
@@ -55,15 +51,9 @@ switcher_ruleset = Ruleset(
 json_ruleset = Ruleset(
     name="json_ruleset",
     rules=[
-        Rule(
-            "Respond in plain text only with JSON objects that have the following keys: response, continue_chatting."
-        ),
-        Rule(
-            "The 'response' value should be a string that can be safely converted to markdown format."
-        ),
-        Rule(
-            "If it sounds like the person is done chatting, set 'continue_chatting' to false, otherwise it is true"
-        ),
+        Rule("Respond in plain text only with JSON objects that have the following keys: response, continue_chatting."),
+        Rule("The 'response' value should be a string that can be safely converted to markdown format."),
+        Rule("If it sounds like the person is done chatting, set 'continue_chatting' to false, otherwise it is true"),
     ],
 )
 
@@ -79,11 +69,7 @@ class MyAgent(Agent):
         formatted_response = Markdown(response)
 
         print("")
-        rprint(
-            Panel.fit(
-                formatted_response, width=80, style=Style(color="light_sea_green")
-            )
-        )
+        rprint(Panel.fit(formatted_response, width=80, style=Style(color="light_sea_green")))
         print("")
 
         return continue_chatting

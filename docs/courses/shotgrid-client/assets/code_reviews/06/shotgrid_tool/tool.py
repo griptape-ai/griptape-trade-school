@@ -2,7 +2,6 @@ from __future__ import annotations
 from griptape.artifacts import TextArtifact, ErrorArtifact
 from griptape.tools import BaseTool
 from griptape.utils.decorators import activity
-from schema import Schema, Literal
 from attr import define, field
 
 
@@ -51,9 +50,7 @@ class ShotGridTool(BaseTool):
                     password=self.user_password,  # User password
                 )
 
-            return TextArtifact(
-                sg.get_session_token()
-            )  # Return the results of the connection
+            return TextArtifact(sg.get_session_token())  # Return the results of the connection
 
         except Exception as e:
             return ErrorArtifact(str(e))

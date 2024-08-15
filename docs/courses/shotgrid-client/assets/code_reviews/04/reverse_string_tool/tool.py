@@ -11,9 +11,7 @@ class ReverseStringTool(BaseTool):
     @activity(
         config={
             "description": "Can be used to reverse a string",
-            "schema": Schema(
-                {Literal("input", description="The string to be reversed"): str}
-            ),
+            "schema": Schema({Literal("input", description="The string to be reversed"): str}),
         }
     )
     def reverse_string(self, params: dict) -> TextArtifact | ErrorArtifact:
@@ -28,9 +26,7 @@ class ReverseStringTool(BaseTool):
     @activity(
         config={
             "description": "Can be used to reverse a sentence",
-            "schema": Schema(
-                {Literal("input", description="The sentence to be reversed"): str}
-            ),
+            "schema": Schema({Literal("input", description="The sentence to be reversed"): str}),
         }
     )
     def reverse_sentence(self, params: dict) -> TextArtifact | ErrorArtifact:

@@ -33,9 +33,7 @@ json_ruleset = Ruleset(
         Rule(
             "The 'response' value should be a string that can be safely converted to markdown format.  Use '\\n' for new lines."
         ),
-        Rule(
-            "If it sounds like the person is done chatting, set 'continue_chatting' to false, otherwise it is true"
-        ),
+        Rule("If it sounds like the person is done chatting, set 'continue_chatting' to false, otherwise it is true"),
     ],
 )
 

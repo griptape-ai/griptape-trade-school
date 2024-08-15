@@ -13,9 +13,7 @@ from rich import print as print  # Modifies print to use the Rich library
 load_dotenv()  # Load your environment
 
 # Create the driver
-image_pipeline_driver = LocalStructureRunDriver(
-    structure_factory_fn=create_image_pipeline
-)
+image_pipeline_driver = LocalStructureRunDriver(structure_factory_fn=create_image_pipeline)
 
 # Create the Client
 image_pipeline_client = StructureRunClient(

@@ -20,9 +20,7 @@ def grammar_agent():
             Ruleset(
                 name="Grammar Checker",
                 rules=[
-                    Rule(
-                        "Follow standard grammar rules from recognized sources to evaluate and correct sentences."
-                    ),
+                    Rule("Follow standard grammar rules from recognized sources to evaluate and correct sentences."),
                     Rule(
                         "Ensure sentences are clear and readable, suggesting simpler alternatives for complex structures or jargon."
                     ),

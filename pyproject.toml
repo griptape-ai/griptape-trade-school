@@ -27,6 +27,9 @@ ruff = "^0.6.0"
 venvPath = "."
 venv = ".venv"
 
+[tool.ruff]
+line-length = 120
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

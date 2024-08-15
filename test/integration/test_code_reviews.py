@@ -4,11 +4,7 @@ import logging
 import subprocess
 
 
-python_files = [
-    f
-    for f in pathlib.Path("docs").glob("**/code_reviews/**/*.py")
-    if f.name != "__init__.py"
-]
+python_files = [f for f in pathlib.Path("docs").glob("**/code_reviews/**/*.py") if f.name != "__init__.py"]
 
 
 @pytest.mark.parametrize("fpath", python_files, ids=str)
