@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 
 from griptape.structures import Agent
 
-load_dotenv() # Load your environment
+load_dotenv()  # Load your environment
 
 # Create an agent
 agent = Agent()

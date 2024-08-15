@@ -1,5 +1,3 @@
-from dotenv import load_dotenv
-
 # Griptape
 from griptape.structures import Pipeline
 from griptape.tasks import (
@@ -17,16 +15,16 @@ def create_image_pipeline() -> Pipeline:
     output_dir = "images"
 
     # Create the driver
-    image_driver = OpenAiImageGenerationDriver(
-        model="dall-e-3", api_type="open_ai", image_size="1024x1024"
-    )
+    image_driver = OpenAiImageGenerationDriver(model="dall-e-3", api_type="open_ai", image_size="1024x1024")
 
     # Create the engine
     image_engine = PromptImageGenerationEngine(image_generation_driver=image_driver)
 
     # Create a function to display an image
     def display_image(task: CodeExecutionTask) -> TextArtifact:
-        import os, subprocess, sys
+        import os
+        import subprocess
+        import sys
 
         # Get the filename
         filename = task.input.value

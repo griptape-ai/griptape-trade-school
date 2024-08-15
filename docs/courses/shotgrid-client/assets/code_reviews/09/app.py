@@ -26,9 +26,7 @@ vector_store_driver = LocalVectorStoreDriver(embedding_driver=OpenAiEmbeddingDri
 # Create the query engine
 rag_engine = RagEngine(
     response_stage=ResponseRagStage(
-        response_module=PromptResponseRagModule(
-            prompt_driver=OpenAiChatPromptDriver(model="gpt-4o-mini")
-        )
+        response_module=PromptResponseRagModule(prompt_driver=OpenAiChatPromptDriver(model="gpt-4o-mini"))
     ),
 )
 
@@ -84,9 +82,7 @@ shotgrid_agent_ruleset = Ruleset(
     name="ShotGrid Agent",
     rules=[
         Rule("Act as a studio coordinator who is an expert with Autodesk ShotGrid"),
-        Rule(
-            "Your main objective is to find and update information in ShotGrid using the ShotGridTool"
-        ),
+        Rule("Your main objective is to find and update information in ShotGrid using the ShotGridTool"),
         Rule(
             dedent(
                 """
@@ -123,7 +119,7 @@ agent = Agent(
     tools=[DateTime(off_prompt=False), shotgrid_tool, vector_store_tool],
     rulesets=[shotgrid_agent_ruleset],
 )
-agent.config.prompt_driver.stream=True
+agent.config.prompt_driver.stream = True
 
 # Start chatting
 Chat(agent).start()

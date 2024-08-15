@@ -73,9 +73,7 @@ if flow == "WORKFLOW":
     workflow.run()
 else:
     # Create the Agent
-    agent = Agent(
-        logger_level=0, tools=[image_query_client, FileManager(off_prompt=False)]
-    )
+    agent = Agent(logger_level=0, tools=[image_query_client, FileManager(off_prompt=False)])
 
     # Configure the agent to stream it's responses.
     agent.config.prompt_driver.stream = True

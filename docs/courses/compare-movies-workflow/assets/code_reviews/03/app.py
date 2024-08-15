@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from griptape.structures import Workflow
 from griptape.tasks import PromptTask
 
-load_dotenv() 
+load_dotenv()
 
 # Create the workflow object
 workflow = Workflow()

@@ -1,5 +1,5 @@
 from dotenv import load_dotenv
-import logging                     
+import logging
 
 # Griptape Items
 from griptape.structures import Agent
@@ -9,9 +9,7 @@ from griptape.utils import Chat
 load_dotenv()
 
 # Create the agent
-agent = Agent(
-    logger_level=logging.ERROR      
-)
+agent = Agent(logger_level=logging.ERROR)
 
 # Run the agent
 Chat(agent).start()
