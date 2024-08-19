@@ -1,6 +1,6 @@
 # The Chat Utility
 
-<iframe src="https://www.youtube.com/embed/c846q7A7ILA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<!--<iframe src="https://www.youtube.com/embed/c846q7A7ILA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>-->
 
 ## Make Agent Interactive Using Chat Utility
 

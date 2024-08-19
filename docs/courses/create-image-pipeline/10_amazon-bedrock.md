@@ -118,7 +118,7 @@ Below is the full list of attributes available.
 ```yaml
 model: Bedrock model ID.
 session: boto3 session.
-bedrock_tool: Bedrock runtime client.
+bedrock_tool: Bedrock runtime tool.
 image_width: Width of output images. Defaults to 512 and must be a multiple of 64.
 image_height: Height of output images. Defaults to 512 and must be a multiple of 64.
 seed: Optionally provide a consistent seed to generation requests, increasing consistency in output.

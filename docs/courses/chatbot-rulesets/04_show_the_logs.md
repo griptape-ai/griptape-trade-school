@@ -1,6 +1,6 @@
 # Showing the Logs
 
-<iframe src="https://www.youtube.com/embed/GTG1YfKudRA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<!--<iframe src="https://www.youtube.com/embed/GTG1YfKudRA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>-->
 
 In the previous section, we had a blast engaging with our chatbot, but some of the chatbot's output was hidden from us. Fear not! In this section, we'll show you how to turn on the logs and let your chatbot's brilliance shine.
 
