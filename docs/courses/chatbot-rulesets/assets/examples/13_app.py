@@ -18,7 +18,7 @@ from griptape.config import config
 load_dotenv()
 
 # Disable griptape's info logging
-logging.getLogger(config.logging.logger_name).setLevel(logging.ERROR)
+logging.getLogger(config.logging_config.logger_name).setLevel(logging.ERROR)
 
 # Create rulesets for each persona
 kiwi_ruleset = Ruleset(
