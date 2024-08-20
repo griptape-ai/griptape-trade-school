@@ -38,7 +38,6 @@ With `json_ruleset` in hand, it's time to integrate it into our Agent. By includ
 # Create the agent
 agent = MyAgent(
     rulesets=[kiwi_ruleset, json_ruleset],
-    logger_level=logging.ERROR
 )
 ```
 

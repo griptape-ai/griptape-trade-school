@@ -82,8 +82,7 @@ agent = MyAgent(
     rulesets=[
         switcher_ruleset, json_ruleset,
         kiwi_ruleset, zelda_ruleset, dad_ruleset, 
-    ],
-    logger_level=logging.ERROR
+    ]
 )
 
 ```

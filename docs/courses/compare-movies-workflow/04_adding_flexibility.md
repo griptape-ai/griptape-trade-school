@@ -207,4 +207,4 @@ Review your code with the current state to make sure everything is working as ex
 ## Next Step
 Our code works, but the descriptions of the movies aren't as detailed as they could be. It would be better if we could search the web for detailed information about the movies, and use those results for a more comprehensive comparison.
 
-In the next section, we will add to our workflow by adding a ToolkitTask that uses the `WebScraper` tool to get more detailed information. Jump to [Using Tools](05_using_tools.md) when you're ready to continue.
+In the next section, we will add to our workflow by adding a ToolkitTask that uses the `WebScraperTool` tool to get more detailed information. Jump to [Using Tools](05_using_tools.md) when you're ready to continue.

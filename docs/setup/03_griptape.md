@@ -16,7 +16,7 @@ There are multiple ways communicate with LLMs via Griptape, but the one we'll us
 !!! Abstract
     Agents can do **one task**.
 
-You give the Agent a prompt, it thinks for a bit, figures things out, and then returns a result. While that sounds relatively simple, it's actually quite cool. You can give the agent tools (WebScraper, Calculator, EmailClient, to name a few), you can give it rules about how to behave, and more. Agents can actually do quite a lot - but they're still one of the more simple ways of interacting with Griptape, which is why we'll use them to start with in this course.
+You give the Agent a prompt, it thinks for a bit, figures things out, and then returns a result. While that sounds relatively simple, it's actually quite cool. You can give the agent tools (WebScraperTool, Calculator, EmailTool, to name a few), you can give it rules about how to behave, and more. Agents can actually do quite a lot - but they're still one of the more simple ways of interacting with Griptape, which is why we'll use them to start with in this course.
 
 Speaking of interacting with Griptape... we need to install it!
 

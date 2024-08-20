@@ -4,7 +4,7 @@
 
 Now it’s time to take our agent and give it the ability to create beautiful images worthy of sharing with friends and family.
 
-## Import Driver and Client
+## Import Driver and Tool
 
 First, let’s add the required structure imports. In `app.py` add the following to your imports section:
 
@@ -15,7 +15,7 @@ First, let’s add the required structure imports. In `app.py` add the following
 from griptape.structures import Agent
 from griptape.utils import Chat
 from griptape.drivers import LocalStructureRunDriver
-from griptape.tools import StructureRunClient
+from griptape.tools import StructureRunTool
 
 # ...
 ```
@@ -64,17 +64,17 @@ image_pipeline_driver = LocalStructureRunDriver(
 
     In Python, a factory function is a function you call to create these objects for you. You tell the function what kind of object you want, and it handles all the details, returning the new object.
 
-## Create the Client
+## Create the Tool
 
-Time to create the Client. This will take the driver, and we’ll pass it to the Agent.
+Time to create the Tool. This will take the driver, and we’ll pass it to the Agent.
 
 Two very important properties to call out are the `name` and the `description`. You _must_ define these, as they will help the Agent figure out when it’s appropriate to use this tool. If you named it “clam shucker” and gave it a description of “loves to eat clams on a Wednesday”, the agent would have no idea that this pipeline could create images.
 
 ```python title="app.py" hl_lines="3-9"
 # ...
 
-# Create the Client
-image_pipeline_client = StructureRunClient(
+# Create the Tool
+image_pipeline_tool = StructureRunTool(
     name="Image Creator",
     description="Create an image based on a prompt.",
     driver=image_pipeline_driver,
@@ -92,7 +92,7 @@ Now the exciting part, let’s give the client to the agent as a tool. Modify yo
 # ...
 
 # Create the Agent
-agent = Agent(logger_level=0, tools=[image_pipeline_client])
+agent = Agent(tools=[image_pipeline_tool])
 
 # ...
 ```

@@ -10,7 +10,7 @@ test/integration:
 	@poetry run pytest test/integration/test_code_reviews.py
 
 .PHONY: check
-check: check/types check/spell ## Run all checks.
+check: check/types check/spell check/lint ## Run all checks.
 
 .PHONY: check/types
 check/types:
@@ -19,10 +19,18 @@ check/types:
 .PHONY: check/spell
 check/spell:
 	@poetry run typos 
+
+.PHONY: check/lint
+check/lint:
+	@poetry run ruff check
 	
 .PHONY: docs
 docs: ## Build documentation.
 	@poetry run mkdocs build
+
+.PHONY: format
+format: ## Format project.
+	@poetry run ruff format
 
 .DEFAULT_GOAL := help
 .PHONY: help

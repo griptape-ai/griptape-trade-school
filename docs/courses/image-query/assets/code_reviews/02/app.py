@@ -9,14 +9,14 @@ from rich import print as print  # Modifies print to use the Rich library
 load_dotenv()  # Load your environment
 
 # Create the Agent
-agent = Agent(logger_level=0)
+agent = Agent(stream=True)
 
-# Configure the agent to stream it's responses.
-agent.config.prompt_driver.stream = True
+
 
 # Modify the Agent's response to have some color.
 def formatted_response(response: str) -> None:
     print(f"[dark_cyan]{response}", end="", flush=True)
+
 
 # Begin Chatting
 Chat(

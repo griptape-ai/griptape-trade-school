@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from griptape.structures import Agent
 from griptape.rules import Rule, Ruleset
 from griptape.drivers import LocalStructureRunDriver
-from griptape.tools import StructureRunClient, TaskMemoryClient
+from griptape.tools import StructureRunTool, PromptSummaryTool
 from griptape.utils import Chat
 
 load_dotenv()  # Load your environment
@@ -15,14 +15,11 @@ load_dotenv()  # Load your environment
 def grammar_agent():
     # Create the agent with appropriate rules
     agent = Agent(
-     logger_level=0, # Keep this agent's logs hidden.
         rulesets=[
             Ruleset(
                 name="Grammar Checker",
                 rules=[
-                    Rule(
-                        "Follow standard grammar rules from recognized sources to evaluate and correct sentences."
-                    ),
+                    Rule("Follow standard grammar rules from recognized sources to evaluate and correct sentences."),
                     Rule(
                         "Ensure sentences are clear and readable, suggesting simpler alternatives for complex structures or jargon."
                     ),
@@ -32,7 +29,7 @@ def grammar_agent():
                     ),
                 ],
             )
-        ]
+        ],
     )
 
     # Return the agent from the function
@@ -41,9 +38,7 @@ def grammar_agent():
 
 # Create a LocalStructureRunDriver
 # We pass the grammar_agent function to the structure_factory_fn
-grammar_agent_driver = LocalStructureRunDriver(
-    structure_factory_fn=grammar_agent
-)
+grammar_agent_driver = LocalStructureRunDriver(structure_factory_fn=grammar_agent)
 
 # Create a client using the driver
 # It's important to define the name and the description, this is how
@@ -51,7 +46,7 @@ grammar_agent_driver = LocalStructureRunDriver(
 #
 # In this example we're setting off_prompt to True. This demonstrates
 # how the agent's response could be kept private from the original LLM.
-grammar_agent_client = StructureRunClient(
+grammar_agent_tool = StructureRunTool(
     name="Grammar Agent",
     description="An agent to evaluate and correct sentences based on standard grammar rules.",
     driver=grammar_agent_driver,
@@ -59,12 +54,12 @@ grammar_agent_client = StructureRunClient(
 )
 
 # Create an agent to chat with
-# Pass it the grammar_agent_client and TaskMemoryClient to access
+# Pass it the grammar_agent_tool and PromptSummaryTool to access
 # the agent's responses.
 chat_agent = Agent(
     tools=[
-        grammar_agent_client,  # Add the Grammar Agent
-        TaskMemoryClient( off_prompt=False ),  
+        grammar_agent_tool,  # Add the Grammar Agent
+        PromptSummaryTool(off_prompt=False),
     ],
 )
 

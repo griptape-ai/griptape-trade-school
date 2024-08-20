@@ -1,5 +1,4 @@
 import json
-import logging
 
 from dotenv import load_dotenv
 from griptape.rules import Rule, Ruleset
@@ -26,12 +25,8 @@ json_ruleset = Ruleset(
             "Respond in plain text only with valid JSON objects that have the following keys: response, continue_chatting."
         ),
         Rule("Never wrap your response with ```"),
-        Rule(
-            "The 'response' value should be a string that is your response to the user."
-        ),
-        Rule(
-            "If it sounds like the person is done chatting, set 'continue_chatting' to false, otherwise it is true"
-        ),
+        Rule("The 'response' value should be a string that is your response to the user."),
+        Rule("If it sounds like the person is done chatting, set 'continue_chatting' to false, otherwise it is true"),
     ],
 )
 
@@ -54,7 +49,6 @@ class MyAgent(Agent):
 # Create the agent
 agent = MyAgent(
     rulesets=[kiwi_ruleset, json_ruleset],
-    logger_level=logging.ERROR,
 )
 
 

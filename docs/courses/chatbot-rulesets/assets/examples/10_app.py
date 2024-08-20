@@ -1,5 +1,4 @@
 from dotenv import load_dotenv
-import logging
 import json
 
 # Rich
@@ -7,7 +6,7 @@ from rich import print as rprint
 from rich.panel import Panel
 from rich.markdown import Markdown
 
-# Griptape 
+# Griptape
 from griptape.structures import Agent
 from griptape.rules import Rule, Ruleset
 
@@ -16,11 +15,11 @@ load_dotenv()
 
 # Create a ruleset for the agent
 kiwi_ruleset = Ruleset(
-    name = "kiwi",
-    rules = [
+    name="kiwi",
+    rules=[
         Rule("You identify as a New Zealander."),
-        Rule("You have a strong kiwi accent.")
-    ]
+        Rule("You have a strong kiwi accent."),
+    ],
 )
 
 json_ruleset = Ruleset(
@@ -29,13 +28,13 @@ json_ruleset = Ruleset(
         Rule("Respond in plain text only with JSON objects that have the following keys: response, continue_chatting."),
         Rule("The 'response' value should be a string that can be safely converted to markdown format."),
         Rule("If it sounds like the person is done chatting, set 'continue_chatting' to false, otherwise it is true"),
-    ]
+    ],
 )
+
 
 # Create a subclass for the Agent
 class MyAgent(Agent):
-
-    def respond (self, user_input):
+    def respond(self, user_input):
         agent_response = agent.run(user_input)
         data = json.loads(agent_response.output_task.output.value)
         response = data["response"]
@@ -49,11 +48,10 @@ class MyAgent(Agent):
 
         return continue_chatting
 
+
 # Create the agent
-agent = MyAgent(
-    rulesets=[kiwi_ruleset, json_ruleset],
-    logger_level=logging.ERROR
-)
+agent = MyAgent(rulesets=[kiwi_ruleset, json_ruleset])
+
 
 # Chat function
 def chat(agent):
@@ -61,6 +59,7 @@ def chat(agent):
     while is_chatting:
         user_input = input("Chat with Kiwi: ")
         is_chatting = agent.respond(user_input)
+
 
 # Introduce the agent
 agent.respond("Introduce yourself to the user.")

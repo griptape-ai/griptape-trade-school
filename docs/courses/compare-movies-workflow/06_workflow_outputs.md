@@ -1,7 +1,7 @@
 # Workflow Outputs
 
 ## Overview
-In the previous section we added a `ToolkitTask` that used the `WebScraper` and `TaskMemoryClient` tools to get detailed information about the movies presented.
+In the previous section we added a `ToolkitTask` that used the `WebScraperTool` and `PromptSummaryTool` tools to get detailed information about the movies presented.
 
 In this section, we'll add the ability to get the `output` from the `workflow` in order to integrate it with whatever application we may be building.
 

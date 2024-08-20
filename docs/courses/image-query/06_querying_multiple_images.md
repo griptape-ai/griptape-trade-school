@@ -12,7 +12,7 @@ define key words, create an alt-description, a caption, and an example html
 element? Save it as a YAML file in image_descriptions/filename.yaml
 ```
 
-The agent would use the FileManager to get a list of files, and then start a series of actions to describe them. It may decide to do them in parallel (Yay!), or it may do them one at a time (Boo!). For some cases, this is fine - but if we want to turn this into a _consistent workflow_ that is reliable and can always operate in parallel, the best practice is to use a Griptape Workflow.
+The agent would use the FileManagerTool to get a list of files, and then start a series of actions to describe them. It may decide to do them in parallel (Yay!), or it may do them one at a time (Boo!). For some cases, this is fine - but if we want to turn this into a _consistent workflow_ that is reliable and can always operate in parallel, the best practice is to use a Griptape Workflow.
  
 If you haven't explored Griptape Workflows or Pipelines previously, we highly recommend you check out these other TradeSchool courses:
 
@@ -59,11 +59,11 @@ Here's a quick description of what each of these are for.
 | `Workflow`  | Defines a dependency graph of tasks. |
 | `TextSummaryTask` | A quick and simple text task that doesn't include Chain of Thought. |
 | `ToolTask` | The task used to get information about an image. Also doesn't use Chain of Thought. _Note: We could also use the `ImageQueryTask` specifically to get information about the image, but in my testing the `ToolTask` executed in the same amount of time, and is easier to set up._|
-| `ToolkitTask` | The task that will use FileManager to save the files to disk. This uses Chain of Thought to take the output from the Image Query and generate the proper formatting, then uses the tool to save to disk. |
+| `ToolkitTask` | The task that will use FileManagerTool to save the files to disk. This uses Chain of Thought to take the output from the Image Query and generate the proper formatting, then uses the tool to save to disk. |
 
 ### ToolkitTask
 
-The task that will use FileManager to save the files to disk. This uses Chain of Thought to take the output from the Image Query and generate the proper formatting, then uses the tool to save to disk.
+The task that will use FileManagerTool to save the files to disk. This uses Chain of Thought to take the output from the Image Query and generate the proper formatting, then uses the tool to save to disk.
 
 ## Remove Agent Flow
 
@@ -108,18 +108,15 @@ Modify the code as follows:
 
 ```python title="app.py" hl_lines="5-25"
 # ...
-# Configure the ImageQueryClient
-image_query_client = ImageQueryClient(image_query_engine=engine, off_prompt=False)
+# Configure the ImageQueryTool
+image_query_tool = ImageQueryTool(image_query_engine=engine, off_prompt=False)
 
 flow = "AGENT"
 if flow == "WORKFLOW":
   # Create a workflow 
 else:
   # Create the Agent
-  agent = Agent(logger_level=0, tools=[image_query_client, FileManager(off_prompt=False)])
-
-  # Configure the agent to stream it's responses.
-  agent.config.prompt_driver.stream = True
+  agent = Agent(tools=[image_query_tool, FileManagerTool(off_prompt=False)], stream=True)
 
 
   # Modify the Agent's response to have some color.
@@ -220,7 +217,7 @@ Go ahead and run the script - you should see a number of tasks being created bas
 
 Now we'll swap out this fake task, for a real one.
 
-For each VIP (Very Important Picture), create a task that details their best angles. This task uses the `ImageQueryClient` to generate an SEO-friendly description, keywords, alt-description, caption, and HTML element for each image.
+For each VIP (Very Important Picture), create a task that details their best angles. This task uses the `ImageQueryTool` to generate an SEO-friendly description, keywords, alt-description, caption, and HTML element for each image.
 
 ```python title="app.py" hl_lines="11-17"
 # ...
@@ -238,7 +235,7 @@ if flow == "WORKFLOW":
       image_summary_task = ToolTask(
           "Describe this image in detail: {{image_path}}",
           context={"image_path": image_path},
-          tool=image_query_client,
+          tool=image_query_tool,
           id=f"{image}",
       )
 
@@ -262,7 +259,7 @@ We use a `ToolkitTask` here instead of a `ToolTask` because the request we have 
 
 All in all, they’re just a tad more capable. 
 
-So, this task takes the output from the ToolTask and uses the FileManager to save the information in YAML format in a designated directory.
+So, this task takes the output from the ToolTask and uses the FileManagerTool to save the information in YAML format in a designated directory.
 
 Create the Image SEO Task right after the image summary task, and insert it into the workflow.
 
@@ -287,7 +284,7 @@ if flow == "WORKFLOW":
           + "SEO description, Caption, Alt-text, 5 keywords, an HTML snippet to "
           + "display the image. Save this to image_descriptions/{{ filename }}.yml\n"
           + "in YAML format.\n\n{{ parent_outputs }}",
-          tools=[FileManager(off_prompt=False)],
+          tools=[FileManagerTool(off_prompt=False)],
           context={"image": image},
           id=f"seo_{image}",
       )

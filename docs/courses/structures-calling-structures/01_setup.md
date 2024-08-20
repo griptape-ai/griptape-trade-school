@@ -9,7 +9,7 @@ As with any project, the first step is setting up your environment. Let's get st
 
 Following the instructions in [Griptape Setup - Visual Studio Code ](../../setup/01_setting_up_environment.md) please:
 
-1. Create your project folder. Example: `griptape-structure-client`
+1. Create your project folder. Example: `griptape-structure-tool`
 2. Set up your virtual environment
 3. Ensure you `pip install griptape python-dotenv`
 4. Create a `.env` file with your `OPENAI_API_KEY`

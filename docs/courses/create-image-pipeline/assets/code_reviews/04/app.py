@@ -12,9 +12,7 @@ load_dotenv()  # Load your environment
 output_dir = "images"
 
 # Create the driver
-image_driver = OpenAiImageGenerationDriver(
-    model="dall-e-3", api_type="open_ai", image_size="1024x1024"
-)
+image_driver = OpenAiImageGenerationDriver(model="dall-e-3", api_type="open_ai", image_size="1024x1024")
 
 # Create the engine
 image_engine = PromptImageGenerationEngine(image_generation_driver=image_driver)

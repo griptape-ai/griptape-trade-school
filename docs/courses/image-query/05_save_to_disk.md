@@ -2,30 +2,30 @@
 
 Let's boost the capabilities of our Griptape Agent by giving it a job as a file manager. This upgrade is like handing a filing cabinet to your agent, so it can neatly store away all the SEO-optimized image descriptions it crafts.
 
-## Adding the FileManager Tool
+## Adding the FileManagerTool Tool
 
 First things first, we need to update our agent with the necessary tools for both querying images and managing files like a pro. Here’s how you can load up your toolbelt.
 
-Add the `FileManager` tool to the import section of your code:
+Add the `FileManagerTool` tool to the import section of your code:
 
 ```python title="app.py" hl_lines="2"
 # ...
-from griptape.tools import ImageQueryClient, FileManager
+from griptape.tools import ImageQueryTool, FileManagerTool
 # ...
 ```
 
-## Configuring the Agent with FileManager
+## Configuring the Agent with FileManagerTool
 
 Now, let's make sure our agent knows how to use its new tools. This is where we tell it that alongside being a chat maestro, it’s also in charge of the file room. 
 
-Modify the part of the code where you instantiate the Agent by adding the `FileManager` tool to the list of tools.
+Modify the part of the code where you instantiate the Agent by adding the `FileManagerTool` tool to the list of tools.
 
 ```python title="app.py" hl_lines="5"
 # ...
 
 # Create the Agent
 agent = Agent(
-  logger_level=0, tools=[image_query_client, FileManager(off_prompt=False)]
+  tools=[image_query_tool, FileManagerTool(off_prompt=False)]
 )
 # ...
 
@@ -35,11 +35,11 @@ Setting ‘off_prompt=False’ allows the information flow back to the LLM, givi
 
 ## Try it out
 
-With the `FileManager` integrated, it’s time to put our agent to the test. Let’s ask it to describe an image and file away that description.
+With the `FileManagerTool` integrated, it’s time to put our agent to the test. Let’s ask it to describe an image and file away that description.
 
 ![Showing saving to disk](assets/05_saving_to_disk_01.png)
 
-Notice how the agent has two thoughts. First, it needs to use the `ImageQueryClient` to analyze the image and get a description. Then, it'll use the `FileManager` to save the description to a file on disk.
+Notice how the agent has two thoughts. First, it needs to use the `ImageQueryTool` to analyze the image and get a description. Then, it'll use the `FileManagerTool` to save the description to a file on disk.
 
 The resulting file looks like:
 
@@ -96,7 +96,7 @@ example-html-element: |
 
 This command not only gets your descriptions in order but also ensures they’re dressed to impress in YAML format.
 
-This approach streamlines the workflow by automatically storing output in an organized, easy-to-access format. By reducing manual file management, the FileManager tool boosts the agent's independence, enhancing its effectiveness in data processing and content management.
+This approach streamlines the workflow by automatically storing output in an organized, easy-to-access format. By reducing manual file management, the FileManagerTool tool boosts the agent's independence, enhancing its effectiveness in data processing and content management.
 
 ## Code Review
 

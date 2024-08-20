@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 from griptape.structures import Pipeline
 from griptape.tasks import ToolkitTask
-from griptape.tools import DateTime
+from griptape.tools import DateTimeTool
 from reverse_string_tool import ReverseStringTool
 
 load_dotenv()
@@ -12,7 +12,7 @@ pipeline = Pipeline()
 # Create task
 task = ToolkitTask(
     "{{ args[0] }}",
-    tools=[DateTime(off_prompt=False), ReverseStringTool(off_prompt=False)],
+    tools=[DateTimeTool(off_prompt=False), ReverseStringTool(off_prompt=False)],
     id="Task",
 )
 
@@ -20,6 +20,4 @@ task = ToolkitTask(
 pipeline.add_task(task)
 
 # Run the pipeline
-pipeline.run(
-    'Can you reverse the words in this sentence? "I must eat, therefore, I am hungry".'
-)
+pipeline.run('Can you reverse the words in this sentence? "I must eat, therefore, I am hungry".')

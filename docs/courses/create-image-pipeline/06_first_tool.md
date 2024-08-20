@@ -96,14 +96,14 @@ Find the line where you create the task and add the `ReverseStringTool`:
 # Create task
 task = ToolkitTask(
     "{{ args[0] }}",
-    tools=[DateTime(off_prompt=False), ReverseStringTool(off_prompt=False)],
+    tools=[DateTimeTool(off_prompt=False), ReverseStringTool(off_prompt=False)],
     id="Task",
 )
 
 # ...
 ```
 
-Notice the task now has access to *two* Tools, `DateTime` and `ReverseStringTool`. 
+Notice the task now has access to *two* Tools, `DateTimeTool` and `ReverseStringTool`. 
 
 ### Test it out
 
@@ -139,7 +139,7 @@ As you can see in the highlighted section above, the `Subtask` shows that the To
 
 ### Combine requests
 
-You can use multiple Tools at the same time. Try a few examples where you might use both the `DateTime` Tool and the `ReverseStringTool`.
+You can use multiple Tools at the same time. Try a few examples where you might use both the `DateTimeTool` Tool and the `ReverseStringTool`.
 
 ```text
 pipeline.run("Can you reverse the month?")
@@ -260,4 +260,4 @@ You have added a Griptape Tool *and* modified it to add a new activity! Well don
 
 ---
 ## Next Steps
-In the [next section](07_display_image_tool.md), we'll take what we learned from these exercises, and create a tool that will display an image when passed the file path.
+In the [next section](07_display_image_task.md), we'll take what we learned from these exercises, and create a tool that will display an image when passed the file path.

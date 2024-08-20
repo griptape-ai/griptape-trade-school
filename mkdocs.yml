@@ -110,7 +110,7 @@ nav:
           - Introduction: courses/chatbot-rulesets/index.md
           - Setup: courses/chatbot-rulesets/01_setting_up_environment.md
           - The Chat utility: courses/chatbot-rulesets/03_the_chat_utility.md
-          - Hiding the logs: courses/chatbot-rulesets/04_hide_the_logs.md
+          - Showing the logs: courses/chatbot-rulesets/04_show_the_logs.md
           - Personality: courses/chatbot-rulesets/05_personality_with_rulesets.md
           - Custom chat: courses/chatbot-rulesets/06_adding_manual_chat.md
           - Manners maketh the bot: courses/chatbot-rulesets/07_manners_maketh_the_bot.md
@@ -142,16 +142,16 @@ nav:
           - Leonardo.AI: courses/create-image-pipeline/09_leonardo-ai.md
           - Amazon Bedrock: courses/create-image-pipeline/10_amazon-bedrock.md
       - Griptape and Shotgrid - Tools:
-          - Introduction: courses/shotgrid-client/index.md
-          - Setup: courses/shotgrid-client/01_setup.md
-          - Understanding Tools: courses/shotgrid-client/03_understanding_tools.md
-          - Your First Tool: courses/shotgrid-client/04_first_tool.md
-          - ShotGrid Signup: courses/shotgrid-client/02_shotgrid.md
-          - ShotGrid Tool: courses/shotgrid-client/05_shotgrid_tool.md
-          - User Authentication: courses/shotgrid-client/06_shotgrid_user.md
-          - ShotGrid Methods: courses/shotgrid-client/07_method.md
-          - Vectorized Docs: courses/shotgrid-client/08_vectorized_docs.md
-          - Rules and Rulesets: courses/shotgrid-client/09_rules.md
+          - Introduction: courses/shotgrid-tool/index.md
+          - Setup: courses/shotgrid-tool/01_setup.md
+          - Understanding Tools: courses/shotgrid-tool/03_understanding_tools.md
+          - Your First Tool: courses/shotgrid-tool/04_first_tool.md
+          - ShotGrid Signup: courses/shotgrid-tool/02_shotgrid.md
+          - ShotGrid Tool: courses/shotgrid-tool/05_shotgrid_tool.md
+          - User Authentication: courses/shotgrid-tool/06_shotgrid_user.md
+          - ShotGrid Methods: courses/shotgrid-tool/07_method.md
+          - Vectorized Docs: courses/shotgrid-tool/08_vectorized_docs.md
+          - Rules and Rulesets: courses/shotgrid-tool/09_rules.md
       - Image Query SEO Bonanza:
           - Introduction: courses/image-query/index.md
           - Setup: courses/image-query/01_setup.md
