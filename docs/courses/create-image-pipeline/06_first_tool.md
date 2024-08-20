@@ -260,4 +260,4 @@ You have added a Griptape Tool *and* modified it to add a new activity! Well don
 
 ---
 ## Next Steps
-In the [next section](07_display_image_tool.md), we'll take what we learned from these exercises, and create a tool that will display an image when passed the file path.
+In the [next section](07_display_image_task.md), we'll take what we learned from these exercises, and create a tool that will display an image when passed the file path.

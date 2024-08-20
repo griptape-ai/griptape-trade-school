@@ -18,7 +18,7 @@ optional = true
 pytest = "^8.2.2"
 python-dotenv = "^1.0.1"
 pytest-xdist = "^3.3.1"
-griptape = {git="https://github.com/griptape-ai/griptape.git", extras=["all"]}
+griptape = {version="^0.30.0", extras=["all"]}
 pyright = "^1.1.372"
 typos = "^1.23.2"
 ruff = "^0.6.0"
