@@ -1460,7 +1460,7 @@ loaders-sql = ["sqlalchemy (>=2.0.31,<3.0.0)"]
 type = "git"
 url = "https://github.com/griptape-ai/griptape.git"
 reference = "HEAD"
-resolved_reference = "49495dd14463f018d9842b8891f0cc23491b151c"
+resolved_reference = "1d84b7ffbf22f749e40b0aa536ca4c7f0dd0143e"
 
 [[package]]
 name = "grpcio"
