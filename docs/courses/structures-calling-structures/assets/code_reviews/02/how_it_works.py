@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from griptape.structures import Agent
 from griptape.rules import Rule, Ruleset
 from griptape.drivers import LocalStructureRunDriver
-from griptape.tools import StructureRunClient, TaskMemoryClient
+from griptape.tools import StructureRunTool, PromptSummaryTool
 from griptape.utils import Chat
 
 load_dotenv()  # Load your environment
@@ -15,7 +15,6 @@ load_dotenv()  # Load your environment
 def grammar_agent():
     # Create the agent with appropriate rules
     agent = Agent(
-        logger_level=0,  # Keep this agent's logs hidden.
         rulesets=[
             Ruleset(
                 name="Grammar Checker",
@@ -47,7 +46,7 @@ grammar_agent_driver = LocalStructureRunDriver(structure_factory_fn=grammar_agen
 #
 # In this example we're setting off_prompt to True. This demonstrates
 # how the agent's response could be kept private from the original LLM.
-grammar_agent_client = StructureRunClient(
+grammar_agent_tool = StructureRunTool(
     name="Grammar Agent",
     description="An agent to evaluate and correct sentences based on standard grammar rules.",
     driver=grammar_agent_driver,
@@ -55,12 +54,12 @@ grammar_agent_client = StructureRunClient(
 )
 
 # Create an agent to chat with
-# Pass it the grammar_agent_client and TaskMemoryClient to access
+# Pass it the grammar_agent_tool and PromptSummaryTool to access
 # the agent's responses.
 chat_agent = Agent(
     tools=[
-        grammar_agent_client,  # Add the Grammar Agent
-        TaskMemoryClient(off_prompt=False),
+        grammar_agent_tool,  # Add the Grammar Agent
+        PromptSummaryTool(off_prompt=False),
     ],
 )
 

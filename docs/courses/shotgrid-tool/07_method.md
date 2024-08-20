@@ -328,7 +328,7 @@ Of course, it also returned valuable information we could then use to perform mo
 This was a short, but powerful step. We've modified our ShotGridTool to be able to use the ShotGrid API to execute any method available to it! Let's review the changes in `shotgrid_tool/tool.py`.
 
 ```python linenums="1" title="shotgrid_tool/tool.py"
---8<-- "docs/courses/shotgrid-client/assets/code_reviews/07/shotgrid_tool/tool.py"
+--8<-- "docs/courses/shotgrid-tool/assets/code_reviews/07/shotgrid_tool/tool.py"
 ```
 
 ---

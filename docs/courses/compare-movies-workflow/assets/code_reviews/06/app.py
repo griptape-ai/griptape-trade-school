@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 # Griptape
 from griptape.structures import Workflow
 from griptape.tasks import PromptTask, ToolkitTask
-from griptape.tools import WebScraper, TaskMemoryClient
+from griptape.tools import WebScraperTool, PromptSummaryTool
 
 load_dotenv()
 
@@ -42,7 +42,7 @@ for description in movie_descriptions:
     )
     summary_task = ToolkitTask(
         "Use metacritic to get a summary of this movie: {{ parent_outputs.values() | list |last }}",
-        tools=[WebScraper(), TaskMemoryClient(off_prompt=False)],
+        tools=[WebScraperTool(), PromptSummaryTool(off_prompt=False)],
     )
 
     workflow.insert_tasks(start_task, [movie_task], end_task)

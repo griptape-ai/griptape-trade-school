@@ -30,7 +30,6 @@ Dependencies:
 """
 
 from dotenv import load_dotenv
-import logging
 import json
 
 # Rich
@@ -136,7 +135,6 @@ agent = MyAgent(
         zelda_ruleset,
         dad_ruleset,
     ],
-    logger_level=logging.ERROR,
 )
 
 

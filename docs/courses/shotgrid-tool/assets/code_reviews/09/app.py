@@ -4,7 +4,7 @@ import os
 
 from griptape.structures import Agent
 from griptape.utils import Chat
-from griptape.tools import DateTime, VectorStoreClient
+from griptape.tools import DateTimeTool, VectorStoreTool
 from griptape.drivers import (
     LocalVectorStoreDriver,
     OpenAiChatPromptDriver,
@@ -26,7 +26,7 @@ vector_store_driver = LocalVectorStoreDriver(embedding_driver=OpenAiEmbeddingDri
 # Create the query engine
 rag_engine = RagEngine(
     response_stage=ResponseRagStage(
-        response_module=PromptResponseRagModule(prompt_driver=OpenAiChatPromptDriver(model="gpt-4o-mini"))
+        response_modules=[PromptResponseRagModule(prompt_driver=OpenAiChatPromptDriver(model="gpt-4o-mini"))]
     ),
 )
 
@@ -51,8 +51,8 @@ namespace = "shotgrid_api"
 for artifact in artifacts:
     vector_store_driver.upsert_text_artifacts({namespace: artifact})
 
-# Instantiate the Vector Store Client
-vector_store_tool = VectorStoreClient(
+# Instantiate the Vector Store Tool
+vector_store_tool = VectorStoreTool(
     description="Contains information about ShotGrid api. Use it to help with ShotGrid client requests.",
     vector_store_driver=vector_store_driver,
     query_params={"namespace": namespace},
@@ -87,8 +87,8 @@ shotgrid_agent_ruleset = Ruleset(
             dedent(
                 """
             For specific information about how to use ShotGrid API activities, the 
-            VectorStoreClient should be used. Take the necessary time to consult the 
-            VectorStoreClient to ensure the most accurate and context-aware decisions 
+            VectorStoreTool should be used. Take the necessary time to consult the 
+            VectorStoreTool to ensure the most accurate and context-aware decisions 
             when interacting with the ShotGridTool and API.
             """
             )
@@ -108,7 +108,7 @@ shotgrid_agent_ruleset = Ruleset(
             update task status, update task data, list task assignments, retrieve the history of changes to 
             entities, manage versions of assets, manage project timelines, track project 
             progress, manage notes and reviews, manage user roles and permissions, or 
-            integrate with other tools and workflows, the ShotGrid Client API is always used."""
+            integrate with other tools and workflows, the ShotGrid Tool API is always used."""
             )
         ),
     ],
@@ -116,10 +116,10 @@ shotgrid_agent_ruleset = Ruleset(
 
 # Instantiate the agent
 agent = Agent(
-    tools=[DateTime(off_prompt=False), shotgrid_tool, vector_store_tool],
+    tools=[DateTimeTool(off_prompt=False), shotgrid_tool, vector_store_tool],
     rulesets=[shotgrid_agent_ruleset],
+    stream=True,
 )
-agent.config.prompt_driver.stream = True
 
 # Start chatting
 Chat(agent).start()

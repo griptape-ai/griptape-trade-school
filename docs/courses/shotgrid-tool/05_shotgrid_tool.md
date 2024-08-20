@@ -235,7 +235,7 @@ class ShotGridTool(BaseTool):
 
 ### Rename the method
 
-The method is still named `reverse_string`. Let's rename it to what we're actually doing - getting the session token from the API. We won't need any parameters, so we can just replace the params section with `_:dict` as we saw in the `DateTime` [get_current_datetime](03_understanding_tools.md/#methods_1) method.
+The method is still named `reverse_string`. Let's rename it to what we're actually doing - getting the session token from the API. We won't need any parameters, so we can just replace the params section with `_:dict` as we saw in the `DateTimeTool` [get_current_datetime](03_understanding_tools.md/#methods_1) method.
 
 ```python title="shotgrid_tool/tool.py" hl_lines="7"
 # ...
@@ -410,7 +410,7 @@ Lastly, let's give the Agent access to the Tool! We no longer need the `ReverseS
 # Instantiate the agent
 agent = Agent(
     tools=[
-        DateTime(off_prompt=False),
+        DateTimeTool(off_prompt=False),
         shotgrid_tool,
         # ReverseStringTool(off_prompt=False),
     ]
@@ -429,7 +429,7 @@ import os
 
 from griptape.structures import Agent
 from griptape.utils import Chat
-from griptape.tools import DateTime
+from griptape.tools import DateTimeTool
 
 from reverse_string_tool import ReverseStringTool
 from shotgrid_tool import ShotGridTool
@@ -451,12 +451,12 @@ shotgrid_tool = ShotGridTool(
 # Instantiate the agent
 agent = Agent(
     tools=[
-        DateTime(off_prompt=False),
+        DateTimeTool(off_prompt=False),
         shotgrid_tool,
         # ReverseStringTool(off_prompt=False),
     ],
+    stream=True
 )
-agent.config.prompt_driver.stream=True
 
 # Start chatting
 Chat(agent).start()
@@ -541,7 +541,7 @@ Congratulations, there was a lot of work in this section, but in the end, we now
 ### `app.py`
 
 ```python linenums="1" title="app.py"
---8<-- "docs/courses/shotgrid-client/assets/code_reviews/05/app.py"
+--8<-- "docs/courses/shotgrid-tool/assets/code_reviews/05/app.py"
 ```
 
 ### `.env`
@@ -555,25 +555,25 @@ SHOTGRID_URL=https://your-shotgrid-name.shotgrid.autodesk.com
 ### `shotgrid_tool/__init__.py`
 
 ```python linenums="1" title="shotgrid_tool/__init__.py"
---8<-- "docs/courses/shotgrid-client/assets/code_reviews/05/shotgrid_tool/__init__.py"
+--8<-- "docs/courses/shotgrid-tool/assets/code_reviews/05/shotgrid_tool/__init__.py"
 ```
 
 ### `shotgrid_tool/manifest.yml`
 
 ```yaml linenums="1" title="shotgrid_tool/manifest.yml"
---8<-- "docs/courses/shotgrid-client/assets/code_reviews/05/shotgrid_tool/manifest.yml"
+--8<-- "docs/courses/shotgrid-tool/assets/code_reviews/05/shotgrid_tool/manifest.yml"
 ```
 
 ### `shotgrid_tool/requirements.txt`
 
 ```text linenums="1" title="shotgrid_tool/requirements.txt"
---8<-- "docs/courses/shotgrid-client/assets/code_reviews/05/shotgrid_tool/requirements.txt"
+--8<-- "docs/courses/shotgrid-tool/assets/code_reviews/05/shotgrid_tool/requirements.txt"
 ```
 
 ### `shotgrid_tool/tool.py`
 
 ```python linenums="1" title="shotgrid_tool/tool.py"
---8<-- "docs/courses/shotgrid-client/assets/code_reviews/05/shotgrid_tool/tool.py"
+--8<-- "docs/courses/shotgrid-tool/assets/code_reviews/05/shotgrid_tool/tool.py"
 ```
 
 ---

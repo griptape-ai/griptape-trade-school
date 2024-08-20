@@ -67,7 +67,6 @@ agent = Agent(
     rulesets=[
         kiwi_ruleset
     ],  
-    logger_level=logging.ERROR
 )
 ```
 

@@ -106,7 +106,7 @@ The course will cover:
 * Creating your first workflow
 * Making it scalable
 * Handling inputs with Jinja2 templates
-* Using the WebScraper tool
+* Using the WebScraperTool tool
 * Understanding Workflow Outputs
 
 ## Useful Resources

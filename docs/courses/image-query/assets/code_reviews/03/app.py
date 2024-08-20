@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 # Griptape Items
 from griptape.structures import Agent
 from griptape.utils import Chat
-from griptape.tools import ImageQueryClient
+from griptape.tools import ImageQueryTool
 from griptape.engines import ImageQueryEngine
 from griptape.drivers import OpenAiImageQueryDriver
 
@@ -19,14 +19,11 @@ engine = ImageQueryEngine(
     image_query_driver=driver,
 )
 
-# Configure the ImageQueryClient
-image_query_client = ImageQueryClient(image_query_engine=engine, off_prompt=False)
+# Configure the ImageQueryTool
+image_query_tool = ImageQueryTool(image_query_engine=engine, off_prompt=False)
 
 # Create the Agent
-agent = Agent(logger_level=0, tools=[image_query_client])
-
-# Configure the agent to stream it's responses.
-agent.config.prompt_driver.stream = True
+agent = Agent(tools=[image_query_tool], stream=True)
 
 
 # Modify the Agent's response to have some color.

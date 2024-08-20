@@ -30,8 +30,8 @@ The process for providing the docs to the LLM looks like this:
 3. Create a list of URLs to vectorize.
 For each URL, load the data using a [WebLoader](https://docs.griptape.ai/stable/griptape-framework/data/loaders/#web-loader){target="_blank"}.
 5. For each bit of website data, upsert (update/insert) it into the Vector Store.
-6. Create a [Vector Store Client (Tool)](https://docs.griptape.ai/stable/griptape-tools/official-tools/vector-store-client/){target="_blank"} that has access to the data and the query engine.
-7. Give the Vector Store Client to the Agent.
+6. Create a [Vector Store Tool](https://docs.griptape.ai/stable/griptape-tools/official-tools/vector-store-tool/){target="_blank"} that has access to the data and the query engine.
+7. Give the Vector Store Tool to the Agent.
 
 ``` mermaid
 graph TB
@@ -47,7 +47,7 @@ graph TB
     J(Upsert)
     K(Upsert)
     L(Upsert)
-    M(Vector Store Client)
+    M(Vector Store Tool)
     N(Agent)
     A --> B --> C
     C --> D --> G --> J --> M
@@ -70,7 +70,7 @@ Modify `app.py` to import the required drivers. In the case of the Local Vector 
 # ...
 from griptape.structures import Agent
 from griptape.utils import Chat
-from griptape.tools import DateTime
+from griptape.tools import DateTimeTool
 from griptape.drivers import (
     LocalVectorStoreDriver, 
     OpenAiEmbeddingDriver, 
@@ -120,9 +120,9 @@ vector_store_driver = LocalVectorStoreDriver(embedding_driver=OpenAiEmbeddingDri
 # Create the query engine
 rag_engine = RagEngine(
     response_stage=ResponseRagStage(
-        response_module=PromptResponseRagModule(
+        response_modules=[PromptResponseRagModule(
             prompt_driver=OpenAiChatPromptDriver(model="gpt-4o-mini")
-        )
+        )]
     ),
 )
 
@@ -220,17 +220,17 @@ for artifact in artifacts:
 # ...
 ```
 
-### Vector Store Client
+### Vector Store Tool
 
-Now we need to create the VectorStoreClient. This will be the Tool we provide to the Agent that tells it how to access the vector database. Much like the ShotGridTool, the VectorStoreClient has a method that allows it to search vector databases.
+Now we need to create the VectorStoreTool. This will be the Tool we provide to the Agent that tells it how to access the vector database. Much like the ShotGridTool, the VectorStoreTool has a method that allows it to search vector databases.
 
-Because the VectorStoreClient is a Griptape Tool, you can add it to the `import` line where we're already importing `DateTime`
+Because the VectorStoreTool is a Griptape Tool, you can add it to the `import` line where we're already importing `DateTimeTool`
 
 ```python title="app.py" hl_lines="4"
 # ...
 
 from griptape.utils import Chat
-from griptape.tools import DateTime, VectorStoreClient
+from griptape.tools import DateTimeTool, VectorStoreTool
 
 # ...
 ```
@@ -246,8 +246,8 @@ namespace = "shotgrid_api"
 for artifact in artifacts:
     vector_store_driver.upsert_text_artifacts({namespace: artifact})
 
-# Instantiate the Vector Store Client
-vector_store_tool = VectorStoreClient(
+# Instantiate the Vector Store Tool
+vector_store_tool = VectorStoreTool(
     description="Contains information about ShotGrid api. Use it to help with ShotGrid client requests.",
     vector_store_driver=vector_store_driver,
     query_params={"namespace": namespace},
@@ -267,13 +267,13 @@ Lastly, let's give the `vector_store_tool` to the Agent so it can use it.
 # Instantiate the agent
 agent = Agent(
     tools=[
-        DateTime(off_prompt=False),
+        DateTimeTool(off_prompt=False),
         shotgrid_tool,
         vector_store_tool
         # ReverseStringTool(off_prompt=False),
     ],
+    stream=True
 )
-agent.config.prompt_driver.stream=True
 
 # ...
 ```
@@ -289,12 +289,12 @@ If you ask the question: "Tell me how ShotGrid thinks about updating task dates 
 When provided with the API documentation, the Agent will do the following:
 ```json
 Thought: To answer this question, I need to search the ShotGrid API documentation for   
-information about updating task dates. I will use the VectorStoreClient action to do    
+information about updating task dates. I will use the VectorStoreTool action to do    
 this.                                                                                   
 
 Action:                                                                                 
 {                                                                                       
-    "name": "VectorStoreClient",
+    "name": "VectorStoreTool",
     "path": "search",
     "input": {
         "values": {
@@ -333,7 +333,7 @@ Response: 'Shotgun' object has no attribute 'get_task_date_update_rules'
 We have certainly improved our Agent in this example - providing it with greater context and knowledge about how to interact with the ShotGridTool. Let's review `app.py` and see all the changes that were made.
 
 ```python linenums="1" title="app.py"
---8<-- "docs/courses/shotgrid-client/assets/code_reviews/08/app.py"
+--8<-- "docs/courses/shotgrid-tool/assets/code_reviews/08/app.py"
 ```
 
 ---

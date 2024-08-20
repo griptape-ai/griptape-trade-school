@@ -81,7 +81,7 @@ shotgrid_agent_ruleset = Ruleset(
 
 ### Vector Database
 
-Now let's remind it that it should use the VectorStoreClient when it needs information about how to use the API. This will ensure the most up-to-date and accurate use of the API.
+Now let's remind it that it should use the VectorStoreTool when it needs information about how to use the API. This will ensure the most up-to-date and accurate use of the API.
 
 Note: This rule is multiple lines long, so we're going to use a Python function `dedent` that will allow us to keep the code looking nice.
 
@@ -109,8 +109,8 @@ shotgrid_agent_ruleset = Ruleset(
             dedent(
                 """
             For specific information about how to use ShotGrid API activities, the 
-            VectorStoreClient should be used. Take the necessary time to consult the 
-            VectorStoreClient to ensure the most accurate and context-aware decisions 
+            VectorStoreTool should be used. Take the necessary time to consult the 
+            VectorStoreTool to ensure the most accurate and context-aware decisions 
             when interacting with the ShotGridTool and API.
             """
             )
@@ -174,7 +174,7 @@ shotgrid_agent_ruleset = Ruleset(
             update task status, update task data, list task assignments, retrieve the history of changes to 
             entities, manage versions of assets, manage project timelines, track project 
             progress, manage notes and reviews, manage user roles and permissions, or 
-            integrate with other tools and workflows, the ShotGrid Client API is always used."""
+            integrate with other tools and workflows, the ShotGrid Tool API is always used."""
             )
         )
     ]
@@ -202,8 +202,8 @@ shotgrid_agent_ruleset = Ruleset(
             dedent(
                 """
             For specific information about how to use ShotGrid API activities, the 
-            VectorStoreClient should be used. Take the necessary time to consult the 
-            VectorStoreClient to ensure the most accurate and context-aware decisions 
+            VectorStoreTool should be used. Take the necessary time to consult the 
+            VectorStoreTool to ensure the most accurate and context-aware decisions 
             when interacting with the ShotGridTool and API.
             """
             )
@@ -224,7 +224,7 @@ shotgrid_agent_ruleset = Ruleset(
             update task status, update task data, list task assignments, retrieve the history of changes to 
             entities, manage versions of assets, manage project timelines, track project 
             progress, manage notes and reviews, manage user roles and permissions, or 
-            integrate with other tools and workflows, the ShotGrid Client API is always used."""
+            integrate with other tools and workflows, the ShotGrid Tool API is always used."""
             )
         ),
     ],
@@ -242,14 +242,14 @@ The rules won't make any difference if you don't give them to the Agent. Let's d
 # Instantiate the agent
 agent = Agent(
     tools=[
-        DateTime(off_prompt=False),
+        DateTimeTool(off_prompt=False),
         shotgrid_tool,
         vector_store_tool
         # ReverseStringTool(off_prompt=False),
     ],
     rulesets=[shotgrid_agent_ruleset],
+    stream=True
 )
-agent.config.prompt_driver.stream=True
 
 # ...
 ```
@@ -267,7 +267,7 @@ Before moving on to the next section, let's remove some unused code from our app
 Nice work in this section - we've added rules to ensure the agent behaves as expected, using the Tools we've given it. Let's take a look at the current state of the app.
 
 ```python linenums="1" title="app.py"
---8<-- "docs/courses/shotgrid-client/assets/code_reviews/09/app.py"
+--8<-- "docs/courses/shotgrid-tool/assets/code_reviews/09/app.py"
 ```
 
 ---

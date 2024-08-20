@@ -56,7 +56,7 @@ Before we dive in and start setting up our own Pipeline, it's important to revie
 | Task Type | Description | Example |
 |-----------|-------------|---------|
 | **PromptTask** | General purpose prompting to the LLM. | `PromptTask("Tell me a story about skateboards")` |
-| **ToolkitTask** | Uses Griptape Tools to complete a task with Chain of Thought (CoT) reasoning. | `ToolkitTask("Summarize griptape.ai", tools=[WebScraper()])` |
+| **ToolkitTask** | Uses Griptape Tools to complete a task with Chain of Thought (CoT) reasoning. | `ToolkitTask("Summarize griptape.ai", tools=[WebScraperTool()])` |
 | **ToolTask** | Similar to ToolkitTask, but only uses a single tool and no CoT. | `ToolTask("Give me the answer for 52-10", tool=Calculator())` |
 | **Extraction Tasks** | Various tasks associated with extracting information from text. | See examples in the [documentation](https://griptape.readthedocs.io/griptape-framework/structures/tasks/#extraction-task){target="_blank"}. 
 | **TextSummaryTask** | Summarizes text very efficiently | `TextSummaryTask("Imagine this is a massive amount of text.")` |

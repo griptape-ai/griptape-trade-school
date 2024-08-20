@@ -4,7 +4,7 @@ import os
 # Griptape Items
 from griptape.structures import Workflow, Agent
 from griptape.tasks import TextSummaryTask, ToolTask, ToolkitTask
-from griptape.tools import ImageQueryClient, FileManager
+from griptape.tools import ImageQueryTool, FileManagerTool
 from griptape.engines import ImageQueryEngine
 from griptape.drivers import OpenAiImageQueryDriver
 from griptape.utils import Chat
@@ -21,8 +21,8 @@ engine = ImageQueryEngine(
     image_query_driver=driver,
 )
 
-# Configure the ImageQueryClient
-image_query_client = ImageQueryClient(image_query_engine=engine, off_prompt=False)
+# Configure the ImageQueryTool
+image_query_tool = ImageQueryTool(image_query_engine=engine, off_prompt=False)
 flow = "WORKFLOW"
 if flow == "WORKFLOW":
     # Create a Workflow
@@ -48,7 +48,7 @@ if flow == "WORKFLOW":
         image_summary_task = ToolTask(
             "Describe this image in detail: {{ image_path }}",
             context={"image_path": image_path},
-            tool=image_query_client,
+            tool=image_query_tool,
             id=f"{image}",
         )
 
@@ -64,7 +64,7 @@ if flow == "WORKFLOW":
             + "template file: 'template.yml',\n"
             + "and save the result to image_descriptions/{{ filename }}.yml\n"
             + "in YAML format.\n\n{{ parent_outputs }}",
-            tools=[FileManager(off_prompt=False)],
+            tools=[FileManagerTool(off_prompt=False)],
             context={"image": image, "image_path": image_path},
             id=f"seo_{image}",
         )
@@ -78,10 +78,10 @@ if flow == "WORKFLOW":
 
 else:
     # Create the Agent
-    agent = Agent(logger_level=0, tools=[image_query_client, FileManager(off_prompt=False)])
-
-    # Configure the agent to stream it's responses.
-    agent.config.prompt_driver.stream = True
+    agent = Agent(
+        tools=[image_query_tool, FileManagerTool(off_prompt=False)],
+        stream=True,
+    )
 
     # Modify the Agent's response to have some color.
     def formatted_response(response: str) -> None:
