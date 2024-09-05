@@ -250,22 +250,22 @@ files = [
 
 [[package]]
 name = "attrs"
-version = "23.2.0"
+version = "24.2.0"
 description = "Classes Without Boilerplate"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "attrs-23.2.0-py3-none-any.whl", hash = "sha256:99b87a485a5820b23b879f04c2305b44b951b502fd64be915879d77a7e8fc6f1"},
-    {file = "attrs-23.2.0.tar.gz", hash = "sha256:935dc3b529c262f6cf76e50877d35a4bd3c1de194fd41f47a2b7ae8f19971f30"},
+    {file = "attrs-24.2.0-py3-none-any.whl", hash = "sha256:81921eb96de3191c8258c199618104dd27ac608d9366f5e35d011eae1867ede2"},
+    {file = "attrs-24.2.0.tar.gz", hash = "sha256:5cfb1b9148b5b086569baec03f20d7b6bf3bcacc9a42bebf87ffaaca362f6346"},
 ]
 
 [package.extras]
-cov = ["attrs[tests]", "coverage[toml] (>=5.3)"]
-dev = ["attrs[tests]", "pre-commit"]
-docs = ["furo", "myst-parser", "sphinx", "sphinx-notfound-page", "sphinxcontrib-towncrier", "towncrier", "zope-interface"]
-tests = ["attrs[tests-no-zope]", "zope-interface"]
-tests-mypy = ["mypy (>=1.6)", "pytest-mypy-plugins"]
-tests-no-zope = ["attrs[tests-mypy]", "cloudpickle", "hypothesis", "pympler", "pytest (>=4.3.0)", "pytest-xdist[psutil]"]
+benchmark = ["cloudpickle", "hypothesis", "mypy (>=1.11.1)", "pympler", "pytest (>=4.3.0)", "pytest-codspeed", "pytest-mypy-plugins", "pytest-xdist[psutil]"]
+cov = ["cloudpickle", "coverage[toml] (>=5.3)", "hypothesis", "mypy (>=1.11.1)", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins", "pytest-xdist[psutil]"]
+dev = ["cloudpickle", "hypothesis", "mypy (>=1.11.1)", "pre-commit", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins", "pytest-xdist[psutil]"]
+docs = ["cogapp", "furo", "myst-parser", "sphinx", "sphinx-notfound-page", "sphinxcontrib-towncrier", "towncrier (<24.7)"]
+tests = ["cloudpickle", "hypothesis", "mypy (>=1.11.1)", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins", "pytest-xdist[psutil]"]
+tests-mypy = ["mypy (>=1.11.1)", "pytest-mypy-plugins"]
 
 [[package]]
 name = "babel"
@@ -1344,20 +1344,20 @@ test = ["objgraph", "psutil"]
 
 [[package]]
 name = "griptape"
-version = "0.30.0"
+version = "0.31.0"
 description = "Modular Python framework for LLM workflows, tools, memory, and data."
 optional = false
 python-versions = "<4.0,>=3.9"
 files = [
-    {file = "griptape-0.30.0-py3-none-any.whl", hash = "sha256:6f1eb716f36c01604736c64c634c5cbf7034fed9f770d03a5d09c0296533384e"},
-    {file = "griptape-0.30.0.tar.gz", hash = "sha256:fb15b8edcd1bdb40c7274e533b843acfaded0d4431d821576b2a2c1128fb5d0b"},
+    {file = "griptape-0.31.0-py3-none-any.whl", hash = "sha256:611efda9b2a7c3ebd034898eff991bd22bbe61b6ef351e70ea36da6cc1498f21"},
+    {file = "griptape-0.31.0.tar.gz", hash = "sha256:12ca6d54daa44665fd511932e31ccbc7e4343f1eade8e5ec2c9045498cefa3f6"},
 ]
 
 [package.dependencies]
 accelerate = {version = ">=0.32.1,<0.33.0", optional = true, markers = "extra == \"drivers-image-generation-huggingface\" or extra == \"all\""}
 anthropic = {version = ">=0.29.0,<0.30.0", optional = true, markers = "extra == \"drivers-prompt-anthropic\" or extra == \"drivers-prompt-amazon-bedrock\" or extra == \"all\""}
 astrapy = {version = ">=1.4,<2.0", optional = true, markers = "extra == \"drivers-vector-astra-db\" or extra == \"all\""}
-attrs = ">=23.2.0,<24.0.0"
+attrs = ">=24.2.0,<25.0.0"
 beautifulsoup4 = {version = ">=4.12.3,<5.0.0", optional = true, markers = "extra == \"drivers-web-scraper-markdownify\" or extra == \"all\""}
 boto3 = {version = ">=1.34.119,<2.0.0", optional = true, markers = "extra == \"drivers-prompt-amazon-bedrock\" or extra == \"drivers-prompt-amazon-sagemaker\" or extra == \"drivers-sql-amazon-redshift\" or extra == \"drivers-memory-conversation-amazon-dynamodb\" or extra == \"drivers-vector-amazon-opensearch\" or extra == \"drivers-embedding-amazon-bedrock\" or extra == \"drivers-embedding-amazon-sagemaker\" or extra == \"drivers-event-listener-amazon-sqs\" or extra == \"drivers-event-listener-amazon-iot\" or extra == \"all\""}
 cohere = {version = ">=5.5.4,<6.0.0", optional = true, markers = "extra == \"drivers-prompt-cohere\" or extra == \"drivers-embedding-cohere\" or extra == \"drivers-rerank-cohere\" or extra == \"all\""}
@@ -5697,4 +5697,4 @@ test = ["big-O", "importlib-resources", "jaraco.functools", "jaraco.itertools", 
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "b0df42969338efcc2c42b923844eae84f38850eecac551d79c218e50970380b8"
+content-hash = "50e1993f735a4cb2a84cbd95110ab373e1e184baa008b10c566430084bf48b07"
