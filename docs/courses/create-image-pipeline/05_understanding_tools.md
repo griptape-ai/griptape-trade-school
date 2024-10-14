@@ -111,10 +111,10 @@ task = ToolkitTask("{{ args[0] }}", tools=[DateTimeTool(off_prompt=False)], id="
 ```
 
 !!!tip "What is "off_prompt"?"
-    **Important Note**: Griptape directs outputs from Tool activities into short-term [TaskMemory](https://docs.griptape.ai/stable/griptape-framework/tools/task-memory/){target="_blank"}, keeping them 'off_prompt' and separate from the LLM. This makes it easy to work with big data securely and with low latency. To change this default for more direct interaction with the LLM, set the `off_prompt` parameter to `False`. This allows the LLM to access and respond to Tool outputs directly.
+    **Important Note**: Griptape directs outputs from Tool activities into short-term [TaskMemory](https://docs.griptape.ai/latest/griptape-framework/structures/task-memory/){target="_blank"}, keeping them 'off_prompt' and separate from the LLM. This makes it easy to work with big data securely and with low latency. To change this default for more direct interaction with the LLM, set the `off_prompt` parameter to `False`. This allows the LLM to access and respond to Tool outputs directly.
 
 !!!abstract "DateTimeTool"
-    For more information on the DateTimeTool Tool, you can visit the [DateTimeTool Tool Documentation](https://docs.griptape.ai/stable/griptape-tools/official-tools/date-time/){target="_blank"}. 
+    For more information on the DateTimeTool Tool, you can visit the [DateTimeTool Tool Documentation](https://docs.griptape.ai/stable/griptape-tools/official-tools/date-time-tool/){target="_blank"}. 
 
 ### Try it again
 

@@ -12,13 +12,13 @@ from rich.prompt import Prompt
 # Griptape
 from griptape.structures import Agent
 from griptape.rules import Rule, Ruleset
-from griptape.config import config
+from griptape.configs import Defaults
 
 # Load environment variables
 load_dotenv()
 
 # Disable griptape's info logging
-logging.getLogger(config.logging_config.logger_name).setLevel(logging.ERROR)
+logging.getLogger(Defaults.logging_config.logger_name).setLevel(logging.ERROR)
 
 # Create rulesets for each persona
 kiwi_ruleset = Ruleset(

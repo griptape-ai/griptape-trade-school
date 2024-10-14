@@ -250,22 +250,22 @@ files = [
 
 [[package]]
 name = "attrs"
-version = "23.2.0"
+version = "24.2.0"
 description = "Classes Without Boilerplate"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "attrs-23.2.0-py3-none-any.whl", hash = "sha256:99b87a485a5820b23b879f04c2305b44b951b502fd64be915879d77a7e8fc6f1"},
-    {file = "attrs-23.2.0.tar.gz", hash = "sha256:935dc3b529c262f6cf76e50877d35a4bd3c1de194fd41f47a2b7ae8f19971f30"},
+    {file = "attrs-24.2.0-py3-none-any.whl", hash = "sha256:81921eb96de3191c8258c199618104dd27ac608d9366f5e35d011eae1867ede2"},
+    {file = "attrs-24.2.0.tar.gz", hash = "sha256:5cfb1b9148b5b086569baec03f20d7b6bf3bcacc9a42bebf87ffaaca362f6346"},
 ]
 
 [package.extras]
-cov = ["attrs[tests]", "coverage[toml] (>=5.3)"]
-dev = ["attrs[tests]", "pre-commit"]
-docs = ["furo", "myst-parser", "sphinx", "sphinx-notfound-page", "sphinxcontrib-towncrier", "towncrier", "zope-interface"]
-tests = ["attrs[tests-no-zope]", "zope-interface"]
-tests-mypy = ["mypy (>=1.6)", "pytest-mypy-plugins"]
-tests-no-zope = ["attrs[tests-mypy]", "cloudpickle", "hypothesis", "pympler", "pytest (>=4.3.0)", "pytest-xdist[psutil]"]
+benchmark = ["cloudpickle", "hypothesis", "mypy (>=1.11.1)", "pympler", "pytest (>=4.3.0)", "pytest-codspeed", "pytest-mypy-plugins", "pytest-xdist[psutil]"]
+cov = ["cloudpickle", "coverage[toml] (>=5.3)", "hypothesis", "mypy (>=1.11.1)", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins", "pytest-xdist[psutil]"]
+dev = ["cloudpickle", "hypothesis", "mypy (>=1.11.1)", "pre-commit", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins", "pytest-xdist[psutil]"]
+docs = ["cogapp", "furo", "myst-parser", "sphinx", "sphinx-notfound-page", "sphinxcontrib-towncrier", "towncrier (<24.7)"]
+tests = ["cloudpickle", "hypothesis", "mypy (>=1.11.1)", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins", "pytest-xdist[psutil]"]
+tests-mypy = ["mypy (>=1.11.1)", "pytest-mypy-plugins"]
 
 [[package]]
 name = "babel"
@@ -1344,67 +1344,69 @@ test = ["objgraph", "psutil"]
 
 [[package]]
 name = "griptape"
-version = "0.29.2"
+version = "0.31.0"
 description = "Modular Python framework for LLM workflows, tools, memory, and data."
 optional = false
-python-versions = "^3.9"
-files = []
-develop = false
+python-versions = "<4.0,>=3.9"
+files = [
+    {file = "griptape-0.31.0-py3-none-any.whl", hash = "sha256:611efda9b2a7c3ebd034898eff991bd22bbe61b6ef351e70ea36da6cc1498f21"},
+    {file = "griptape-0.31.0.tar.gz", hash = "sha256:12ca6d54daa44665fd511932e31ccbc7e4343f1eade8e5ec2c9045498cefa3f6"},
+]
 
 [package.dependencies]
-accelerate = {version = "^0.32.1", optional = true}
-anthropic = {version = "^0.29.0", optional = true}
-astrapy = {version = "^1.4", optional = true}
-attrs = "^23.2.0"
-beautifulsoup4 = {version = "^4.12.3", optional = true}
-boto3 = {version = "^1.34.119", optional = true}
-cohere = {version = "^5.5.4", optional = true}
-diffusers = {version = "^0.29.1", optional = true}
-docker = "^7.1.0"
-duckduckgo-search = {version = "^6.1.12", optional = true}
-elevenlabs = {version = "^1.1.2", optional = true}
-filetype = {version = "^1.2", optional = true}
-google-generativeai = {version = "^0.7.2", optional = true}
-jinja2 = "^3.1.4"
-mail-parser = {version = "^3.15.0", optional = true}
-markdownify = {version = "^0.11.6", optional = true}
-marqo = {version = "^3.7.0", optional = true}
-marshmallow = "^3.21.3"
-marshmallow-enum = "^1.5.1"
-numpy = "^1.26.4"
-ollama = {version = "^0.3.0", optional = true}
-openai = "^1.1.1"
-opensearch-py = {version = "^2.3.1", optional = true}
-opentelemetry-api = {version = "^1.25.0", optional = true}
-opentelemetry-exporter-otlp-proto-http = {version = "^1.25.0", optional = true}
-opentelemetry-instrumentation = {version = "^0.46b0", optional = true}
-opentelemetry-instrumentation-threading = {version = "^0.46b0", optional = true}
-opentelemetry-sdk = {version = "^1.25.0", optional = true}
-pandas = {version = "^1.3", optional = true}
-pgvector = {version = "^0.2.3", optional = true}
-pillow = {version = "^10.2.0", optional = true}
-pinecone-client = {version = "^3", optional = true}
-playwright = {version = "^1.42", optional = true}
-psycopg2-binary = {version = "^2.9.9", optional = true}
-pusher = {version = "^3.3.2", optional = true}
-pymongo = {version = "^4.8.0", optional = true}
-pypdf = {version = "^3.9", optional = true}
-pyyaml = "^6.0.1"
-qdrant-client = {version = "^1.10.1", optional = true}
-redis = {version = "^4.6.0", optional = true}
-requests = "^2.32.0"
-rich = "^13.7.1"
-schema = "^0.7.7"
-sentencepiece = {version = "^0.2.0", optional = true}
-snowflake-sqlalchemy = {version = "^1.6.1", optional = true}
-sqlalchemy = {version = "^2.0.31", optional = true}
-stringcase = "^1.2.0"
-tenacity = "^8.5.0"
-tiktoken = "^0.7"
-torch = {version = "^2.3.1", optional = true}
-trafilatura = {version = "^1.6", optional = true}
-transformers = {version = "^4.41.1", extras = ["torch"], optional = true}
-voyageai = {version = "^0.2.1", optional = true}
+accelerate = {version = ">=0.32.1,<0.33.0", optional = true, markers = "extra == \"drivers-image-generation-huggingface\" or extra == \"all\""}
+anthropic = {version = ">=0.29.0,<0.30.0", optional = true, markers = "extra == \"drivers-prompt-anthropic\" or extra == \"drivers-prompt-amazon-bedrock\" or extra == \"all\""}
+astrapy = {version = ">=1.4,<2.0", optional = true, markers = "extra == \"drivers-vector-astra-db\" or extra == \"all\""}
+attrs = ">=24.2.0,<25.0.0"
+beautifulsoup4 = {version = ">=4.12.3,<5.0.0", optional = true, markers = "extra == \"drivers-web-scraper-markdownify\" or extra == \"all\""}
+boto3 = {version = ">=1.34.119,<2.0.0", optional = true, markers = "extra == \"drivers-prompt-amazon-bedrock\" or extra == \"drivers-prompt-amazon-sagemaker\" or extra == \"drivers-sql-amazon-redshift\" or extra == \"drivers-memory-conversation-amazon-dynamodb\" or extra == \"drivers-vector-amazon-opensearch\" or extra == \"drivers-embedding-amazon-bedrock\" or extra == \"drivers-embedding-amazon-sagemaker\" or extra == \"drivers-event-listener-amazon-sqs\" or extra == \"drivers-event-listener-amazon-iot\" or extra == \"all\""}
+cohere = {version = ">=5.5.4,<6.0.0", optional = true, markers = "extra == \"drivers-prompt-cohere\" or extra == \"drivers-embedding-cohere\" or extra == \"drivers-rerank-cohere\" or extra == \"all\""}
+diffusers = {version = ">=0.29.1,<0.30.0", optional = true, markers = "extra == \"drivers-image-generation-huggingface\" or extra == \"all\""}
+docker = ">=7.1.0,<8.0.0"
+duckduckgo-search = {version = ">=6.1.12,<7.0.0", optional = true, markers = "extra == \"drivers-web-search-duckduckgo\" or extra == \"all\""}
+elevenlabs = {version = ">=1.1.2,<2.0.0", optional = true, markers = "extra == \"drivers-text-to-speech-elevenlabs\" or extra == \"all\""}
+filetype = {version = ">=1.2,<2.0", optional = true, markers = "extra == \"loaders-audio\" or extra == \"all\""}
+google-generativeai = {version = ">=0.7.2,<0.8.0", optional = true, markers = "extra == \"drivers-prompt-google\" or extra == \"drivers-embedding-google\" or extra == \"all\""}
+jinja2 = ">=3.1.4,<4.0.0"
+mail-parser = {version = ">=3.15.0,<4.0.0", optional = true, markers = "extra == \"loaders-email\" or extra == \"all\""}
+markdownify = {version = ">=0.11.6,<0.12.0", optional = true, markers = "extra == \"drivers-web-scraper-markdownify\" or extra == \"all\""}
+marqo = {version = ">=3.7.0,<4.0.0", optional = true, markers = "extra == \"drivers-vector-marqo\" or extra == \"all\""}
+marshmallow = ">=3.21.3,<4.0.0"
+marshmallow-enum = ">=1.5.1,<2.0.0"
+numpy = ">=1.26.4,<2.0.0"
+ollama = {version = ">=0.3.0,<0.4.0", optional = true, markers = "extra == \"drivers-prompt-ollama\" or extra == \"drivers-embedding-ollama\" or extra == \"all\""}
+openai = ">=1.1.1,<2.0.0"
+opensearch-py = {version = ">=2.3.1,<3.0.0", optional = true, markers = "extra == \"drivers-vector-opensearch\" or extra == \"drivers-vector-amazon-opensearch\" or extra == \"all\""}
+opentelemetry-api = {version = ">=1.25.0,<2.0.0", optional = true, markers = "extra == \"drivers-observability-opentelemetry\" or extra == \"drivers-observability-griptape-cloud\" or extra == \"drivers-observability-datadog\" or extra == \"all\""}
+opentelemetry-exporter-otlp-proto-http = {version = ">=1.25.0,<2.0.0", optional = true, markers = "extra == \"drivers-observability-opentelemetry\" or extra == \"drivers-observability-griptape-cloud\" or extra == \"drivers-observability-datadog\" or extra == \"all\""}
+opentelemetry-instrumentation = {version = ">=0.46b0,<0.47", optional = true, markers = "extra == \"drivers-observability-opentelemetry\" or extra == \"drivers-observability-griptape-cloud\" or extra == \"drivers-observability-datadog\" or extra == \"all\""}
+opentelemetry-instrumentation-threading = {version = ">=0.46b0,<0.47", optional = true, markers = "extra == \"drivers-observability-opentelemetry\" or extra == \"drivers-observability-griptape-cloud\" or extra == \"drivers-observability-datadog\" or extra == \"all\""}
+opentelemetry-sdk = {version = ">=1.25.0,<2.0.0", optional = true, markers = "extra == \"drivers-observability-opentelemetry\" or extra == \"drivers-observability-griptape-cloud\" or extra == \"drivers-observability-datadog\" or extra == \"all\""}
+pandas = {version = ">=1.3,<2.0", optional = true, markers = "extra == \"loaders-dataframe\" or extra == \"all\""}
+pgvector = {version = ">=0.2.3,<0.3.0", optional = true, markers = "extra == \"drivers-vector-pgvector\" or extra == \"all\""}
+pillow = {version = ">=10.2.0,<11.0.0", optional = true, markers = "extra == \"drivers-image-generation-huggingface\" or extra == \"loaders-image\" or extra == \"all\""}
+pinecone-client = {version = ">=3,<4", optional = true, markers = "extra == \"drivers-vector-pinecone\" or extra == \"all\""}
+playwright = {version = ">=1.42,<2.0", optional = true, markers = "extra == \"drivers-web-scraper-markdownify\" or extra == \"all\""}
+psycopg2-binary = {version = ">=2.9.9,<3.0.0", optional = true, markers = "extra == \"drivers-vector-pgvector\" or extra == \"all\""}
+pusher = {version = ">=3.3.2,<4.0.0", optional = true, markers = "extra == \"drivers-event-listener-pusher\" or extra == \"all\""}
+pymongo = {version = ">=4.8.0,<5.0.0", optional = true, markers = "extra == \"drivers-vector-mongodb\" or extra == \"all\""}
+pypdf = {version = ">=3.9,<4.0", optional = true, markers = "extra == \"loaders-pdf\" or extra == \"all\""}
+pyyaml = ">=6.0.1,<7.0.0"
+qdrant-client = {version = ">=1.10.1,<2.0.0", optional = true, markers = "extra == \"drivers-vector-qdrant\" or extra == \"all\""}
+redis = {version = ">=4.6.0,<5.0.0", optional = true, markers = "extra == \"drivers-memory-conversation-redis\" or extra == \"drivers-vector-redis\" or extra == \"all\""}
+requests = ">=2.32.0,<3.0.0"
+rich = ">=13.7.1,<14.0.0"
+schema = ">=0.7.7,<0.8.0"
+sentencepiece = {version = ">=0.2.0,<0.3.0", optional = true, markers = "extra == \"drivers-image-generation-huggingface\" or extra == \"all\""}
+snowflake-sqlalchemy = {version = ">=1.6.1,<2.0.0", optional = true, markers = "extra == \"drivers-sql-snowflake\" or extra == \"all\""}
+sqlalchemy = {version = ">=2.0.31,<3.0.0", optional = true, markers = "extra == \"drivers-sql\" or extra == \"drivers-sql-snowflake\" or extra == \"drivers-vector-pgvector\" or extra == \"loaders-sql\" or extra == \"all\""}
+stringcase = ">=1.2.0,<2.0.0"
+tenacity = ">=8.5.0,<9.0.0"
+tiktoken = ">=0.7,<0.8"
+torch = {version = ">=2.3.1,<3.0.0", optional = true, markers = "extra == \"drivers-image-generation-huggingface\" or extra == \"all\""}
+trafilatura = {version = ">=1.6,<2.0", optional = true, markers = "extra == \"drivers-web-scraper-trafilatura\" or extra == \"all\""}
+transformers = {version = ">=4.41.1,<5.0.0", extras = ["torch"], optional = true, markers = "extra == \"drivers-prompt-huggingface-hub\" or extra == \"drivers-prompt-huggingface-pipeline\" or extra == \"drivers-prompt-amazon-sagemaker\" or extra == \"drivers-embedding-huggingface\" or extra == \"all\""}
+voyageai = {version = ">=0.2.1,<0.3.0", optional = true, markers = "extra == \"drivers-embedding-voyageai\" or extra == \"all\""}
 
 [package.extras]
 all = ["accelerate (>=0.32.1,<0.33.0)", "anthropic (>=0.29.0,<0.30.0)", "astrapy (>=1.4,<2.0)", "beautifulsoup4 (>=4.12.3,<5.0.0)", "boto3 (>=1.34.119,<2.0.0)", "cohere (>=5.5.4,<6.0.0)", "diffusers (>=0.29.1,<0.30.0)", "duckduckgo-search (>=6.1.12,<7.0.0)", "elevenlabs (>=1.1.2,<2.0.0)", "filetype (>=1.2,<2.0)", "google-generativeai (>=0.7.2,<0.8.0)", "mail-parser (>=3.15.0,<4.0.0)", "markdownify (>=0.11.6,<0.12.0)", "marqo (>=3.7.0,<4.0.0)", "ollama (>=0.3.0,<0.4.0)", "opensearch-py (>=2.3.1,<3.0.0)", "opentelemetry-api (>=1.25.0,<2.0.0)", "opentelemetry-exporter-otlp-proto-http (>=1.25.0,<2.0.0)", "opentelemetry-instrumentation (>=0.46b0,<0.47)", "opentelemetry-instrumentation-threading (>=0.46b0,<0.47)", "opentelemetry-sdk (>=1.25.0,<2.0.0)", "pandas (>=1.3,<2.0)", "pgvector (>=0.2.3,<0.3.0)", "pillow (>=10.2.0,<11.0.0)", "pinecone-client (>=3,<4)", "playwright (>=1.42,<2.0)", "psycopg2-binary (>=2.9.9,<3.0.0)", "pusher (>=3.3.2,<4.0.0)", "pymongo (>=4.8.0,<5.0.0)", "pypdf (>=3.9,<4.0)", "qdrant-client (>=1.10.1,<2.0.0)", "redis (>=4.6.0,<5.0.0)", "sentencepiece (>=0.2.0,<0.3.0)", "snowflake-sqlalchemy (>=1.6.1,<2.0.0)", "sqlalchemy (>=2.0.31,<3.0.0)", "torch (>=2.3.1,<3.0.0)", "trafilatura (>=1.6,<2.0)", "transformers[torch] (>=4.41.1,<5.0.0)", "voyageai (>=0.2.1,<0.3.0)"]
@@ -1455,12 +1457,6 @@ loaders-email = ["mail-parser (>=3.15.0,<4.0.0)"]
 loaders-image = ["pillow (>=10.2.0,<11.0.0)"]
 loaders-pdf = ["pypdf (>=3.9,<4.0)"]
 loaders-sql = ["sqlalchemy (>=2.0.31,<3.0.0)"]
-
-[package.source]
-type = "git"
-url = "https://github.com/griptape-ai/griptape.git"
-reference = "HEAD"
-resolved_reference = "49495dd14463f018d9842b8891f0cc23491b151c"
 
 [[package]]
 name = "grpcio"
@@ -3200,8 +3196,8 @@ certifi = ">=2019.11.17"
 tqdm = ">=4.64.1"
 typing-extensions = ">=3.7.4"
 urllib3 = [
-    {version = ">=1.26.0", markers = "python_version >= \"3.8\" and python_version < \"3.12\""},
     {version = ">=1.26.5", markers = "python_version >= \"3.12\" and python_version < \"4.0\""},
+    {version = ">=1.26.0", markers = "python_version >= \"3.8\" and python_version < \"3.12\""},
 ]
 
 [package.extras]
@@ -3499,8 +3495,8 @@ files = [
 annotated-types = ">=0.4.0"
 pydantic-core = "2.20.1"
 typing-extensions = [
-    {version = ">=4.6.1", markers = "python_version < \"3.13\""},
     {version = ">=4.12.2", markers = "python_version >= \"3.13\""},
+    {version = ">=4.6.1", markers = "python_version < \"3.13\""},
 ]
 
 [package.extras]
@@ -4051,8 +4047,8 @@ grpcio = ">=1.41.0"
 grpcio-tools = ">=1.41.0"
 httpx = {version = ">=0.20.0", extras = ["http2"]}
 numpy = [
-    {version = ">=1.21", markers = "python_version >= \"3.8\" and python_version < \"3.12\""},
     {version = ">=1.26", markers = "python_version >= \"3.12\""},
+    {version = ">=1.21", markers = "python_version >= \"3.8\" and python_version < \"3.12\""},
 ]
 portalocker = ">=2.7.0,<3.0.0"
 pydantic = ">=1.10.8"
@@ -5701,4 +5697,4 @@ test = ["big-O", "importlib-resources", "jaraco.functools", "jaraco.itertools", 
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "978f30e9e428428f1dd3c76a6f508f7a32d19d61574f986a19af5f9ee7159526"
+content-hash = "50e1993f735a4cb2a84cbd95110ab373e1e184baa008b10c566430084bf48b07"
