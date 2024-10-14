@@ -22,7 +22,7 @@ It's time to modify our Chat utility to show those logs and allow our chatbot's 
 
 ```python hl_lines="2"
 # Run the agent
-Chat(logger_level=logging.INFO).start()
+Chat(agent,logger_level=logging.INFO).start()
 ```
 
 Here is the code with the new lines highlighted:
@@ -42,7 +42,7 @@ load_dotenv()
 agent = Agent()
 
 # Run the agent
-Chat(logger_level=logging.INFO).start()
+Chat(agent,logger_level=logging.INFO).start()
 ```
 
 ### Give it a try
