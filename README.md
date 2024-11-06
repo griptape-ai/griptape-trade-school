@@ -18,7 +18,9 @@ Tutorials and Courses for [Griptape](https://github.com/griptape-ai/griptape).
 
 # Run Tests Locally
 
-This package explicitly does not include Griptape so that it can be specified when running tests in the workflow
+This package explicitly does not include Griptape so that it can be specified when running tests in the workflow. It is installed with the `test` extra via poetry. If you need to update the version of griptape installed, then update the `pyproject.toml`
+
+First copy `.env.example` to `.env` and fill out the keys required.
 
 ```
 make install
