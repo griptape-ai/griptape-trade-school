@@ -1,15 +1,15 @@
 from dotenv import load_dotenv
+from griptape.artifacts import TextArtifact
+from griptape.drivers import OpenAiImageGenerationDriver
+from griptape.engines import PromptImageGenerationEngine
 
 # Griptape
 from griptape.structures import Pipeline
 from griptape.tasks import (
-    PromptTask,
-    PromptImageGenerationTask,
     CodeExecutionTask,
+    PromptImageGenerationTask,
+    PromptTask,
 )
-from griptape.artifacts import TextArtifact
-from griptape.drivers import OpenAiImageGenerationDriver
-from griptape.engines import PromptImageGenerationEngine
 
 load_dotenv()  # Load your environment
 
@@ -26,6 +26,7 @@ image_engine = PromptImageGenerationEngine(image_generation_driver=image_driver)
 # Create a function to display an image
 def display_image(task: CodeExecutionTask) -> TextArtifact:
     import os
+
     from PIL import Image
 
     # Get the filename
@@ -68,7 +69,7 @@ generate_image_task = PromptImageGenerationTask(
 display_image_task = CodeExecutionTask(
     "{{ parent.output.name }}",
     context={"output_dir": output_dir},
-    run_fn=display_image,
+    on_run=display_image,
     id="Display Image Task",
 )
 
