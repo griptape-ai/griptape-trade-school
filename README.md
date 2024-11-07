@@ -42,6 +42,7 @@ make test
     choco install act-cli
     ```
 - Create a local `.env` file from the `.env.example` and fill out the keys required
+- Make sure you have [Docker installed](https://docs.docker.com/get-started/get-docker/)
 - Run the following command
     ```
     act -P ubuntu-latest=catthehacker/ubuntu:act-latest --secret-file .env
