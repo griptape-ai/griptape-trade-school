@@ -10,6 +10,7 @@ python = "^3.11"
 mkdocs = "^1.6.0"
 mkdocs-material = "^9.5.26"
 mkdocs-glightbox = "^0.4.0"
+griptape = "^0.34.1"
 
 [tool.poetry.group.test]
 optional = true
