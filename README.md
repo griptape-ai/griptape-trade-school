@@ -20,7 +20,7 @@ Tutorials and Courses for [Griptape](https://github.com/griptape-ai/griptape).
 
 This package explicitly does not include Griptape so that it can be specified when running tests in the workflow. It is installed with the `test` extra via poetry. If you need to update the version of griptape installed, then update the `pyproject.toml`
 
-First copy `.env.example` to `.env` and fill out the keys required.
+First copy `.env.example` to `.env` and fill out the keys required. Then run the following.
 
 ```
 make install
@@ -36,14 +36,12 @@ make test
     ```
     brew install act
     ```
-- Create a local .env file
+
+    For Windows use [choco](https://github.com/chocolatey/choco) instead of brew
     ```
-    OPENAI_API_KEY=OP3NAI4PI-K3Y-1234567890ABCDEFG
-    SHOTGRID_API_KEY=SGAPI-K3Y-0987654321ZYXWVUTS
-    SHOTGRID_URL=https://your-shotgrid-name.shotgrid.autodesk.com
-    SHOTGRID_USER=your_username@email
-    SHOTGRID_PASSWORD=supersecretpassword123
+    choco install act-cli
     ```
+- Create a local `.env` file from the `.env.example` and fill out the keys required
 - Run the following command
     ```
     act -P ubuntu-latest=catthehacker/ubuntu:act-latest --secret-file .env
