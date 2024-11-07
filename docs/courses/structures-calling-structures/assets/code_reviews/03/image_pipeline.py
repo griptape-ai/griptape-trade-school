@@ -1,13 +1,13 @@
 # Griptape
-from griptape.structures import Pipeline
-from griptape.tasks import (
-    PromptTask,
-    PromptImageGenerationTask,
-    CodeExecutionTask,
-)
 from griptape.artifacts import TextArtifact
 from griptape.drivers import OpenAiImageGenerationDriver
 from griptape.engines import PromptImageGenerationEngine
+from griptape.structures import Pipeline
+from griptape.tasks import (
+    CodeExecutionTask,
+    PromptImageGenerationTask,
+    PromptTask,
+)
 
 
 def create_image_pipeline() -> Pipeline:
@@ -69,7 +69,7 @@ def create_image_pipeline() -> Pipeline:
     display_image_task = CodeExecutionTask(
         "{{ parent.output.name }}",
         context={"output_dir": output_dir},
-        run_fn=display_image,
+        on_run=display_image,
         id="Display Image Task",
     )
 

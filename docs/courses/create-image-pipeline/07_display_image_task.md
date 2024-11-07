@@ -36,7 +36,7 @@ And here's how you would use that function when defining the `CodeExecutionTask`
 # and runs the function count_mentions.
 get_mentions_task = CodeExecutionTask(
     "{{parent_output}}",
-    run_fn = count_mentions
+    on_run = count_mentions
 )
 ```
 
@@ -97,7 +97,7 @@ Here is what the `CodeExecutionTask` would look like:
 # and runs the function count_mentions.
 get_mentions_task = CodeExecutionTask(
     "{{parent_output}}",
-    run_fn = count_mentions,
+    on_run = count_mentions,
     context = {
         "search_term": "skateboard"
     }
@@ -127,7 +127,7 @@ from griptape.tasks import (
 
 ### Modify display_image_task
 
-Change the `display_image_task` from a `PromptTask` to a `CodeExecutionTask`. We'll then modify the prompt to just take the image name, and also provide the `run_fn`. Note, we haven't _created_ the function yet, we'll do that in the next step.
+Change the `display_image_task` from a `PromptTask` to a `CodeExecutionTask`. We'll then modify the prompt to just take the image name, and also provide the `on_run`. Note, we haven't _created_ the function yet, we'll do that in the next step.
 
 ```python title="app.py" hl_lines="3 4 6"
 # ...
@@ -135,7 +135,7 @@ Change the `display_image_task` from a `PromptTask` to a `CodeExecutionTask`. We
 display_image_task = CodeExecutionTask(
     "{{ parent.output.name }}",
     context={"output_dir": output_dir},
-    run_fn=display_image,
+    on_run=display_image,
     id="Display Image Task",
 )
 

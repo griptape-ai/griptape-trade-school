@@ -2,7 +2,9 @@ import pytest
 import pathlib
 import logging
 import subprocess
+import sys
 
+python_executable = sys.executable
 
 python_files = [f for f in pathlib.Path("docs").glob("**/code_reviews/**/*.py") if f.name != "__init__.py"]
 
@@ -11,7 +13,7 @@ python_files = [f for f in pathlib.Path("docs").glob("**/code_reviews/**/*.py") 
 def test_run_script(fpath):
     try:
         result = subprocess.run(
-            ["python", fpath],
+            [python_executable, fpath],
             capture_output=True,
             text=True,
             input="Hi\nexit\n",
