@@ -26,7 +26,7 @@ This means I can ask for "ways to filter asset creation" "asset creation, filter
 The process for providing the docs to the LLM looks like this:
 
 1. Create a Vector Database where we can store the documents. In this example, we'll use a simple [Local Vector Store Driver](https://docs.griptape.ai/stable/griptape-framework/drivers/vector-store-drivers/#local-vector-store-driver){target="_blank"}.
-2. Create a [Vector Query Engine](https://docs.griptape.ai/stable/griptape-framework/engines/rag-engines/){target="_blank"} - an engine that's really good at searching Vector Databases
+2. Create a [RAG Engine](https://docs.griptape.ai/stable/griptape-framework/engines/rag-engines/){target="_blank"} - an engine that's really good at searching Vector Databases
 3. Create a list of URLs to vectorize.
 For each URL, load the data using a [WebLoader](https://docs.griptape.ai/stable/griptape-framework/data/loaders/#web-loader){target="_blank"}.
 5. For each bit of website data, upsert (update/insert) it into the Vector Store.
@@ -36,7 +36,7 @@ For each URL, load the data using a [WebLoader](https://docs.griptape.ai/stable/
 ``` mermaid
 graph TB
     A(Create Vector DB)
-    B(Create Vector Query Engine)
+    B(Create RAG Engine)
     C(Gather URLs)
     D(URL 1)
     E(URL 2)

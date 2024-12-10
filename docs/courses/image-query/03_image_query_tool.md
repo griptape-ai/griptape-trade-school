@@ -26,8 +26,7 @@ Add the following to your `import` section:
 # ...
 
 from griptape.tools import ImageQueryTool
-from griptape.engines import ImageQueryEngine
-from griptape.drivers import OpenAiImageQueryDriver
+from griptape.drivers import OpenAiChatPromptDriver
 
 # ...
 ```
@@ -35,10 +34,7 @@ from griptape.drivers import OpenAiImageQueryDriver
 ### ImageQueryTool
 This component acts as the intermediary that will manage your interactions with images. It's responsible for sending image data to the engine and retrieving results.
 
-### ImageQueryEngine
-This is where the magic happens. The engine processes the image data, analyzes it, and interprets what's in the image based on the capabilities of the underlying model.
-
-### OpenAiImageQueryDriver
+### OpenAiChatPromptDriver
 This driver leverages OpenAI's advanced vision capabilities to understand and analyze images. It's a powerful tool that enables your agent to not just see images but truly understand their content, like I said before.
 
 An example of another ImageQueryDriver is Anthropic. Check out other available drivers in the [Griptape docs](https://docs.griptape.ai/stable/griptape-framework/drivers/image-query-drivers/)
@@ -59,21 +55,6 @@ load_dotenv()
 # Create an Image Query Driver
 driver = OpenAiImageQueryDriver(
     model="gpt-4o"
-)
-
-# ...
-```
-
-### Create the Image Query Engine
-
-This section effectively connects our previously created driver to the engine. Think of the engine as the middle manager in your corporate structure—it doesn’t do the grunt work itself (that’s the driver’s job), but it makes sure the instructions and data flow properly to get the job done.
-
-```python title="app.py" hl_lines="3-6"
-# ...
-
-# Create an Image Query Engine
-engine = ImageQueryEngine(
-    image_query_driver=driver,
 )
 
 # ...
