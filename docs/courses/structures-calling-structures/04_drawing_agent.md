@@ -45,24 +45,11 @@ After `load_dotenv()`, and before the section of the code where you create the A
 
 # Create the driver
 image_pipeline_driver = LocalStructureRunDriver(
-    structure_factory_fn=create_image_pipeline
+    create_structure=create_image_pipeline
 )
 
 # ...
 ```
-
-!!! question "What is a "Factory"?"
-    You may have noticed that the parameter we’re using to tell the `LocalStructureRunDriver` what function to use has the word “factory” in it.
-
-    ```python
-    structure_factory_fn=create_image_pipeline
-    ```
-
-    In Python, a "factory" is a concept rather than a specific feature or part of the language. It's a way of organizing your code so that you can create objects—think of objects as individual instances of things—without needing to know the exact details of how they are made. This is especially useful when you have different kinds of objects that share some common traits but might be created differently.
-
-    Imagine you run a toy shop, and you want to make different types of toys, like cars, planes, or dolls. Instead of building each toy from scratch every time, you set up a "factory" that knows how to make each type of toy based on what you ask for. You just tell the factory, "I need a car," and the factory gives you a car. You don’t need to know how the factory puts the wheels on or paints it; you just get the finished car ready to play with.
-
-    In Python, a factory function is a function you call to create these objects for you. You tell the function what kind of object you want, and it handles all the details, returning the new object.
 
 ## Create the Tool
 

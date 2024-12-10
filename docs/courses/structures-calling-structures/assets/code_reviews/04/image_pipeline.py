@@ -1,7 +1,6 @@
 # Griptape
 from griptape.artifacts import TextArtifact
 from griptape.drivers import OpenAiImageGenerationDriver
-from griptape.engines import PromptImageGenerationEngine
 from griptape.structures import Pipeline
 from griptape.tasks import (
     CodeExecutionTask,
@@ -16,9 +15,6 @@ def create_image_pipeline() -> Pipeline:
 
     # Create the driver
     image_driver = OpenAiImageGenerationDriver(model="dall-e-3", api_type="open_ai", image_size="1024x1024")
-
-    # Create the engine
-    image_engine = PromptImageGenerationEngine(image_generation_driver=image_driver)
 
     # Create a function to display an image
     def display_image(task: CodeExecutionTask) -> TextArtifact:
@@ -61,7 +57,7 @@ def create_image_pipeline() -> Pipeline:
 
     generate_image_task = PromptImageGenerationTask(
         "{{ parent_output }}",
-        image_generation_engine=image_engine,
+        image_generation_driver=image_driver,
         output_dir=output_dir,
         id="Generate Image Task",
     )

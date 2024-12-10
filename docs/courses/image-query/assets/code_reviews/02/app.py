@@ -25,5 +25,5 @@ Chat(
     prompt_prefix="\nYou: ",
     processing_text="\nThinking...",
     response_prefix="\nAgent: ",
-    output_fn=formatted_response,  # Uses the formatted_response function
+    handle_output=formatted_response,  # Uses the formatted_response function
 ).start()
