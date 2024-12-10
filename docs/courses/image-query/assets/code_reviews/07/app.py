@@ -59,7 +59,7 @@ if flow == "WORKFLOW":
             + "and save the result to image_descriptions/{{ filename }}.yml\n"
             + "in YAML format.\n\n{{ parent_outputs }}",
             tools=[FileManagerTool(off_prompt=False)],
-            context={"image": image, "image_path": image_path},
+            context={"filename": filename, "image_path": image_path},
             id=f"seo_{image}",
         )
 
