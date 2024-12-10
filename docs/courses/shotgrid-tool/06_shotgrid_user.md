@@ -110,11 +110,11 @@ class ShotGridTool(BaseTool):
         login_method: "api_key" or "user" - depending on the mode of login we want
     """
 
-    base_url: str = field(default=str, kw_only=True)
-    script_name: str = field(default=str, kw_only=True)
-    api_key: str = field(default=str, kw_only=True)
-    user_login: str = field(default=str, kw_only=True)
-    user_password: str = field(default=str, kw_only=True)
+    base_url: str = field(factory=str, kw_only=True)
+    script_name: str = field(factory=str, kw_only=True)
+    api_key: str = field(factory=str, kw_only=True)
+    user_login: str = field(factory=str, kw_only=True)
+    user_password: str = field(factory=str, kw_only=True)
     login_method: str = field(default="api_key", kw_only=True)
 
 # ...
