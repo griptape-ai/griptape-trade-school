@@ -42,7 +42,7 @@ We can use this `output_task` of the `workflow` to get the final output value.
 # Run the workflow
 workflow.run()     
 
-print(workflow.output)
+print(workflow.output_task.output.value)
 
 ```
 
