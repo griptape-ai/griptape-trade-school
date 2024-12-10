@@ -14,9 +14,9 @@ class ShotGridTool(BaseTool):
         api_key: The script API key, given to you by ShotGrid
     """
 
-    base_url: str = field(default=str, kw_only=True)
-    script_name: str = field(default=str, kw_only=True)
-    api_key: str = field(default=str, kw_only=True)
+    base_url: str = field(factory=str, kw_only=True)
+    script_name: str = field(factory=str, kw_only=True)
+    api_key: str = field(factory=str, kw_only=True)
 
     @activity(
         config={

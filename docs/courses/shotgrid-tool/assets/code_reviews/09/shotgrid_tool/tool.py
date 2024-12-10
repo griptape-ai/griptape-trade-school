@@ -19,11 +19,11 @@ class ShotGridTool(BaseTool):
 
     """
 
-    base_url: str = field(default=str, kw_only=True)
-    script_name: str = field(default=str, kw_only=True)
-    api_key: str = field(default=str, kw_only=True)
-    user_login: str = field(default=str, kw_only=True)
-    user_password: str = field(default=str, kw_only=True)
+    base_url: str = field(factory=str, kw_only=True)
+    script_name: str = field(factory=str, kw_only=True)
+    api_key: str = field(factory=str, kw_only=True)
+    user_login: str = field(factory=str, kw_only=True)
+    user_password: str = field(factory=str, kw_only=True)
     login_method: str = field(default="api_key", kw_only=True)
 
     @activity(
@@ -32,18 +32,18 @@ class ShotGridTool(BaseTool):
             "schema": Schema(
                 {
                     Literal(
-                        "method",
+                        "sg_method_name",
                         description="Shotgrid method to execute. Example: find_one, find, create, update, delete, revive, upload_thumbnail",
                     ): str,
                     Literal(
-                        "params",
+                        "sg_params",
                         description="Dictionary of parameters to pass to the method.",
-                    ): list,
+                    ): list[str],
                 }
             ),
         }
     )
-    def meta_method(self, params: dict) -> TextArtifact | ErrorArtifact:
+    def meta_method(self, sg_method_name: str, sg_params: list[str]) -> TextArtifact | ErrorArtifact:
         import shotgun_api3
 
         try:
@@ -62,10 +62,7 @@ class ShotGridTool(BaseTool):
                 )
 
             # Get the method name from the params
-            sg_method = getattr(sg, params["values"]["method"])
-
-            # Get the params from the params
-            sg_params = params["values"]["params"]
+            sg_method = getattr(sg, sg_method_name)
 
             # Execute the method with the params
             sg_result = sg_method(*sg_params)

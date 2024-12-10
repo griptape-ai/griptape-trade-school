@@ -13,13 +13,13 @@ from rich import print as print  # Modifies print to use the Rich library
 load_dotenv()  # Load your environment
 
 # Create the driver
-image_pipeline_driver = LocalStructureRunDriver(structure_factory_fn=create_image_pipeline)
+image_pipeline_driver = LocalStructureRunDriver(create_structure=create_image_pipeline)
 
 # Create the Tool
 image_pipeline_tool = StructureRunTool(
-    name="Image Creator",
+    name="ImageCreator",
     description="Create an image based on a prompt.",
-    driver=image_pipeline_driver,
+    structure_run_driver=image_pipeline_driver,
     off_prompt=False,
 )
 
@@ -39,5 +39,5 @@ Chat(
     prompt_prefix="\nYou: ",
     processing_text="\nThinking...",
     response_prefix="\nAgent: ",
-    output_fn=formatted_response,  # Uses the formatted_response function
+    handle_output=formatted_response,  # Uses the formatted_response function
 ).start()

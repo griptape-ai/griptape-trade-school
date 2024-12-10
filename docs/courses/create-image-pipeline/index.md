@@ -49,8 +49,8 @@ If you don't have those items available, it's highly recommended you go through 
 
 It's also recommended to view the [Compare Movies Workflow](../compare-movies-workflow/index.md) course if you haven't viewed it before, as it contains some similar concepts to the Pipeline course.
 
-## Image Generation Engines
-The course will cover some of the Image Generation Engines available for Griptape, including [OpenAI DALL·E 3](https://openai.com/dall-e-3){target="_blank"}, [Leonardo.AI](https://leonardo.ai/){target="_blank"}, and [Image Generation Engines running on Amazon Bedrock](https://aws.amazon.com/bedrock/stable-diffusion/){target="_blank"} 
+## Image Generation Drivers
+The course will cover some of the Image Generation Drivers available for Griptape, including [OpenAI DALL·E 3](https://openai.com/dall-e-3){target="_blank"}, [Leonardo.AI](https://leonardo.ai/){target="_blank"}, and [Image Generation Drivers running on Amazon Bedrock](https://aws.amazon.com/bedrock/stable-diffusion/){target="_blank"} 
 
 ### DALL·E 3
 * DALL·E 3 is available with an OpenAI API key.
@@ -73,7 +73,7 @@ The course will cover:
 
 * Creating Griptape Pipelines
 * Creating Griptape Tasks
-* Investigate Image Generation Engines
+* Investigate Image Generation Drivers
 * Using a `CodeExecutionTask` to display the resulting image
 
 ## Useful Resources and Links

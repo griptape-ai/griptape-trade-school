@@ -1,6 +1,7 @@
 from dotenv import load_dotenv
 import os
 
+from griptape.artifacts import ListArtifact
 from griptape.structures import Agent
 from griptape.utils import Chat
 from griptape.tools import DateTimeTool, VectorStoreTool
@@ -13,6 +14,7 @@ from griptape.engines.rag import RagEngine
 from griptape.engines.rag.modules import PromptResponseRagModule
 from griptape.engines.rag.stages import ResponseRagStage
 from griptape.loaders import WebLoader
+from griptape.chunkers import TextChunker
 
 # from reverse_string_tool import ReverseStringTool
 from shotgrid_tool import ShotGridTool
@@ -40,15 +42,18 @@ shotgrid_api_urls = [
 ]
 
 # Load the API documentation
-artifacts = []
-for url in shotgrid_api_urls:
-    artifacts.append(WebLoader().load(url))
+artifacts = WebLoader().load_collection(shotgrid_api_urls)
+
+# Convert to List Artifact
+artifacts = ListArtifact(list(artifacts.values()))
+
+# Chunk the documentation
+artifacts = TextChunker().chunk(artifacts)
 
 # Upsert documentation  into the vector database
 namespace = "shotgrid_api"
+vector_store_driver.upsert_text_artifacts({namespace: artifacts})
 
-for artifact in artifacts:
-    vector_store_driver.upsert_text_artifacts({namespace: artifact})
 
 # Instantiate the Vector Store Tool
 vector_store_tool = VectorStoreTool(

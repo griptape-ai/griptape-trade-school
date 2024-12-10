@@ -37,8 +37,8 @@ def grammar_agent():
 
 
 # Create a LocalStructureRunDriver
-# We pass the grammar_agent function to the structure_factory_fn
-grammar_agent_driver = LocalStructureRunDriver(structure_factory_fn=grammar_agent)
+# We pass the grammar_agent function to the create_structure
+grammar_agent_driver = LocalStructureRunDriver(create_structure=grammar_agent)
 
 # Create a client using the driver
 # It's important to define the name and the description, this is how
@@ -49,7 +49,7 @@ grammar_agent_driver = LocalStructureRunDriver(structure_factory_fn=grammar_agen
 grammar_agent_tool = StructureRunTool(
     name="Grammar Agent",
     description="An agent to evaluate and correct sentences based on standard grammar rules.",
-    driver=grammar_agent_driver,
+    structure_run_driver=grammar_agent_driver,
     off_prompt=True,
 )
 
