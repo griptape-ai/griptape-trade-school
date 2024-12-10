@@ -23,6 +23,10 @@ check/spell:
 .PHONY: check/lint
 check/lint:
 	@poetry run ruff check
+
+.PHONY: check/format
+check/format:
+	@poetry run ruff format --check
 	
 .PHONY: docs
 docs: ## Build documentation.

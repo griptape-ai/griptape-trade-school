@@ -44,7 +44,7 @@ class ShotGridTool(BaseTool):
         }
     )
     def meta_method(self, sg_method_name: str, sg_params: list[str]) -> TextArtifact | ErrorArtifact:
-        import shotgun_api3
+        import shotgun_api3  # pyright: ignore[reportMissingImports]
 
         try:
             if self.login_method == "api_key":

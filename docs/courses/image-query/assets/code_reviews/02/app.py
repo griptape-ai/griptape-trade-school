@@ -12,7 +12,6 @@ load_dotenv()  # Load your environment
 agent = Agent(stream=True)
 
 
-
 # Modify the Agent's response to have some color.
 def formatted_response(response: str) -> None:
     print(f"[dark_cyan]{response}", end="", flush=True)
