@@ -52,4 +52,4 @@ for description in movie_descriptions:
 workflow.run()
 
 # View the output
-print(workflow.output_task.output.value)
+print(workflow.output)

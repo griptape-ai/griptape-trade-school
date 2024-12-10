@@ -13,7 +13,7 @@ In this course, we're going to be taking a topic to draw, and then execute a con
 
 1. Use an LLM to generate an Image Generation prompt.
     * If the input given is "a butterfly", the result of this task might be a text string "Create a watercolor painting of a butterfly.".
-    * This will allow us to ensure the output from this task will always be in the correct format for an Image Generation Engine.
+    * This will allow us to ensure the output from this task will always be in the correct format for an Image Generation Driver.
 3. Generate an image
     * Using the output from the previous step, we'll give that to an Image Generation Model
 4. View the image
@@ -61,7 +61,7 @@ Before we dive in and start setting up our own Pipeline, it's important to revie
 | **Extraction Tasks** | Various tasks associated with extracting information from text. | See examples in the [documentation](https://griptape.readthedocs.io/griptape-framework/structures/tasks/#extraction-task){target="_blank"}. 
 | **TextSummaryTask** | Summarizes text very efficiently | `TextSummaryTask("Imagine this is a massive amount of text.")` |
 | **TextQueryTask** | Can be used to query large bodies of text, for example a vector database. | See examples in the [documentation](https://griptape.readthedocs.io/griptape-framework/structures/tasks/#text-query-task){target="_blank"} |
-| **PromptImageGenerationTask** | Can be used to generate images based off a text prompt. | `PromptImageGenerationTask("watercolor butterfly"), image_generation_engine=image_engine`|
+| **PromptImageGenerationTask** | Can be used to generate images based off a text prompt. | `PromptImageGenerationTask("watercolor butterfly"), image_generation_driver=image_engine`|
 | **CodeExecutionTask** | Can be used to execute code. | `CodeExecutionTask(on_run=reverse_string)`|
 
 In this course, we will be focusing mostly on **Prompt Tasks**, **Image Generation Tasks**, and **Code Execution Tasks**. 
@@ -82,10 +82,8 @@ image_prompt_task = PromptTask(
 #
 image_generation_task = PromptImageGenerationTask(
     "{{ parent_output }}", # The output of the parent task
-    image_generation_engine=PromptImageGenerationEngine(
-        image_generation_driver=OpenAiImageGenerationDriver(
-            model="dall-e-3", api_type="open_ai", image_size="1024x1024"
-        ),
+    image_generation_driver=OpenAiImageGenerationDriver(
+        model="dall-e-3", api_type="open_ai", image_size="1024x1024"
     ),
     output_dir="./images",
     id="image_generation_task"

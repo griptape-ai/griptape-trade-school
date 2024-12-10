@@ -10,7 +10,7 @@ python = "^3.11"
 mkdocs = "^1.6.0"
 mkdocs-material = "^9.5.26"
 mkdocs-glightbox = "^0.4.0"
-griptape = "^0.34.1"
+griptape = "^1.0.0"
 
 [tool.poetry.group.test]
 optional = true
@@ -19,7 +19,6 @@ optional = true
 pytest = "^8.2.2"
 python-dotenv = "^1.0.1"
 pytest-xdist = "^3.3.1"
-griptape = {version="^0.34.1", extras=["all"]}
 pyright = "^1.1.372"
 typos = "^1.23.2"
 ruff = "^0.6.0"

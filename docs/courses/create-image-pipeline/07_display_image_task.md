@@ -168,7 +168,6 @@ from griptape.tasks import (
     CodeExecutionTask
 )
 from griptape.drivers import OpenAiImageGenerationDriver
-from griptape.engines import PromptImageGenerationEngine
 from griptape.artifacts import TextArtifact
 
 ```
@@ -179,9 +178,6 @@ We won't display the image yet, we'll just create the function and make sure we 
 
 ```python title="app.py" hl_lines="6-17"
 # ...
-
-# Create the engine
-image_engine = PromptImageGenerationEngine(image_generation_driver=image_driver)
 
 # Create a function to display an image
 def display_image(task: CodeExecutionTask) --> TextArtifact:

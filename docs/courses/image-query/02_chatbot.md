@@ -64,7 +64,7 @@ from rich import print as print # Modifies print to use the Rich library
 # ...
 ```
 
-Then, create a function to format and print responses from the agent in dark cyan. Add this code before you start the Chat function, passing it the function with the `output_fn` parameter.
+Then, create a function to format and print responses from the agent in dark cyan. Add this code before you start the Chat function, passing it the function with the `handle_output` parameter.
 
 ```python title="app.py" hl_lines="3-5 9"
 
@@ -77,7 +77,7 @@ def formatted_response(response: str) -> None:
 # Begin Chatting
 Chat(
     agent,
-    output_fn=formatted_response, # Uses the formatted_response function
+    handle_output=formatted_response, # Uses the formatted_response function
 ).start()
 
 ```
@@ -114,7 +114,7 @@ Chat(
     prompt_prefix="\nYou: ",
     processing_text="\nThinking...",
     response_prefix="\nAgent: ",
-    output_fn=formatted_response,  # Uses the formatted_response function
+    handle_output=formatted_response,  # Uses the formatted_response function
 ).start()
 
 ```

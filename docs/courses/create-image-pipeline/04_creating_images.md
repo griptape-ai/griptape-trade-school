@@ -6,7 +6,6 @@
 Image Generation via Griptape is handled via a few components.
 
 * **Image Generation Driver** - Determines the model to be used. For example, [OpenAI DALL·E 3](https://openai.com/dall-e-3){target="_blank"} or [Leonardo.AI](https://leonardo.ai/){target="_blank"}.
-* **Image Generation Engines** - The engine that facilitates the use of the Driver.
 * **Image Generation Task** or **Image Generation Tool**. The Task or Tool is what will be provided to the Griptape Structure. Pipelines and Workflows can use `PromptImageGenerationTask` directly. You can provide an `PromptImageGenerationTool` to an Agent, to a ToolTask, or to a ToolkitTask.
 
 For example, to create an image with OpenAI DALL·E 3 as a **task** you could do something like:
@@ -18,13 +17,10 @@ driver = OpenAiImageGenerationDriver(
     model="dall-e-3", api_type="open_ai", image_size="1024x1024"
 )
 
-# Create an Image Generation Engine
-engine = PromptImageGenerationEngine( image_generation_driver=driver )
-
 # Create an Image Generation Task
 task = PromptImageGenerationTask(
     "Create a drawing of a pineapple",
-    image_generation_engine=engine,
+    image_generation_driver=driver,
     output_dir="images"
 )
 ```
@@ -36,7 +32,7 @@ You can also use the `PromptImageGenerationTool` tool and assign it to an Agent.
 ```python
 agent = Agent(
     tools=[PromptImageGenerationTool(
-        image_generation_engine=engine,
+        image_generation_driver=engine,
         output_dir="images",
         off_prompt=False,
     )]
@@ -62,7 +58,6 @@ To use the Driver, Engine, and Task we'll need to add them to our `imports` sect
 from griptape.structures import Pipeline
 from griptape.tasks import PromptTask, PromptImageGenerationTask
 from griptape.drivers import OpenAiImageGenerationDriver
-from griptape.engines import PromptImageGenerationEngine
 
 # ...
 ```
@@ -99,9 +94,6 @@ image_driver = OpenAiImageGenerationDriver(
     model="dall-e-3", api_type="open_ai", image_size="1024x1024"
 )
 
-# Create the engine
-image_engine = PromptImageGenerationEngine(image_generation_driver=image_driver)
-
 # Create the pipeline object
 # ...
 ```
@@ -115,7 +107,7 @@ Next, we'll replace our fake image generation task with a _real_ image generatio
 
 generate_image_task = PromptImageGenerationTask(
     "{{ parent_output }}",
-    image_generation_engine=image_engine,
+    image_generation_driver=image_driver,
     output_dir="images",
     id="Generate Image Task",
 )
@@ -123,7 +115,7 @@ generate_image_task = PromptImageGenerationTask(
 # ...
 ```
 
-Notice we're giving it the `image_generation_engine` we defined earlier as `image_engine`. We're also specifying an `output_dir` of `images`. This will ensure the image is generated in that directory. 
+Notice we're giving it the `image_generation_driver` we defined earlier as `image_engine`. We're also specifying an `output_dir` of `images`. This will ensure the image is generated in that directory. 
 
 !!! tip
     With the `PromptImageGenerationTask`, if you want to save the file to disk you must specify _either_ the output file name (`output_file`) or the directory you want the images to appear in (`output_dir`). If you don't, the image generated will only exist in the `ImageArtifact`. 
@@ -250,7 +242,7 @@ If you scroll down in the code until you find the section where the `run` method
 # ...
 
     def run(self) -> ImageArtifact:
-        image_artifact = self.image_generation_engine.generate_image(
+        image_artifact = self.image_generation_driver.generate_image(
             prompts=[self.input.to_text()], rulesets=self.all_rulesets, negative_rulesets=self.negative_rulesets
         )
 
@@ -358,7 +350,7 @@ Now go down to the `generate_image_task` and use the `output_dir` variable in th
 
 generate_image_task = PromptImageGenerationTask(
     "{{ parent_output }}",
-    image_generation_engine=image_engine,
+    image_generation_driver=image_engine,
     output_dir=output_dir,
     id="Generate Image Task",
 )

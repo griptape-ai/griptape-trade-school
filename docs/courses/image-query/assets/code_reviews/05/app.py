@@ -4,23 +4,18 @@ from dotenv import load_dotenv
 from griptape.structures import Agent
 from griptape.utils import Chat
 from griptape.tools import ImageQueryTool, FileManagerTool
-from griptape.engines import ImageQueryEngine
-from griptape.drivers import OpenAiImageQueryDriver
+from griptape.drivers import OpenAiChatPromptDriver
 
 from rich import print as print  # Modifies print to use the Rich library
 
 load_dotenv()  # Load your environment
 
 # Create an Image Query Driver
-driver = OpenAiImageQueryDriver(model="gpt-4o")
+driver = OpenAiChatPromptDriver(model="gpt-4o")
 
-# Create an Image Query Engine
-engine = ImageQueryEngine(
-    image_query_driver=driver,
-)
 
 # Configure the ImageQueryTool
-image_query_tool = ImageQueryTool(image_query_engine=engine, off_prompt=False)
+image_query_tool = ImageQueryTool(prompt_driver=driver, off_prompt=False)
 
 # Create the Agent
 agent = Agent(
@@ -41,5 +36,5 @@ Chat(
     prompt_prefix="\nYou: ",
     processing_text="\nThinking...",
     response_prefix="\nAgent: ",
-    output_fn=formatted_response,  # Uses the formatted_response function
+    handle_output=formatted_response,  # Uses the formatted_response function
 ).start()

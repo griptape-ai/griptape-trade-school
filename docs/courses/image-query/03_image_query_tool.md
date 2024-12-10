@@ -85,13 +85,13 @@ Next, we'll tie all these components together and create a client that can handl
 
 ### Create the Tool
 
-First up, let’s create and configure the `ImageQueryTool`. This component uses the engine we set up earlier to process image queries. The `off_prompt` parameter is set to `False` to ensure that the image descriptions are not just processed but also sent back to the large language model for some insightful summarization. Here's how to do it:
+First up, let’s create and configure the `ImageQueryTool`. This component uses the driver we set up earlier to process image queries. The `off_prompt` parameter is set to `False` to ensure that the image descriptions are not just processed but also sent back to the large language model for some insightful summarization. Here's how to do it:
 
 ```python title="app.py" hl_lines="3-6"
 # ...
 
 image_query_tool = ImageQueryTool(
-    image_query_engine=engine, 
+    prompt_driver=driver, 
     off_prompt=False
 )
 

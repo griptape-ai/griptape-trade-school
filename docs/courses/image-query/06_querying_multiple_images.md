@@ -109,7 +109,7 @@ Modify the code as follows:
 ```python title="app.py" hl_lines="5-25"
 # ...
 # Configure the ImageQueryTool
-image_query_tool = ImageQueryTool(image_query_engine=engine, off_prompt=False)
+image_query_tool = ImageQueryTool(prompt_driver=driver, off_prompt=False)
 
 flow = "AGENT"
 if flow == "WORKFLOW":
@@ -131,7 +131,7 @@ else:
       prompt_prefix="\nYou: ",
       processing_text="\nThinking...",
       response_prefix="\nAgent: ",
-      output_fn=formatted_response,  # Uses the formatted_response function
+      handle_output=formatted_response,  # Uses the formatted_response function
   ).start()
 ```
 
