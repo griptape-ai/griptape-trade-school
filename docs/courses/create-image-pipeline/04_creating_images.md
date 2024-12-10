@@ -27,7 +27,7 @@ task = PromptImageGenerationTask(
 
 Once you generate the task, you will add it to the pipeline or workflow.
 
-You can also use the `PromptImageGenerationTool` tool and assign it to an Agent. It takes many of the same arguments. If you had previously created the `driver` and `engine` as specified above, you would do something like:
+You can also use the `PromptImageGenerationTool` tool and assign it to an Agent. It takes many of the same arguments. If you had previously created the `driver` as specified above, you would do something like:
 
 ```python
 agent = Agent(
