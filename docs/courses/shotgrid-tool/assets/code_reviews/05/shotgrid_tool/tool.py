@@ -24,7 +24,7 @@ class ShotGridTool(BaseTool):
         }
     )
     def get_session_token(self, _: dict) -> TextArtifact | ErrorArtifact:
-        import shotgun_api3
+        import shotgun_api3  # pyright: ignore[reportMissingImports]
 
         try:
             sg = shotgun_api3.Shotgun(
