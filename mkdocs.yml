@@ -25,7 +25,7 @@ extra:
 theme:
   name: material
   custom_dir: docs/overrides
-  logo: assets/img/griptape-logo-light.png
+  logo: assets/img/griptape-logo-light.svg
   palette:
     scheme: slate
     primary: black
